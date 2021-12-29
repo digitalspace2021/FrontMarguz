@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <style>
+            label{
+                display: inline-block;
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body style="background-color: #edf4f4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#" [routerLink]="['/dashboardestudiante']"><img src="../../../../../../assets/images/logomarguz.png" style="height: 50px;"></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{usuario.nombre}} {{usuario.apellido}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Mis Clases</a>
+                      <a class="dropdown-item" href="#" [routerLink]="['/perfilestudiante']">Mi Perfil</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Ayuda</a>
+                      <a class="dropdown-item" [routerLink]="['/']" routerLinkActive="router-link-active"  href="#">Cerrar sesion</a>
+                    </div>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <br><br>
+            <div class="row"> 
+                <h1 style="color: #c8132b;">Profesores de ingles online</h1>
+            </div>
+            <div class="card" style="height: 120px;"> 
+                <div class="card-body">
+                    <br>
+                    <div class="row" style="border-color: white;border-style: solid;border-width: 1px;border-radius: 4px;">
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="email">Idioma</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="email">Precio</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="email">Buscar</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text"  #myInput class="form-control" (keyup)="buscarProfesores(myInput.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <br><br>
+            <div *ngIf="profesores == null">
+                <h4>Cargando</h4>
+            </div>
+            <div class="card" *ngFor="let profesor of profesores" style="margin-bottom: 50px;">
+                <div class="card-body">
+            <div class="row" >
+                
+                <div class="col-md-3">
+                    <h5>{{profesor.nombre}} {{profesor.apellido}}</h5>
+                    <img src="{{profesor.foto_perfil}}" alt="{{profesor.foto_perfil}}" style="width:100%;height: 200px;">
+                    <br><br>
+                    <button class="btn" style="width: 100%;background-color: #27ae60;color: white;" [routerLink]="['/profesores/detalles',profesor.id]" routerLinkActive="router-link-active"  >Contactar</button>
+                </div><br><br>
+                <div class="col-md-5">
+                    <br>
+                    <h5>{{profesor.pais}}</h5>
+                    <h5>Ensena</h5>
+                    <h5>Habla</h5>
+                    <p>
+                        {{profesor.descripcion}}
+                        <a style="color: red;">Leer mas</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Nature" style="width:100%;height: 230px;">
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Costo por hora:
+                        </div>
+                        <div class="col-md-6">
+                            ${{profesor.valor_hora}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            <br><br><br>
+        </div>
+        
+    </body>
+</html>
+
+

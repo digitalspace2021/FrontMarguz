@@ -1,0 +1,43 @@
+.mb-4{
+    margin-bottom: -0.5rem!important;
+}
+
+.card-encabezado{
+    height: 68px;
+}
+
+.social-btn{
+    height: 40px;
+    border-radius: 5px;
+}
+
+.fa-facebook , .fa-google{
+    margin-right: 30px;
+}
+
+.input-register{
+    border-radius: 15px;
+    width: 250px;
+}
+
+.btn-login{
+    border-radius: 10px;
+}
+
+hr{
+    background-color: black;
+    width: 100%;
+}
+
+label{
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}
+
+.div1 > .afu-dragndrop-box{
+    height: 45px !important;
+    border-radius: 8px !important;
+    width: 200px !important;
+}
+

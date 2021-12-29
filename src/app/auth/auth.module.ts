@@ -9,6 +9,8 @@ import { ValidacionComponent } from './components/validacion/validacion.componen
 import { LoginComponent } from './containers/login/login.component';
 import { RegistroEstudianteComponent } from './containers/registro-estudiante/registro-estudiante.component';
 import { RegistroProfesorComponent } from './containers/registro-profesor/registro-profesor.component';
+import { ResetearContrasenaComponent } from './containers/resetear-contrasena/resetear-contrasena.component';
+import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/restaurar-contrasena.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { RegistroProfesorComponent } from './containers/registro-profesor/regist
     ValidacionComponent,
     LoginComponent,
     RegistroEstudianteComponent,
-    RegistroProfesorComponent
+    RegistroProfesorComponent,
+    ResetearContrasenaComponent,
+    RestaurarContrasenaComponent
   ],
   imports: [
     CommonModule,
