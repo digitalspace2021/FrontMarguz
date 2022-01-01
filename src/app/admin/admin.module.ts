@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
@@ -16,7 +17,8 @@ import { ComponentModule } from './components/component.module';
     AdminRoutingModule, 
     ContainerModule, 
     ComponentModule, 
-    FontAwesomeModule
+    FontAwesomeModule, 
+    SharedModule
   ]
 })
 export class AdminModule { }

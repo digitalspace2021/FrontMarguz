@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListAdminComponent } from './list-admin/list-admin.component';
@@ -10,6 +11,7 @@ import { ListaClasesComponent } from './lista-clases/lista-clases.component';
 import { EditarProfesorComponent } from './editar-profesor/editar-profesor.component';
 import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 import { EditarHorarioComponent } from './editar-horario/editar-horario.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { EditarHorarioComponent } from './editar-horario/editar-horario.componen
     EditarHorarioComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule, FontAwesomeModule, SharedModule
   ],
   exports : [
     ListAdminComponent,

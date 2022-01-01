@@ -1,7 +1,7 @@
+import { FooterAppComponent } from './components/footer-app/footer-app.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -15,11 +15,19 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
     LoaderComponent,
     ErrorComponent,
     ConfirmComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FooterAppComponent
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+  ], 
+  exports : [
+    SharedComponent,
+    LoaderComponent,
+    ErrorComponent,
+    ConfirmComponent,
+    NotFoundComponent,
+    FooterAppComponent
   ]
 })
 export class SharedModule { }
