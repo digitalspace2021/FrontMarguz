@@ -8,11 +8,15 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderAdminComponent implements OnInit {
   icon = faSortDown;
-  @Input() subTitulo : string = "";
+  mnuActive? : number;
   
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  menuActive(mnu : number){
+    this.mnuActive = mnu;
   }
 
 }
