@@ -8,7 +8,6 @@ import { ErrorComponent } from './components/error/error.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
 
-
 @NgModule({
   declarations: [
     SharedComponent,
@@ -16,18 +15,16 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
     ErrorComponent,
     ConfirmComponent,
     NotFoundComponent,
-    FooterAppComponent
+    FooterAppComponent,
   ],
-  imports: [
-    CommonModule,
-  ], 
-  exports : [
+  imports: [CommonModule],
+  exports: [
     SharedComponent,
     LoaderComponent,
     ErrorComponent,
     ConfirmComponent,
     NotFoundComponent,
-    FooterAppComponent
-  ]
+    FooterAppComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
