@@ -6,6 +6,7 @@ import {
   faWindowClose,
   faEdit,
   faTrashAlt,
+  faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -20,6 +21,7 @@ export class ListaMateriasComponent implements OnInit {
   close = faWindowClose;
   edit = faEdit;
   trash = faTrashAlt;
+  add = faPlusCircle;
 
   materias = [
     { id: 1, mat: 'Frances' },
