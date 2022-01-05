@@ -40,6 +40,46 @@ export class ListaClasesComponent implements OnInit {
       estado: 'Realizada',
       cantidad: 2,
     },
+    {
+      id: 0,
+      profesor: 'xxxxxx',
+      hora: '10:00',
+      fecha: '20/10/2021',
+      estado: 'PostPuesta',
+      cantidad: 0,
+    },
+    {
+      id: 0,
+      profesor: 'xxxxxx',
+      hora: '10:00',
+      fecha: '20/10/2021',
+      estado: 'Realizada',
+      cantidad: 2,
+    },
+    {
+      id: 0,
+      profesor: 'xxxxxx',
+      hora: '10:00',
+      fecha: '20/10/2021',
+      estado: 'PostPuesta',
+      cantidad: 0,
+    },
+    {
+      id: 0,
+      profesor: 'xxxxxx',
+      hora: '10:00',
+      fecha: '20/10/2021',
+      estado: 'Realizada',
+      cantidad: 2,
+    },
+    {
+      id: 0,
+      profesor: 'xxxxxx',
+      hora: '10:00',
+      fecha: '20/10/2021',
+      estado: 'Realizada',
+      cantidad: 2,
+    },
   ];
   icon = faSortDown;
   user = faUserCheck;

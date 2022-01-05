@@ -32,7 +32,6 @@ export class ListaMateriasComponent implements OnInit {
     { id: 6, mat: 'Italiano' },
     { id: 7, mat: 'Frances' },
     { id: 8, mat: 'Aleman' },
-    { id: 9, mat: 'Italiano' },
   ];
 
   constructor() {}
