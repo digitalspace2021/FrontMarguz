@@ -1,5 +1,5 @@
 <!-- Header -->
-<div class="row mt-3">
+<div class="row mt-4 mb-3">
   <div class="col-md-6">
     <h1 style="color: #e31b36">
       Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px"
@@ -8,6 +8,9 @@
     </h1>
   </div>
   <div class="col-md-6" style="text-align: right !important">
+    <button class="btn btn-light" style="margin-right: 15px">
+      <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
+    </button>
     <button class="btn btn-danger">
       <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
     </button>
@@ -34,17 +37,37 @@
               <tr *ngFor="let clase of clases">
                 <td><input type="checkbox" /></td>
                 <td>
-                  <a href="#">{{ clase.profesor }}</a>
+                  <a href="javascript:;">{{ clase.profesor }}</a>
                 </td>
                 <td>{{ clase.hora }}</td>
                 <td>{{ clase.fecha }}</td>
-                <td
-                  [ngStyle]="{
-                    'color': clase.estado == 'Realizada' ? 'green' : 'red'
-                  }"
-                >
-                  {{ clase.estado }}
-                  <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="dropdownMenu2"
+                      [ngStyle]="{
+                        color: clase.estado == 'Realizada' ? 'green' : 'red'
+                      }"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {{ clase.estado }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Realizada
+                        </button>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" type="button">
+                          Postpuesta
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </td>
                 <td>{{ clase.cantidad }}</td>
               </tr>

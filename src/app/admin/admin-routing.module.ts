@@ -12,10 +12,6 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: 'admin-list',
-        component : ListAdminComponent
-      },
-      {
         path: 'admin-usuario',
         component : ListaUsuariosComponent
       },
@@ -29,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo : "admin-list"
+        redirectTo : "admin-usuario"
         
       }
     ],

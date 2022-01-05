@@ -37,9 +37,18 @@
           src="../../../../assets/avatar-icon.jpg"
           alt="avatar"
         />
-        <button class="btn btn-sm" style="top: 9px; position: absolute">
-          <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
-        </button>
+        <div class="dropdown">
+          <button class="dropbtn btn-light btn-sm">
+            <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
+          </button>
+          <div class="dropdown-content">
+            <a href="javascrip:;">Estudiantes</a>
+            <a href="javascrip:;">Profesores</a>
+            <a href="javascrip:;">Administradores</a>
+            <a href="javascrip:;">Ayuda</a>
+            <a href="javascrip:;">Cerrar Sesión</a>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
