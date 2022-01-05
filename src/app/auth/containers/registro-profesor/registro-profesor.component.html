@@ -48,7 +48,7 @@
           </div>
           <div class="formInput">
             <label for="ciudad" class="col-form-label">Ciudad</label>
-            <select  [ngModelOptions]="{standalone: true}"[(ngModel)]="citySelected" class="form-control">
+            <select [(ngModel)]="citySelected" [ngModelOptions]="{standalone: true}" class="form-control">
               <option *ngFor="let city of cities" [value]="city.city_name">
                 {{ city.city_name }}
               </option>

@@ -33,7 +33,6 @@ export class RegistroProfesorComponent implements OnInit {
     this.countrySelected = "Colombia";
     await this.countryChange()
   }
-  async register() {}
   async countryChange() {
     this.stateSelected = ""
     this.citySelected = ""
@@ -54,4 +53,5 @@ export class RegistroProfesorComponent implements OnInit {
     }
     this.citySelected = this.cities[0].city_name;
   }
+  async register() {}
 }
