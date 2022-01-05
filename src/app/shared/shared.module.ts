@@ -10,6 +10,7 @@ import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     //SharedComponent,
@@ -19,10 +20,11 @@ import { FooterComponent } from './components/footer/footer.component';
     NotFoundComponent,
     HeaderComponent,
     FooterAppComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     //SharedRoutingModule
   ],
   exports: [
@@ -32,7 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
     NotFoundComponent,
     HeaderComponent,
     FooterAppComponent,
-    FooterComponent
-  ]
+    FooterComponent,
+  ],
 })
 export class SharedModule {}

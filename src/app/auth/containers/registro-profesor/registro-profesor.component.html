@@ -5,8 +5,7 @@
     </div>
     <div class="bodyBox">
       <div class="formBox">
-        <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
-        <form>
+        <form [formGroup]="registerForm"> 
           <div class="formInput">
             <label for="id" class="col-form-label">ID</label>
             <input type="text" formControlName="id" class="form-control" />
@@ -33,20 +32,26 @@
           </div>
           <div class="formInput">
             <label for="pais" class="col-form-label">Pais</label>
-            <select formControlName="pais" class="form-control">
-              <option value="1">Colombia</option>
+            <select (change)="countryChange()"  [ngModelOptions]="{standalone: true}"[(ngModel)]="countrySelected" class="form-control">
+              <option *ngFor="let country of countries" [value]="country.country_name">
+                {{ country.country_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
             <label for="estado" class="col-form-label">Estado</label>
-            <select formControlName="estado" class="form-control">
-              <option value="1">Tolima</option>
+            <select  [ngModelOptions]="{standalone: true}"[(ngModel)]="stateSelected" class="form-control">
+              <option *ngFor="let state of states" [value]="state.state_name">
+                {{ state.state_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
             <label for="ciudad" class="col-form-label">Ciudad</label>
-            <select formControlName="ciudad" class="form-control">
-              <option value="1">Ibague</option>
+            <select  [ngModelOptions]="{standalone: true}"[(ngModel)]="citySelected" class="form-control">
+              <option *ngFor="let city of cities" [value]="city.city_name">
+                {{ city.city_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
@@ -63,7 +68,7 @@
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
-              >Documentación</label
+              >Documentación/Hoja de vida</label
             >
             <div
               class="col-auto"
@@ -113,7 +118,7 @@
             </div>
           </div>
           <div class="formInput">
-            <label for="intereses" class="col-form-label">Intereses</label>
+            <label for="intereses" class="col-form-label">Idiomas</label>
             <input
               type="text"
               formControlName="intereses"

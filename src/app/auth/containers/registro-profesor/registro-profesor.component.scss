@@ -106,8 +106,17 @@ label{
         }
         .formBox {
           padding: 20px;
-          width: 50%;
+          width: 75%;
+          .form{
+            width: 100%;
+          }
           .formInput {
+            display: flex;
+            label {
+              width: 35%;
+              text-align: right;
+              margin-right: 10px;
+            }
             input {
               border-radius: 10px;
             }
