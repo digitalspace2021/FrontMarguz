@@ -1,285 +1,140 @@
-<div class="container">
-  <br /><br /><br /><br />
-  <div class="row">
-    <div class="col-md-8 offset-2">
-      <div
-        class="card flex-md-row mb-4 shadow-sm h-md-250 card-encabezado"
-        style="background-color: #e31b36; color: white"
-      >
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <p>Registrar como Profesor</p>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-5">
-              <p>
-                Ya tienes cuenta?
-                <a [routerLink]="['/auth/']" style="color: white"
-                  >Inicia Sesion</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="containerBox">
+  <div class="contentBox">
+    <div class="headerBox">
+      <p>Registrar como Profesor</p>
     </div>
-    <div class="col-md-8 offset-2">
-      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-        <div class="card-body d-flex flex-column align-items-center">
-          <div class="row">
-            <div class="col-6">
-              <button
-                class="btn btn-info social-btn"
-                style="background-color: #3b5998; color: white"
-              >
-                <i class="fab fa-facebook"></i>Ingresar con <b>Facebook</b>
-              </button>
-            </div>
-            <div class="col-6">
-              <button
-                class="btn btn-info social-btn"
-                style="background-color: #4285f4; color: white"
-              >
-                <i class="fab fa-google"></i>Ingresar con <b>Google</b>
-              </button>
+    <div class="bodyBox">
+      <div class="formBox">
+        <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
+        <form>
+          <div class="formInput">
+            <label for="id" class="col-form-label">ID</label>
+            <input type="text" formControlName="id" class="form-control" />
+          </div>
+          <div class="formInput">
+            <label for="nombre" class="col-form-label">Nombre</label>
+            <input type="text" formControlName="nombre" class="form-control" />
+          </div>
+          <div class="formInput">
+            <label for="apellido" class="col-form-label">Apellido</label>
+            <input
+              type="text"
+              formControlName="apellido"
+              class="form-control"
+            />
+          </div>
+          <div class="formInput">
+            <label for="telefono" class="col-form-label">Telefono</label>
+            <input
+              type="text"
+              formControlName="telefono"
+              class="form-control"
+            />
+          </div>
+          <div class="formInput">
+            <label for="pais" class="col-form-label">Pais</label>
+            <select formControlName="pais" class="form-control">
+              <option value="1">Colombia</option>
+            </select>
+          </div>
+          <div class="formInput">
+            <label for="estado" class="col-form-label">Estado</label>
+            <select formControlName="estado" class="form-control">
+              <option value="1">Tolima</option>
+            </select>
+          </div>
+          <div class="formInput">
+            <label for="ciudad" class="col-form-label">Ciudad</label>
+            <select formControlName="ciudad" class="form-control">
+              <option value="1">Ibague</option>
+            </select>
+          </div>
+          <div class="formInput">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="text" formControlName="email" class="form-control" />
+          </div>
+          <div class="formInput">
+            <label for="email" class="col-form-label">Contraseña</label>
+            <input
+              type="password"
+              formControlName="contrasena"
+              class="form-control"
+            />
+          </div>
+          <div class="formInput">
+            <label for="fotodeperfil" class="col-form-label"
+              >Documentación</label
+            >
+            <div
+              class="col-auto"
+              style="
+                background-color: #d6dade;
+                border-radius: 10px;
+                height: 70px;
+              "
+            >
+              <!--                         <angular-file-uploader
+                        [config]="afuConfig">
+                      </angular-file-uploader> -->
             </div>
           </div>
-          <br />
-          <hr />
-          <p style="margin-top: -30px">O</p>
-          <br />
-          <!-- <form [formGroup]="registerForm"> -->
-          <form>
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="nombre" class="col-form-label">Nombre</label>
-              </div>
-              <div class="col-auto">
-                <input
-                  type="text"
-                  formControlName="nombre"
-                  class="form-control input-register"
-                />
-              </div>
+          <div class="formInput">
+            <label for="fotodeperfil" class="col-form-label"
+              >Adjuntar cédula</label
+            >
+            <div
+              class="col-auto"
+              style="
+                background-color: #d6dade;
+                border-radius: 10px;
+                height: 70px;
+              "
+            >
+              <!--                         <angular-file-uploader
+                        [config]="afuConfig">
+                      </angular-file-uploader> -->
             </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="apellido" class="col-form-label">Apellido</label>
-              </div>
-              <div class="col-auto">
-                <input
-                  type="text"
-                  formControlName="apellido"
-                  class="form-control input-register"
-                />
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="telefono" class="col-form-label">Telefono</label>
-              </div>
-              <div class="col-auto">
-                <input
-                  type="text"
-                  formControlName="telefono"
-                  class="form-control input-register"
-                />
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="pais" class="col-form-label">Pais</label>
-              </div>
-              <div class="col-auto">
-                <select
-                  formControlName="pais"
-                  class="form-control input-register"
-                >
-                  <option value="1">Colombia</option>
-                </select>
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="estado" class="col-form-label">Estado</label>
-              </div>
-              <div class="col-auto">
-                <select
-                  formControlName="estado"
-                  class="form-control input-register"
-                >
-                  <option value="1">Tolima</option>
-                </select>
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="ciudad" class="col-form-label">Ciudad</label>
-              </div>
-              <div class="col-auto">
-                <select
-                  formControlName="ciudad"
-                  class="form-control input-register"
-                >
-                  <option value="1">Ibague</option>
-                </select>
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="email" class="col-form-label">Email</label>
-              </div>
-              <div class="col-auto">
-                <input
-                  type="text"
-                  formControlName="email"
-                  class="form-control input-register"
-                />
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="email" class="col-form-label">Contrasena</label>
-              </div>
-              <div class="col-auto">
-                <input
-                  type="password"
-                  formControlName="contrasena"
-                  class="form-control input-register"
-                />
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="fotodeperfil" class="col-form-label"
-                  >Documentacion</label
-                >
-              </div>
-              <div
-                class="col-auto"
-                style="
-                  background-color: #d6dade;
-                  border-radius: 10px;
-                  height: 70px;
-                "
-              >
-                <!--                         <angular-file-uploader
-                          [config]="afuConfig">
-                        </angular-file-uploader> -->
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="fotodeperfil" class="col-form-label"
-                  >Adjuntar cedula</label
-                >
-              </div>
-              <div
-                class="col-auto"
-                style="
-                  background-color: #d6dade;
-                  border-radius: 10px;
-                  height: 70px;
-                "
-              >
-                <!--                         <angular-file-uploader
-                          [config]="afuConfig">
-                        </angular-file-uploader> -->
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="fotodeperfil" class="col-form-label"
-                  >Foto de perfil</label
-                >
-              </div>
-              <div
-                class="col-auto"
-                style="
-                  background-color: #d6dade;
-                  border-radius: 10px;
-                  height: 180px;
-                "
-              >
-                <div class="file-foto">
-                  <!--                           <angular-file-uploader 
-                            [config]="afuConfig">
-                          </angular-file-uploader> -->
-                </div>
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="fotodeperfil" class="col-form-label"
-                  >Horarios</label
-                >
-              </div>
-              <div class="col-auto">
-                <p>Lunes <b>8:00 A.M. - 9:00 A.M.</b></p>
-                <p>Lunes <b>8:00 A.M. - 9:00 A.M.</b></p>
-                <button
-                  class="btn form-control"
-                  style="background-color: #2f80ed; color: white"
-                >
-                  Agregar Horarios
-                </button>
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="fotodeperfil" class="col-form-label"></label>
-              </div>
-              <div class="col-auto row">
-                <div class="col-md-9">
-                  <p>Idiomas</p>
-                </div>
-                <div class="col-md-3">
-                  <button
-                    class="btn btn-info"
-                    style="background-color: #e31b36"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <label for="fotodeperfil" class="col-form-label"></label>
-              </div>
-              <div class="col-auto" style="width: 233px">
-                <button
-                  class="btn form-control"
-                  style="background-color: #27ae60; color: white"
-                  (click)="register()"
-                >
-                  Registrarme
-                </button>
-              </div>
-            </div>
-          </form>
-          <br />
-          <div class="col-md-10 text-center">
-            <p>
-              Al dar click en continuar o registrarme,acepta los Terminos y
-              Condiciones de servicio y la politica de privacidad de marguz
-            </p>
           </div>
-        </div>
+          <div class="formInput">
+            <label for="fotodeperfil" class="col-form-label"
+              >Foto de perfil</label
+            >
+            <div
+              class="col-auto"
+              style="
+                background-color: #d6dade;
+                border-radius: 10px;
+                height: 70px;
+              "
+            >
+              <!--                         <angular-file-uploader
+                        [config]="afuConfig">
+                      </angular-file-uploader> -->
+            </div>
+          </div>
+          <div class="formInput">
+            <label for="intereses" class="col-form-label">Intereses</label>
+            <input
+              type="text"
+              formControlName="intereses"
+              class="form-control"
+            />
+          </div>
+          <div class="formButton">
+            <button type="button" (click)="register()">Registrarme</button>
+          </div>
+        </form>
+
+        <br />
+      </div>
+      <div class="recoverBox">
+        <p>
+          Al dar click en continuar o registrarme,acepta los
+          <a routerLink="/politicas/profesor"
+            >Terminos y Condiciones de servicio y la politica de privacidad de
+            marguz</a
+          >
+        </p>
       </div>
     </div>
   </div>

@@ -1,93 +1,56 @@
-<div class="container-fluid">
-  <br /><br /><br /><br />
-  <div class="row">
-    <div class="col-md-8 offset-2">
-      <div
-        class="card flex-md-row mb-4 shadow-sm h-md-250 card-encabezado"
-        style="background-color: #e31b36; color: white"
-      >
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <p>Iniciar Sesion</p>
-            </div>
-            <div class="col-md-4"></div>
-          </div>
+<div class="containerBox">
+  <div class="contentBox">
+    <div class="headerBox">
+      <p>Iniciar Sesion</p>
+    </div>
+    <div class="bodyBox">
+      <div class="buttonsBox">
+        <app-boton-facebook class="socialButton"></app-boton-facebook>
+        <app-boton-google class="socialButton"></app-boton-google>
+      </div>
+      <div class="divider">
+        <div class="circleBox">
+          <div class="innerCircleBox"></div>
         </div>
       </div>
-    </div>
-    <div class="col-md-8 offset-2">
-      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-        <div class="card-body d-flex flex-column align-items-center">
-          <div class="row">
-            <div class="col-6">
-              <button
-                class="btn btn-info social-btn"
-                style="background-color: #3b5998; color: white"
-              >
-                <i class="fab fa-facebook"></i>Ingresar con <b>Facebook</b>
-              </button>
-            </div>
-            <div class="col-6">
-              <button
-                class="btn btn-info social-btn"
-                style="background-color: #4285f4; color: white"
-              >
-                <i class="fab fa-google"></i>Ingresar con <b>Google</b>
-              </button>
-            </div>
+      <div class="formBox">
+        <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
+        <form>
+          <div class="formInput">
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              placeholder="Email"
+            />
           </div>
-          <br />
-          <hr />
-          <p style="margin-top: -30px">O</p>
-          <br />
-          <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
-          <form>
-            <div class="row g-3 align-items-center">
-              <input
-                type="text"
-                formControlName="email"
-                class="form-control input-login"
-                placeholder="Email"
-              />
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <input
-                type="password"
-                formControlName="contrasena"
-                class="form-control input-login"
-                placeholder="Contrasena"
-              />
-            </div>
-            <br />
-            <div class="row g-3 align-items-center">
-              <div class="col-auto">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                  style="position: relative; top: 1px; margin-right: 5px"
-                />
-                <label for="nombre" class="col-form-label">Recordarme</label>
-              </div>
-            </div>
-            <div class="row g-3 align-items-center">
-              <button
-                class="btn btn-default form-control btn-login"
-                style="background-color: #24aa24; color: white"
-                (click)="login()"
-              >
-                Inicia Sesion
-              </button>
-            </div>
-          </form>
+          <div class="formInput">
+            <input
+              type="password"
+              formControlName="contrasena"
+              class="form-control"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="formInput formCheckbox">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label for="nombre" class="col-form-label">Recordarme</label>
+          </div>
+          <div class="formButton">
+            <button type="button" (click)="login()">Inicia Sesión</button>
+          </div>
+        </form>
 
-          <br />
-          <p>¿No recuerdas tus datos de acceso?</p>
-          <p style="color: #e31b36"><b>Recuperar contraseña</b></p>
-        </div>
+        <br />
+      </div>
+      <div class="recoverBox">
+        <p>¿No recuerdas tus datos de acceso?</p>
+        <a routerLink="/auth/recuperar">Recuperar contraseña</a>
       </div>
     </div>
   </div>

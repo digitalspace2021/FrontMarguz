@@ -41,3 +41,118 @@ label{
     width: 200px !important;
 }
 
+
+.containerBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .contentBox {
+      width: 65%;
+      margin: auto;
+      margin: 40px 0 0 0;
+      .headerBox {
+        background-color: #e31b36;
+        color: white;
+        height: 60px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        p {
+          margin: 0 0 0 10px;
+        }
+      }
+      .bodyBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 0 0 10px 10px;
+        .buttonsBox {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          padding: 30px 20px 20px 20px;
+          .socialButton {
+            width: 30%;
+          }
+        }
+        .divider {
+          border: #a195a1 solid;
+          border-width: 1px 0 0 0;
+          width: 95%;
+          display: flex;
+          justify-content: center;
+          margin: 20px;
+          .circleBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 42px;
+            width: 42px;
+            border-radius: 100px;
+            background-color: #a195a1;
+            margin: -24px 0 0 0;
+            .innerCircleBox {
+              height: 15px;
+              width: 15px;
+              border-radius: 100px;
+              border: white solid 2px;
+            }
+          }
+        }
+        .formBox {
+          padding: 20px;
+          width: 50%;
+          .formInput {
+            input {
+              border-radius: 10px;
+            }
+            margin: 15px;
+          }
+          .formCheckbox {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            input {
+              margin: 0 5px 0 0;
+              border-radius: 0;
+            }
+          }
+          .formButton {
+            margin: 15px;
+            display: flex;
+            justify-content: center;
+            button {
+              background-color: #24aa24;
+              color: white;
+              width: 100%;
+              border-radius: 10px;
+              height: 48px;
+              padding: 10px;
+            }
+          }
+        }
+        .recoverBox {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 0 0 30px 0;
+          p {
+            margin: 0;
+          }
+          a {
+            color: #e31b36;
+            &:hover {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+  
