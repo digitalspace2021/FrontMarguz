@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Materia } from '../class/Materia';
 import { IMateria } from '../interfaces/IMateria';
 
@@ -9,6 +8,7 @@ import { IMateria } from '../interfaces/IMateria';
 })
 export class MateriaService {
   url: string = 'https://marguz.co/marguzapi/public/materias';
+
   constructor(private http: HttpClient) {}
 
   listMateria() {
@@ -16,7 +16,14 @@ export class MateriaService {
   }
 
   createMateria(materia: Materia) {
-    return this.http.post<IMateria>(this.url, materia);
+    let formData = new FormData();
+    let json = `'json' : {"materia" : "${materia.materia}"}`;
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post<IMateria>(this.url, json, { headers });
   }
 
   updateMateria(materia: Materia) {
