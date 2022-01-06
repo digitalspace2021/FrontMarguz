@@ -28,30 +28,28 @@ export class RegistroProfesorComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  async ngOnInit() {
-    this.countries = await this.authService.getCountries();
-    this.countrySelected = "Colombia";
-    await this.countryChange()
+  ngOnInit() {
+    this.authService
+      .getCountries()
+      .then((data) => {
+        this.countries = data;
+        this.countrySelected = 'Colombia';
+        this.changeStates();
+      })
+      .catch((err) => console.error(err));
   }
-  async countryChange() {
-    this.stateSelected = ""
-    this.citySelected = ""
-    console.log("changing")
-    this.states = await this.authService.getStates(this.countrySelected);
-    if(this.states.length == 0) {
-      alert(`Información de estados del paìs ${this.countrySelected} no disponibles`);
-      return
-    }
-    this.stateSelected = this.states[0].state_name;
-    await this.stateChange()
+
+  changeStates() {
+    this.authService
+      .getStates(this.countrySelected)
+      .then((data) => (this.states = data))
+      .catch((err) => console.error(err));
   }
-  async stateChange() {
-    this.cities = await this.authService.getCities(this.stateSelected);
-    if(this.cities.length == 0) {
-      alert(`Información de ciudades del estad ${this.stateSelected} no disponibles`);
-      return
-    }
-    this.citySelected = this.cities[0].city_name;
+
+  changeCites() {
+    this.authService
+      .getCities(this.stateSelected)
+      .then((data) => (this.cities = data))
+      .catch((err) => console.error(err));
   }
-  async register() {}
 }

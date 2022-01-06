@@ -5,7 +5,7 @@
     </div>
     <div class="bodyBox">
       <div class="formBox">
-        <form [formGroup]="registerForm"> 
+        <form [formGroup]="registerForm">
           <div class="formInput">
             <label for="id" class="col-form-label">ID</label>
             <input type="text" formControlName="id" class="form-control" />
@@ -32,15 +32,28 @@
           </div>
           <div class="formInput">
             <label for="pais" class="col-form-label">Pais</label>
-            <select (change)="countryChange()"  [ngModelOptions]="{standalone: true}"[(ngModel)]="countrySelected" class="form-control">
-              <option *ngFor="let country of countries" [value]="country.country_name">
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="countrySelected"
+              class="form-control"
+              (change)="changeStates()"
+            >
+              <option
+                *ngFor="let country of countries"
+                [value]="country.country_name"
+              >
                 {{ country.country_name }}
               </option>
             </select>
           </div>
           <div class="formInput">
             <label for="estado" class="col-form-label">Estado</label>
-            <select  [ngModelOptions]="{standalone: true}"[(ngModel)]="stateSelected" class="form-control">
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="stateSelected"
+              class="form-control"
+              (change)="changeCites()"
+            >
               <option *ngFor="let state of states" [value]="state.state_name">
                 {{ state.state_name }}
               </option>
@@ -48,7 +61,11 @@
           </div>
           <div class="formInput">
             <label for="ciudad" class="col-form-label">Ciudad</label>
-            <select [(ngModel)]="citySelected" [ngModelOptions]="{standalone: true}" class="form-control">
+            <select
+              [(ngModel)]="citySelected"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            >
               <option *ngFor="let city of cities" [value]="city.city_name">
                 {{ city.city_name }}
               </option>
@@ -126,7 +143,7 @@
             />
           </div>
           <div class="formButton">
-            <button type="button" (click)="register()">Registrarme</button>
+            <button type="button">Registrarme</button>
           </div>
         </form>
 

@@ -42,20 +42,43 @@
           </div>
           <div class="formInput">
             <label for="pais" class="col-form-label">Pais</label>
-            <select formControlName="pais" class="form-control">
-              <option value="1">Colombia</option>
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="countrySelected"
+              class="form-control"
+              (change)="changeStates()"
+            >
+              <option
+                *ngFor="let country of countries"
+                [value]="country.country_name"
+              >
+                {{ country.country_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
             <label for="estado" class="col-form-label">Estado</label>
-            <select formControlName="estado" class="form-control">
-              <option value="1">Tolima</option>
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="stateSelected"
+              class="form-control"
+              (change)="changeCites()"
+            >
+              <option *ngFor="let state of states" [value]="state.state_name">
+                {{ state.state_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
             <label for="ciudad" class="col-form-label">Ciudad</label>
-            <select formControlName="ciudad" class="form-control">
-              <option value="1">Ibague</option>
+            <select
+              [(ngModel)]="citySelected"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            >
+              <option *ngFor="let city of cities" [value]="city.city_name">
+                {{ city.city_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
@@ -96,7 +119,7 @@
             />
           </div>
           <div class="formButton">
-            <button type="button" (click)="register()">Registrarme</button>
+            <button type="button">Registrarme</button>
           </div>
         </form>
 
