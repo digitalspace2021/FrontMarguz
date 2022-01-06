@@ -8,6 +8,8 @@ import {
   faTrashAlt,
   faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import { Materia } from '../../interfaces/IMateria';
+import { MateriaService } from '../../services/materia.service';
 
 @Component({
   selector: 'app-lista-materias',
@@ -22,19 +24,20 @@ export class ListaMateriasComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
   add = faPlusCircle;
+  materias: Materia[] = [];
 
-  materias = [
-    { id: 1, mat: 'Frances' },
-    { id: 2, mat: 'Aleman' },
-    { id: 3, mat: 'Italiano' },
-    { id: 4, mat: 'Frances' },
-    { id: 5, mat: 'Aleman' },
-    { id: 6, mat: 'Italiano' },
-    { id: 7, mat: 'Frances' },
-    { id: 8, mat: 'Aleman' },
-  ];
+  title?: string;
+  show: boolean = false;
 
-  constructor() {}
+  constructor(private materiaSv: MateriaService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.materiaSv
+      .listMateria()
+      .subscribe((resp) => (this.materias = resp.materias));
+  }
+
+  mostrarModal(title: string) {
+    this.title = title;
+  }
 }
