@@ -12,6 +12,7 @@ import { EditarProfesorComponent } from './editar-profesor/editar-profesor.compo
 import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 import { EditarHorarioComponent } from './editar-horario/editar-horario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EditarProfesorComponent,
     EditarClaseComponent,
     EditarHorarioComponent,
+    CalendarioComponent,
   ],
   imports: [
     CommonModule, FontAwesomeModule, SharedModule
