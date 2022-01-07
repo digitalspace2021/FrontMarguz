@@ -32,6 +32,7 @@ export class ListaMateriasComponent implements OnInit {
   action: boolean = false;
 
   resp: any;
+
   constructor(private materiaSv: MateriaService) {}
 
   ngOnInit(): void {

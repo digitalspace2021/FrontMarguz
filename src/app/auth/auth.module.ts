@@ -12,6 +12,7 @@ import { RegistroEstudianteComponent } from './containers/registro-estudiante/re
 import { RegistroProfesorComponent } from './containers/registro-profesor/registro-profesor.component';
 import { ResetearContrasenaComponent } from './containers/resetear-contrasena/resetear-contrasena.component';
 import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/restaurar-contrasena.component';
+import { FormRegistroComponent } from './containers/form-registro/form-registro.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/
     RegistroEstudianteComponent,
     RegistroProfesorComponent,
     ResetearContrasenaComponent,
-    RestaurarContrasenaComponent
+    RestaurarContrasenaComponent,
+    FormRegistroComponent
   ],
   imports: [
     CommonModule,
