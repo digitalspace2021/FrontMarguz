@@ -11,6 +11,7 @@ import {
 import { Materia } from '../../class/Materia';
 import { IDataMateria } from '../../interfaces/IMateria';
 import { MateriaService } from '../../services/materia.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-materias',
@@ -62,5 +63,15 @@ export class ListaMateriasComponent implements OnInit {
     this.materiaItem = item;
   }
 
-  deleteMateria() {}
+  deleteMateria() {
+    if (this.materiaItem) {
+      this.materiaSv.deleteMateria(this.materiaItem.id).subscribe((resp) => {
+        Swal.fire('Registro eliminado con exito', 'Eliminar', 'success').then(
+          () => {
+            this.listMateria();
+          }
+        );
+      });
+    }
+  }
 }
