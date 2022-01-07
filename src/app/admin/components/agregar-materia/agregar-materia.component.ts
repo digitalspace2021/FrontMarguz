@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { IMateria } from './../../interfaces/IMateria';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Materia } from '../../class/Materia';
 import { MateriaService } from '../../services/materia.service';
 import Swal from 'sweetalert2';
+import { ViewChild, ElementRef} from '@angular/core';
+
 @Component({
   selector: 'app-agregar-materia',
   templateUrl: './agregar-materia.component.html',
@@ -9,9 +12,10 @@ import Swal from 'sweetalert2';
 })
 export class AgregarMateriaComponent implements OnInit {
   @Input() title?: string;
+  @ViewChild('ModalClose') ModalClose?: ElementRef;
+  @Output() response : EventEmitter<IMateria> = new EventEmitter()
   materiaInput: string = '';
   val?: boolean = false;
-
   constructor(private materiaSv: MateriaService) {}
 
   ngOnInit(): void {}
@@ -21,12 +25,12 @@ export class AgregarMateriaComponent implements OnInit {
       this.val = false;
       let materia = new Materia();
       materia.materia = this.materiaInput;
-
-      console.log(materia);
-
       this.materiaSv.createMateria(materia).subscribe((resp) => {
         if (resp) {
-          Swal.fire('Registro exitoso...', 'Guardar', 'success');
+          this.response.emit(resp);
+          Swal.fire('Registro exitoso...', 'Guardar', 'success').then(() => {
+            this.ModalClose?.nativeElement.click();
+          });
         }
       });
     } else {

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Materia } from '../class/Materia';
 import { IMateria } from '../interfaces/IMateria';
@@ -16,18 +16,11 @@ export class MateriaService {
   }
 
   createMateria(materia: Materia) {
-    let formData = new FormData();
-    let json = `'json' : {"materia" : "${materia.materia}"}`;
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
-    return this.http.post<IMateria>(this.url, json, { headers });
+    return this.http.post<IMateria>(this.url, {'json' : JSON.stringify(materia)});
   }
 
   updateMateria(materia: Materia) {
-    return this.http.put<IMateria>(this.url, materia);
+    return this.http.put<IMateria>(this.url, {'json' : JSON.stringify(materia)});
   }
 
   deleteMateria(id: number) {

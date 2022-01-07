@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { IMateria } from './../../interfaces/IMateria';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import {
   faSortDown,
   faUserCheck,
@@ -29,9 +30,20 @@ export class ListaMateriasComponent implements OnInit {
   title?: string;
   show: boolean = false;
 
+  resp: any
   constructor(private materiaSv: MateriaService) {}
 
   ngOnInit(): void {
+    this.listMateria();
+  }
+
+  ngOnChanges() {
+    if(this.resp){
+      this.listMateria()
+    }
+  }
+
+  listMateria() {
     this.materiaSv
       .listMateria()
       .subscribe((resp) => (this.materias = resp.materias));
@@ -39,5 +51,9 @@ export class ListaMateriasComponent implements OnInit {
 
   mostrarModal(title: string) {
     this.title = title;
+  }
+
+  getResponse(event?: any) {
+      this.resp = event;
   }
 }
