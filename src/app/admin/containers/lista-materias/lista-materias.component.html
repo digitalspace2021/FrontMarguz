@@ -26,7 +26,7 @@
         [icon]="edit"
         data-bs-toggle="modal"
         data-bs-target="#openModal"
-        (click)="mostrarModal('Editar Materia')"
+        (click)="mostrarModal('Editar Materia', true)"
       ></fa-icon>
     </button>
     <button class="btn btn-danger">
@@ -50,9 +50,10 @@
               <tr *ngFor="let mat of materias">
                 <td>
                   <input
-                    type="checkbox"
+                    type="radio"
+                    (change)="getItem(mat)"
                     style="margin-right: 5px"
-                    [id]="mat.id"
+                    name="check"
                   />
                   <label [for]="mat.id">{{ mat.materia }}</label>
                 </td>
@@ -88,5 +89,10 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <app-agregar-materia [title]="title" (response?)="getResponse($event)"></app-agregar-materia>
+  <app-agregar-materia
+    [title]="title"
+    (response?)="getResponse($event)"
+    [materia]="materiaItem"
+    [action]="action"
+  ></app-agregar-materia>
 </div>

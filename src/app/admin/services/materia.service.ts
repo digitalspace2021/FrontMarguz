@@ -16,11 +16,15 @@ export class MateriaService {
   }
 
   createMateria(materia: Materia) {
-    return this.http.post<IMateria>(this.url, {'json' : JSON.stringify(materia)});
+    return this.http.post<IMateria>(this.url, {
+      json: JSON.stringify(materia),
+    });
   }
 
   updateMateria(materia: Materia) {
-    return this.http.put<IMateria>(this.url, {'json' : JSON.stringify(materia)});
+    return this.http.put<IMateria>(this.url, {
+      json: JSON.stringify(materia),
+    });
   }
 
   deleteMateria(id: number) {

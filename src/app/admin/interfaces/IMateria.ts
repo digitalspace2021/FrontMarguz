@@ -2,10 +2,10 @@ export interface IMateria {
   status: string;
   code: number;
   message: string;
-  materias: Materia[];
+  materias: IDataMateria[];
 }
 
-export interface Materia {
+export interface IDataMateria {
   id: number;
   materia: string;
   created_at: string;

@@ -1,5 +1,4 @@
-import { IMateria } from './../../interfaces/IMateria';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   faSortDown,
   faUserCheck,
@@ -9,7 +8,8 @@ import {
   faTrashAlt,
   faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { Materia } from '../../interfaces/IMateria';
+import { Materia } from '../../class/Materia';
+import { IDataMateria } from '../../interfaces/IMateria';
 import { MateriaService } from '../../services/materia.service';
 
 @Component({
@@ -25,12 +25,12 @@ export class ListaMateriasComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
   add = faPlusCircle;
-  materias: Materia[] = [];
-
+  materias: IDataMateria[] = [];
+  materiaItem: Materia = new Materia();
   title?: string;
-  show: boolean = false;
+  action: boolean = false;
 
-  resp: any
+  resp: any;
   constructor(private materiaSv: MateriaService) {}
 
   ngOnInit(): void {
@@ -38,8 +38,8 @@ export class ListaMateriasComponent implements OnInit {
   }
 
   ngOnChanges() {
-    if(this.resp){
-      this.listMateria()
+    if (this.resp) {
+      this.listMateria();
     }
   }
 
@@ -49,11 +49,18 @@ export class ListaMateriasComponent implements OnInit {
       .subscribe((resp) => (this.materias = resp.materias));
   }
 
-  mostrarModal(title: string) {
+  mostrarModal(title: string, action: boolean = false) {
     this.title = title;
+    this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
   }
 
   getResponse(event?: any) {
-      this.resp = event;
+    this.resp = event;
   }
+
+  getItem(item: any) {
+    this.materiaItem = item;
+  }
+
+  deleteMateria() {}
 }
