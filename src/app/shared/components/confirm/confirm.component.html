@@ -1,1 +1,13 @@
-<p>confirm works!</p>
+<div class="blackBox" (click)="close()"></div>
+
+<div class="logBox">
+  <div class="closeButton">
+    <button class="closeB" (click)="close()">X</button>
+  </div>
+  <p class="confirmHeader">{{title}}</p>
+  <p class="confirmContent">{{msg}}</p>
+  <button type="button" class="formButton" (click)="close()">
+    <p>CERRAR</p>
+  </button>
+
+</div>

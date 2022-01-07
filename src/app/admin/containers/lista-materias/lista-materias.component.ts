@@ -8,6 +8,10 @@ import {
   faTrashAlt,
   faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import { Materia } from '../../class/Materia';
+import { IDataMateria } from '../../interfaces/IMateria';
+import { MateriaService } from '../../services/materia.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-materias',
@@ -22,19 +26,53 @@ export class ListaMateriasComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
   add = faPlusCircle;
+  materias: IDataMateria[] = [];
+  materiaItem: Materia = new Materia();
+  title?: string;
+  action: boolean = false;
 
-  materias = [
-    { id: 1, mat: 'Frances' },
-    { id: 2, mat: 'Aleman' },
-    { id: 3, mat: 'Italiano' },
-    { id: 4, mat: 'Frances' },
-    { id: 5, mat: 'Aleman' },
-    { id: 6, mat: 'Italiano' },
-    { id: 7, mat: 'Frances' },
-    { id: 8, mat: 'Aleman' },
-  ];
+  resp: any;
 
-  constructor() {}
+  constructor(private materiaSv: MateriaService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listMateria();
+  }
+
+  ngOnChanges() {
+    if (this.resp) {
+      this.listMateria();
+    }
+  }
+
+  listMateria() {
+    this.materiaSv
+      .listMateria()
+      .subscribe((resp) => (this.materias = resp.materias));
+  }
+
+  mostrarModal(title: string, action: boolean = false) {
+    this.title = title;
+    this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
+  }
+
+  getResponse(event?: any) {
+    this.resp = event;
+  }
+
+  getItem(item: any) {
+    this.materiaItem = item;
+  }
+
+  deleteMateria() {
+    if (this.materiaItem) {
+      this.materiaSv.deleteMateria(this.materiaItem.id).subscribe((resp) => {
+        Swal.fire('Registro eliminado con exito', 'Eliminar', 'success').then(
+          () => {
+            this.listMateria();
+          }
+        );
+      });
+    }
+  }
 }

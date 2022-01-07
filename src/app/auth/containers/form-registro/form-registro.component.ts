@@ -1,26 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { faPray } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
-  selector: 'app-registro-profesor',
-  templateUrl: './registro-profesor.component.html',
-  styleUrls: ['./registro-profesor.component.scss'],
+  selector: 'app-form-registro',
+  templateUrl: './form-registro.component.html',
+  styleUrls: ['./form-registro.component.scss'],
 })
-export class RegistroProfesorComponent implements OnInit {
+export class FormRegistroComponent implements OnInit {
   countries: any;
   states: any;
   cities: any;
-
-  registerForm: FormGroup = new FormGroup({
-    id: new FormControl(),
-    nombre: new FormControl(),
-    apellido: new FormControl(),
-    telefono: new FormControl(),
-    email: new FormControl(),
-    contrasena: new FormControl(),
-    intereses: new FormControl(),
-  });
 
   countrySelected: string = '';
   stateSelected: string = '';
@@ -51,17 +40,5 @@ export class RegistroProfesorComponent implements OnInit {
       .getCities(this.stateSelected)
       .then((data) => (this.cities = data))
       .catch((err) => console.error(err));
-  }
-  isConfirm: boolean = false;
-  confirmMessage: string = '';
-  closeConfirm() {
-    this.isConfirm = false;
-    this.confirmMessage = '';
-  }
-  isError: boolean = false;
-  errorMessage: string = '';
-  closeError() {
-    this.isError = false;
-    this.errorMessage = '';
   }
 }

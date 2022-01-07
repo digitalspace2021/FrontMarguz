@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistroEstudianteComponent } from './registro-estudiante.component';
+import { HeaderAuthComponent } from './header-auth.component';
 
-describe('RegistroEstudianteComponent', () => {
-  let component: RegistroEstudianteComponent;
-  let fixture: ComponentFixture<RegistroEstudianteComponent>;
+describe('HeaderAuthComponent', () => {
+  let component: HeaderAuthComponent;
+  let fixture: ComponentFixture<HeaderAuthComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistroEstudianteComponent ]
+      declarations: [ HeaderAuthComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegistroEstudianteComponent);
+    fixture = TestBed.createComponent(HeaderAuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

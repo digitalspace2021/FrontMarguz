@@ -9,6 +9,7 @@ import { BorrarComponent } from './borrar/borrar.component';
 import { AgregarMateriaComponent } from './agregar-materia/agregar-materia.component';
 import { EditarMateriaComponent } from './editar-materia/editar-materia.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,20 +19,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HabilitarComponent,
     DeshabilitarComponent,
     GuardadoComponent,
-    HeaderAdminComponent
-
+    HeaderAdminComponent,
   ],
-  imports: [
-    CommonModule, FontAwesomeModule
-  ],
-  exports : [
+  imports: [CommonModule, FontAwesomeModule, FormsModule],
+  exports: [
     EditarMateriaComponent,
     AgregarMateriaComponent,
     BorrarComponent,
     HabilitarComponent,
     DeshabilitarComponent,
     GuardadoComponent,
-    HeaderAdminComponent
-  ]
+    HeaderAdminComponent,
+  ],
 })
-export class ComponentModule { }
+export class ComponentModule {}

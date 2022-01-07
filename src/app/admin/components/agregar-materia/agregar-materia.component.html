@@ -1,1 +1,22 @@
-<p>agregar-materia works!</p>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <h5 class="modal-title">{{ title }}</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        #ModalClose
+      ></button>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="form-control" [(ngModel)]="materiaInput" />
+    </div>
+    <div class="modal-footer text-center">
+      <button class="btn btn-success btn-sm" (click)="register()">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>
