@@ -49,6 +49,7 @@ export class AgregarMateriaComponent implements OnInit {
         });
       } else {
         materia = this.materia;
+        materia.materia = this.materiaInput;
         this.materiaSv.updateMateria(materia).subscribe((resp) => {
           if (resp) {
             this.response.emit(resp);

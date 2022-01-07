@@ -22,9 +22,8 @@ export class MateriaService {
   }
 
   updateMateria(materia: Materia) {
-    console.log(materia);
-    return this.http.put<IMateria>(this.url, {
-      json: JSON.stringify(materia),
+    return this.http.put<IMateria>(`${this.url}/${materia.id}`, {
+      json: JSON.stringify({ materia: materia.materia }),
     });
   }
 
