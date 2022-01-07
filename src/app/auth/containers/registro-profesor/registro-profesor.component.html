@@ -144,3 +144,15 @@
     </div>
   </div>
 </div>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  [msg]="confirmMessage"
+  (closeError)="closeConfirm()"
+  *ngIf="isConfirm"
+></app-confirm>
