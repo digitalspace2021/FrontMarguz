@@ -48,7 +48,7 @@ export class RegistroProfesorComponent implements OnInit {
   async stateChange() {
     this.cities = await this.authService.getCities(this.stateSelected);
     if(this.cities.length == 0) {
-      alert(`Información de ciudades del estad ${this.stateSelected} no disponibles`);
+      alert(`Información de ciudades del estado ${this.stateSelected} no disponibles`);
       return
     }
     this.citySelected = this.cities[0].city_name;
