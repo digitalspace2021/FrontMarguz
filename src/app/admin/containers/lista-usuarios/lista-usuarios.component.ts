@@ -5,10 +5,11 @@ import {
   faSortDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { faUserCheck } from '@fortawesome/free-solid-svg-icons';
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { IDataUsuario } from '../../interfaces/IUsuario';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -24,7 +25,17 @@ export class ListaUsuariosComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
 
-  constructor() {}
+  usuarios: IDataUsuario[] = [];
 
-  ngOnInit(): void {}
+  constructor(private usuarioSv: UsuarioService) {}
+
+  ngOnInit(): void {
+    this.listUsuario();
+  }
+
+  listUsuario() {
+    this.usuarioSv
+      .listUsuario()
+      .subscribe((resp) => (this.usuarios = resp.usuarios));
+  }
 }

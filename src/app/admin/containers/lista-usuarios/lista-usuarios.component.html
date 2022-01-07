@@ -58,19 +58,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of [1, 1, 1, 1, 1, 1, 1]">
+              <tr *ngFor="let user of usuarios">
                 <td><input type="checkbox" /></td>
-                <td>00000</td>
-                <td>
-                  <a href="javascript:;">xxxxxxxxxxxxxxxxx</a>
-                </td>
-                <td>xxxxxxxxxxxxxxx</td>
-                <td>xxxxxxxxxx</td>
-                <td>xxxxxxxxxxxx</td>
-                <td>xxxxxxxxxxxxxxx</td>
-                <td>xxxxxxxxxx</td>
-                <td>xxxxxxxxxxxx</td>
-                <td>xxxxxxxxxxxxxxx</td>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.apellido }}</td>
+                <td>{{ user.telefono }}</td>
+                <td>pais</td>
+                <td>estado</td>
+                <td>ciudad</td>
+                <td><a href="javascrip:;">Idiomas</a></td>
+                <td>{{ user.email }}</td>
               </tr>
             </tbody>
           </table>
