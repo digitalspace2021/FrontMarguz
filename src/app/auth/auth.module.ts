@@ -41,7 +41,7 @@ import { HorarioComponent } from './components/horario/horario.component';
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule, FontAwesomeModule
   ]
 })
 export class AuthModule { }

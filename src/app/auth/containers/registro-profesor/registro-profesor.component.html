@@ -1,14 +1,16 @@
 <div class="containerBox">
   <div class="contentBox">
     <div class="headerBox">
-      <p>Registrar como Profesor</p>
+      <p>
+        <fa-icon style="font-size: 14px" [icon]="user"></fa-icon>
+        Registrar como Profesor
+      </p>
     </div>
     <div class="bodyBox">
       <div class="formBox">
         <form [formGroup]="registerForm">
           <div class="formInput">
-            <label for="id" class="col-form-label">ID</label>
-            <input type="text" formControlName="id" class="form-control" />
+            <input type="hidden" formControlName="id" class="form-control" />
           </div>
           <div class="formInput">
             <label for="nombre" class="col-form-label">Nombre</label>
@@ -88,8 +90,7 @@
               >Documentación/Hoja de vida</label
             >
             <div class="inputFile">
-
-              <input type="file">
+              <input type="file" />
             </div>
             <!--             <div
               class="col-auto"
@@ -109,44 +110,48 @@
               >Adjuntar cédula</label
             >
             <div class="inputFile">
-
-              <input type="file">
+              <input type="file" />
             </div>
-
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
               >Foto de perfil</label
             >
             <div class="inputFile">
-
-              <input type="file">
+              <input type="file" />
             </div>
-
           </div>
           <div class="formInput">
             <label for="intereses" class="col-form-label">Horarios</label>
             <button
               type="button"
-              class="botonHorario" (click)="isHorario = true;">            <fa-icon style="margin-right: 30px;" [icon]="calendar"></fa-icon>Agregar horarios</button>
+              class="botonHorario"
+              (click)="isHorario = true"
+            >
+              <fa-icon style="margin-right: 30px" [icon]="calendar"></fa-icon
+              >Agregar horarios
+            </button>
           </div>
           <div class="formInput formIdiomas">
-            <label for="intereses" class="col-form-label">Idiomas <br><span>Max. 3 idiomas</span></label>
-            <div>
-              <fa-icon style="font-size: 24px" [icon]="icon" (click)="agregarIdiomas()"></fa-icon>
-            </div>
+            <label for="intereses" class="col-form-label"
+              >Idiomas <br /><span>Max. 3 idiomas</span></label
+            >
+            <fa-icon
+              style="font-size: 24px"
+              [icon]="icon"
+              (click)="agregarIdiomas()"
+            ></fa-icon>
           </div>
           <div class="formButton">
             <button (click)="registrar()" type="button">Registrarme</button>
           </div>
         </form>
-
         <br />
       </div>
       <div class="recoverBox">
         <p>
           Al dar click en continuar o registrarme, acepta los
-          <br><a routerLink="/politicas/profesor"
+          <br /><a routerLink="/politicas/profesor"
             >Terminos y Condiciones de servicio y la politica de privacidad de
             marguz</a
           >
@@ -171,7 +176,7 @@
 ></app-confirm>
 
 <app-horario
-[horarios]="horarios"
-*ngIf="isHorario"
-(closeHorario)="isHorario = false;"
+  [horarios]="horarios"
+  *ngIf="isHorario"
+  (closeHorario)="isHorario = false"
 ></app-horario>

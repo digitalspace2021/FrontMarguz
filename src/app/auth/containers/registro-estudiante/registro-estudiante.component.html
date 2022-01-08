@@ -1,6 +1,11 @@
 <div class="containerBox">
   <div class="contentBox">
-    <div class="headerBox"><p>Registrar como Estudiante</p></div>
+    <div class="headerBox">
+      <p>
+        <fa-icon style="font-size: 14px" [icon]="user"></fa-icon>
+        Registrar como Estudiante
+      </p>
+    </div>
     <div class="bodyBox">
       <div class="buttonsBox">
         <app-boton-facebook class="socialButton"></app-boton-facebook>
@@ -15,8 +20,7 @@
         <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
         <form>
           <div class="formInput">
-            <label for="id" class="col-form-label">ID</label>
-            <input type="text" formControlName="id" class="form-control" />
+            <input type="hidden" formControlName="id" class="form-control" />
           </div>
           <div class="formInput">
             <label for="nombre" class="col-form-label">Nombre</label>
@@ -40,20 +44,43 @@
           </div>
           <div class="formInput">
             <label for="pais" class="col-form-label">Pais</label>
-            <select formControlName="pais" class="form-control">
-              <option value="1">Colombia</option>
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="countrySelected"
+              class="form-control"
+              (change)="changeStates()"
+            >
+              <option
+                *ngFor="let country of countries"
+                [value]="country.country_name"
+              >
+                {{ country.country_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
             <label for="estado" class="col-form-label">Estado</label>
-            <select formControlName="estado" class="form-control">
-              <option value="1">Tolima</option>
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="stateSelected"
+              class="form-control"
+              (change)="changeCites()"
+            >
+              <option *ngFor="let state of states" [value]="state.state_name">
+                {{ state.state_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
             <label for="ciudad" class="col-form-label">Ciudad</label>
-            <select formControlName="ciudad" class="form-control">
-              <option value="1">Ibague</option>
+            <select
+              [(ngModel)]="citySelected"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            >
+              <option *ngFor="let city of cities" [value]="city.city_name">
+                {{ city.city_name }}
+              </option>
             </select>
           </div>
           <div class="formInput">
@@ -72,40 +99,31 @@
             <label for="fotodeperfil" class="col-form-label"
               >Foto de perfil</label
             >
-
             <div class="inputFile">
-              <input type="file" />
+              <input type="file" style="display: none" />
             </div>
-            <!--  <div
-              class="col-auto"
-              style="
-                background-color: #d6dade;
-                border-radius: 10px;
-                height: 70px;
-              "
-            >
-                                      <angular-file-uploader
-                        [config]="afuConfig">
-                      </angular-file-uploader> 
-            </div> -->
           </div>
           <div class="formInput formIdiomas">
-            <label for="intereses" class="col-form-label">Intereses <br></label>
-            <div>
-              <fa-icon style="font-size: 24px" [icon]="icon" (click)="agregarIntereses()"></fa-icon>
-            </div>
+            <label for="intereses" class="col-form-label"
+              >Intereses <br
+            /></label>
+            <fa-icon
+              style="font-size: 24px; color: red"
+              [icon]="icon"
+              (click)="agregarIntereses()"
+            ></fa-icon>
           </div>
           <div class="formButton">
             <button type="button" (click)="registrar()">Registrarme</button>
           </div>
         </form>
-
         <br />
       </div>
       <div class="recoverBox">
         <p>
-          Al dar click en continuar o registrarme, acepta los
-          <br> <a routerLink="/politicas/estudiante"
+          Al dar click en continuar o registrarme,acepta los
+          <br />
+          <a routerLink="/politicas/estudiante"
             >Terminos y Condiciones de servicio y la politica de privacidad de
             marguz</a
           >
