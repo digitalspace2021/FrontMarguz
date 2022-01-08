@@ -6,8 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import {
+  faSortDown,
+  faEdit,
+  faUserCheck,
+  faWindowClose,
+  faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,4 +31,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faSortDown);
+    library.addIcons(faEdit);
+    library.addIcons(faUserCheck);
+    library.addIcons(faWindowClose);
+    library.addIcons(faTrashAlt);
+  }
+}

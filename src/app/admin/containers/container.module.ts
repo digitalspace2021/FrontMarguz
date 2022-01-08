@@ -12,11 +12,8 @@ import { EditarProfesorComponent } from './editar-profesor/editar-profesor.compo
 import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 import { EditarHorarioComponent } from './editar-horario/editar-horario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-<<<<<<< HEAD
 import { CalendarioComponent } from './calendario/calendario.component';
-=======
 import { ComponentModule } from '../components/component.module';
->>>>>>> a514c095d270b0e1b0cae33fb884b24a99898fec
 
 @NgModule({
   declarations: [

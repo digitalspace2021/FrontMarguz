@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class RegistroEstudianteComponent implements OnInit {
   stateSelected: string = '';
   citySelected: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService
@@ -40,5 +41,24 @@ export class RegistroEstudianteComponent implements OnInit {
       .getCities(this.stateSelected)
       .then((data) => (this.cities = data))
       .catch((err) => console.error(err));
+  }
+  isRegistroExitoso: boolean = false;
+  registroExitosoMessage: string = 'Su cuenta ha sido registrada exitosamente';
+  login() {
+    this.isRegistroExitoso = false;
+    this.router.navigate(["/auth/login"])
+  }  
+  async registrar(){
+    this.openConfirm();
+  }
+  openConfirm() {
+    this.isRegistroExitoso = true;
+  }
+
+  isError: boolean = false;
+  errorMessage: string = '';
+  closeError() {
+    this.isError = false;
+    this.errorMessage = '';
   }
 }

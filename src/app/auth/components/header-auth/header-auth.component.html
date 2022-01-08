@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="admin"
+    <a class="navbar-brand" href=""
       ><img class="img-logo" src="../../../../assets/Recurso_1.png" alt="logo"
     /></a>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -10,7 +10,7 @@
           (click)="menuActive(1)"
           style="margin-right: 10px"
         >
-          <a class="nav-link" href="admin/admin-usuario">Usuarios</a>
+          <a class="nav-link" href="auth/registro/profesor">Registro de profesor</a>
         </li>
         <li
           class="nav-item"
@@ -18,37 +18,15 @@
           (click)="menuActive(2)"
           style="margin-right: 10px"
         >
-          <a class="nav-link" href="admin/admin-materia">Materias</a>
+          <a class="nav-link" href="auth/registro/estudiante">Registro de estudiante</a>
         </li>
         <li
           class="nav-item"
-          [ngClass]="{ active: mnuActive == 3 }"
-          (click)="menuActive(3)"
+          [ngClass]="{ active: mnuActive == 2 }"
+          (click)="menuActive(2)"
           style="margin-right: 10px"
         >
-          <a class="nav-link" href="admin/admin-clase">Clases</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item item">
-          <small>administrador</small>
-          <img
-            class="avatar"
-            src="../../../../assets/avatar-icon.jpg"
-            alt="avatar"
-          />
-          <div class="dropdown">
-            <button class="dropbtn btn-light btn-sm">
-              <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
-            </button>
-            <div class="dropdown-content">
-              <a href="javascrip:;">Estudiantes</a>
-              <a href="javascrip:;">Profesores</a>
-              <a href="javascrip:;">Administradores</a>
-              <a href="javascrip:;">Ayuda</a>
-              <a href="javascrip:;">Cerrar Sesión</a>
-            </div>
-          </div>
+          <a class="nav-link" href="admin/admin-usuario">Admin</a>
         </li>
       </ul>
     </div>

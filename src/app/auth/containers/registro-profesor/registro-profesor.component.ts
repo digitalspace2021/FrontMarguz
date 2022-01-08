@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { faPray } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registro-profesor',
   templateUrl: './registro-profesor.component.html',
   styleUrls: ['./registro-profesor.component.scss'],
 })
 export class RegistroProfesorComponent implements OnInit {
+  calendar = faCalendar;
   countries: any;
   states: any;
   cities: any;
@@ -26,7 +28,9 @@ export class RegistroProfesorComponent implements OnInit {
   stateSelected: string = '';
   citySelected: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+  async agregarHorario(){}
+  async agregarIdiomas(){}
 
   ngOnInit() {
     this.authService
@@ -52,14 +56,26 @@ export class RegistroProfesorComponent implements OnInit {
       .then((data) => (this.cities = data))
       .catch((err) => console.error(err));
   }
-  isConfirm: boolean = false;
-  confirmMessage: string = '';
-  closeConfirm() {
-    this.isConfirm = false;
-    this.confirmMessage = '';
+  isRegistroExitoso: boolean = false;
+  registroExitosoMessage: string = 'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
+  login() {
+    this.isRegistroExitoso = false;
+    this.router.navigate(["/auth/login"])
+  }  
+  async registrar(){
+    this.openConfirm();
   }
+  openConfirm() {
+    this.isRegistroExitoso = true;
+  }
+
   isError: boolean = false;
   errorMessage: string = '';
+  openError(message: string) {
+    this.errorMessage = message;
+    this.isError = true;
+  }
+
   closeError() {
     this.isError = false;
     this.errorMessage = '';

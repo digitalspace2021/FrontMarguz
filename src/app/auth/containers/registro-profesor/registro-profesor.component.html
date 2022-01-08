@@ -87,7 +87,11 @@
             <label for="fotodeperfil" class="col-form-label"
               >Documentación/Hoja de vida</label
             >
-            <div
+            <div class="inputFile">
+
+              <input type="file">
+            </div>
+            <!--             <div
               class="col-auto"
               style="
                 background-color: #d6dade;
@@ -95,55 +99,45 @@
                 height: 70px;
               "
             >
-              <!--                         <angular-file-uploader
+                                      <angular-file-uploader
                         [config]="afuConfig">
-                      </angular-file-uploader> -->
-            </div>
+                      </angular-file-uploader> -
+            </div> -->
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
               >Adjuntar cédula</label
             >
-            <div
-              class="col-auto"
-              style="
-                background-color: #d6dade;
-                border-radius: 10px;
-                height: 70px;
-              "
-            >
-              <!--                         <angular-file-uploader
-                        [config]="afuConfig">
-                      </angular-file-uploader> -->
+            <div class="inputFile">
+
+              <input type="file">
             </div>
+
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
               >Foto de perfil</label
             >
-            <div
-              class="col-auto"
-              style="
-                background-color: #d6dade;
-                border-radius: 10px;
-                height: 70px;
-              "
-            >
-              <!--                         <angular-file-uploader
-                        [config]="afuConfig">
-                      </angular-file-uploader> -->
+            <div class="inputFile">
+
+              <input type="file">
             </div>
+
           </div>
           <div class="formInput">
-            <label for="intereses" class="col-form-label">Idiomas</label>
-            <input
-              type="text"
-              formControlName="intereses"
-              class="form-control"
-            />
+            <label for="intereses" class="col-form-label">Horarios</label>
+            <button
+              type="button"
+              class="botonHorario" (click)="agregarHorario()">            <fa-icon style="margin-right: 30px;" [icon]="calendar"></fa-icon>Agregar horarios</button>
+          </div>
+          <div class="formInput formIdiomas">
+            <label for="intereses" class="col-form-label">Idiomas <br><span>Max. 3 idiomas</span></label>
+            <div>
+              <p (click)="agregarIdiomas()">+</p>              
+            </div>
           </div>
           <div class="formButton">
-            <button type="button">Registrarme</button>
+            <button (click)="registrar()" type="button">Registrarme</button>
           </div>
         </form>
 
@@ -169,7 +163,9 @@
 ></app-error>
 
 <app-confirm
-  [msg]="confirmMessage"
-  (closeConfirm)="closeConfirm()"
-  *ngIf="isConfirm"
+  title="Registro exitoso"
+  [msg]="registroExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="login()"
 ></app-confirm>

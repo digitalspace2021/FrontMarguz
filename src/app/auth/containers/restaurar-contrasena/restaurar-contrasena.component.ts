@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-restaurar-contrasena',
@@ -7,10 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurarContrasenaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  async restaurar(){}
+  async restaurar(){
+    this.openConfirm();
+  }
+  isReseteoExitoso: boolean = false;
+  reseteoExitosoMessage: string = 'Se ha modificado su contraseña correctamente';
+  login() {
+    this.isReseteoExitoso = false;
+    this.router.navigate(["/auth/login"])
+  }  
+  openConfirm() {
+    this.isReseteoExitoso = true;
+  }
+
+  isError: boolean = false;
+  errorMessage: string = '';
+  openError(message: string) {
+    this.errorMessage = message;
+    this.isError = true;
+  }
+
+  closeError() {
+    this.isError = false;
+    this.errorMessage = '';
+  }
 }

@@ -1,167 +1,232 @@
-.mb-4{
-    margin-bottom: -0.5rem!important;
+.mb-4 {
+  margin-bottom: -0.5rem !important;
 }
 
-.card-encabezado{
-    height: 68px;
+.card-encabezado {
+  height: 68px;
 }
 
-.social-btn{
-    height: 40px;
-    border-radius: 5px;
+.social-btn {
+  height: 40px;
+  border-radius: 5px;
 }
 
-.fa-facebook , .fa-google{
-    margin-right: 30px;
+.fa-facebook,
+.fa-google {
+  margin-right: 30px;
 }
 
-.input-register{
-    border-radius: 15px;
-    width: 250px;
+.input-register {
+  border-radius: 15px;
+  width: 250px;
 }
 
-.btn-login{
-    border-radius: 10px;
+.btn-login {
+  border-radius: 10px;
 }
 
-hr{
-    background-color: black;
-    width: 100%;
+hr {
+  background-color: black;
+  width: 100%;
 }
 
-label{
-    display: inline-block;
-    width: 120px;
-    text-align: right;
+label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
 }
 
-.div1 > .afu-dragndrop-box{
-    height: 45px !important;
-    border-radius: 8px !important;
-    width: 200px !important;
+.div1 > .afu-dragndrop-box {
+  height: 45px !important;
+  border-radius: 8px !important;
+  width: 200px !important;
 }
-
 
 .containerBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .contentBox {
-      width: 65%;
-      margin: auto;
-      margin: 40px 0 0 0;
-      .headerBox {
-        background-color: #e31b36;
-        color: white;
-        height: 60px;
-        padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .contentBox {
+    width: 65%;
+    margin: auto;
+    margin: 40px 0 0 0;
+    .headerBox {
+      background-color: #e31b36;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+      p {
+        margin: 0 0 0 10px;
+      }
+    }
+    .bodyBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+      border-radius: 0 0 10px 10px;
+      .buttonsBox {
+        width: 100%;
         display: flex;
         align-items: center;
-        border-radius: 10px 10px 0 0;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-        p {
-          margin: 0 0 0 10px;
+        justify-content: space-around;
+        padding: 30px 20px 20px 20px;
+        .socialButton {
+          width: 30%;
         }
       }
-      .bodyBox {
+      .divider {
+        border: #a195a1 solid;
+        border-width: 1px 0 0 0;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+        .circleBox {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 42px;
+          width: 42px;
+          border-radius: 100px;
+          background-color: #a195a1;
+          margin: -24px 0 0 0;
+          .innerCircleBox {
+            height: 15px;
+            width: 15px;
+            border-radius: 100px;
+            border: white solid 2px;
+          }
+        }
+      }
+      .formBox {
+        padding: 20px;
+        width: 75%;
+        .form {
+          width: 100%;
+        }
+        .formIdiomas {
+          justify-content: space-between;
+          label {
+            width: 25% !important;
+          }
+          div {
+            padding: 10px !important;
+            display: flex;
+            align-items: center;
+
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            background-color: white;
+            p {
+              cursor: pointer;
+              margin: 0;
+              line-height:30px;
+              color: white;
+              background-color: #e31b36;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+              border-radius: 100px;
+              border: 1px solid #e31b36;
+              font-weight: 500;
+              height: 30px;
+              width: 30px;
+              font-size: 30px;
+              &:hover {
+                color: #e31b36;
+                background-color: white;
+              }
+            }
+          }
+        }
+        .formInput {
+          display: flex;
+          label {
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            flex-direction: column;
+            margin-right: 10px;
+            span {
+              font-size: 12px;
+              font-style: italic;
+              color: #5d495e;
+            }
+          }
+          input {
+            border-radius: 10px;
+          }
+          margin: 15px;
+          .inputFile {
+            background-color: #d6dade;
+            border-radius: 10px;
+            width: 100%;
+            height: 100px;
+          }
+          .botonHorario {
+            background-color: #2f80ed;
+            color: white;
+            width: 100%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            border: 1px solid #2f80ed;
+            font-weight: bold;
+            height: 48px;
+            padding: 10px;
+            &:hover {
+              color: #2f80ed;
+              background-color: white;
+            }
+          }
+        }
+        .formCheckbox {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          input {
+            margin: 0 5px 0 0;
+            border-radius: 0;
+          }
+        }
+        .formButton {
+          margin: 15px;
+          display: flex;
+          justify-content: center;
+          button {
+            background-color: #24aa24;
+            color: white;
+            width: 100%;
+            border-radius: 10px;
+            height: 48px;
+            padding: 10px;
+          }
+        }
+      }
+      .recoverBox {
+        width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 0 0 10px 10px;
-        .buttonsBox {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          padding: 30px 20px 20px 20px;
-          .socialButton {
-            width: 30%;
-          }
+        margin: 0 0 30px 0;
+        p {
+          margin: 0;
         }
-        .divider {
-          border: #a195a1 solid;
-          border-width: 1px 0 0 0;
-          width: 95%;
-          display: flex;
-          justify-content: center;
-          margin: 20px;
-          .circleBox {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 42px;
-            width: 42px;
-            border-radius: 100px;
-            background-color: #a195a1;
-            margin: -24px 0 0 0;
-            .innerCircleBox {
-              height: 15px;
-              width: 15px;
-              border-radius: 100px;
-              border: white solid 2px;
-            }
-          }
-        }
-        .formBox {
-          padding: 20px;
-          width: 75%;
-          .form{
-            width: 100%;
-          }
-          .formInput {
-            display: flex;
-            label {
-              width: 35%;
-              text-align: right;
-              margin-right: 10px;
-            }
-            input {
-              border-radius: 10px;
-            }
-            margin: 15px;
-          }
-          .formCheckbox {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            input {
-              margin: 0 5px 0 0;
-              border-radius: 0;
-            }
-          }
-          .formButton {
-            margin: 15px;
-            display: flex;
-            justify-content: center;
-            button {
-              background-color: #24aa24;
-              color: white;
-              width: 100%;
-              border-radius: 10px;
-              height: 48px;
-              padding: 10px;
-            }
-          }
-        }
-        .recoverBox {
-          width: 50%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 0 0 30px 0;
-          p {
-            margin: 0;
-          }
-          a {
-            color: #e31b36;
-            &:hover {
-              font-weight: bold;
-            }
+        a {
+          color: #e31b36;
+          &:hover {
+            font-weight: bold;
           }
         }
       }
     }
   }
-  
+}

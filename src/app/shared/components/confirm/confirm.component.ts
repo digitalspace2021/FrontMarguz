@@ -7,8 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 })
 export class ConfirmComponent implements OnInit {
   @Input() msg: string = "";
-  @Input() title: string = "CONFIRMACÓN";
-  @Output() closeError = new EventEmitter<string>();
+  @Input() title: string = "";
+  @Input() buttonMsg: string = "";
+  @Output() closeConfirm = new EventEmitter<string>();
 
   constructor() {}
 
@@ -17,6 +18,6 @@ export class ConfirmComponent implements OnInit {
   }
 
   close() {
-    this.closeError.emit("Cerrando confimación");
+    this.closeConfirm.emit("Cerrando confimación");
   }
 }
