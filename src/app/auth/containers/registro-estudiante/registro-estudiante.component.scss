@@ -117,7 +117,50 @@ label {
           input {
             border-radius: 10px;
           }
+          .inputFile {
+            background-color: #d6dade;
+            border-radius: 10px;
+            width: 100%;
+            height: 100px;
+          }
           margin: 15px;
+        }
+        .formIdiomas {
+          justify-content: space-between;
+          label {
+            width: 25% !important;
+          }
+          div {
+            padding: 10px !important;
+            display: flex;
+            align-items: center;
+
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            background-color: white;
+            fa-icon {
+              cursor: pointer;
+              margin: 0;
+              line-height:30px;
+              color: white;
+              background-color: #e31b36;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+              border-radius: 100px;
+              border: 1px solid #e31b36;
+              font-weight: 500;
+              height: 30px;
+              width: 30px;
+              font-size: 30px;
+              &:hover {
+                color: #e31b36;
+                background-color: white;
+              }
+            }
+          }
         }
         .formCheckbox {
           display: flex;

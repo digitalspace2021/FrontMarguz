@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-registro-profesor',
   templateUrl: './registro-profesor.component.html',
@@ -13,7 +14,7 @@ export class RegistroProfesorComponent implements OnInit {
   countries: any;
   states: any;
   cities: any;
-
+  icon = faPlusCircle;
   registerForm: FormGroup = new FormGroup({
     id: new FormControl(),
     nombre: new FormControl(),
@@ -29,8 +30,8 @@ export class RegistroProfesorComponent implements OnInit {
   citySelected: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-  async agregarHorario(){}
-  async agregarIdiomas(){}
+  async agregarHorario() {}
+  async agregarIdiomas() {}
 
   ngOnInit() {
     this.authService
@@ -57,12 +58,13 @@ export class RegistroProfesorComponent implements OnInit {
       .catch((err) => console.error(err));
   }
   isRegistroExitoso: boolean = false;
-  registroExitosoMessage: string = 'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
+  registroExitosoMessage: string =
+    'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
   login() {
     this.isRegistroExitoso = false;
-    this.router.navigate(["/auth/login"])
-  }  
-  async registrar(){
+    this.router.navigate(['/auth/login']);
+  }
+  async registrar() {
     this.openConfirm();
   }
   openConfirm() {

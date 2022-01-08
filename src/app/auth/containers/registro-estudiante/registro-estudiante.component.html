@@ -8,8 +8,7 @@
       </div>
       <div class="divider">
         <div class="circleBox">
-          <div class="innerCircleBox">
-          </div>
+          <div class="innerCircleBox"></div>
         </div>
       </div>
       <div class="formBox">
@@ -73,7 +72,11 @@
             <label for="fotodeperfil" class="col-form-label"
               >Foto de perfil</label
             >
-            <div
+
+            <div class="inputFile">
+              <input type="file" />
+            </div>
+            <!--  <div
               class="col-auto"
               style="
                 background-color: #d6dade;
@@ -81,18 +84,16 @@
                 height: 70px;
               "
             >
-              <!--                         <angular-file-uploader
+                                      <angular-file-uploader
                         [config]="afuConfig">
-                      </angular-file-uploader> -->
-            </div>
+                      </angular-file-uploader> 
+            </div> -->
           </div>
-          <div class="formInput">
-            <label for="intereses" class="col-form-label">Intereses</label>
-            <input
-              type="text"
-              formControlName="intereses"
-              class="form-control"
-            />
+          <div class="formInput formIdiomas">
+            <label for="intereses" class="col-form-label">Intereses <br></label>
+            <div>
+              <fa-icon style="font-size: 24px" [icon]="icon" (click)="agregarIntereses()"></fa-icon>
+            </div>
           </div>
           <div class="formButton">
             <button type="button" (click)="registrar()">Registrarme</button>

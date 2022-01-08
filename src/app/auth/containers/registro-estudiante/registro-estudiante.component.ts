@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -16,6 +17,8 @@ export class RegistroEstudianteComponent implements OnInit {
   stateSelected: string = '';
   citySelected: string = '';
 
+  icon = faPlusCircle;
+
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
@@ -29,6 +32,7 @@ export class RegistroEstudianteComponent implements OnInit {
       .catch((err) => console.error(err));
   }
 
+  async agregarIntereses() {}
   changeStates() {
     this.authService
       .getStates(this.countrySelected)
