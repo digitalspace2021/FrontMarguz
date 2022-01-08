@@ -39,7 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule, FontAwesomeModule
   ]
 })
 export class AuthModule { }

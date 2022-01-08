@@ -1,14 +1,15 @@
 <div class="containerBox">
   <div class="contentBox">
     <div class="headerBox">
-      <p>Registrar como Profesor</p>
+      <p>
+        <fa-icon style="font-size: 14px" [icon]="user"></fa-icon>
+        Registrar como Profesor</p>
     </div>
     <div class="bodyBox">
       <div class="formBox">
         <form [formGroup]="registerForm">
           <div class="formInput">
-            <label for="id" class="col-form-label">ID</label>
-            <input type="text" formControlName="id" class="form-control" />
+            <input type="hidden" formControlName="id" class="form-control" />
           </div>
           <div class="formInput">
             <label for="nombre" class="col-form-label">Nombre</label>
@@ -128,19 +129,17 @@
             <label for="intereses" class="col-form-label">Horarios</label>
             <button
               type="button"
-              class="botonHorario" (click)="agregarHorario()">            <fa-icon style="margin-right: 30px;" [icon]="calendar"></fa-icon>Agregar horarios</button>
+              class="botonHorario" (click)="agregarHorario()">
+              <fa-icon style="margin-right: 30px;" [icon]="calendar"></fa-icon>Agregar horarios</button>
           </div>
           <div class="formInput formIdiomas">
-            <label for="intereses" class="col-form-label">Idiomas <br><span>Max. 3 idiomas</span></label>
-            <div>
+              <label for="intereses" class="col-form-label">Idiomas <br><span>Max. 3 idiomas</span></label>
               <fa-icon style="font-size: 24px" [icon]="icon" (click)="agregarIdiomas()"></fa-icon>
-            </div>
           </div>
           <div class="formButton">
             <button (click)="registrar()" type="button">Registrarme</button>
           </div>
         </form>
-
         <br />
       </div>
       <div class="recoverBox">

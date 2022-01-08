@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-registro-profesor',
   templateUrl: './registro-profesor.component.html',
   styleUrls: ['./registro-profesor.component.scss'],
 })
 export class RegistroProfesorComponent implements OnInit {
-  calendar = faCalendar;
   countries: any;
   states: any;
   cities: any;
+
+  //-------------icon
   icon = faPlusCircle;
+  calendar = faCalendar;
+  user = faUserPlus;
+ //----------------------------
+
+  isRegistroExitoso: boolean = false;
+  registroExitosoMessage: string ='Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
+
   registerForm: FormGroup = new FormGroup({
     id: new FormControl(),
     nombre: new FormControl(),
@@ -28,8 +37,11 @@ export class RegistroProfesorComponent implements OnInit {
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
+  isError: boolean = false;
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
+
   async agregarHorario() {}
   async agregarIdiomas() {}
 
@@ -57,9 +69,7 @@ export class RegistroProfesorComponent implements OnInit {
       .then((data) => (this.cities = data))
       .catch((err) => console.error(err));
   }
-  isRegistroExitoso: boolean = false;
-  registroExitosoMessage: string =
-    'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
+  
   login() {
     this.isRegistroExitoso = false;
     this.router.navigate(['/auth/login']);
@@ -71,8 +81,6 @@ export class RegistroProfesorComponent implements OnInit {
     this.isRegistroExitoso = true;
   }
 
-  isError: boolean = false;
-  errorMessage: string = '';
   openError(message: string) {
     this.errorMessage = message;
     this.isError = true;

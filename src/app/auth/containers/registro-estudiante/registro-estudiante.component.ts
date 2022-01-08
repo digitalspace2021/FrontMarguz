@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -13,26 +13,32 @@ export class RegistroEstudianteComponent implements OnInit {
   states: any;
   cities: any;
 
+  // -----icon
+  user = faUserPlus;
+  icon = faPlusCircle;
+  //---------------
+  
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
-
-  icon = faPlusCircle;
+  isRegistroExitoso: boolean = false;
+  registroExitosoMessage: string = 'Su cuenta ha sido registrada exitosamente';
+  isError: boolean = false;
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService
-      .getCountries()
-      .then((data) => {
-        this.countries = data;
-        this.countrySelected = 'Colombia';
-        this.changeStates();
-      })
-      .catch((err) => console.error(err));
+    .getCountries()
+    .then((data) => {
+      this.countries = data;
+      this.countrySelected = 'Colombia';
+      this.changeStates();
+    })
+    .catch((err) => console.error(err));
   }
 
-  async agregarIntereses() {}
   changeStates() {
     this.authService
       .getStates(this.countrySelected)
@@ -46,8 +52,9 @@ export class RegistroEstudianteComponent implements OnInit {
       .then((data) => (this.cities = data))
       .catch((err) => console.error(err));
   }
-  isRegistroExitoso: boolean = false;
-  registroExitosoMessage: string = 'Su cuenta ha sido registrada exitosamente';
+
+  async agregarIntereses() {}
+
   login() {
     this.isRegistroExitoso = false;
     this.router.navigate(["/auth/login"])
@@ -59,8 +66,6 @@ export class RegistroEstudianteComponent implements OnInit {
     this.isRegistroExitoso = true;
   }
 
-  isError: boolean = false;
-  errorMessage: string = '';
   closeError() {
     this.isError = false;
     this.errorMessage = '';

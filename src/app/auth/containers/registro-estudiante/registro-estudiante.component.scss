@@ -46,39 +46,46 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
+
   .contentBox {
     width: 65%;
-    margin: auto;
-    margin: 40px 0 0 0;
+    margin: 18px 0 0 0;
+
     .headerBox {
       background-color: #e31b36;
       color: white;
-      height: 60px;
+      height: 55px;
       padding: 10px;
       display: flex;
       align-items: center;
       border-radius: 10px 10px 0 0;
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 0px 20px rgb(0 0 0 / 25%);
       p {
         margin: 0 0 0 10px;
       }
     }
     .bodyBox {
+
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
       border-radius: 0 0 10px 10px;
+
       .buttonsBox {
+
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-around;
         padding: 30px 20px 20px 20px;
+
         .socialButton {
           width: 30%;
         }
+
       }
       .divider {
         border: #a195a1 solid;
@@ -105,8 +112,7 @@ label {
         }
       }
       .formBox {
-        padding: 20px;
-        width: 75%;
+        width: 65%;
         .formInput {
           display: flex;
           label {
@@ -178,10 +184,10 @@ label {
           button {
             background-color: #24aa24;
             color: white;
-            width: 100%;
+            width: 30%;
             border-radius: 10px;
-            height: 48px;
-            padding: 10px;
+            height: 40px;
+            padding: 8px;
           }
         }
       }
