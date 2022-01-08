@@ -107,11 +107,14 @@
             <label for="intereses" class="col-form-label"
               >Intereses <br
             /></label>
-            <fa-icon
+            <div>
+
+              <fa-icon
               style="font-size: 24px; color: red"
               [icon]="icon"
               (click)="agregarIntereses()"
-            ></fa-icon>
+              ></fa-icon>
+            </div>
           </div>
           <div class="formButton">
             <button type="button" (click)="registrar()">Registrarme</button>
@@ -121,7 +124,7 @@
       </div>
       <div class="recoverBox">
         <p>
-          Al dar click en continuar o registrarme,acepta los
+          Al dar click en continuar o registrarme, acepta los
           <br />
           <a routerLink="/politicas/estudiante"
             >Terminos y Condiciones de servicio y la politica de privacidad de

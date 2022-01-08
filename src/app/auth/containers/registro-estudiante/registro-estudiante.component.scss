@@ -148,8 +148,8 @@ label {
               cursor: pointer;
               margin: 0;
               line-height:30px;
-              color: white;
-              background-color: #e31b36;
+              color: #e31b36;
+              background-color: white;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -162,8 +162,8 @@ label {
               width: 30px;
               font-size: 30px;
               &:hover {
-                color: #e31b36;
-                background-color: white;
+                color: white;
+                background-color: #e31b36;
               }
             }
           }

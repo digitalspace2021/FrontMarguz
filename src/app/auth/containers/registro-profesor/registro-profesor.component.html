@@ -136,11 +136,9 @@
             <label for="intereses" class="col-form-label"
               >Idiomas <br /><span>Max. 3 idiomas</span></label
             >
-            <fa-icon
-              style="font-size: 24px"
-              [icon]="icon"
-              (click)="agregarIdiomas()"
-            ></fa-icon>
+            <div>
+              <fa-icon [icon]="icon" (click)="agregarIdiomas()"></fa-icon>
+            </div>
           </div>
           <div class="formButton">
             <button (click)="registrar()" type="button">Registrarme</button>
