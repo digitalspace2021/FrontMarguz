@@ -16,6 +16,7 @@ import { HeaderAuthComponent } from './components/header-auth/header-auth.compon
 import { FormRegistroComponent } from './containers/form-registro/form-registro.component';
 import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HorarioComponent } from './components/horario/horario.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ResetearContrasenaComponent,
     RestaurarContrasenaComponent,
     HeaderAuthComponent,
-    FormRegistroComponent
+    FormRegistroComponent,
+    HorarioComponent
   ],
   imports: [
     CommonModule,

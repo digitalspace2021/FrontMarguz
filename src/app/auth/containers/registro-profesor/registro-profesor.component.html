@@ -128,7 +128,7 @@
             <label for="intereses" class="col-form-label">Horarios</label>
             <button
               type="button"
-              class="botonHorario" (click)="agregarHorario()">            <fa-icon style="margin-right: 30px;" [icon]="calendar"></fa-icon>Agregar horarios</button>
+              class="botonHorario" (click)="isHorario = true;">            <fa-icon style="margin-right: 30px;" [icon]="calendar"></fa-icon>Agregar horarios</button>
           </div>
           <div class="formInput formIdiomas">
             <label for="intereses" class="col-form-label">Idiomas <br><span>Max. 3 idiomas</span></label>
@@ -145,8 +145,8 @@
       </div>
       <div class="recoverBox">
         <p>
-          Al dar click en continuar o registrarme,acepta los
-          <a routerLink="/politicas/profesor"
+          Al dar click en continuar o registrarme, acepta los
+          <br><a routerLink="/politicas/profesor"
             >Terminos y Condiciones de servicio y la politica de privacidad de
             marguz</a
           >
@@ -169,3 +169,9 @@
   *ngIf="isRegistroExitoso"
   (closeConfirm)="login()"
 ></app-confirm>
+
+<app-horario
+[horarios]="horarios"
+*ngIf="isHorario"
+(closeHorario)="isHorario = false;"
+></app-horario>

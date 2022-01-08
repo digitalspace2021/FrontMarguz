@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-registro-profesor',
   templateUrl: './registro-profesor.component.html',
@@ -15,6 +16,13 @@ export class RegistroProfesorComponent implements OnInit {
   states: any;
   cities: any;
   icon = faPlusCircle;
+  horarios = [
+    {
+      dia: 'Lunes',
+      inicio: '8:00am',
+      cierre: '2:00pm',
+    },
+  ];
   registerForm: FormGroup = new FormGroup({
     id: new FormControl(),
     nombre: new FormControl(),
@@ -30,7 +38,9 @@ export class RegistroProfesorComponent implements OnInit {
   citySelected: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-  async agregarHorario() {}
+  async agregarHorario() {
+    this.openHorario();
+  }
   async agregarIdiomas() {}
 
   ngOnInit() {
@@ -76,6 +86,15 @@ export class RegistroProfesorComponent implements OnInit {
   openError(message: string) {
     this.errorMessage = message;
     this.isError = true;
+  }
+
+  isHorario: boolean = false;
+  openHorario() {
+    this.isHorario = true;
+  }
+  closeHorario(horarios: any) {
+    this.isHorario = false;
+    this.horarios = horarios;
   }
 
   closeError() {
