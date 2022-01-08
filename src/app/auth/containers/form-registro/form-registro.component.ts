@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -7,10 +7,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
+  @Input() tipoUsuario : number  = 0;
+  
   countries: any;
   states: any;
   cities: any;
-
+ 
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
