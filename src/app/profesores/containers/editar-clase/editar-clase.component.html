@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <style>
+    .colorContainer {
+      background-color: #ecf3f3;
+    }
+
+    .dropdown-item {
+      text-decoration: underline;
+    }
+
+    body {
+      font-family: "roboto", sans-serif;
+      overflow-x: hidden;
+    }
+
+    @media (min-width: 1244px) {
+      .mobiles {
+        display: block;
+      }
+    }
+
+    @media (max-width: 1244px) {
+      .mobiles {
+        display: none;
+      }
+
+      .mobiles2 {
+        display: block !important;
+      }
+
+      .btn.dropdown-toggle {
+        padding: 0;
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 1000;
+      display: none;
+      padding-right: 20px;
+      min-width: 12rem;
+      padding-bottom: 18px;
+      padding-top: 18px;
+      padding-left: 4px;
+      margin: 0;
+      font-size: 1rem;
+      color: #212529;
+      list-style: none;
+      background-color: #ecf3f3;
+      background-clip: padding-box;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 0.25rem;
+    }
+
+    #name_perfil {
+      color: #333;
+      text-transform: capitalize;
+    }
+
+    .spans {
+      position: relative;
+      top: 56px;
+      left: -82px;
+    }
+
+    .imgs {
+      width: 112px;
+    }
+
+    .nav-item {
+      margin-left: 20px;
+    }
+
+    @media (min-width:1244px) {
+      .caja-blanca {
+        max-width: 60%;
+
+      }
+    }
+
+    .spanButton {
+      background-color: white;
+      border: 1px solid rgb(206, 206, 206);
+      padding: 15px;
+      position: relative;
+      left: 20px;
+    }
+
+    .footerx {
+      background-color: #ffffff;
+      padding: 20px;
+      padding-left: 37px;
+      position: relative;
+      z-index: 999;
+    }
+
+    .ths {
+      font-weight: 500;
+    }
+
+    .fab {
+      color: red;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    .edit_perfil {
+      font-weight: 400;
+      font-size: 50px;
+      color: #c71029;
+    }
+
+    #span_edit_perfil {
+      color: #5d495e;
+      font-size: 30px;
+      position: relative;
+      bottom: 20px;
+    }
+
+    .colInputs {
+      margin-left: 10px;
+    }
+
+    .caja-blanca {
+      margin-right: auto;
+      margin-left: auto;
+      padding-bottom: 40px;
+      padding-top: 40px;
+      padding-left: 27px;
+      padding-right: 27px;
+      background: #ffffff;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+    }
+
+    .ajust {
+      position: relative;
+      width: 329px;
+      top: 10px;
+    }
+
+    .label-ajust {
+      color: #a195a1;
+      position: relative;
+      left: 4px;
+      float: left;
+    }
+
+    .ajustCol {
+      position: relative;
+      left: 35%;
+    }
+
+    @media (max-width: 1400px) {
+      .ajustCol {
+        position: relative;
+        left: 40%;
+      }
+    }
+
+    .form-check-input {
+      margin-left: 20px;
+    }
+
+    .form-check-input:checked {
+      background-color: #e31b36;
+      border-color: #e31b36;
+    }
+
+    .img-edit {
+      float: left;
+      display: inline-block;
+      padding: 10px;
+    }
+
+    .circle-img:hover {
+      cursor: pointer;
+    }
+
+    .circle-iframe:hover {
+      cursor: pointer;
+    }
+
+    .circle-iframe i:hover {
+      cursor: pointer;
+    }
+
+    .spanButton:hover {
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid red;
+      background-color: #e9e9e999;
+      border-radius: 5px;
+    }
+
+    .circle-img {
+      position: relative;
+      float: right;
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+      border-radius: 30px;
+      padding: 15px;
+      background-color: white;
+    }
+
+    .caja-save {
+      position: relative;
+      top: 186px;
+      right: -177px;
+    }
+
+    .img-edit {
+      width: 318px;
+      height: 318px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-image: url("Logo/Rectangle\ 13.jpg");
+    }
+
+    .modal-body {
+      color: #5d495e;
+      border: none;
+    }
+
+    .modal-footer {
+      border: none;
+    }
+
+    .modal-header {
+      border: none;
+    }
+
+    .spansMobiles {
+      display: none;
+    }
+
+    .buttonss {
+      position: relative;
+      bottom: 51px;
+    }
+
+    @media (max-width: 991px) {
+      .caja-save {
+        position: relative;
+        top: 106px;
+        right: 4px;
+      }
+
+      .caja-save button {
+        width: 100%;
+      }
+
+      #span_edit_perfil {
+        color: #5d495e;
+        font-size: 20px;
+        position: relative;
+        bottom: 20px;
+      }
+
+      .mt-sms-3 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .spansMobiles {
+        display: block;
+      }
+
+      .caja-blanca {
+        width: 100%;
+      }
+
+      .ajustCol {
+        left: 0px;
+      }
+
+      .ajust {
+        position: relative;
+        width: 291px;
+        top: 10px;
+      }
+    }
+
+    .group-inputs {
+      font-weight: 500;
+      width: 318px;
+    }
+
+    .iframe-edit iframe {
+      width: 318px;
+      margin-top: 20px;
+      border-radius: 10px;
+      height: 318px;
+    }
+
+    .circle-iframe {
+      position: relative;
+      float: right;
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+      border-radius: 30px;
+      padding: 15px;
+      right: 32px;
+      color: red;
+      z-index: 1001;
+      width: 17%;
+      bottom: 78px;
+      font-size: 20px;
+      background-color: white;
+    }
+
+    .circle-iframe i {
+      position: relative;
+      top: 2px;
+      left: 4px;
+    }
+
+  </style>
+</head>
+
+<body class="colorContainer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="Logo/Recurso 1.png"
+                class="d-inline-block align-text-top imgs" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" style="font-weight: 600; color: #333" href="#">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" style="font-weight: 600; color: #333" href="#">Materias</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" style="font-weight: 600; color: #333" href="#">Clases</a>
+                </li>
+
+                <li class="nav-item">
+                  <div class="dropdown mobiles2 d-none">
+                    <a class="btn dropdown-toggle" style="color: #e12b32" href="#" role="button" id=""
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <span id="name_perfil">Danna Ramirez</span>
+                      <img width="35" height="24"
+                        src="https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Transparent-Clip-Art-Background.png" />
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="">
+                      <li>
+                        <a class="dropdown-item" href="#">Mis Clases</a>
+                      </li>
+                      <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                      <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                      <li>
+                        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="dropdown mobiles">
+              <a class="btn dropdown-toggle" style="color: #e12b32" href="#" role="button" id=""
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="name_perfil">Danna Ramirez</span>
+                <img width="35" height="24"
+                  src="https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Transparent-Clip-Art-Background.png" />
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="">
+                <li><a class="dropdown-item" href="#">Profesores</a></li>
+                <li><a class="dropdown-item" href="#">Estudiantes</a></li>
+                <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center mt-4 mb-4">
+          Actualizar clase | <span style="color: #ff0000">Profesor</span>
+        </h2>
+      </div>
+      <br />
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p class="text-center">
+          Nombre del alumno:
+          <span id="nombreAquí" class="d-inline-block mb-4"> Alejandro Ramirez</span>
+        </p>
+
+        <div class="caja-blanca">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Profesor </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <input type="text" placeholder="Enrique" class="form-control" disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Hora inicial </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <select class="form-select" required>
+                <option>9:00 A.M.</option>
+                <option>9:30 A.M.</option>
+                <option>10:00 A.M.</option>
+                <option>10:30 A.M.</option>
+                <option>11:00 A.M.</option>
+                <option>11:30 A.M.</option>
+                <option>12:00 P.M.</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Hora final </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <select class="form-select" required>
+                <option>9:00 P.M.</option>
+                <option>9:30 A.M.</option>
+                <option>10:00 A.M.</option>
+                <option>10:30 A.M.</option>
+                <option>11:00 A.M.</option>
+                <option>11:30 A.M.</option>
+                <option>12:00 P.M.</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Fecha </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <input type="date" class="form-control" name="dateTime" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Email </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <input class="form-control" type="email" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Descripción </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <textarea class="form-control" cols="20" style="height: 150px">
+                </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Notas del profesor </label>
+            </div>
+            <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+              <textarea class="form-control" cols="20" style="height: 150px">
+                </textarea>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-success mt-4">
+              <i class="fas fa-save" style="margin-right: 30px"></i>
+              <span style="margin-right: 20px">Guardar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footerx mt-5">
+    © 2021 Marguz
+    <span><i class="fab fa-facebook"></i></span>
+    <span><a href="https://www.instagram.com/marguz.co/"><i class="fab fa-instagram"></i></a></span>
+    <span><a href="https://www.youtube.com/channel/UCxJHfg4CFq5PpiVMBO0-Ujg"><i class="fab fa-youtube"></i></a></span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
