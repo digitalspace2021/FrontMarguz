@@ -19,7 +19,8 @@
           <div class="formInput">
             <input
               type="text"
-              formControlName="email"
+              [(ngModel)]="loginData.email"
+              [ngModelOptions]="{ standalone: true }"
               class="form-control"
               placeholder="Email"
             />
@@ -27,7 +28,8 @@
           <div class="formInput">
             <input
               type="password"
-              formControlName="contrasena"
+              [(ngModel)]="loginData.password"
+              [ngModelOptions]="{ standalone: true }"
               class="form-control"
               placeholder="Contraseña"
             />
@@ -55,3 +57,17 @@
     </div>
   </div>
 </div>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  title="Inicio de sesión exitoso"
+  [msg]="inicioExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isInicioExitoso"
+  (closeConfirm)="dashboard()"
+></app-confirm>

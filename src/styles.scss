@@ -1,15 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
-button{
-    border: none;
-    outline: inherit;
-    cursor: pointer;
+button {
+  border: none;
+  outline: inherit;
+  cursor: pointer;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 .app {
-    background-color: #edf4f4;
-    height: 100vh;
+  background-color: #edf4f4;
+  height: 100vh;
+}
+
+.appBox{
+    overflow-y: hidden;
+    min-height: 100vh;
+}
+.containerBox{
+    margin-bottom: 100px !important;
+    overflow-y: hidden;
+}
+.moduleBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-y: hidden;
+    min-height: 100vh;
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+  }
 }

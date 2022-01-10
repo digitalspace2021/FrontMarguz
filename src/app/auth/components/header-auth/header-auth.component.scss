@@ -58,11 +58,19 @@
   .nav-item {
     border-radius: 5px;
     border: 1px solid #e31b36;
+    background-color: #e31b36;
     padding: 2px;
     a {
-      color: rgb(94, 91, 91);
+      color: white;
       font-size: 17px;
       font-weight: 600;
+    }
+    &:hover{
+      background-color: white;
+      a{
+        color: #e31b36;
+
+      }
     }
   }
 }

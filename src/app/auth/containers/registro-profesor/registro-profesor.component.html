@@ -54,7 +54,7 @@
               [ngModelOptions]="{ standalone: true }"
               [(ngModel)]="stateSelected"
               class="form-control"
-              (change)="changeCites()"
+              (change)="changeCities()"
             >
               <option *ngFor="let state of states" [value]="state.state_name">
                 {{ state.state_name }}

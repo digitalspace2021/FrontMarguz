@@ -26,10 +26,11 @@ export class RegistroProfesorComponent implements OnInit {
   ];
   calendar = faCalendar;
   user = faUserPlus;
- //----------------------------
+  //----------------------------
 
   isRegistroExitoso: boolean = false;
-  registroExitosoMessage: string ='Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
+  registroExitosoMessage: string =
+    'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada';
 
   registerForm: FormGroup = new FormGroup({
     id: new FormControl(),
@@ -67,17 +68,24 @@ export class RegistroProfesorComponent implements OnInit {
   changeStates() {
     this.authService
       .getStates(this.countrySelected)
-      .then((data) => (this.states = data))
+      .then((data) => {
+        this.states = data;
+        this.stateSelected = this.states[0].state_name;
+        this.changeCities();
+      })
       .catch((err) => console.error(err));
   }
 
-  changeCites() {
+  changeCities() {
     this.authService
       .getCities(this.stateSelected)
-      .then((data) => (this.cities = data))
+      .then((data) => {
+        this.cities = data;
+        this.citySelected = this.cities[0].city_name;
+      })
       .catch((err) => console.error(err));
   }
-  
+
   login() {
     this.isRegistroExitoso = false;
     this.router.navigate(['/auth/login']);

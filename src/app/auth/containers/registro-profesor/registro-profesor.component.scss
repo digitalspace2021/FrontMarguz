@@ -151,6 +151,9 @@ label {
           justify-content: space-between;
           label {
             width: 25% !important;
+            span{
+              font-style: italic;
+            }
           }
           div {
             padding: 10px !important;
