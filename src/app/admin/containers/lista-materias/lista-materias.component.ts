@@ -31,8 +31,6 @@ export class ListaMateriasComponent implements OnInit {
   title?: string;
   action: boolean = false;
 
-  resp: any;
-
   constructor(private materiaSv: MateriaService) {}
 
   ngOnInit(): void {
@@ -40,9 +38,7 @@ export class ListaMateriasComponent implements OnInit {
   }
 
   ngOnChanges() {
-    if (this.resp) {
       this.listMateria();
-    }
   }
 
   listMateria() {
@@ -54,10 +50,6 @@ export class ListaMateriasComponent implements OnInit {
   mostrarModal(title: string, action: boolean = false) {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
-  }
-
-  getResponse(event?: any) {
-    this.resp = event;
   }
 
   getItem(item: any) {
