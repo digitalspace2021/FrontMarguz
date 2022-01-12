@@ -50,7 +50,6 @@ label {
 
   .contentBox {
     width: 65%;
-    margin: 18px 0 0 0;
 
     .headerBox {
       background-color: #e31b36;
@@ -66,7 +65,6 @@ label {
       }
     }
     .bodyBox {
-
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -75,7 +73,6 @@ label {
       border-radius: 0 0 10px 10px;
 
       .buttonsBox {
-
         width: 100%;
         display: flex;
         align-items: center;
@@ -85,7 +82,6 @@ label {
         .socialButton {
           width: 30%;
         }
-
       }
       .divider {
         border: #a195a1 solid;
@@ -115,18 +111,28 @@ label {
         width: 65%;
         .formInput {
           display: flex;
+          flex-wrap: wrap;
+          align-items: center;
           label {
-            width: 35%;
+            width: calc(25% - 10px);
             text-align: right;
-            margin-right: 10px;
           }
           input {
+            width: 75%;
+
+            margin-left: 10px;
             border-radius: 10px;
+          }
+          select {
+            margin-left: 10px;
+            width: 75%;
           }
           .inputFile {
             background-color: #d6dade;
             border-radius: 10px;
-            width: 100%;
+            width: 75%;
+            margin-left: 10px;
+
             height: 100px;
           }
           margin: 15px;
@@ -147,7 +153,7 @@ label {
             fa-icon {
               cursor: pointer;
               margin: 0;
-              line-height:30px;
+              line-height: 30px;
               color: #e31b36;
               background-color: white;
               display: flex;

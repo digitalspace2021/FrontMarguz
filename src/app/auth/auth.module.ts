@@ -17,6 +17,7 @@ import { FormRegistroComponent } from './containers/form-registro/form-registro.
 import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HorarioComponent } from './components/horario/horario.component';
+import { RegistroComponent } from './containers/registro/registro.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HorarioComponent } from './components/horario/horario.component';
     RestaurarContrasenaComponent,
     HeaderAuthComponent,
     FormRegistroComponent,
-    HorarioComponent
+    HorarioComponent,
+    RegistroComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,35 @@
-
-.containerBox {
+.mb-4 {
+    margin-bottom: -0.5rem !important;
+  }
+  
+  .card-encabezado {
+    height: 68px;
+  }
+  
+  .social-btn {
+    height: 40px;
+    border-radius: 5px;
+  }
+  
+  .fa-facebook,
+  .fa-google {
+    margin-right: 30px;
+  }
+  
+  .input-login {
+    border-radius: 30px;
+  }
+  
+  .btn-login {
+    border-radius: 10px;
+  }
+  
+  hr {
+    background-color: black;
+    width: 100%;
+  }
+  
+  .containerBox {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,11 +41,14 @@
         height: 60px;
         padding: 10px;
         display: flex;
+        justify-content: center;
         align-items: center;
         border-radius: 10px 10px 0 0;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
         p {
           margin: 0 0 0 10px;
+          font-weight: bold;
+          font-size: 30px;
         }
       }
       .bodyBox {
@@ -25,14 +58,33 @@
         width: 100%;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
         border-radius: 0 0 10px 10px;
+        p{
+            text-align: center;
+            margin: 10px 0;
+        }
         .buttonsBox {
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: space-around;
           padding: 30px 20px 20px 20px;
-          .socialButton {
-            width: 30%;
+          button {
+            border-radius: 5px;
+            border: 1px solid #e31b36;
+            background-color: #e31b36;
+            padding: 10px;
+            a {
+              color: white;
+              font-size: 17px;
+              font-weight: 600;
+            }
+            &:hover{
+              background-color: white;
+              a{
+                color: #e31b36;
+        
+              }
+            }
           }
         }
         .divider {
@@ -62,32 +114,35 @@
         .formBox {
           padding: 20px;
           width: 50%;
-          .formInput {
-            input {
-              border-radius: 10px;
+          form {
+            width: 100%;
+            .formInput {
+              input {
+                border-radius: 10px;
+              }
+              margin: 15px;
             }
-            margin: 15px;
-          }
-          .formCheckbox {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            input {
-              margin: 0 5px 0 0;
-              border-radius: 0;
+            .formCheckbox {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              input {
+                margin: 0 5px 0 0;
+                border-radius: 0;
+              }
             }
-          }
-          .formButton {
-            margin: 15px;
-            display: flex;
-            justify-content: center;
-            button {
-              background-color: #24aa24;
-              color: white;
-              width: 100%;
-              border-radius: 10px;
-              height: 48px;
-              padding: 10px;
+            .formButton {
+              margin: 15px;
+              display: flex;
+              justify-content: center;
+              button {
+                background-color: #24aa24;
+                color: white;
+                width: 100%;
+                border-radius: 10px;
+                height: 48px;
+                padding: 10px;
+              }
             }
           }
         }
@@ -102,6 +157,7 @@
           }
           a {
             color: #e31b36;
+            cursor: pointer;
             &:hover {
               font-weight: bold;
             }

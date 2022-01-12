@@ -50,7 +50,6 @@ label {
 
   .contentBox {
     width: 65%;
-    margin: 18px 0 0 0;
 
     .headerBox {
       background-color: #e31b36;
@@ -113,27 +112,38 @@ label {
 
         .formInput {
           display: flex;
-
+          flex-wrap: wrap;
+          align-items: center;
           label {
-            width: 35%;
+            width: calc( 25% - 10px);
             text-align: right;
-            margin-right: 10px;
           }
           input {
+            margin-left: 10px;
             border-radius: 10px;
+//            width: calc(100% - 130px);
+            width: 75%;
+          }
+          select {
+            //width: calc(100% - 130px);
+            margin-left: 10px;
+            width: 75%;
           }
           .inputFile {
             background-color: #d6dade;
+            margin-left: 10px;
             border-radius: 10px;
-            width: 100%;
+            width: 75%;
+            //width: calc(100% - 130px);
             height: 100px;
           }
           margin: 15px;
 
           .botonHorario {
             background-color: #2f80ed;
+            margin-left: 10px;
             color: white;
-            width: 100%;
+            width: 75%;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             border: 1px solid #2f80ed;
@@ -144,14 +154,13 @@ label {
               color: #2f80ed;
               background-color: white;
             }
-            
           }
         }
         .formIdiomas {
           justify-content: space-between;
           label {
             width: 25% !important;
-            span{
+            span {
               font-style: italic;
             }
           }

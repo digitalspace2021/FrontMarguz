@@ -8,13 +8,22 @@
     </div>
     <div class="bodyBox">
       <div class="formBox">
-        <form [formGroup]="registerForm">
+        <form [formGroup]="registroForm">
           <div class="formInput">
             <input type="hidden" formControlName="id" class="form-control" />
           </div>
           <div class="formInput">
             <label for="nombre" class="col-form-label">Nombre</label>
             <input type="text" formControlName="nombre" class="form-control" />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.nombre.errors?.required &&
+                (fRegistro.nombre.touched || fRegistro.nombre.dirty)
+              "
+            >
+              Por favor ingrese su nombre
+            </div>
           </div>
           <div class="formInput">
             <label for="apellido" class="col-form-label">Apellido</label>
@@ -23,6 +32,15 @@
               formControlName="apellido"
               class="form-control"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.apellido.errors?.required &&
+                (fRegistro.apellido.touched || fRegistro.apellido.dirty)
+              "
+            >
+              Por favor ingrese su apellido
+            </div>
           </div>
           <div class="formInput">
             <label for="telefono" class="col-form-label">Telefono</label>
@@ -31,6 +49,15 @@
               formControlName="telefono"
               class="form-control"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.telefono.errors?.required &&
+                (fRegistro.telefono.touched || fRegistro.telefono.dirty)
+              "
+            >
+              Por favor ingrese su número de teléfono
+            </div>
           </div>
           <div class="formInput">
             <label for="pais" class="col-form-label">Pais</label>
@@ -84,10 +111,19 @@
               formControlName="contrasena"
               class="form-control"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.contrasena.errors?.required &&
+                (fRegistro.contrasena.touched || fRegistro.contrasena.dirty)
+              "
+            >
+              Por favor ingrese una contraseña
+            </div>
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
-              >Documentación/Hoja de vida</label
+              >Documentación - Hoja de vida</label
             >
             <div class="inputFile">
               <input type="file" />
