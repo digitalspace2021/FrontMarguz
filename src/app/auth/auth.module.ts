@@ -17,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HorarioComponent } from './components/horario/horario.component';
 import { RegistroComponent } from './containers/registro/registro.component';
-
+import { FormRegistroComponent } from './components/form-registro/form-registro.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RegistroComponent } from './containers/registro/registro.component';
     RestaurarContrasenaComponent,
     HeaderAuthComponent,
     HorarioComponent,
-    RegistroComponent
+    RegistroComponent,
+    FormRegistroComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,10 @@ import { RegistroComponent } from './containers/registro/registro.component';
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    FormsModule, FontAwesomeModule
-  ]
+    FormsModule,
+    AngularFileUploaderModule,
+    FontAwesomeModule,
+  ],
+  exports: [FormRegistroComponent],
 })
-export class AuthModule { }
+export class AuthModule {}
