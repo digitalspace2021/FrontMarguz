@@ -14,6 +14,7 @@ import { EditarHorarioComponent } from './editar-horario/editar-horario.componen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { ComponentModule } from '../components/component.module';
+import { FormRegistroModule } from 'src/app/auth/components/form-registro/form-registro.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,13 @@ import { ComponentModule } from '../components/component.module';
     EditarHorarioComponent,
     CalendarioComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, SharedModule, ComponentModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    SharedModule,
+    ComponentModule,
+    FormRegistroModule,
+  ],
   exports: [
     ListAdminComponent,
     AgregarEstudianteComponent,

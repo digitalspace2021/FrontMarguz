@@ -17,6 +17,7 @@ import {
   faWindowClose,
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,7 +27,7 @@ import {
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    AppRoutingModule,
+    AppRoutingModule,AngularFileUploaderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

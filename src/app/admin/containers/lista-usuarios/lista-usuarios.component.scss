@@ -1,3 +1,17 @@
 input:checked{
     background-color: red;
 }
+
+.tab {
+    text-decoration: none;
+    color: #000;
+}
+
+.select-tab{
+    color: red;
+} 
+
+.select-tab:hover{
+    font-size: 12px;
+    font-weight: 600;
+}

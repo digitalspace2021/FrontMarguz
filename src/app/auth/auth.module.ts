@@ -13,7 +13,6 @@ import { RegistroProfesorComponent } from './containers/registro-profesor/regist
 import { ResetearContrasenaComponent } from './containers/resetear-contrasena/resetear-contrasena.component';
 import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/restaurar-contrasena.component';
 import { HeaderAuthComponent } from './components/header-auth/header-auth.component';
-import { FormRegistroComponent } from './containers/form-registro/form-registro.component';
 import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HorarioComponent } from './components/horario/horario.component';
@@ -32,7 +31,6 @@ import { RegistroComponent } from './containers/registro/registro.component';
     ResetearContrasenaComponent,
     RestaurarContrasenaComponent,
     HeaderAuthComponent,
-    FormRegistroComponent,
     HorarioComponent,
     RegistroComponent
   ],
