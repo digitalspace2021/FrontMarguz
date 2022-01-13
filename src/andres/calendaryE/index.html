@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet" />
+    <style>
+        .colorContainer {
+            background-color: #ecf3f3;
+        }
+
+        .dropdown-item {
+            text-decoration: underline;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        @media (min-width:1244px) {
+            .mobiles {
+                display: block;
+            }
+        }
+
+        @media (max-width:1244px) {
+            .mobiles {
+                display: none;
+            }
+
+            .mobiles2 {
+                display: block !important;
+            }
+
+            .btn.dropdown-toggle {
+                padding: 0;
+            }
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            z-index: 1000;
+            display: none;
+            padding-right: 20px;
+            min-width: 12rem;
+            padding-bottom: 18px;
+            padding-top: 18px;
+            padding-left: 4px;
+            margin: 0;
+            font-size: 1rem;
+            color: #212529;
+            list-style: none;
+            background-color: #ecf3f3;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 0.25rem;
+        }
+
+        #name_perfil {
+            color: #333;
+            text-transform: capitalize;
+        }
+
+        .imgs {
+            width: 112px;
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .name_span {
+            position: relative;
+            font-size: 12px;
+            font-weight: 600;
+            top: 4px;
+            right: 52px;
+        }
+
+        .date_span {
+            position: relative;
+            float: left;
+            font-weight: 200;
+            font-size: 10px;
+            bottom: 6px;
+            right: 2px;
+        }
+
+        .dashed {
+            background-color: #ecf3f3 !important;
+            height: 34px !important;
+            width: 18px !important;
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+            border-left: 1px solid black;
+            border-bottom: 2px dashed #615b5b !important;
+        }
+
+        .datepicker {
+            font-family: "Roboto", sans-serif;
+            width: 390px;
+            background: #fdfdfd;
+            border-radius: 10px;
+            margin: 15px auto;
+            overflow: hidden;
+        }
+
+        .datepicker .ui-datepicker-inline {
+            padding: 20px;
+        }
+
+        .datepicker .ui-datepicker-header {
+            text-align: center;
+            font-size: 14px;
+            padding-bottom: 1.5em;
+            font-weight: 800;
+            color: rgb(28, 28, 28);
+        }
+
+        .datepicker .ui-datepicker-header .ui-datepicker-prev,
+        .datepicker .ui-datepicker-header .ui-datepicker-next {
+            float: left;
+            cursor: pointer;
+            font-size: 1.4em;
+            padding: 0 5px;
+            margin-top: -8px;
+            color: #5b646e;
+            transition: 0.6s;
+        }
+
+        .datepicker .ui-datepicker-header .ui-datepicker-next {
+            float: right;
+        }
+
+        .datepicker .ui-datepicker-header .ui-datepicker-prev:hover {
+            transform: translateX(-25px);
+        }
+
+        .datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+            transform: translateX(25px);
+        }
+
+        .datepicker .ui-datepicker-calendar {
+            width: 100%;
+            text-align: center;
+        }
+
+        .datepicker .ui-datepicker-calendar thead {
+            color: #ddd;
+        }
+
+        .datepicker .ui-datepicker-calendar tr th,
+        .datepicker .ui-datepicker-calendar tr td {
+            padding-bottom: 0.4em;
+        }
+
+        .datepicker .ui-datepicker-calendar a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            margin: 0 auto;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .datepicker .ui-datepicker-calendar a:hover {
+            background: #96b5b5;
+            color: #fff;
+            transition: 0.3s;
+            transform: scale(1);
+        }
+
+        .datepicker .ui-datepicker-calendar .ui-state-highlight {
+            border: 2px solid #e7e7e7;
+            background: #ecf3f3;
+            color: #838d8d;
+        }
+
+        .datepicker .ui-datepicker-calendar .ui-state-highlight:hover {
+            color: #fff;
+        }
+
+        .primeraCol {
+            padding: 10px;
+            background: #ecf3f3;
+            margin-right: 14px;
+        }
+
+        .segundaCol {
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .colPaddings {
+            padding-right: 0;
+        }
+
+        .ajust {
+            text-align: center;
+            border: 1px solid gray;
+            font-weight: 400;
+            padding: 5px;
+            text-transform: lowercase;
+        }
+
+        .styless {
+            border: 1px solid gray;
+            margin-left: 93px;
+            padding: 5px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+
+        .table> :not(:last-child)> :last-child>* {
+            border-bottom-color: #a195a1;
+        }
+
+        .td-scoppes {
+            background-color: #ecf3f3 !important;
+            padding: 13px !important;
+            border: 1px solid black;
+            text-decoration: line-through;
+        }
+
+        .scoppes {
+            width: 8%;
+            border: none;
+            position: relative;
+            top: 13px;
+            font-weight: 400;
+        }
+
+        .datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+            transform: none;
+        }
+
+        .datepicker .ui-datepicker-header .ui-datepicker-prev:hover {
+            transform: none;
+        }
+
+        .button-add {
+            display: inline;
+            background-color: transparent;
+            z-index: 10;
+        }
+
+        .dashed-no-bordered {
+            cursor: pointer;
+            border-top: 0px #56ccf2 !important;
+            border-bottom: 0px #56ccf2 !important;
+        }
+
+        .marcadoAzul {
+            color: #3d5188;
+            background-color: #56ccf2 !important;
+        }
+
+        .marcado {
+            color: #e9a162;
+            background-color: #ffecdb !important;
+        }
+
+        .icon-marcado {
+            font-size: 14px;
+            display: flex;
+            color: #e69f60;
+        }
+
+        .icon-marcadoAzul {
+            font-size: 14px;
+            display: flex;
+            color: #3d5188;
+        }
+
+        .bt {
+            height: 63px;
+            margin-bottom: 80px;
+            margin-right: 58px;
+            background: white;
+            border: gray;
+            padding: 20px;
+            float: right;
+            box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+            width: 58px;
+            font-size: 18px;
+            color: green;
+            position: relative;
+            z-index: 20;
+        }
+
+        .bt:hover {
+            transition: 0.3s;
+            border-radius: 10px;
+            border: 1px solid rgb(2, 177, 2);
+        }
+
+        @media (min-width: 1244px) {
+            .sombraContainer {
+                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+                border-radius: 10px;
+            }
+
+            .datepicker {
+                width: 100%;
+            }
+
+
+        }
+
+        .caja-filtro {
+            height: 400px;
+            overflow: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+
+
+        .caja-filtro .table td {
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .datepicker {
+                font-family: "Roboto", sans-serif;
+                width: 317px !important;
+                background: #fdfdfd;
+                border-radius: 10px;
+                margin: 15px auto;
+                overflow: hidden;
+            }
+        }
+
+
+
+        .footerx {
+            background-color: #FFFFFF;
+            padding: 20px;
+            padding-left: 37px;
+            position: relative;
+            z-index: 999;
+        }
+
+        .btn-primary-extra {
+            color: whitesmoke;
+            font-size: 14px;
+            font-weight: 600;
+            -webkit-box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+            -moz-box-shadow: 0px 4px 5px 0px rgba(230, 230, 230, 1);
+            box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+            background-color: #f34049e0;
+        }
+
+        .btn-primary-extra:hover {
+            color: whitesmoke;
+            font-size: 14px;
+            font-weight: 600;
+            -webkit-box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+            -moz-box-shadow: 0px 4px 5px 0px rgba(230, 230, 230, 1);
+            box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+            background-color: #db1f28e0;
+        }
+
+        .ths {
+            font-weight: 500;
+        }
+
+        .fab {
+            color: red;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        @media (max-width:758px) {
+            .segundaCol {
+                height: 546px;
+                width: 101%;
+                overflow: auto;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: white;
+            }
+
+            .name_span {
+                position: relative;
+                font-size: 12px;
+                font-weight: 600;
+                top: -5px;
+                right: 4px;
+            }
+        }
+
+        .modal-body {
+            color: #5D495E;
+            border: none;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .text-boldes {
+            font-weight: 600;
+        }
+
+        .bs {
+            border-radius:15px;
+            margin-left:10px;
+        }
+
+        .detalles-clase {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .text-boldes span {
+            font-weight: 300 !important;
+        }
+
+        .subtitle {
+            font-weight: 200;
+            font-style: italic;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        .modal-footer {
+            border: none;
+        }
+
+        .modal-header {
+            border: none;
+        }
+
+        .colPaddings2 {
+            padding-right: 20px;
+            padding-left: 0px;
+        }
+    </style>
+</head>
+
+<body class="colorContainer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#"><img src="Logo/Recurso 1.png"
+                                class="d-inline-block align-text-top imgs"></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" style="font-weight:600;color:#333" href="#">Perfil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="font-weight:600;color:#333" href="#">Calendario</a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="dropdown mobiles2 d-none">
+                                        <a class="btn dropdown-toggle" style="color:#e12b32" href="#" role="button"
+                                            id="" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span id="name_perfil">Danna Ramirez</span>
+                                            <img width="35" height="24"
+                                                src="https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Transparent-Clip-Art-Background.png">
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="">
+                                            <li><a class="dropdown-item" href="#">Mis Clases</a></li>
+                                            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                                            <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                                            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="dropdown mobiles">
+                            <a class="btn dropdown-toggle" style="color:#e12b32" href="#" role="button" id=""
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="name_perfil">Danna Ramirez</span>
+                                <img width="35" height="24"
+                                    src="https://www.pngplay.com/wp-content/uploads/12/User-Avatar-Profile-Transparent-Clip-Art-Background.png">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="">
+                                <li><a class="dropdown-item" href="#">Mis Clases</a></li>
+                                <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="cajax p-4">
+        <div class="container-fluid sombraContainer">
+            <div class="row">
+
+                <div class="col-sm-12 col-xs-12 col-md-6 col-xl-4 col-lg-4 colPaddings">
+                    <div class="primeraCol">
+                       
+                        <div class="datepicker mt-3">
+                            <div class="datepicker-header"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-6 col-xl-8 col-lg-8 colPaddings2">
+                    <div class="segundaCol mt-4">
+                        <div class="d-inline-block styless">
+                            <span><i class="fas fa-chevron-left" style="margin-right: 17px"></i></span>
+                            <span><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                        <span style="margin-left: 10px; font-weight: 400">12 - 18 de abr. de 2021</span>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="ajust scoppes"></th>
+                                    <th scope="col" class="ajust">
+                                        Lun. 12 <span class="date"></span>
+                                    </th>
+                                    <th scope="col" class="ajust">
+                                        Mar. 13<span class="date"></span>
+                                    </th>
+                                    <th scope="col" class="ajust">
+                                        Mie. 14<span class="date"></span>
+                                    </th>
+                                    <th scope="col" class="ajust">
+                                        Jue. 15<span class="date"></span>
+                                    </th>
+                                    <th scope="col" class="ajust">
+                                        Vie. 16<span class="date"></span>
+                                    </th>
+                                    <th scope="col" class="ajust">
+                                        Sab. 17<span class="date"></span>
+                                    </th>
+                                    <th scope="col" class="ajust">
+                                        Dom. 18<span class="date"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">09:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">10:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">11:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span class="date_span">10:00 - 11:00</span><span
+                                            class="name_span">Juliana</span>
+                                    </td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">12:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span style="float: right"><i
+                                                class="fas fa-check-circle icon-marcado"></i></span>
+                                    </td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span class="date_span">10:00 - 11:00</span><span
+                                            class="name_span">Juliana</span>
+                                    </td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">13:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span style="float: right"><i
+                                                class="fas fa-check-circle icon-marcado"></i></span>
+                                    </td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span class="date_span">10:00 - 11:00</span><span
+                                            class="name_span">Juliana</span>
+                                    </td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span class="date_span">10:00 - 11:00</span><span
+                                            class="name_span">Juliana</span>
+                                    </td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">14:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span style="float: right"><i
+                                                class="fas fa-check-circle icon-marcado"></i></span>
+                                    </td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span style="float: right"><i
+                                                class="fas fa-check-circle icon-marcado"></i></span>
+                                    </td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed marcadoAzul dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span class="date_span">10:00 - 11:00</span><span
+                                            class="name_span">Juliana</span>
+                                    </td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span class="date_span">10:00 - 11:00</span><span
+                                            class="name_span">Juliana</span>
+                                    </td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">15:00</th>
+                                    <td class="td-scoppes marcadoAzul dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span style="float: right"><i
+                                                class="fas fa-check-circle icon-marcadoAzul"></i></span>
+                                    </td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetallesAdmin">
+                                        <span style="float: right"><i
+                                                class="fas fa-check-circle icon-marcado"></i></span>
+                                    </td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row"></th>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                    <td class="dashed"></td>
+                                </tr>
+                                <tr>
+                                    <th class="scoppes" scope="row">16:00</th>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                    <td class="td-scoppes"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALES  -->
+
+
+    <div class="modal fade" id="modalDetallesAdmin" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center title">Detalles de la clase</h3>
+                    <p class="subtitle">Inglés nivel corporativo</p>
+                    <br>
+                    <div class="detalles-clase">
+                        <p class="text-boldes">Alumno: <span>Stan Marsh</span></p>
+                        <p class="text-boldes">Hora: <span>9:00 P.M.</span></p>
+                        <p class="text-boldes">Fecha: <span>13 de Junio, 2021</span></p>
+                        <p class="text-boldes">Descripción:</p>
+                        <p class="text-boldes"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                                odit modi itaque laborum iusto
+                                nulla. Maiores repudiandae molestias ad consequatur recusandae incidunt, eius, amet
+                                architecto
+                                eligendi excepturi impedit eos! Saepe?</span></p>
+                        <p class="text-boldes"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                                odit modi itaque laborum iusto
+                                nulla. Maiores repudiandae molestias ad consequatur recusandae incidunt, eius, amet
+                                architecto
+                                eligendi excepturi impedit eos! Saepe?</span></p>
+                        <p class="text-boldes"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                                odit modi itaque laborum iusto
+                                nulla. Maiores repudiandae molestias ad consequatur recusandae incidunt, eius, amet
+                                architecto
+                                eligendi excepturi impedit eos! Saepe?</span></p>
+                    </div>
+
+                </div>
+                <div class="text-center mb-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALES  -->
+
+
+    <div class="button-add fixed-bottom">
+        <button class="bt">
+            <i class="fas fa-plus-circle"></i>
+        </button>
+    </div>
+    <div class="footerx mt-5">
+        © 2021 Marguz
+        <span><i class="fab fa-facebook"></i></span>
+        <span><a href="https://www.instagram.com/marguz.co/"><i class="fab fa-instagram"></i></a></span>
+        <span><a href="https://www.youtube.com/channel/UCxJHfg4CFq5PpiVMBO0-Ujg"><i
+                    class="fab fa-youtube"></i></a></span>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                prevText:
+                    '<i class="fa fa-fw fa-angle-left" style="color:#E31B36;font-size:14px"></i>',
+                nextText:
+                    '<i class="fa fa-fw fa-angle-right" style="color:#E31B36;font-size:14px"></i>',
+                monthNames: [
+                    "Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre",
+                ],
+                monthNamesShort: [
+                    "Ene",
+                    "Feb",
+                    "Mar",
+                    "Abr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Ago",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dic",
+                ],
+                dayNames: [
+                    "Domingo",
+                    "Lunes",
+                    "Martes",
+                    "Miércoles",
+                    "Jueves",
+                    "Viernes",
+                    "Sábado",
+                ],
+                dayNamesShort: ["DOM", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB"],
+                dayNamesMin: ["DOM", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB"],
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
