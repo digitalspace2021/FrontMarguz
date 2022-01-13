@@ -15,15 +15,15 @@ export interface IDataUsuario {
   ciudad: string;
   email: string;
   contrasena: string;
-  foto_perfil: string;
-  zona_horaria: null;
-  descripcion: null | string;
+  foto_perfil?: string;
+  zona_horaria?: null;
+  descripcion?: null | string;
   tipo_usuario: string;
-  titulo_profesional: null | string;
-  valor_hora: null | string;
-  created_at: Date;
-  updated_at: Date;
-  idiomas: Idioma[];
+  titulo_profesional?: null | string;
+  valor_hora?: null | string;
+  created_at?: Date;
+  updated_at?: Date;
+  idiomas?: Idioma[];
 }
 
 export interface Idioma {

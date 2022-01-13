@@ -108,7 +108,26 @@ export class RegistroEstudianteComponent implements OnInit {
         throw new Error(
           'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
         );
-      this.openConfirm();
+      let usuario = {
+        nombre: this.registroForm.get('nombre')?.value,
+        apellido: this.registroForm.get('apellido')?.value,
+        telefono: this.registroForm.get('telefono')?.value,
+        pais: this.countrySelected,
+        estado: this.stateSelected,
+        ciudad: this.citySelected,
+        email: this.registroForm.get('email')?.value,
+        contrasena: this.registroForm.get('contrasena')?.value,
+        tipo_usuario: 2,
+        foto_perfil: ""
+      };
+
+      this.authService.registrar(usuario).then((resp: any) => {
+        if (resp.code == 200) {
+          this.openConfirm();
+        } else {
+          this.openError(resp.message);
+        }
+      }).catch((e) => this.openError(e.message));
     } catch (e: any) {
       this.openError(e.message);
     }

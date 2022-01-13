@@ -15,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { ComponentModule } from '../components/component.module';
 import { AuthModule } from 'src/app/auth/auth.module';
+import { PerfilComponent } from './perfil/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthModule } from 'src/app/auth/auth.module';
     EditarClaseComponent,
     EditarHorarioComponent,
     CalendarioComponent,
+    PerfilComponent,
   ],
   imports: [
     CommonModule,

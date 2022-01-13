@@ -1,21 +1,22 @@
-import { IUsuario } from './../../admin/interfaces/IUsuario';
+import { IDataUsuario, IUsuario } from './../../admin/interfaces/IUsuario';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Login } from '../class/Login';
+import { DataUsuario, Login } from '../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
- address : string = `https://marguz.co/marguzapi/public/login`;
+  address: string = `https://marguz.co/marguzapi/public`;
 
   constructor(private http: HttpClient) {}
 
-  async login(login: Login) {
+  async registrar(usuario: DataUsuario) {
+    let endpoint = `${this.address}/usuarios`;
 
     return new Promise((resolve, reject) => {
-      this.http.post<IUsuario>(this.address, {'json' : JSON.stringify(login) }, {
-        })
+      this.http
+        .post<DataUsuario>(endpoint, { json: JSON.stringify(usuario) }, {})
         .subscribe(
           (data: any) => {
             resolve(data);
@@ -26,9 +27,34 @@ export class AuthService {
         );
     });
   }
-  
-  async logout(){
-    
+
+  async login(login: Login) {
+    let endpoint = `${this.address}/login`;
+    return new Promise((resolve, reject) => {
+      this.http
+        .post<IUsuario>(endpoint, { json: JSON.stringify(login) }, {})
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(new Error(error.message));
+          }
+        );
+    });
+  }
+
+  isAuthenticated() {
+    if (typeof localStorage.getItem('user') !== 'undefined') return true;
+    return false;
+  }
+
+  async logout() {
+    localStorage.removeItem('user');
+  }
+
+  getTipoUsuario() {
+    return JSON.parse(localStorage.getItem('user') as any).tipo_usuario;
   }
 
   async getCountriesToken() {
