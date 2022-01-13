@@ -38,3 +38,8 @@ export interface Pivot {
   profesor: string;
   idioma: string;
 }
+
+export interface Ilogin {
+   email : string, 
+   password : string
+}
