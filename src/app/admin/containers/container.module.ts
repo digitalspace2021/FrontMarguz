@@ -1,7 +1,6 @@
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListAdminComponent } from './list-admin/list-admin.component';
 
 import { AgregarEstudianteComponent } from './agregar-estudiante/agregar-estudiante.component';
 import { EditarEstudianteComponent } from './editar-estudiante/editar-estudiante.component';
@@ -15,7 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { ComponentModule } from '../components/component.module';
 import { AuthModule } from 'src/app/auth/auth.module';
-import { PerfilComponent } from './perfil/perfil/perfil.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ListAdminComponent } from './list-admin/list-admin.component';
 
 @NgModule({
   declarations: [
