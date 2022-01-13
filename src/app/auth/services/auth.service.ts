@@ -1,30 +1,20 @@
+import { IUsuario } from './../../admin/interfaces/IUsuario';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Login } from '../class/Login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  localSource = 'http://localhost:5480';
-  testSource = 'http://localhost:5480';
-  productionSource = 'http://localhost:5480';
+ address : string = `https://marguz.co/marguzapi/public/login`;
 
   constructor(private http: HttpClient) {}
 
-  async login(data: any) {
-    let email = data.email;
-    let password = data.password;
+  async login(login: Login) {
 
-    let headers = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/json');
-    //let endpoint = "/inquiry";
-    let endpoint = '';
-    let address = `${this.localSource}${endpoint}`;
-    let body = {};
     return new Promise((resolve, reject) => {
-      this.http
-        .post(address, body, {
-          headers: headers,
+      this.http.post<IUsuario>(this.address, {'json' : JSON.stringify(login) }, {
         })
         .subscribe(
           (data: any) => {

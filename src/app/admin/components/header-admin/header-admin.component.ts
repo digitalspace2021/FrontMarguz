@@ -1,3 +1,4 @@
+import { Usuario } from './../../class/Usuario';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +12,24 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class HeaderAdminComponent implements OnInit {
   icon = faSortDown;
   mnuActive?: number;
+  dataUsuario? : any;
+
+  usuario? : string
+  foto? : string
 
   constructor(private router: Router, private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(localStorage.getItem("user")){
+
+      this.dataUsuario =  localStorage.getItem("user");
+      this.dataUsuario = JSON.parse(this.dataUsuario) 
+
+      this.usuario = this.dataUsuario.nombre + ' ' +  this.dataUsuario.apellido
+      this.foto = this.dataUsuario.foto_perfil;
+
+    }
+  }
 
   menuActive(mnu: number) {
     this.mnuActive = mnu;
