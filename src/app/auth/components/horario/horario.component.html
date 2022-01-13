@@ -1,0 +1,95 @@
+<div class="blackBox" (click)="close()"></div>
+<div class="logBox">
+  <div class="headerBox">
+    <h5>Agregar horarios</h5>
+    <div class="closeButton">
+      <button class="closeB" (click)="close()">X</button>
+    </div>
+  </div>
+  <br />
+  <div class="bodyBox">
+    <form>
+      <div *ngFor="let horario of horarios; let i = index" class="horarioRow">
+        <div class="horarioInput">
+          <label class="horarioLabel" for="dia">Dia</label>
+          <select
+            class="form-select"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="horario.dia"
+            aria-label="Default select example"
+          >
+            <option selected></option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miercoles">Miercoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sabado">Sabado</option>
+          </select>
+        </div>
+        <div class="horarioInput">
+          <label class="horarioLabel" for="inicio">Hora</label>
+          <select
+            class="form-select"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="horario.inicio"
+            aria-label="Default select example"
+          >
+            <option selected></option>
+            <option value="8:00am">8:00 A.M.</option>
+            <option value="9:00am">9:00 A.M.</option>
+            <option value="10:00am">10:00 A.M.</option>
+            <option value="11:00am">11:00 A.M.</option>
+            <option value="12:00m">12:00 M.</option>
+            <option value="2:00pm">2:00 P.M.</option>
+          </select>
+        </div>
+        <div class="horarioInput">
+          <label>-</label>
+          <select
+            class="form-select"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="horario.cierre"
+            aria-label="Default select example"
+          >
+            <option selected></option>
+            <option value="8:00am">8:00 A.M.</option>
+            <option value="9:00am">9:00 A.M.</option>
+            <option value="10:00am">10:00 A.M.</option>
+            <option value="11:00am">11:00 A.M.</option>
+            <option value="12:00m">12:00 M.</option>
+            <option value="2:00pm">2:00 P.M.</option>
+          </select>
+        </div>
+        <div class="horarioAction">
+          <fa-icon class="plusIcon" (click)="addHorario()" [icon]="plusIcon"></fa-icon>
+          <fa-icon class="minusIcon"
+            (click)="eliminarHorario($event, i)"
+            [icon]="minusIcon"
+            *ngIf="i >= 1"
+          ></fa-icon>
+        </div>
+      </div>
+      <div class="horarioButton">
+        <button class="btn" (click)="close()">
+          <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
+
+<!--           <svg
+            style="margin-left: -69%; margin-top: -4%"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="16"
+            fill="currentColor"
+            class="bi bi-file-earmark-post-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-5-.5H7a.5.5 0 0 1 0 1H4.5a.5.5 0 0 1 0-1zm0 3h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5z"
+            />
+          </svg> -->
+          <p>Guardar</p>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

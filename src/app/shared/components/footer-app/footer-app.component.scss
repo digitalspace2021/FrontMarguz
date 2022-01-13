@@ -10,7 +10,10 @@ a {
 }
 
 .footer {
-  position: absolute;
   bottom: 0;
-  width: 99%;
+  width: 100%;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }

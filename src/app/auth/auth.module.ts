@@ -12,7 +12,13 @@ import { RegistroEstudianteComponent } from './containers/registro-estudiante/re
 import { RegistroProfesorComponent } from './containers/registro-profesor/registro-profesor.component';
 import { ResetearContrasenaComponent } from './containers/resetear-contrasena/resetear-contrasena.component';
 import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/restaurar-contrasena.component';
-
+import { HeaderAuthComponent } from './components/header-auth/header-auth.component';
+import { SharedModule } from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HorarioComponent } from './components/horario/horario.component';
+import { RegistroComponent } from './containers/registro/registro.component';
+import { FormRegistroComponent } from './components/form-registro/form-registro.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 @NgModule({
   declarations: [
@@ -24,14 +30,23 @@ import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/
     RegistroEstudianteComponent,
     RegistroProfesorComponent,
     ResetearContrasenaComponent,
-    RestaurarContrasenaComponent
+    RestaurarContrasenaComponent,
+    HeaderAuthComponent,
+    HorarioComponent,
+    RegistroComponent,
+    FormRegistroComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AuthRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FontAwesomeModule,
+    FormsModule,
+    AngularFileUploaderModule,
+    FontAwesomeModule,
+  ],
+  exports: [FormRegistroComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

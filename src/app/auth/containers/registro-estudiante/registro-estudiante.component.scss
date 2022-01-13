@@ -46,19 +46,20 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
+
   .contentBox {
     width: 65%;
-    margin: auto;
-    margin: 40px 0 0 0;
+
     .headerBox {
       background-color: #e31b36;
       color: white;
-      height: 60px;
+      height: 55px;
       padding: 10px;
       display: flex;
       align-items: center;
       border-radius: 10px 10px 0 0;
-      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 0px 20px rgb(0 0 0 / 25%);
       p {
         margin: 0 0 0 10px;
       }
@@ -70,12 +71,14 @@ label {
       width: 100%;
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
       border-radius: 0 0 10px 10px;
+
       .buttonsBox {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-around;
         padding: 30px 20px 20px 20px;
+
         .socialButton {
           width: 30%;
         }
@@ -105,19 +108,71 @@ label {
         }
       }
       .formBox {
-        padding: 20px;
-        width: 75%;
+        width: 65%;
         .formInput {
           display: flex;
+          flex-wrap: wrap;
+          align-items: center;
           label {
-            width: 35%;
+            width: calc(25% - 10px);
             text-align: right;
-            margin-right: 10px;
           }
           input {
+            width: 75%;
+
+            margin-left: 10px;
             border-radius: 10px;
           }
+          select {
+            margin-left: 10px;
+            width: 75%;
+          }
+          .inputFile {
+            background-color: #d6dade;
+            border-radius: 10px;
+            width: 75%;
+            margin-left: 10px;
+
+            height: 100px;
+          }
           margin: 15px;
+        }
+        .formIdiomas {
+          justify-content: space-between;
+          label {
+            width: 25% !important;
+          }
+          div {
+            padding: 10px !important;
+            display: flex;
+            align-items: center;
+
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            background-color: white;
+            fa-icon {
+              cursor: pointer;
+              margin: 0;
+              line-height: 30px;
+              color: #e31b36;
+              background-color: white;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+              border-radius: 100px;
+              border: 1px solid #e31b36;
+              font-weight: 500;
+              height: 30px;
+              width: 30px;
+              font-size: 30px;
+              &:hover {
+                color: white;
+                background-color: #e31b36;
+              }
+            }
+          }
         }
         .formCheckbox {
           display: flex;
@@ -135,10 +190,10 @@ label {
           button {
             background-color: #24aa24;
             color: white;
-            width: 100%;
+            width: 30%;
             border-radius: 10px;
-            height: 48px;
-            padding: 10px;
+            height: 40px;
+            padding: 8px;
           }
         }
       }

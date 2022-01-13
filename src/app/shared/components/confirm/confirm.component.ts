@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: 'app-confirm',
@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirm.component.scss']
 })
 export class ConfirmComponent implements OnInit {
+  @Input() msg: string = "";
+  @Input() title: string = "";
+  @Input() buttonMsg: string = "";
+  @Output() closeConfirm = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.msg = this.msg.replace(/^\:/, "");
   }
 
+  close() {
+    this.closeConfirm.emit("Cerrando confimación");
+  }
 }

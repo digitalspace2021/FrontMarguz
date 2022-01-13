@@ -14,7 +14,13 @@
     <button class="btn btn-light" style="margin-right: 15px">
       <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
     </button>
-    <button class="btn btn-light" style="margin-right: 15px">
+    <button
+      class="btn btn-light"
+      style="margin-right: 15px"
+      data-bs-toggle="modal"
+      data-bs-target="#openModal"
+      (click)="openModal('Añadir Usuario')"
+    >
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
     </button>
     <button class="btn btn-light" style="margin-right: 15px">
@@ -33,12 +39,59 @@
         <!-- Tabs -->
         <div class="row mb-1">
           <ul style="list-style: none; text-decoration: none; display: flex">
-            <li style="margin-right: 10px !important" class="text-danger">
-              Estudiantes
-              <fa-icon style="font-size: 14px" [icon]="icon"></fa-icon>
+            <li
+              style="margin-right: 10px !important"
+              [ngClass]="{ 'text-danger': tipoUsuario == 2 }"
+            >
+              <a
+                href="javascript:;"
+                [ngClass]="{ 'select-tab': tipoUsuario == 2 }"
+                class="tab"
+                (click)="changeTab(2)"
+                >Estudiantes</a
+              >
+              <fa-icon
+                *ngIf="tipoUsuario == 2"
+                style="font-size: 14px"
+                [icon]="icon"
+              ></fa-icon>
             </li>
-            <li style="margin-right: 10px !important">Profesores</li>
-            <li style="margin-right: 10px !important">Administradores</li>
+            <li
+              style="margin-right: 10px !important"
+              [ngClass]="{ 'text-danger': tipoUsuario == 1 }"
+            >
+              <a
+                href="javascript:;"
+                [ngClass]="{ 'select-tab': tipoUsuario == 1 }"
+                class="tab"
+                (click)="changeTab(1)"
+                >Profesores</a
+              >
+
+              <fa-icon
+                *ngIf="tipoUsuario == 1"
+                style="font-size: 14px"
+                [icon]="icon"
+              ></fa-icon>
+            </li>
+
+            <li
+              style="margin-right: 10px !important"
+              [ngClass]="{ 'text-danger': tipoUsuario == 0 }"
+            >
+              <a
+                href="javascript:;"
+                [ngClass]="{ 'select-tab': tipoUsuario == 0 }"
+                class="tab"
+                (click)="changeTab(0)"
+                >Administradores</a
+              >
+              <fa-icon
+                *ngIf="tipoUsuario == 0"
+                style="font-size: 14px"
+                [icon]="icon"
+              ></fa-icon>
+            </li>
           </ul>
         </div>
         <div class="table-responsive">
@@ -58,39 +111,50 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of [1, 1, 1, 1, 1, 1, 1]">
+              <tr *ngFor="let user of usuarios">
                 <td><input type="checkbox" /></td>
-                <td>00000</td>
-                <td>
-                  <a href="javascript:;">xxxxxxxxxxxxxxxxx</a>
-                </td>
-                <td>xxxxxxxxxxxxxxx</td>
-                <td>xxxxxxxxxx</td>
-                <td>xxxxxxxxxxxx</td>
-                <td>xxxxxxxxxxxxxxx</td>
-                <td>xxxxxxxxxx</td>
-                <td>xxxxxxxxxxxx</td>
-                <td>xxxxxxxxxxxxxxx</td>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.apellido }}</td>
+                <td>{{ user.telefono }}</td>
+                <td>pais</td>
+                <td>estado</td>
+                <td>ciudad</td>
+                <td><a href="javascrip:;">Idiomas</a></td>
+                <td>{{ user.email }}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <!-- Pagination -->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-sm justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">Anterior</a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Siguiente</a>
-            </li>
-          </ul>
-        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="openModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title">{{ title }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          #ModalClose
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-form-registro [tipoUsuario]="tipo"></app-form-registro>
+      </div>
+      <div class="modal-footer text-center">
+        <button class="btn btn-success btn-sm">Aceptar</button>
       </div>
     </div>
   </div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BotonFacebookComponent } from './boton-facebook.component';
+import { HeaderProfesorComponent } from './header-profesor.component';
 
-describe('BotonFacebookComponent', () => {
-  let component: BotonFacebookComponent;
-  let fixture: ComponentFixture<BotonFacebookComponent>;
+describe('HeaderProfesorComponent', () => {
+  let component: HeaderProfesorComponent;
+  let fixture: ComponentFixture<HeaderProfesorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BotonFacebookComponent ]
+      declarations: [ HeaderProfesorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BotonFacebookComponent);
+    fixture = TestBed.createComponent(HeaderProfesorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,18 +1,29 @@
 <div class="containerBox">
   <div class="contentBox">
     <div class="headerBox">
-      <p>Registrar como Profesor</p>
+      <p>
+        <fa-icon style="font-size: 14px" [icon]="user"></fa-icon>
+        Registrar como Profesor
+      </p>
     </div>
     <div class="bodyBox">
       <div class="formBox">
-        <form [formGroup]="registerForm"> 
+        <form [formGroup]="registroForm">
           <div class="formInput">
-            <label for="id" class="col-form-label">ID</label>
-            <input type="text" formControlName="id" class="form-control" />
+            <input type="hidden" formControlName="id" class="form-control" />
           </div>
           <div class="formInput">
             <label for="nombre" class="col-form-label">Nombre</label>
             <input type="text" formControlName="nombre" class="form-control" />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.nombre.errors?.required &&
+                (fRegistro.nombre.touched || fRegistro.nombre.dirty)
+              "
+            >
+              Por favor ingrese su nombre
+            </div>
           </div>
           <div class="formInput">
             <label for="apellido" class="col-form-label">Apellido</label>
@@ -21,6 +32,15 @@
               formControlName="apellido"
               class="form-control"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.apellido.errors?.required &&
+                (fRegistro.apellido.touched || fRegistro.apellido.dirty)
+              "
+            >
+              Por favor ingrese su apellido
+            </div>
           </div>
           <div class="formInput">
             <label for="telefono" class="col-form-label">Telefono</label>
@@ -29,18 +49,40 @@
               formControlName="telefono"
               class="form-control"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.telefono.errors?.required &&
+                (fRegistro.telefono.touched || fRegistro.telefono.dirty)
+              "
+            >
+              Por favor ingrese su número de teléfono
+            </div>
           </div>
           <div class="formInput">
             <label for="pais" class="col-form-label">Pais</label>
-            <select (change)="countryChange()"  [ngModelOptions]="{standalone: true}"[(ngModel)]="countrySelected" class="form-control">
-              <option *ngFor="let country of countries" [value]="country.country_name">
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="countrySelected"
+              class="form-control"
+              (change)="changeStates()"
+            >
+              <option
+                *ngFor="let country of countries"
+                [value]="country.country_name"
+              >
                 {{ country.country_name }}
               </option>
             </select>
           </div>
           <div class="formInput">
             <label for="estado" class="col-form-label">Estado</label>
-            <select  [ngModelOptions]="{standalone: true}"[(ngModel)]="stateSelected" class="form-control">
+            <select
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="stateSelected"
+              class="form-control"
+              (change)="changeCities()"
+            >
               <option *ngFor="let state of states" [value]="state.state_name">
                 {{ state.state_name }}
               </option>
@@ -48,7 +90,11 @@
           </div>
           <div class="formInput">
             <label for="ciudad" class="col-form-label">Ciudad</label>
-            <select [(ngModel)]="citySelected" [ngModelOptions]="{standalone: true}" class="form-control">
+            <select
+              [(ngModel)]="citySelected"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            >
               <option *ngFor="let city of cities" [value]="city.city_name">
                 {{ city.city_name }}
               </option>
@@ -65,12 +111,24 @@
               formControlName="contrasena"
               class="form-control"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fRegistro.contrasena.errors?.required &&
+                (fRegistro.contrasena.touched || fRegistro.contrasena.dirty)
+              "
+            >
+              Por favor ingrese una contraseña
+            </div>
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
-              >Documentación/Hoja de vida</label
+              >Documentación - Hoja de vida</label
             >
-            <div
+            <div class="inputFile">
+              <input type="file" />
+            </div>
+            <!--             <div
               class="col-auto"
               style="
                 background-color: #d6dade;
@@ -78,64 +136,56 @@
                 height: 70px;
               "
             >
-              <!--                         <angular-file-uploader
+                                      <angular-file-uploader
                         [config]="afuConfig">
-                      </angular-file-uploader> -->
-            </div>
+                      </angular-file-uploader> -
+            </div> -->
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
               >Adjuntar cédula</label
             >
-            <div
-              class="col-auto"
-              style="
-                background-color: #d6dade;
-                border-radius: 10px;
-                height: 70px;
-              "
-            >
-              <!--                         <angular-file-uploader
-                        [config]="afuConfig">
-                      </angular-file-uploader> -->
+            <div class="inputFile">
+              <input type="file" />
             </div>
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
               >Foto de perfil</label
             >
-            <div
-              class="col-auto"
-              style="
-                background-color: #d6dade;
-                border-radius: 10px;
-                height: 70px;
-              "
-            >
-              <!--                         <angular-file-uploader
-                        [config]="afuConfig">
-                      </angular-file-uploader> -->
+            <div class="inputFile">
+              <input type="file" />
             </div>
           </div>
           <div class="formInput">
-            <label for="intereses" class="col-form-label">Idiomas</label>
-            <input
-              type="text"
-              formControlName="intereses"
-              class="form-control"
-            />
+            <label for="intereses" class="col-form-label">Horarios</label>
+            <button
+              type="button"
+              class="botonHorario"
+              (click)="isHorario = true"
+            >
+              <fa-icon style="margin-right: 30px" [icon]="calendar"></fa-icon
+              >Agregar horarios
+            </button>
+          </div>
+          <div class="formInput formIdiomas">
+            <label for="intereses" class="col-form-label"
+              >Idiomas <br /><span>Max. 3 idiomas</span></label
+            >
+            <div>
+              <fa-icon [icon]="icon" (click)="agregarIdiomas()"></fa-icon>
+            </div>
           </div>
           <div class="formButton">
-            <button type="button" (click)="register()">Registrarme</button>
+            <button (click)="registrar()" type="button">Registrarme</button>
           </div>
         </form>
-
         <br />
       </div>
       <div class="recoverBox">
         <p>
-          Al dar click en continuar o registrarme,acepta los
-          <a routerLink="/politicas/profesor"
+          Al dar click en continuar o registrarme, acepta los
+          <br /><a routerLink="/politicas/profesor"
             >Terminos y Condiciones de servicio y la politica de privacidad de
             marguz</a
           >
@@ -144,3 +194,23 @@
     </div>
   </div>
 </div>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  title="Registro exitoso"
+  [msg]="registroExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="login()"
+></app-confirm>
+
+<app-horario
+  [horarios]="horarios"
+  *ngIf="isHorario"
+  (closeHorario)="isHorario = false"
+></app-horario>

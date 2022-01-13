@@ -13,6 +13,8 @@ import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 import { EditarHorarioComponent } from './editar-horario/editar-horario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { ComponentModule } from '../components/component.module';
+import { AuthModule } from 'src/app/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,14 @@ import { CalendarioComponent } from './calendario/calendario.component';
     CalendarioComponent,
   ],
   imports: [
-    CommonModule, FontAwesomeModule, SharedModule
+    CommonModule,
+    FontAwesomeModule,
+    SharedModule,
+    ComponentModule,
+    //FormRegistroModule,
+    AuthModule
   ],
-  exports : [
+  exports: [
     ListAdminComponent,
     AgregarEstudianteComponent,
     EditarEstudianteComponent,
@@ -40,6 +47,6 @@ import { CalendarioComponent } from './calendario/calendario.component';
     EditarProfesorComponent,
     EditarClaseComponent,
     EditarHorarioComponent,
-  ]
+  ],
 })
-export class ContainerModule { }
+export class ContainerModule {}

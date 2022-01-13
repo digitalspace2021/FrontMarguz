@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarMateriaComponent } from './agregar-materia.component';
+import { BuscadorComponent } from './buscador.component';
 
-describe('AgregarMateriaComponent', () => {
-  let component: AgregarMateriaComponent;
-  let fixture: ComponentFixture<AgregarMateriaComponent>;
+describe('BuscadorComponent', () => {
+  let component: BuscadorComponent;
+  let fixture: ComponentFixture<BuscadorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AgregarMateriaComponent ]
+      declarations: [ BuscadorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AgregarMateriaComponent);
+    fixture = TestBed.createComponent(BuscadorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

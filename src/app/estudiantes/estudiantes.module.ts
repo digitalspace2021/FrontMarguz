@@ -6,6 +6,10 @@ import { EstudiantesComponent } from './estudiantes.component';
 import { DetalleClaseComponent } from './components/detalle-clase/detalle-clase.component';
 import { CalendarioComponent } from './containers/calendario/calendario.component';
 import { PerfilComponent } from './containers/perfil/perfil.component';
+import { HeaderEstudianteComponent } from './components/header-estudiante/header-estudiante.component';
+import { BuscadorComponent } from './containers/buscador/buscador.component';
+import { SharedModule } from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -13,10 +17,14 @@ import { PerfilComponent } from './containers/perfil/perfil.component';
     EstudiantesComponent,
     DetalleClaseComponent,
     CalendarioComponent,
-    PerfilComponent
+    PerfilComponent,
+    HeaderEstudianteComponent,
+    BuscadorComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    FontAwesomeModule,
     EstudiantesRoutingModule
   ]
 })
