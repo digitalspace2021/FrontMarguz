@@ -17,9 +17,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HorarioComponent } from './components/horario/horario.component';
 import { RegistroComponent } from './containers/registro/registro.component';
-import { FormRegistroComponent } from './components/form-registro/form-registro.component';
-import { AngularFileUploaderModule } from 'angular-file-uploader';
-
 @NgModule({
   declarations: [
     AuthComponent,
@@ -34,7 +31,6 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     HeaderAuthComponent,
     HorarioComponent,
     RegistroComponent,
-    FormRegistroComponent
   ],
   imports: [
     CommonModule,
@@ -44,9 +40,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    AngularFileUploaderModule,
     FontAwesomeModule,
   ],
-  exports: [FormRegistroComponent],
 })
 export class AuthModule {}

@@ -16,7 +16,6 @@ import { UsuarioService } from '../../services/usuario.service';
   templateUrl: './lista-usuarios.component.html',
   styleUrls: ['./lista-usuarios.component.scss'],
 })
-
 export class ListaUsuariosComponent implements OnInit {
   icon = faSortDown;
   user = faUserCheck;
@@ -26,41 +25,42 @@ export class ListaUsuariosComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
 
-  tipoUsuario : number = 2;
+  tipoUsuario: number = 2;
 
   usuarios: IDataUsuario[] = [];
   usuariosSearch: IDataUsuario[] = [];
 
-  title : string = ''
-  tipo : number = 0 
+  title: string = '';
+  tipo: number = 0;
   action: boolean = false;
-  
+
   constructor(private usuarioSv: UsuarioService) {}
 
   ngOnInit() {
-     this.listUsuario();
+    this.listUsuario();
   }
 
   listUsuario() {
     this.usuarioSv
       .listUsuario()
-      .subscribe((resp) => (
-        this.usuarios = resp.usuarios,
-        this.usuariosSearch = resp.usuarios,
-        this.changeTab(1)
-      ));
+      .subscribe(
+        (resp) => (
+          (this.usuarios = resp.usuarios),
+          (this.usuariosSearch = resp.usuarios),
+          this.changeTab(1)
+        )
+      );
   }
 
-  changeTab(tipo: number){
+  changeTab(tipo: number) {
     this.tipoUsuario = tipo;
-    this.usuarios = this.usuariosSearch.filter((u) => parseInt(u.tipo_usuario) == tipo);
-    console.log(this.usuarios);
-
+    this.usuarios = this.usuariosSearch.filter(
+      (u) => parseInt(u.tipo_usuario) == tipo
+    );
   }
 
   openModal(title: string, action: boolean = false) {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
   }
-
 }

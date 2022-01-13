@@ -1,11 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
-button {
-  border: none;
-  outline: inherit;
-  cursor: pointer;
-}
-
 a {
   text-decoration: none;
 }
@@ -14,23 +7,23 @@ a {
   height: 100vh;
 }
 
-.appBox{
-    overflow-y: hidden;
-    min-height: 100vh;
+.appBox {
+  overflow-y: hidden;
+  min-height: 100vh;
 }
-.containerBox{
-    margin-bottom: 100px !important;
-    overflow-y: hidden;
-    .contentBox{
-      margin: 18px 0;
-    }
+.containerBox {
+  margin-bottom: 100px !important;
+  overflow-y: hidden;
+  .contentBox {
+    margin: 18px 0;
+  }
 }
 .moduleBox {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow-y: hidden;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: hidden;
+  min-height: 100vh;
   .footer {
     position: absolute;
     bottom: 0;
