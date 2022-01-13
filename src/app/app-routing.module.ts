@@ -27,6 +27,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./public/public.module').then((m) => m.PublicModule),
+      canActivate: [AuthGuard]
   },
   {
     path: 'auth',
