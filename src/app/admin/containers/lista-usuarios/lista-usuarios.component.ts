@@ -45,8 +45,8 @@ export class ListaUsuariosComponent implements OnInit {
       .listUsuario()
       .subscribe(
         (resp) => (
-          (this.usuarios = resp.usuarios),
-          (this.usuariosSearch = resp.usuarios),
+          (this.usuarios = resp.usuario),
+          (this.usuariosSearch = resp.usuario),
           this.changeTab(1)
         )
       );

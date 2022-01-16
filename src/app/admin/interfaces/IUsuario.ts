@@ -2,7 +2,7 @@ export interface IUsuario {
   status: string;
   code: number;
   message: string;
-  usuarios: IDataUsuario[];
+  usuario: IDataUsuario[];
 }
 
 export interface IDataUsuario {

@@ -11,6 +11,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
+  getUsuario(id :number){
+    return this.http.get<IUsuario>(this.url + "/" + id );
+  }
+
   listUsuario() {
     return this.http.get<IUsuario>(this.url);
   }
