@@ -7,47 +7,28 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
-  @Input() tipoUsuario : number  = 0;
-  
+  @Input() tipoUsuario: number = 0;
+
+  tipo?: number;
+
   countries: any;
   states: any;
   cities: any;
- 
+
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
 
   afuConfig = {
-    multiple: false,
-    formatsAllowed: ".jpg,.png",
-    maxSize: "1",
-    uploadAPI:  {
-      url:"",
-      method:"POST",
-      headers: {},
-      params: {
-        'page': '1'
-      },
-      responseType: 'blob',
-      withCredentials: false,
+    uploadAPI: {
+      url: 'https://example-file-upload-api',
     },
-    theme: "dragNDrop",
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: true,
-    fileNameIndex: true,
-    autoUpload: false,
+    theme: 'attachPin',
     replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Attach Files...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-      sizeLimit: 'Size Limit'
-    }
-};
+      attachPinBtn: 'Adjuntar Documento',
+      sizeLimit: 'Size Limit',
+    },
+  };
 
   constructor(private authService: AuthService) {}
 

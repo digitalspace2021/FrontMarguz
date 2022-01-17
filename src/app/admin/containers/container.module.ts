@@ -15,6 +15,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
 import { ComponentModule } from '../components/component.module';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { PerfilComponent } from './perfil/perfil.component';
+import { FormRegistroModule } from 'src/app/auth/components/form-registro/form-registro.module';
 import { ListAdminComponent } from './list-admin/list-admin.component';
 
 @NgModule({
@@ -36,8 +37,8 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     FontAwesomeModule,
     SharedModule,
     ComponentModule,
-    //FormRegistroModule,
-    AuthModule
+    FormRegistroModule,
+    AuthModule,
   ],
   exports: [
     ListAdminComponent,

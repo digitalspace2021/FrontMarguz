@@ -8,7 +8,7 @@ import { EstudiantesComponent } from './estudiantes.component';
 const routes: Routes = [{ path: '', component: EstudiantesComponent,
 children: [
   {
-    path: 'perfil', component: PerfilComponent
+    path: 'editar/perfil', component: PerfilComponent
   },
   {
     path: '', component: CalendarioComponent

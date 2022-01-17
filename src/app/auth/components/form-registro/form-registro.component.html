@@ -57,53 +57,44 @@
     <label class="col-form-label">Contraseña</label>
     <input type="password" class="form-control" />
   </div>
-  <!-- Datos profesor-->
   <div class="formInput">
+    <label class="col-form-label">Tipo de Usuario</label>
+    <select
+      [ngModelOptions]="{ standalone: true }"
+      class="form-control"
+      [(ngModel)]="tipo"
+    >
+      <option [value]="0">Administrador</option>
+      <option [value]="1">Profesor</option>
+      <option [value]="2">Estudiante</option>
+    </select>
+  </div>
+  <!-- Datos profesor-->
+  <div class="formInput" *ngIf="tipo == 1">
     <label for="fotodeperfil" class="col-form-label"
       >Documentación/Hoja de vida</label
     >
-    <div
-      class="col-auto"
-      style="background-color: #d6dade; border-radius: 10px; height: 70px"
-    >
-      <angular-file-uploader> </angular-file-uploader>
+    <div class="col-auto container-file">
+      <angular-file-uploader [config]="afuConfig"> </angular-file-uploader>
     </div>
   </div>
-  <div class="formInput">
+  <div class="formInput" *ngIf="tipo == 1">
     <label for="fotodeperfil" class="col-form-label">Adjuntar cédula</label>
-    <div
-      class="col-auto"
-      style="background-color: #d6dade; border-radius: 10px; height: 70px"
-    >
-      <angular-file-uploader> </angular-file-uploader>
+    <div class="col-auto container-file">
+      <angular-file-uploader [config]="afuConfig"> </angular-file-uploader>
     </div>
   </div>
   <div class="formInput">
     <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
-    <div
-      class="col-auto"
-      style="background-color: #d6dade; border-radius: 10px; height: 70px"
-    >
-      <angular-file-uploader> </angular-file-uploader>
+    <div class="col-auto container-file">
+      <angular-file-uploader [config]="afuConfig"></angular-file-uploader>
     </div>
   </div>
-  <div class="formInput">
+  <div class="formInput" *ngIf="tipo == 1">
     <label for="intereses" class="col-form-label">Idiomas</label>
     <input type="text" class="form-control" />
   </div>
-  <!-- finalizar datos profesor-->
-
-  <div class="formInput">
-    <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
-    <div
-      class="col-auto"
-      style="background-color: #d6dade; border-radius: 10px; height: 70px"
-    >
-      <angular-file-uploader> </angular-file-uploader>
-    </div>
-  </div>
-
-  <div class="formInput">
+  <div class="formInput" *ngIf="tipo != 1">
     <label for="intereses" class="col-form-label">Intereses</label>
     <input type="text" class="form-control" />
   </div>
