@@ -10,7 +10,7 @@
           (click)="menuActive(1)"
           style="margin-right: 10px"
         >
-          <a class="nav-link" href="admin/admin-usuario">Usuarios</a>
+          <a class="nav-link" href="profesores/perfil">Perfil</a>
         </li>
         <li
           class="nav-item"
@@ -18,20 +18,12 @@
           (click)="menuActive(2)"
           style="margin-right: 10px"
         >
-          <a class="nav-link" href="admin/admin-materia">Materias</a>
-        </li>
-        <li
-          class="nav-item"
-          [ngClass]="{ active: mnuActive == 3 }"
-          (click)="menuActive(3)"
-          style="margin-right: 10px"
-        >
-          <a class="nav-link" href="admin/admin-clase">Clases</a>
+          <a class="nav-link" href="profesores/">Calendario</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item item">
-          <small>administrador</small>
+          <small>Profesor</small>
           <img
             class="avatar"
             src="../../../../assets/avatar-icon.jpg"
@@ -42,10 +34,8 @@
               <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
             </button>
             <div class="dropdown-content">
-              <a href="javascrip:;">Estudiantes</a>
-              <a href="javascrip:;">Profesores</a>
-              <a href="javascrip:;">Administradores</a>
-              <a href="javascrip:;">Ayuda</a>
+              <a href="/estudiantes">Mis clases</a>
+              <a href="estudiantes/perfil">Mi perfil</a>
               <a (click)="logout()">Cerrar Sesión</a>
             </div>
           </div>

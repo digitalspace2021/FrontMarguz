@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './auth/guards/admin.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { EstudianteGuard } from './auth/guards/estudiante.guard';
+import { ProfesorGuard } from './auth/guards/profesor.guard';
+import { NotFoundComponent } from './shared/containers/not-found/not-found.component';
+import { SharedComponent } from './shared/shared.component';
 
 const routes: Routes = [
   {
@@ -9,19 +14,19 @@ const routes: Routes = [
       import('./estudiantes/estudiantes.module').then(
         (m) => m.EstudiantesModule
       ),
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard, EstudianteGuard]
   },
   {
     path: 'profesores',
     loadChildren: () =>
       import('./profesores/profesores.module').then((m) => m.ProfesoresModule),
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard, ProfesorGuard]
   },
   {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: '',
@@ -35,8 +40,10 @@ const routes: Routes = [
   },
   {
     path: 'shared',
-    loadChildren: () =>
-      import('./shared/shared.module').then((m) => m.SharedModule),
+    loadChildren: () => import('./shared/shared.module').then((m) => m.SharedModule),
+  },
+  {
+    path: '**', component: NotFoundComponent
   },
 ];
 

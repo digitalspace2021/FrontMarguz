@@ -7,10 +7,10 @@ import { ProfesoresComponent } from './profesores.component';
 const routes: Routes = [{ path: '', component: ProfesoresComponent,
 children: [
   {
-    path: '', component: PerfilComponent
+    path: 'perfil', component: PerfilComponent
   },
   {
-    path: 'calendario', component: CalendarioComponent
+    path: '', component: CalendarioComponent
   }
 ] }];
 

@@ -8,10 +8,10 @@ import { EstudiantesComponent } from './estudiantes.component';
 const routes: Routes = [{ path: '', component: EstudiantesComponent,
 children: [
   {
-    path: '', component: PerfilComponent
+    path: 'perfil', component: PerfilComponent
   },
   {
-    path: 'calendario', component: CalendarioComponent
+    path: '', component: CalendarioComponent
   },
   {
     path: 'buscador', component: BuscadorComponent

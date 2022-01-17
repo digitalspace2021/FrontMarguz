@@ -9,12 +9,17 @@ import { EditarEstudianteComponent } from './containers/editar-estudiante/editar
 import { EditarProfesorComponent } from './containers/editar-profesor/editar-profesor.component';
 import { EditarHorarioComponent } from './containers/editar-horario/editar-horario.component';
 import { EditarClaseComponent } from './containers/editar-clase/editar-clase.component';
+import { CalendarioComponent } from './containers/calendario/calendario.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
     children: [
+      {
+        path: '',
+        component : CalendarioComponent
+      },
       {
         path: 'admin-usuario',
         component : ListaUsuariosComponent

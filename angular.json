@@ -36,7 +36,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [ "./node_modules/jquery/dist/jquery.js", "./src/assets/jqueryui/jquery-ui.min.js"]
           },
           "configurations": {
             "production": {

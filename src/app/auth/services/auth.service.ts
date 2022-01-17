@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    if (typeof localStorage.getItem('user') !== 'undefined') return true;
+    if (localStorage.getItem('user')) return true;
     return false;
   }
 
