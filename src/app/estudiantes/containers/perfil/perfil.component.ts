@@ -2,37 +2,30 @@ import { UsuarioService } from './../../../admin/services/usuario.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from './../../../auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { faCamera, faPlusCircle, faSave } from '@fortawesome/free-solid-svg-icons';
-
-export interface IIntereses{
-  id : number, 
-  name : string,
-  status : boolean
+import {
+  faCamera,
+  faPlusCircle,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons';
+import { MateriaService } from 'src/app/admin/services/materia.service';
+export interface IIntereses {
+  id: number;
+  materia: string;
 }
-
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
 })
 export class PerfilComponent implements OnInit {
-
-  interesesSinAsing = [
-    { id: 1, name: 'matematica', status : false },
-    { id: 2, name: 'tecnologia', status : false},
-    { id: 3, name: 'Historia', status : false},
-    { id: 4, name: 'Ingles', status : false},
-    { id: 5, name: 'Ciencia', status : false},
-  ];
-
-  intereses : IIntereses[] = [];
+  intereses: IIntereses[] = [];
 
   countries: any;
   states: any;
   cities: any;
+  materias: any;
 
-  img? : string = "https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg";
-
+  img?: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
   //iconos
   add = faPlusCircle;
   save = faSave;
@@ -43,31 +36,35 @@ export class PerfilComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private buildForm: FormBuilder,
-    private usuarioSv : UsuarioService
+    private usuarioSv: UsuarioService,
+    private materiaSv: MateriaService
   ) {}
 
   ngOnInit() {
     this.builder();
     this.changerCountrys();
     this.getUser();
+    this.listMateria();
   }
 
   getUser() {
-    this.usuarioSv.getUsuario(24).subscribe( resp => this.loadData(resp.usuario) )
+    this.usuarioSv
+      .getUsuario(24)
+      .subscribe((resp) => this.loadData(resp.usuario));
   }
 
-  loadData(data : any){
-    console.log(data)
-    this.formPerfil.get("id")?.setValue(data.id);
-    this.formPerfil.get("apellido")?.setValue(data.apellido);
-    this.formPerfil.get("nombre")?.setValue(data.nombre);
-    this.formPerfil.get("telefono")?.setValue(data.telefono);
-    this.formPerfil.get("email")?.setValue(data.email);
-    this.formPerfil.get("pais")?.setValue(data.pais);
-    this.formPerfil.get("estado")?.setValue(data.estado);
-    this.formPerfil.get("ciudad")?.setValue(data.ciudad);
-    this.formPerfil.get("zona")?.setValue(data.zona_horaria);
-    this.formPerfil.get("descripcion")?.setValue(data.descripcion);
+  loadData(data: any) {
+    console.log(data);
+    this.formPerfil.get('id')?.setValue(data.id);
+    this.formPerfil.get('apellido')?.setValue(data.apellido);
+    this.formPerfil.get('nombre')?.setValue(data.nombre);
+    this.formPerfil.get('telefono')?.setValue(data.telefono);
+    this.formPerfil.get('email')?.setValue(data.email);
+    this.formPerfil.get('pais')?.setValue(data.pais);
+    this.formPerfil.get('estado')?.setValue(data.estado);
+    this.formPerfil.get('ciudad')?.setValue(data.ciudad);
+    this.formPerfil.get('zona')?.setValue(data.zona_horaria);
+    this.formPerfil.get('descripcion')?.setValue(data.descripcion);
     //this.img = data.foto_perfil;
   }
 
@@ -86,13 +83,19 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  AddIntereses(){
-    console.log(this.interesesSinAsing);
-    this.interesesSinAsing.forEach( elemn => {
-      if(elemn.status){
-          this.intereses.push(elemn);
-      }
-    })
+  AddIntereses(item: any) {
+    let matFilter = [...this.materias];
+    debugger;
+    this.intereses.push(item);
+    this.materias = [...matFilter];
+    console.log(this.intereses);
+    this.materias.filter((e: any) => e.materia != this.intereses[0].materia);
+  }
+
+  listMateria() {
+    this.materiaSv
+      .listMateria()
+      .subscribe((resp) => (this.materias = resp.materias));
   }
 
   changerCountrys() {
@@ -100,7 +103,7 @@ export class PerfilComponent implements OnInit {
       .getCountries()
       .then((data) => {
         this.countries = data;
-        this.formPerfil.get("pais")?.setValue('Colombia');
+        this.formPerfil.get('pais')?.setValue('Colombia');
         this.changeStates();
       })
       .catch((err) => console.error(err));
@@ -108,10 +111,10 @@ export class PerfilComponent implements OnInit {
 
   changeStates() {
     this.authService
-      .getStates(this.formPerfil.get("pais")?.value)
+      .getStates(this.formPerfil.get('pais')?.value)
       .then((data) => {
         this.states = data;
-        this.formPerfil.get("estado")?.setValue(this.states[0].state_name);
+        this.formPerfil.get('estado')?.setValue(this.states[0].state_name);
         this.changeCities();
       })
       .catch((err) => console.error(err));
@@ -119,10 +122,10 @@ export class PerfilComponent implements OnInit {
 
   changeCities() {
     this.authService
-      .getCities(this.formPerfil.get("estado")?.value)
+      .getCities(this.formPerfil.get('estado')?.value)
       .then((data) => {
         this.cities = data;
-        this.formPerfil.get("ciudad")?.setValue(this.cities[0].city_name);
+        this.formPerfil.get('ciudad')?.setValue(this.cities[0].city_name);
       })
       .catch((err) => console.error(err));
   }

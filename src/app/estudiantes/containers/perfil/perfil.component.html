@@ -301,14 +301,14 @@
                         style="color: red; opacity: 100%; margin-right: 3px"
                         type="checkbox"
                         [value]="item.id"
-                        [id]="item.name"
+                        [id]="item.materia"
                       />
                       <label
                         class="form-check-label"
                         style="font-size: 12px"
-                        [for]="item.name"
+                        [for]="item.materia"
                       >
-                        {{ item.name }}
+                        {{ item.materia }}
                       </label>
                     </div>
                   </div>
@@ -365,21 +365,27 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="d-block mb-5" *ngFor="let item of interesesSinAsing" >
-          <input
-            class="form-check-input"
-            type="checkbox"
-            [value]="item.id"
-            [id]="item.id"
-          />
-          <label class="form-check-label" [for]="item.id"> {{ item.name}} </label>
-        </div>
-        <br />
-        <div class="text-center">
-          <button class="btn btn-success mb-2 mt-4" (click)="AddIntereses()">
-            <span>Hecho</span>
-          </button>
-        </div>
+        <table class="table table-sm table-strike">
+          <tbody>
+            <tr *ngFor="let item of materias">
+              <td>
+                <div class="d-block mb-5">
+                  <label>
+                    {{ item.materia }}
+                  </label>
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-sm" (click)="AddIntereses(item)">
+                  <fa-icon
+                    style="font-size: 24px; color: red"
+                    [icon]="add"
+                  ></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
