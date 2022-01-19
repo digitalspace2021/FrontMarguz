@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-calendario',
@@ -6,6 +7,8 @@ import * as $ from 'jquery';
   styleUrls: ['./calendario.component.scss'],
 })
 export class CalendarioComponent implements OnInit {
+  flechaIzquierda = faChevronLeft;
+  flechaDerecha = faChevronRight;
   constructor() {}
 
   ngOnInit(): void {
@@ -56,5 +59,8 @@ export class CalendarioComponent implements OnInit {
       dayNamesMin: ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB'],
     });
   */
+  
+  
+
   }
 }

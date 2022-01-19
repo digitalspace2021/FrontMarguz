@@ -4,7 +4,7 @@ import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
-  selector: 'app-header-estudiante',
+  selector: 'header-estudiante',
   templateUrl: './header-estudiante.component.html',
   styleUrls: ['./header-estudiante.component.scss']
 })
