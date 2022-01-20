@@ -34,6 +34,8 @@ export class ListaUsuariosComponent implements OnInit {
   tipo: number = 0;
   action: boolean = false;
 
+  page?: number;
+
   constructor(private usuarioSv: UsuarioService) {}
 
   ngOnInit() {
