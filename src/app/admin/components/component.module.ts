@@ -10,6 +10,7 @@ import { AgregarMateriaComponent } from './agregar-materia/agregar-materia.compo
 import { EditarMateriaComponent } from './editar-materia/editar-materia.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     DeshabilitarComponent,
     GuardadoComponent,
     HeaderAdminComponent,
+    EditarClaseComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, FormsModule],
   exports: [

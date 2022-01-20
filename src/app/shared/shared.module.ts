@@ -11,9 +11,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedRoutingModule } from './shared-routing.module';
 @NgModule({
   declarations: [
-    //SharedComponent,
+    SharedComponent,
     LoaderComponent,
     ErrorComponent,
     ConfirmComponent,

@@ -1,26 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href=""
-      ><img class="img-logo" src="../../../../assets/Recurso_1.png" alt="logo"
-    /></a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li
-          class="nav-item"
-          [ngClass]="{ active: mnuActive == 2 }"
-          (click)="menuActive(2)"
-          style="margin-right: 10px"
-        >
-          <a class="nav-link" href="auth/registro/estudiante">Regístrate</a>
-        </li>
-        <li
-          class="nav-item"
-          [ngClass]="{ active: mnuActive == 2 }"
-          (click)="menuActive(2)"
-          style="margin-right: 10px"
-        >
-          <a class="nav-link" href="admin/admin-usuario">Inicia sesión</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
+  <a class="navbar-brand" href=""
+    ><img class="img-logo" src="../../../../assets/Recurso_1.png" alt="logo"
+  /></a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li
+        class="nav-item"
+        [ngClass]="{ active: mnuActive == 2 }"
+        (click)="menuActive(2)"
+        style="margin-right: 10px"
+      >
+        <a class="nav-link" href="auth/registro">Regístrate</a>
+      </li>
+      <li
+        class="nav-item"
+        [ngClass]="{ active: mnuActive == 2 }"
+        (click)="menuActive(2)"
+        style="margin-right: 10px"
+      >
+        <a class="nav-link" href="auth/login">Inicia sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>
