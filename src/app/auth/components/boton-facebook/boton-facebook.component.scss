@@ -1,13 +1,24 @@
 .facebookButton {
-  border: 2px solid #3b5998;
+  border: 2px solid #8b95ff;
   color: #3b5998;
   width: 97%;
   height: 46px;
+  background: transparent;
+  padding: 9px;
+  border-radius: 8px;
+}
+.facebookButton:hover {
+  border: 2px solid #4353ff;
+  color: #edf4f4;
+  width: 97%;
+  height: 46px;
+  transition: 0.3s;
+  background: #3c7cff;
   padding: 9px;
   border-radius: 8px;
 }
 
-.icon{
+.icon {
   width: 24px;
   height: 24px;
 }

@@ -1,7 +1,7 @@
 <div class="containerBox">
   <div class="contentBox">
     <div class="headerBox">
-      <p>Iniciar Sesion</p>
+      <p style="font-weight:600">Iniciar sesión</p>
     </div>
     <div class="bodyBox">
       <div class="buttonsBox">
@@ -57,18 +57,18 @@
               value=""
               id="flexCheckDefault"
             />
-            <label for="nombre" class="col-form-label">Recordarme</label>
+            <label for="nombre" class="col-form-label" style="color:#999999">Recordarme</label>
           </div>
           <div class="formButton">
-            <button type="button" (click)="login()">Inicia Sesión</button>
+            <button  type="button" (click)="login()">Inicia sesión</button>
           </div>
         </form>
 
         <br />
       </div>
       <div class="recoverBox">
-        <p>¿No recuerdas tus datos de acceso?</p>
-        <a routerLink="/auth/recuperar">Recuperar contraseña</a>
+        <p style="color:#6c6c6c">¿No recuerdas tus datos de acceso?</p>
+        <a routerLink="/auth/recuperar" style="font-weight: 600;">Recuperar contraseña</a>
       </div>
     </div>
   </div>

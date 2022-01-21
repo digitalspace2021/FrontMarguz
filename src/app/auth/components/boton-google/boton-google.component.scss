@@ -1,8 +1,19 @@
 .googleButton {
-  border: 2px solid #4285f4;
-  color: #4285f4;
+  border: 2px solid #ffc107;
+  color: #e31b36;
   width: 97%;
   height: 46px;
+  background: transparent;
+  padding: 9px;
+  border-radius: 8px;
+}
+.googleButton:hover {
+  border: 2px solid #edb200;
+  color: #edf4f4;
+  transition: 0.3s;
+  width: 97%;
+  height: 46px;
+  background: #ffc107;
   padding: 9px;
   border-radius: 8px;
 }
