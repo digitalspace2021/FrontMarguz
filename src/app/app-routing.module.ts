@@ -14,13 +14,11 @@ const routes: Routes = [
       import('./estudiantes/estudiantes.module').then(
         (m) => m.EstudiantesModule
       ),
-      canActivate: [AuthGuard, EstudianteGuard]
   },
   {
     path: 'profesores',
     loadChildren: () =>
       import('./profesores/profesores.module').then((m) => m.ProfesoresModule),
-      canActivate: [AuthGuard, ProfesorGuard]
   },
   {
     path: 'admin',
