@@ -2,6 +2,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { EstudiantesRoutingModule } from './estudiantes-routing.module';
 import { EstudiantesComponent } from './estudiantes.component';
 import { DetalleClaseComponent } from './components/detalle-clase/detalle-clase.component';
@@ -24,6 +27,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     SharedModule,
     FontAwesomeModule,
     EstudiantesRoutingModule, 

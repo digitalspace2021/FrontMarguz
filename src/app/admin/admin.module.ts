@@ -1,6 +1,8 @@
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+
 import {
   FontAwesomeModule,
   FaIconLibrary,
@@ -25,7 +27,7 @@ import { ComponentModule } from './components/component.module';
     ContainerModule,
     ComponentModule,
     FontAwesomeModule,
-    SharedModule,
+    SharedModule
   ],
 })
 export class AdminModule {

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -18,6 +17,7 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,7 +27,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    AppRoutingModule,AngularFileUploaderModule
+    AppRoutingModule,AngularFileUploaderModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

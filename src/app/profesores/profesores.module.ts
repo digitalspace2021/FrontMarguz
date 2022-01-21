@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { ProfesoresRoutingModule } from './profesores-routing.module';
 import { ProfesoresComponent } from './profesores.component';
 import { EditarMateriaComponent } from './components/editar-materia/editar-materia.component';
@@ -26,10 +29,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EditarPagoComponent,
     CalendarioComponent,
     PerfilComponent,
-    HorarioComponent,
+      HorarioComponent,
     HeaderProfesorComponent
   ],
   imports: [
+    MatNativeDateModule,
+    MatDatepickerModule,
     CommonModule,
     SharedModule,
     FontAwesomeModule,

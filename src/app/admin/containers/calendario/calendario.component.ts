@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendario.component.scss']
 })
 export class CalendarioComponent implements OnInit {
+  
+
+  fecha?: Date | null;
+
 
   constructor() { }
 
@@ -13,3 +17,4 @@ export class CalendarioComponent implements OnInit {
   }
 
 }
+
