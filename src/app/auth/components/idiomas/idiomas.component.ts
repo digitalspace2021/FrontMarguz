@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+} from '@angular/core';
 import {
   faPlusCircle,
   faMinusCircle,
@@ -17,8 +24,13 @@ export class IdiomasComponent implements OnInit {
   @Input() idiomas: any = [];
   @Input() isProfesor: boolean = false;
   idiomasDisponibles: any;
+  idiomasSeleccionados: any;
+
   @Output() closeIdiomas = new EventEmitter();
-  constructor(private materiaSv: MateriaService) {}
+  constructor(
+    private materiaSv: MateriaService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.idiomasDisponibles = [
@@ -32,20 +44,45 @@ export class IdiomasComponent implements OnInit {
     /*     this.materiaSv
       .listMateria()
       .subscribe((resp) => (this.idiomasDisponibles = resp.materias)); */
-  }
-  addIdioma(idioma:string) {
-      if (this.isProfesor && this.idiomas.length == 3) {
-        this.openError('No puede escoger más de 3 idiomas');
-      } else{
-        this.idiomas.push(idioma);
+    this.idiomasSeleccionados = [...this.idiomasDisponibles].map((x) => false);
+    this.changeDetectorRef.detectChanges();
+    this.idiomas.forEach((idioma: any) => {
+      let index = this.idiomasDisponibles.findIndex(
+        (disponible: any) => disponible.materia == idioma
+      );
+      if (index != -1) {
+        this.idiomasSeleccionados[index] = true;
       }
+    });
+    this.changeDetectorRef.markForCheck();
+  }
+  handleCheck(index: number) {
+    if (this.idiomasSeleccionados[index]) {
+      this.addIdioma(this.idiomasDisponibles[index].materia, index);
+    } else {
+      this.removeIdioma(this.idiomasDisponibles[index].materia);
+    }
+  }
+  removeIdioma(idioma: string) {
+    let index = this.idiomas.indexOf(idioma);
+    this.idiomas.splice(index, 1);
+  }
+  addIdioma(idioma: string, index: number) {
+    if (this.isProfesor && this.idiomas.length >= 3) {
+      this.changeDetectorRef.detectChanges();
+      this.idiomasSeleccionados[index] = false;
+      this.changeDetectorRef.markForCheck();
+      this.openError('No puede escoger más de 3 idiomas');
+    } else {
+      this.idiomas.push(idioma);
+    }
   }
   close() {
     this.closeIdiomas.emit(this.idiomas);
   }
   isError: boolean = false;
 
-  errorMessage: string = "";
+  errorMessage: string = '';
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;

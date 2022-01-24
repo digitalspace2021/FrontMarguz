@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -19,6 +20,7 @@ import { HorarioComponent } from './components/horario/horario.component';
 import { RegistroComponent } from './containers/registro/registro.component';
 import { FormRegistroComponent } from './components/form-registro/form-registro.component';
 import { IdiomasComponent } from './components/idiomas/idiomas.component';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 @NgModule({
   declarations: [
     AuthComponent,
@@ -45,6 +47,8 @@ import { IdiomasComponent } from './components/idiomas/idiomas.component';
     FontAwesomeModule,
     FormsModule,
     FontAwesomeModule,
+    AngularFileUploaderModule,
+    MatCheckboxModule,
   ],
   exports: [FormRegistroComponent],
 })

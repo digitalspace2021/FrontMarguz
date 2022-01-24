@@ -35,6 +35,9 @@ export class ListaUsuariosComponent implements OnInit {
   tipo: string = '0';
   action: boolean = false;
 
+
+  page?: number;
+  
   constructor(
     private usuarioSv: UsuarioService,
     private authService: AuthService

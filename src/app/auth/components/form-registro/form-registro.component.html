@@ -117,37 +117,45 @@
       Por favor ingrese una contraseña
     </div>
   </div>
-  <div *ngIf="isProfesor" class="formInput">
-    <label for="fotodeperfil" class="col-form-label"
-      >Documentación - Hoja de vida</label
-    >
-    <div class="inputFile">
-      <input type="file" />
+  <div class="fileBoxes">
+    <div *ngIf="isProfesor" class="fileInput">
+      <label for="documentacion" class="col-form-label"
+        >Documentación - Hoja de vida</label
+      >
+      <div class="inputFile">
+        <angular-file-uploader #documentacionUpload [config]="documentacionConfig">
+        </angular-file-uploader>
+      </div>
+      <fa-icon
+      class="resetFile"
+      (click)="resetDocumentacion()"
+      [icon]="minusIcon"
+    ></fa-icon>
     </div>
-    <!--             <div
-      class="col-auto"
-      style="
-        background-color: #d6dade;
-        border-radius: 10px;
-        height: 70px;
-      "
-    >
-                              <angular-file-uploader
-                [config]="afuConfig">
-              </angular-file-uploader> -
-    </div> -->
-  </div>
-  <div *ngIf="isProfesor" class="formInput">
-    <label for="fotodeperfil" class="col-form-label">Adjuntar cédula</label>
-    <div class="inputFile">
-      <input type="file" />
+    <div *ngIf="isProfesor" class="fileInput">
+      <label for="cedula" class="col-form-label">Adjuntar cédula</label>
+      <div class="inputFile">
+        <angular-file-uploader #cedulaUpload  [config]="cedulaConfig"> </angular-file-uploader>
+      </div>
+      <fa-icon
+      class="resetFile"
+      (click)="resetCedula()"
+      [icon]="minusIcon"
+    ></fa-icon>
     </div>
-  </div>
-  <div class="formInput">
-    <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
-    <div class="inputFile">
-      <input type="file" style="display: none" />
+    <div class="fileInput">
+      <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
+      <div class="inputFile">
+        <angular-file-uploader #perfilUpload  [config]="perfilConfig"> </angular-file-uploader>
+      </div>
+      <fa-icon
+      class="resetFile"
+      (click)="resetPerfil()"
+      [icon]="minusIcon"
+    ></fa-icon>
     </div>
+
+
   </div>
 
   <div *ngIf="isProfesor" class="formInput">
@@ -172,8 +180,12 @@
     <label *ngIf="isEstudiante" for="intereses" class="col-form-label"
       >Intereses <br
     /></label>
-
-    <div>
+    <div class="idiomasList">
+      <p *ngFor="let idioma of idiomas">
+        {{ idioma }}
+      </p>
+    </div>
+    <div class="addIdioma">
       <fa-icon [icon]="icon" (click)="isIdiomas = true"></fa-icon>
     </div>
   </div>
@@ -191,11 +203,12 @@
 <app-horario
   [horarios]="horarios"
   *ngIf="isHorario"
-  (closeHorario)="isHorario = false"
+  (closeHorario)="closeHorario($event)"
 ></app-horario>
 
 <app-idiomas
   [idiomas]="idiomas"
   *ngIf="isIdiomas"
-  (closeIdiomas)="isIdiomas = false"
+  [isProfesor]="tipoUsuario == '1'"
+  (closeIdiomas)="closeIdiomas($event)"
 ></app-idiomas>

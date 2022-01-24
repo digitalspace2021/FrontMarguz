@@ -48,6 +48,7 @@ form {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    width: 100%;
     label {
       width: calc(25% - 10px);
       text-align: right;
@@ -62,20 +63,12 @@ form {
       margin-left: 10px;
       width: 75%;
     }
-    .inputFile {
-      background-color: #d6dade;
-      border-radius: 10px;
-      width: 75%;
-      margin-left: 10px;
-
-      height: 100px;
-    }
     margin: 15px;
     .horarioBox {
       width: 75%;
       display: flex;
       flex-direction: column;
-      .horarioList{
+      .horarioList {
         width: 100%;
         text-align: left;
         padding: 10px;
@@ -98,15 +91,69 @@ form {
       }
     }
   }
+  .fileBoxes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    align-items: center;
+    .fileInput {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 15px;
+      align-items: center;
+      width: 100%;
+      label {
+        width: calc(25% - 10px);
+        text-align: right;
+      }
+      .inputFile {
+        background-color: #d6dade;
+        border-radius: 10px;
+        width: 60%;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+      }
+    }
+    .resetFile {
+      color: #e31b36;
+      margin: 0 1%;
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 25px;
+      line-height: 25px;
+      width: 25px;
+      height: 25px;
+      border-radius: 100px;
+      cursor: pointer;
+      &:hover {
+        background-color: #e31b36;
+        color: white;
+      }
+    }
+  }
   .formIdiomas {
     justify-content: space-between;
+    .idiomasList {
+      display: flex;
+      width: 50%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      p {
+        font-weight: bold;
+        margin: 5px;
+      }
+    }
     label {
       width: 25% !important;
-      span{
+      span {
         font-style: italic;
       }
     }
-    div {
+    .addIdioma {
       padding: 10px !important;
       display: flex;
       align-items: center;
