@@ -2,6 +2,9 @@ import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 import { AgregarEstudianteComponent } from './agregar-estudiante/agregar-estudiante.component';
 import { EditarEstudianteComponent } from './editar-estudiante/editar-estudiante.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
@@ -36,7 +39,9 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     FontAwesomeModule,
     SharedModule,
     ComponentModule,
-    AuthModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    AuthModule
   ],
   exports: [
     ListAdminComponent,
