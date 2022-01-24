@@ -1,10 +1,19 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   faCalendar,
   faPlusCircle,
+  faMinusCircle,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
+import { AngularFileUploaderComponent } from 'angular-file-uploader';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -17,7 +26,7 @@ export class FormRegistroComponent implements OnInit {
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
-
+  minusIcon = faMinusCircle;
   @Output() registrar = new EventEmitter<any>();
   countries: any;
   states: any;
@@ -52,14 +61,39 @@ export class FormRegistroComponent implements OnInit {
     'Su cuenta ha sido registrada exitosamente, por favor revise su bandeja de entrada para validar su correo electrónico.';
   isError: boolean = false;
   errorMessage: string = '';
-
-  afuConfig = {
+  @ViewChild('documentacionUpload')
+  private documentacionUpload?: AngularFileUploaderComponent;
+  @ViewChild('cedulaUpload')
+  private cedulaUpload?: AngularFileUploaderComponent;
+  @ViewChild('perfilUpload')
+  private perfilUpload?: AngularFileUploaderComponent;
+  documentacionConfig = {
     uploadAPI: {
       url: 'https://example-file-upload-api',
     },
     theme: 'attachPin',
     replaceTexts: {
-      attachPinBtn: 'Adjuntar Documento',
+      attachPinBtn: 'Examinar o arrastrar',
+      sizeLimit: 'Size Limit',
+    },
+  };
+  cedulaConfig = {
+    uploadAPI: {
+      url: 'https://example-file-upload-api',
+    },
+    theme: 'attachPin',
+    replaceTexts: {
+      attachPinBtn: 'Examinar o arrastrar',
+      sizeLimit: 'Size Limit',
+    },
+  };
+  perfilConfig = {
+    uploadAPI: {
+      url: 'https://example-file-upload-api',
+    },
+    theme: 'attachPin',
+    replaceTexts: {
+      attachPinBtn: 'Examinar o arrastrar',
       sizeLimit: 'Size Limit',
     },
   };
@@ -83,8 +117,15 @@ export class FormRegistroComponent implements OnInit {
       })
       .catch((err) => console.error(err));
   }
-  async agregarIdiomas() {}
-
+  resetDocumentacion() {
+    if (this.documentacionUpload) this.documentacionUpload.resetFileUpload();
+  }
+  resetCedula() {
+    if (this.cedulaUpload) this.cedulaUpload.resetFileUpload();
+  }
+  resetPerfil() {
+    if (this.perfilUpload) this.perfilUpload.resetFileUpload();
+  }
   changeStates() {
     this.authService
       .getStates(this.countrySelected)
@@ -171,6 +212,10 @@ export class FormRegistroComponent implements OnInit {
   closeHorario(horarios: any) {
     this.isHorario = false;
     this.horarios = horarios;
+  }
+  closeIdiomas(idiomas: any) {
+    this.isIdiomas = false;
+    this.idiomas = idiomas;
   }
   openError(message: string) {
     this.isError = true;

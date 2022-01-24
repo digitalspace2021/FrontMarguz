@@ -1,6 +1,7 @@
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -41,7 +42,8 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     ComponentModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    AuthModule
+    AuthModule,
+    NgxPaginationModule
   ],
   exports: [
     ListAdminComponent,

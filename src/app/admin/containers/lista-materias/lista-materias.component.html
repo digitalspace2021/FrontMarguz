@@ -27,19 +27,6 @@
         [icon]="edit"
         data-bs-toggle="modal"
         data-bs-target="#openModal"
-        (click)="mostrarModal('Añadir Materia')"
-      ></fa-icon>
-    </button>
-    <button
-      class="btn btn-light"
-      style="margin-right: 15px"
-      (click)="mostrarModal('Editar Materia', true)"
-    >
-      <fa-icon
-        style="font-size: 14px; color: red"
-        [icon]="edit"
-        data-bs-toggle="modal"
-        data-bs-target="#openModal"
       ></fa-icon>
     </button>
     <button class="btn btn-danger" (click)="deleteMateria()">
@@ -60,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let mat of materias">
+              <tr *ngFor="let mat of materias | paginate: { itemsPerPage: 10, currentPage: page }">
                 <td>
                   <input
                     type="radio"
@@ -74,22 +61,11 @@
             </tbody>
           </table>
         </div>
-        <!-- Pagination -->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-sm justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">Anterior</a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Siguiente</a>
-            </li>
-          </ul>
-        </nav>
+        <pagination-controls
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Proximo"
+      ></pagination-controls>
       </div>
     </div>
   </div>
