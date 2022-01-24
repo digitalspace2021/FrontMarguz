@@ -17,7 +17,8 @@
         </div>
       </div>
       <div class="formBox">
-        <form [formGroup]="registroForm">
+        <app-form-registro  tipoUsuario="2" (registrar)="registrar($event)"></app-form-registro>
+<!--         <form [formGroup]="registroForm">
           <div class="formInput">
             <input type="hidden" formControlName="id" class="form-control" />
           </div>
@@ -150,7 +151,7 @@
           <div class="formButton">
             <button type="button" (click)="registrar()">Registrarme</button>
           </div>
-        </form>
+        </form> -->
         <br />
       </div>
       <div class="recoverBox">

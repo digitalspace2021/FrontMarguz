@@ -1,15 +1,57 @@
-<form>
+<form [formGroup]="registroForm">
+  <div class="formInput">
+    <label for="identificacion" class="col-form-label">Identificación</label>
+    <input type="text" formControlName="identificacion" class="form-control" />
+
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.identificacion.errors?.required &&
+        (fRegistro.identificacion.touched || fRegistro.identificacion.dirty)
+      "
+    >
+      Por favor ingrese su número de identificación
+    </div>
+  </div>
   <div class="formInput">
     <label for="nombre" class="col-form-label">Nombre</label>
-    <input type="text" class="form-control" />
+    <input type="text" formControlName="nombre" class="form-control" />
+
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.nombre.errors?.required &&
+        (fRegistro.nombre.touched || fRegistro.nombre.dirty)
+      "
+    >
+      Por favor ingrese su nombre
+    </div>
   </div>
   <div class="formInput">
     <label for="apellido" class="col-form-label">Apellido</label>
-    <input type="text" class="form-control" />
+    <input type="text" formControlName="apellido" class="form-control" />
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.apellido.errors?.required &&
+        (fRegistro.apellido.touched || fRegistro.apellido.dirty)
+      "
+    >
+      Por favor ingrese su apellido
+    </div>
   </div>
   <div class="formInput">
     <label for="telefono" class="col-form-label">Telefono</label>
-    <input type="text" class="form-control" />
+    <input type="text" formControlName="telefono" class="form-control" />
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.telefono.errors?.required &&
+        (fRegistro.telefono.touched || fRegistro.telefono.dirty)
+      "
+    >
+      Por favor ingrese su número de teléfono
+    </div>
   </div>
   <div class="formInput">
     <label for="pais" class="col-form-label">Pais</label>
@@ -30,7 +72,7 @@
       [ngModelOptions]="{ standalone: true }"
       [(ngModel)]="stateSelected"
       class="form-control"
-      (change)="changeCites()"
+      (change)="changeCities()"
     >
       <option *ngFor="let state of states" [value]="state.state_name">
         {{ state.state_name }}
@@ -51,51 +93,109 @@
   </div>
   <div class="formInput">
     <label for="email" class="col-form-label">Email</label>
-    <input type="email" class="form-control" />
-  </div>
-  <div class="formInput">
-    <label class="col-form-label">Contraseña</label>
-    <input type="password" class="form-control" />
-  </div>
-  <div class="formInput">
-    <label class="col-form-label">Tipo de Usuario</label>
-    <select
-      [ngModelOptions]="{ standalone: true }"
-      class="form-control"
-      [(ngModel)]="tipo"
+    <input type="text" formControlName="email" class="form-control" />
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.email.errors?.required &&
+        (fRegistro.email.touched || fRegistro.email.dirty)
+      "
     >
-      <option [value]="0">Administrador</option>
-      <option [value]="1">Profesor</option>
-      <option [value]="2">Estudiante</option>
-    </select>
-  </div>
-  <!-- Datos profesor-->
-  <div class="formInput" *ngIf="tipo == 1">
-    <label for="fotodeperfil" class="col-form-label"
-      >Documentación/Hoja de vida</label
-    >
-    <div class="col-auto container-file">
-      <angular-file-uploader [config]="afuConfig"> </angular-file-uploader>
+      Por favor ingrese su correo
     </div>
   </div>
-  <div class="formInput" *ngIf="tipo == 1">
+  <div class="formInput">
+    <label for="email" class="col-form-label">Contraseña</label>
+    <input type="password" formControlName="contrasena" class="form-control" />
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.contrasena.errors?.required &&
+        (fRegistro.contrasena.touched || fRegistro.contrasena.dirty)
+      "
+    >
+      Por favor ingrese una contraseña
+    </div>
+  </div>
+  <div *ngIf="isProfesor" class="formInput">
+    <label for="fotodeperfil" class="col-form-label"
+      >Documentación - Hoja de vida</label
+    >
+    <div class="inputFile">
+      <input type="file" />
+    </div>
+    <!--             <div
+      class="col-auto"
+      style="
+        background-color: #d6dade;
+        border-radius: 10px;
+        height: 70px;
+      "
+    >
+                              <angular-file-uploader
+                [config]="afuConfig">
+              </angular-file-uploader> -
+    </div> -->
+  </div>
+  <div *ngIf="isProfesor" class="formInput">
     <label for="fotodeperfil" class="col-form-label">Adjuntar cédula</label>
-    <div class="col-auto container-file">
-      <angular-file-uploader [config]="afuConfig"> </angular-file-uploader>
+    <div class="inputFile">
+      <input type="file" />
     </div>
   </div>
   <div class="formInput">
     <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
-    <div class="col-auto container-file">
-      <angular-file-uploader [config]="afuConfig"></angular-file-uploader>
+    <div class="inputFile">
+      <input type="file" style="display: none" />
     </div>
   </div>
-  <div class="formInput" *ngIf="tipo == 1">
-    <label for="intereses" class="col-form-label">Idiomas</label>
-    <input type="text" class="form-control" />
+
+  <div *ngIf="isProfesor" class="formInput">
+    <label for="horarios" class="col-form-label">Horarios</label>
+    <div class="horarioBox">
+      <div class="horarioList">
+        <p *ngFor="let horario of horarios">
+          {{ horario.dia }}: <b>{{ horario.inicio }}</b> -
+          <b>{{ horario.cierre }}</b>
+        </p>
+      </div>
+      <button type="button" class="botonHorario" (click)="isHorario = true">
+        <fa-icon style="margin-right: 30px" [icon]="calendar"></fa-icon>Agregar
+        horarios
+      </button>
+    </div>
   </div>
-  <div class="formInput" *ngIf="tipo != 1">
-    <label for="intereses" class="col-form-label">Intereses</label>
-    <input type="text" class="form-control" />
+  <div class="formInput formIdiomas">
+    <label *ngIf="isProfesor" for="intereses" class="col-form-label"
+      >Idiomas <br /><span>Max. 3 idiomas</span></label
+    >
+    <label *ngIf="isEstudiante" for="intereses" class="col-form-label"
+      >Intereses <br
+    /></label>
+
+    <div>
+      <fa-icon [icon]="icon" (click)="isIdiomas = true"></fa-icon>
+    </div>
+  </div>
+  <div class="formButton">
+    <button type="button" (click)="submit()">Registrarme</button>
   </div>
 </form>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-horario
+  [horarios]="horarios"
+  *ngIf="isHorario"
+  (closeHorario)="isHorario = false"
+></app-horario>
+
+<app-idiomas
+  [idiomas]="idiomas"
+  *ngIf="isIdiomas"
+  (closeIdiomas)="isIdiomas = false"
+></app-idiomas>

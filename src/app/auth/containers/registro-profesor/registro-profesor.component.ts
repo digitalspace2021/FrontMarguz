@@ -118,13 +118,10 @@ export class RegistroProfesorComponent implements OnInit {
     return this.registroForm.controls;
   }
 
-  async registrar() {
+  async registrar(usuario: any) {
     try {
-      if (!this.validate())
-        throw new Error(
-          'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
-        );
-      let usuario = {
+
+/*       let usuario = {
         nombre: this.registroForm.get('nombre')?.value,
         apellido: this.registroForm.get('apellido')?.value,
         telefono: this.registroForm.get('telefono')?.value,
@@ -135,7 +132,7 @@ export class RegistroProfesorComponent implements OnInit {
         contrasena: this.registroForm.get('contrasena')?.value,
         tipo_usuario: 1,
         foto_perfil: ""
-      };
+      }; */
 
       this.authService.registrar(usuario).then((resp: any) => {
         if (resp.code == 200) {

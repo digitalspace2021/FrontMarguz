@@ -151,7 +151,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <app-form-registro [tipoUsuario]="tipo"></app-form-registro>
+        <app-form-registro [tipoUsuario]="tipoUsuario.toString()"  (registrar)="registrar($event)"></app-form-registro>
       </div>
       <div class="modal-footer text-center">
         <button class="btn btn-success btn-sm">Aceptar</button>
@@ -159,3 +159,18 @@
     </div>
   </div>
 </div>
+
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  title="Registro exitoso"
+  [msg]="registroExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="closeConfirm()"
+></app-confirm>

@@ -8,6 +8,7 @@ import { faUserCheck } from '@fortawesome/free-solid-svg-icons';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { IDataUsuario } from '../../interfaces/IUsuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -31,10 +32,13 @@ export class ListaUsuariosComponent implements OnInit {
   usuariosSearch: IDataUsuario[] = [];
 
   title: string = '';
-  tipo: number = 0;
+  tipo: string = '0';
   action: boolean = false;
 
-  constructor(private usuarioSv: UsuarioService) {}
+  constructor(
+    private usuarioSv: UsuarioService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.listUsuario();
@@ -62,5 +66,42 @@ export class ListaUsuariosComponent implements OnInit {
   openModal(title: string, action: boolean = false) {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
+  }
+  async registrar(usuario: any) {
+    try {
+      this.authService
+        .registrar(usuario)
+        .then((resp: any) => {
+          if (resp.code == 200) {
+            this.openConfirm();
+          } else {
+            this.openError(resp.message);
+          }
+        })
+        .catch((e) => this.openError(e.message));
+    } catch (e: any) {
+      this.openError(e.message);
+    }
+  }
+  isRegistroExitoso: boolean = false;
+  registroExitosoMessage: string = 'Ha registrado correctamente al usuario.';
+
+  openConfirm() {
+    this.isRegistroExitoso = true;
+  }
+  closeConfirm(){
+    this.isRegistroExitoso = false;
+  }
+  isError: boolean = false;
+
+  errorMessage: string = "";
+  openError(message: string) {
+    this.isError = true;
+    this.errorMessage = message;
+  }
+
+  closeError() {
+    this.isError = false;
+    this.errorMessage = '';
   }
 }

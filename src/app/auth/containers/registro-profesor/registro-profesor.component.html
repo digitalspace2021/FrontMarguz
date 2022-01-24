@@ -8,7 +8,7 @@
     </div>
     <div class="bodyBox">
       <div class="formBox">
-        <form [formGroup]="registroForm">
+<!--         <form [formGroup]="registroForm">
           <div class="formInput">
             <input type="hidden" formControlName="id" class="form-control" />
           </div>
@@ -128,18 +128,7 @@
             <div class="inputFile">
               <input type="file" />
             </div>
-            <!--             <div
-              class="col-auto"
-              style="
-                background-color: #d6dade;
-                border-radius: 10px;
-                height: 70px;
-              "
-            >
-                                      <angular-file-uploader
-                        [config]="afuConfig">
-                      </angular-file-uploader> -
-            </div> -->
+
           </div>
           <div class="formInput">
             <label for="fotodeperfil" class="col-form-label"
@@ -179,7 +168,8 @@
           <div class="formButton">
             <button (click)="registrar()" type="button">Registrarme</button>
           </div>
-        </form>
+        </form> -->
+        <app-form-registro tipoUsuario="1" (registrar)="registrar($event)"></app-form-registro>
         <br />
       </div>
       <div class="recoverBox">
@@ -208,9 +198,3 @@
   *ngIf="isRegistroExitoso"
   (closeConfirm)="login()"
 ></app-confirm>
-
-<app-horario
-  [horarios]="horarios"
-  *ngIf="isHorario"
-  (closeHorario)="isHorario = false"
-></app-horario>
