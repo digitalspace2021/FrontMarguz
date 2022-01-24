@@ -3,40 +3,57 @@ import { UsuarioService } from './../../../admin/services/usuario.service';
 import { AuthService } from './../../../auth/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { faCamera, faPlusCircle, faSave } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCamera,
+  faPlusCircle,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons';
+
+export interface IIntereses {
+  id: number;
+  materia: string;
+}
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.scss']
+  styleUrls: ['./perfil.component.scss'],
 })
 export class PerfilComponent implements OnInit {
   countries: any;
   states: any;
   cities: any;
   materias: any;
+  intereses: IIntereses[] = [];
 
   img?: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
 
-   //iconos
-   add = faPlusCircle;
-   save = faSave;
-   cam = faCamera;
-   //-----------------
-   formPerfil!: FormGroup;
+  //iconos
+  add = faPlusCircle;
+  save = faSave;
+  cam = faCamera;
+  //-----------------
+  formPerfil!: FormGroup;
 
-  constructor(    private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private buildForm: FormBuilder,
     private usuarioSv: UsuarioService,
-    private materiaSv: MateriaService) { }
+    private materiaSv: MateriaService
+  ) {}
 
   ngOnInit(): void {
-
     this.builder();
     this.changerCountrys();
     this.getUser();
     this.listMateria();
+  }
 
+  AddIntereses(value: any) {
+    if (this.intereses.includes(value)) return;
+    this.intereses.push(value);
+    const index = this.materias.indexOf(value);
+    this.materias.splice(index, 1);
   }
 
   getUser() {
@@ -75,7 +92,7 @@ export class PerfilComponent implements OnInit {
     });
   }
 
- /* AddIntereses(item: any) {
+  /* AddIntereses(item: any) {
     let matFilter = [...this.materias];
     debugger;
     this.intereses.push(item);
@@ -121,5 +138,4 @@ export class PerfilComponent implements OnInit {
       })
       .catch((err) => console.error(err));
   }
-
 }

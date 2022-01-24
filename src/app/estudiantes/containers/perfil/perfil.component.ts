@@ -83,13 +83,11 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  AddIntereses(item: any) {
-    let matFilter = [...this.materias];
-    debugger;
-    this.intereses.push(item);
-    this.materias = [...matFilter];
-    console.log(this.intereses);
-    this.materias.filter((e: any) => e.materia != this.intereses[0].materia);
+  AddIntereses(value: any) {
+    if (this.intereses.includes(value)) return;
+    this.intereses.push(value);
+    const index = this.materias.indexOf(value);
+    this.materias.splice(index, 1);
   }
 
   listMateria() {
