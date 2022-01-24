@@ -1,0 +1,20 @@
+<div class="blackBox" (click)="close()"></div>
+<div class="logBox">
+  <div class="bodyBox">
+    <form>
+      <div
+        *ngFor="let idioma of idiomasDisponibles; let i = index"
+        class="idiomaRow"
+      >
+        <input type="checkbox" name="" id="" />
+        <label for="">{{ idioma.materia }}</label>
+      </div>
+      <div class="idiomaButton">
+        <button class="btn" type="button" (click)="close()">
+          <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
+          <p>Hecho</p>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
