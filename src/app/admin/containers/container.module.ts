@@ -1,6 +1,7 @@
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AgregarEstudianteComponent } from './agregar-estudiante/agregar-estudiante.component';
 import { EditarEstudianteComponent } from './editar-estudiante/editar-estudiante.component';
@@ -37,6 +38,7 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     SharedModule,
     ComponentModule,
     AuthModule,
+    NgxPaginationModule
   ],
   exports: [
     ListAdminComponent,

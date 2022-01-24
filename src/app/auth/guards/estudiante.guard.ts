@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class EstudianteGuard implements CanActivate {
 
   constructor(public auth: AuthService, private router: Router) {}
+
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 /*     if ((this.auth.getTipoUsuario() != "2")) {
       this.router.navigate(["/not-found"]);
@@ -18,4 +19,5 @@ export class EstudianteGuard implements CanActivate {
     } */
     return true;
   }
+
 }
