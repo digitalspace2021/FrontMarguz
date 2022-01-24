@@ -23,9 +23,15 @@
                 <fa-icon
                   style="font-size: 14px; color: red"
                   [icon]="cam"
+                  (click)="openFileSystem()"
                 ></fa-icon>
               </div>
-              <input type="file" style="display: none" />
+              <input
+                type="file"
+                style="display: none"
+                (change)="addImagen()"
+                #selectFile
+              />
             </div>
             <div class="container-btn">
               <div class="iframe-edit animate__animated animate__bounce">

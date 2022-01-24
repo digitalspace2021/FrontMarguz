@@ -1,7 +1,7 @@
 import { UsuarioService } from './../../../admin/services/usuario.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from './../../../auth/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   faCamera,
   faPlusCircle,
@@ -18,6 +18,7 @@ export interface IIntereses {
   styleUrls: ['./perfil.component.scss'],
 })
 export class PerfilComponent implements OnInit {
+  @ViewChild('selectFile') selectFile!: ElementRef<HTMLInputElement>;
   intereses: IIntereses[] = [];
 
   countries: any;
@@ -126,5 +127,20 @@ export class PerfilComponent implements OnInit {
         this.formPerfil.get('ciudad')?.setValue(this.cities[0].city_name);
       })
       .catch((err) => console.error(err));
+  }
+
+  addImagen() {
+    const imagen: any = this.selectFile.nativeElement;
+    if (typeof FileReader !== 'undefined') {
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.img = e.target.result;
+      };
+      reader.readAsDataURL(imagen.files[0]);
+    }
+  }
+
+  openFileSystem() {
+    this.selectFile.nativeElement.click();
   }
 }

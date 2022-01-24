@@ -2,7 +2,13 @@ import { MateriaService } from './../../../admin/services/materia.service';
 import { UsuarioService } from './../../../admin/services/usuario.service';
 import { AuthService } from './../../../auth/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import {
   faCamera,
   faPlusCircle,
@@ -20,6 +26,7 @@ export interface IIntereses {
   styleUrls: ['./perfil.component.scss'],
 })
 export class PerfilComponent implements OnInit {
+  @ViewChild('selectFile') selectFile!: ElementRef<HTMLInputElement>;
   countries: any;
   states: any;
   cities: any;
@@ -92,15 +99,6 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  /* AddIntereses(item: any) {
-    let matFilter = [...this.materias];
-    debugger;
-    this.intereses.push(item);
-    this.materias = [...matFilter];
-    console.log(this.intereses);
-    this.materias.filter((e: any) => e.materia != this.intereses[0].materia);
-  }*/
-
   listMateria() {
     this.materiaSv
       .listMateria()
@@ -137,5 +135,20 @@ export class PerfilComponent implements OnInit {
         this.formPerfil.get('ciudad')?.setValue(this.cities[0].city_name);
       })
       .catch((err) => console.error(err));
+  }
+
+  addImagen() {
+    const imagen: any = this.selectFile.nativeElement;
+    if (typeof FileReader !== 'undefined') {
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.img = e.target.result;
+      };
+      reader.readAsDataURL(imagen.files[0]);
+    }
+  }
+
+  openFileSystem() {
+    this.selectFile.nativeElement.click();
   }
 }
