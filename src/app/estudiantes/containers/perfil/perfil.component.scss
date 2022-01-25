@@ -1,211 +1,200 @@
-.img{
+.img {
   max-width: 600px;
   width: 100%;
   height: 300px;
   object-fit: cover;
 }
-.container-img{
-    position: relative;
+.container-img {
+  position: relative;
 }
-.adjunt-cam{
-    width: 30px;
-    height: 30px;
-    border-radius: 19px;
-    position: absolute;
-    right: 5%;
-    top: 49%;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 6px rgb(0 0 0 / 25%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.adjunt-cam {
+  width: 30px;
+  height: 30px;
+  border-radius: 19px;
+  position: absolute;
+  right: 7%;
+  top: 47%;
+  background: #ffffff;
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .colorContainer {
-    background-color: #ecf3f3;
+  background-color: #ecf3f3;
 }
 
 .dropdown-item {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-
 body {
-    font-family: 'roboto', sans-serif;
-    overflow-x: hidden;
+  font-family: "roboto", sans-serif;
+  overflow-x: hidden;
 }
 
 .dropdown-menu {
-    position: absolute;
-    z-index: 1000;
-    display: none;
-    padding-right: 20px;
-    min-width: 12rem;
-    padding-bottom: 18px;
-    padding-top: 18px;
-    padding-left: 4px;
-    margin: 0;
-    font-size: 1rem;
-    color: #212529;
-    list-style: none;
-    background-color: #ecf3f3;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 0.25rem;
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  padding-right: 20px;
+  min-width: 12rem;
+  padding-bottom: 18px;
+  padding-top: 18px;
+  padding-left: 4px;
+  margin: 0;
+  font-size: 1rem;
+  color: #212529;
+  list-style: none;
+  background-color: #ecf3f3;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
 }
 
 #name_perfil {
-    color: #333;
-    text-transform: capitalize;
+  color: #333;
+  text-transform: capitalize;
 }
 
 .spans {
-    position: relative;
-    top: 56px;
-    left: -82px;
+  position: relative;
+  top: 56px;
+  left: -82px;
 }
 
-
-
 .imgs {
-    width: 112px;
+  width: 112px;
 }
 
 .nav-item {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .spanButton {
-    float: right;
-    position: relative;
-    top: -20px;
-    background-color: white;
-    border: 1px solid rgb(206, 206, 206);
-    padding: 15px;
+  float: right;
+  position: relative;
+  top: -20px;
+  background-color: white;
+  border: 1px solid rgb(206, 206, 206);
+  padding: 15px;
 }
-
 
 .footerx {
-    background-color: #FFFFFF;
-    padding: 20px;
-    padding-left: 37px;
-    position: relative;
-    z-index: 999;
+  background-color: #ffffff;
+  padding: 20px;
+  padding-left: 37px;
+  position: relative;
+  z-index: 999;
 }
 
-
 .ths {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .fab {
-    color: red;
-    font-size: 18px;
-    margin-left: 10px;
+  color: red;
+  font-size: 18px;
+  margin-left: 10px;
 }
 
 .edit_perfil {
-    font-weight: 600;
-    font-size: 30px;
-    color: #C71029;
-
+  font-weight: 600;
+  font-size: 30px;
+  color: #c71029;
 }
 
 #span_edit_perfil {
-    color: #b4b3b4;
-    font-size: 20px;
-    position: relative;
-    bottom: 20px;
+  color: #b4b3b4;
+  font-size: 20px;
+  position: relative;
+  bottom: 20px;
 }
 
 .colInputs {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
-
-
 .ajust {
-    position: relative;
-    width: 329px;
-    top: 10px;
+  position: relative;
+  width: 329px;
+  top: 10px;
 }
 
 .label-ajust {
-    color: #A195A1;
-    position: relative;
-    left: 4px;
-    float: left;
+  color: #a195a1;
+  position: relative;
+  left: 4px;
+  float: left;
 }
 
 .ajustCol {
-    position: relative;
-    left: 35%;
+  position: relative;
+  left: 35%;
 }
 
 .form-check-input {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .form-check-input:checked {
-    background-color: #E31B36;
-    border-color: #E31B36;
+  background-color: #e31b36;
+  border-color: #e31b36;
 }
 
 .circle-img:hover {
-    cursor: pointer;
-    transition: 0.2s;
-    border: 1px solid red;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid red;
 }
 
 .spanButton:hover {
-    cursor: pointer;
-    transition: 0.2s;
-    border: 1px solid red;
-    background-color: #e9e9e999;
-    border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid red;
+  background-color: #e9e9e999;
+  border-radius: 5px;
 }
 
-
 .circle-img {
-    position: relative;
-    float: right;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    padding: 15px;
-    background-color: white;
+  position: relative;
+  float: right;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding: 15px;
+  background-color: white;
 }
 
 .caja-save {
-    position: relative;
-    text-align: right;
-    top: 58px;
-    right: -60px;
+  position: relative;
+  text-align: right;
+  top: 58px;
+  right: -60px;
 }
 
 .img-edit {
-    width: 318px;
-    height: 318px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-   // background-image: url('Logo/Rectangle\ 13.jpg');
+  width: 318px;
+  height: 318px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  // background-image: url('Logo/Rectangle\ 13.jpg');
 }
 
 .modal-body {
-    color: #5D495E;
-    border: none;
+  color: #5d495e;
+  border: none;
 }
 
-
 .modal-footer {
-    border: none;
+  border: none;
 }
 
 .modal-header {
-    border: none;
+  border: none;
 }
 
 .spansMobiles {
-    display: none;
+  display: none;
 }
-

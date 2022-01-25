@@ -26,6 +26,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     SharedModule,
     PublicRoutingModule
+  ],
+  exports:[
+    HeaderPublicComponent
   ]
 })
 export class PublicModule { }
