@@ -11,10 +11,10 @@ export class AdminGuard implements CanActivate {
 
   constructor(public auth: AuthService, private router: Router) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if ((this.auth.getTipoUsuario() != "0")) {
+/*     if ((this.auth.getTipoUsuario() != "0")) {
       this.router.navigate(["/not-found"]);
       return false;
-    }
+    } */
     return true;
   }
 }
