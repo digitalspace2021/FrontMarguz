@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedRoutingModule } from './shared-routing.module';
+import { PublicModule } from '../public/public.module';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -26,6 +27,7 @@ import { SharedRoutingModule } from './shared-routing.module';
   imports: [
     CommonModule,
     FontAwesomeModule,
+    PublicModule,
     //SharedRoutingModule
   ],
   exports: [
