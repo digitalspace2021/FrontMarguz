@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="formBox">
-        <app-form-registro  tipoUsuario="2" (registrar)="registrar($event)"></app-form-registro>
+        <app-form-registro  [tipoUsuario]="2" (registrar)="registrar($event)"></app-form-registro>
 <!--         <form [formGroup]="registroForm">
           <div class="formInput">
             <input type="hidden" formControlName="id" class="form-control" />

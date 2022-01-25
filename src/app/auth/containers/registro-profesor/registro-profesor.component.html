@@ -169,7 +169,7 @@
             <button (click)="registrar()" type="button">Registrarme</button>
           </div>
         </form> -->
-        <app-form-registro tipoUsuario="1" (registrar)="registrar($event)"></app-form-registro>
+        <app-form-registro [tipoUsuario]="1" (registrar)="registrar($event)"></app-form-registro>
         <br />
       </div>
       <div class="recoverBox">

@@ -22,7 +22,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
-  @Input() tipoUsuario: string = '0';
+  @Input() tipoUsuario: number = 0;
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
@@ -101,9 +101,9 @@ export class FormRegistroComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    if (this.tipoUsuario == '1') {
+    if (this.tipoUsuario == 1) {
       this.isProfesor = true;
-    } else if (this.tipoUsuario == '2') {
+    } else if (this.tipoUsuario == 2) {
       this.isEstudiante = true;
     } else {
       this.isAdmin = true;

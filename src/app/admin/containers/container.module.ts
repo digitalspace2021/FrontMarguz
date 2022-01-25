@@ -42,7 +42,7 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     ComponentModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    AuthModule,
+    AuthModule,   
     NgxPaginationModule
   ],
   exports: [
