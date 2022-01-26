@@ -36,8 +36,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.5",
-    "@angular/cli": "^12.2.15",
-    "@angular/compiler-cli": "~12.2.0",
+    "@angular/compiler-cli": "^12.2.15",
     "@types/jasmine": "~3.8.0",
     "@types/jquery": "^3.5.13",
     "@types/jquery.ui.datetimepicker": "^0.3.30",
