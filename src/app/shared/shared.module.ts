@@ -27,7 +27,7 @@ import { PublicModule } from '../public/public.module';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    PublicModule,
+    //PublicModule,
     //SharedRoutingModule
   ],
   exports: [
