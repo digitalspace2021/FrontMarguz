@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import * as $ from 'jquery';
+
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
