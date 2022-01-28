@@ -80,6 +80,7 @@ export class ListaUsuariosComponent implements OnInit {
           } else {
             this.openError(resp.message);
           }
+          this.closeRegistro();
         })
         .catch((e) => this.openError(e.message));
     } catch (e: any) {
@@ -96,6 +97,13 @@ export class ListaUsuariosComponent implements OnInit {
     this.isRegistroExitoso = false;
   }
   isError: boolean = false;
+  openRegistro() {
+    this.isRegistro = true;
+  }
+  closeRegistro(){
+    this.isRegistro = false;
+  }
+  isRegistro: boolean = false;
 
   errorMessage: string = "";
   openError(message: string) {

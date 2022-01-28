@@ -1,6 +1,6 @@
-import { UsuarioService } from './../../../admin/services/usuario.service';
+import { UsuarioService } from '../../../admin/services/usuario.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AuthService } from './../../../auth/services/auth.service';
+import { AuthService } from '../../../auth/services/auth.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   faCamera,
@@ -51,7 +51,7 @@ export class PerfilComponent implements OnInit {
   getUser() {
     this.usuarioSv
       .getUsuario(24)
-      .subscribe((resp) => this.loadData(resp.usuario));
+      .subscribe((resp: any) => this.loadData(resp.usuario));
   }
 
   loadData(data: any) {
@@ -94,7 +94,7 @@ export class PerfilComponent implements OnInit {
   listMateria() {
     this.materiaSv
       .listMateria()
-      .subscribe((resp) => (this.materias = resp.materias));
+      .subscribe((resp: any) => (this.materias = resp.materias));
   }
 
   changerCountrys() {

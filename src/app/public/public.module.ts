@@ -10,6 +10,7 @@ import { PoliticasEstudianteComponent } from './containers/politicas-estudiante/
 import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-profesor/politicas-pago-profesor.component';
 import { HeaderPublicComponent } from './components/header-public/header-public.component';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,6 +26,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    HttpClientModule,
+
     PublicRoutingModule
   ],
   exports:[

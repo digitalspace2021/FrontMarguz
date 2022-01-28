@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   position: fixed;
   overflow-y: scroll;
-  width: 75%;
+  width: 40%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -23,7 +23,7 @@
       width: 100%;
       .idiomaRow {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         margin-bottom: 20px;
         .idiomaCheckbox{
 
@@ -47,7 +47,6 @@
       .idiomaButton {
         margin-top: 15%;
         button {
-          float: right;
           margin: auto;
           padding: 10px 5px;
           display: flex;

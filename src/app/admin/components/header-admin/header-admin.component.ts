@@ -1,4 +1,4 @@
-import { Usuario } from './../../class/Usuario';
+import { Usuario } from '../../class/Usuario';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';

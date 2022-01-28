@@ -17,7 +17,7 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    AppRoutingModule,AngularFileUploaderModule, BrowserAnimationsModule
+    AppRoutingModule,AngularFileUploaderModule, //BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

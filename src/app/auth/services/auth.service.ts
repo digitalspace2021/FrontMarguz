@@ -1,4 +1,4 @@
-import { IDataUsuario, IUsuario } from './../../admin/interfaces/IUsuario';
+import { IDataUsuario, IUsuario } from '../../admin/interfaces/IUsuario';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataUsuario, Login } from '../interfaces/auth.interface';

@@ -13,11 +13,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { MateriaService } from 'src/app/admin/services/materia.service';
 @Component({
-  selector: 'app-idiomas',
+  selector: 'app-idiomas-modal',
   templateUrl: './idiomas.component.html',
   styleUrls: ['./idiomas.component.scss'],
 })
-export class IdiomasComponent implements OnInit {
+export class IdiomasModalComponent implements OnInit {
   plusIcon = faPlusCircle;
   minusIcon = faMinusCircle;
   saveIcon = faSave;

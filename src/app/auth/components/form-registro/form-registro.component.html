@@ -123,39 +123,42 @@
         >Documentación - Hoja de vida</label
       >
       <div class="inputFile">
-        <angular-file-uploader #documentacionUpload [config]="documentacionConfig">
+        <angular-file-uploader
+          #documentacionUpload
+          [config]="documentacionConfig"
+        >
         </angular-file-uploader>
       </div>
       <fa-icon
-      class="resetFile"
-      (click)="resetDocumentacion()"
-      [icon]="minusIcon"
-    ></fa-icon>
+        class="resetFile"
+        (click)="resetDocumentacion()"
+        [icon]="minusIcon"
+      ></fa-icon>
     </div>
     <div *ngIf="isProfesor" class="fileInput">
       <label for="cedula" class="col-form-label">Adjuntar cédula</label>
       <div class="inputFile">
-        <angular-file-uploader #cedulaUpload  [config]="cedulaConfig"> </angular-file-uploader>
+        <angular-file-uploader #cedulaUpload [config]="cedulaConfig">
+        </angular-file-uploader>
       </div>
       <fa-icon
-      class="resetFile"
-      (click)="resetCedula()"
-      [icon]="minusIcon"
-    ></fa-icon>
+        class="resetFile"
+        (click)="resetCedula()"
+        [icon]="minusIcon"
+      ></fa-icon>
     </div>
-    <div class="fileInput">
+    <div class="fileInput" *ngIf="isProfesor || isEstudiante">
       <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
       <div class="inputFile">
-        <angular-file-uploader #perfilUpload  [config]="perfilConfig"> </angular-file-uploader>
+        <angular-file-uploader #perfilUpload [config]="perfilConfig">
+        </angular-file-uploader>
       </div>
       <fa-icon
-      class="resetFile"
-      (click)="resetPerfil()"
-      [icon]="minusIcon"
-    ></fa-icon>
+        class="resetFile"
+        (click)="resetPerfil()"
+        [icon]="minusIcon"
+      ></fa-icon>
     </div>
-
-
   </div>
 
   <div *ngIf="isProfesor" class="formInput">
@@ -200,15 +203,15 @@
   *ngIf="isError"
 ></app-error>
 
-<app-horario
+<app-horario-modal
   [horarios]="horarios"
   *ngIf="isHorario"
   (closeHorario)="closeHorario($event)"
-></app-horario>
+></app-horario-modal>
 
-<app-idiomas
+<app-idiomas-modal
   [idiomas]="idiomas"
   *ngIf="isIdiomas"
   [isProfesor]="tipoUsuario == 1"
   (closeIdiomas)="closeIdiomas($event)"
-></app-idiomas>
+></app-idiomas-modal>

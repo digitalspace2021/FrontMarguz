@@ -1,6 +1,6 @@
-import { Usuario } from './../../../admin/class/Usuario';
-import { IUsuario } from './../../../admin/interfaces/IUsuario';
-import { ContainerModule } from './../../../admin/containers/container.module';
+import { Usuario } from '../../../admin/class/Usuario';
+import { IUsuario } from '../../../admin/interfaces/IUsuario';
+import { ContainerModule } from '../../../admin/containers/container.module';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';

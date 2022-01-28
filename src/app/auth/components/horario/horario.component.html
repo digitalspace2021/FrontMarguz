@@ -1,5 +1,5 @@
 <div class="blackBox" (click)="close()"></div>
-<div class="logBox">
+<div class="logBox caja-blanca">
   <div class="headerBox">
     <h5>Agregar horarios</h5>
     <div class="closeButton">
@@ -8,12 +8,13 @@
   </div>
   <br />
   <div class="bodyBox">
-    <form>
+    <app-horario [horarios]="horarios" (closeHorario)="close()"></app-horario>
+    <!--     <form>
       <div *ngFor="let horario of horarios; let i = index" class="horarioRow">
         <div class="horarioInput">
           <label class="horarioLabel" for="dia">Dia</label>
           <select
-            class="form-select"
+            class="form-selects"
             [ngModelOptions]="{ standalone: true }"
             [(ngModel)]="horario.dia"
             aria-label="Default select example"
@@ -30,7 +31,7 @@
         <div class="horarioInput">
           <label class="horarioLabel" for="inicio">Hora</label>
           <select
-            class="form-select"
+            class="form-selects"
             [ngModelOptions]="{ standalone: true }"
             [(ngModel)]="horario.inicio"
             aria-label="Default select example"
@@ -52,9 +53,9 @@
           </select>
         </div>
         <div class="horarioInput">
-          <label>-</label>
+          <label class="horarioLabel">-</label>
           <select
-            class="form-select"
+            class="form-selects"
             [ngModelOptions]="{ standalone: true }"
             [(ngModel)]="horario.cierre"
             aria-label="Default select example"
@@ -92,23 +93,9 @@
       <div class="horarioButton">
         <button class="btn" (click)="close()">
           <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
-
-          <!--           <svg
-            style="margin-left: -69%; margin-top: -4%"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="16"
-            fill="currentColor"
-            class="bi bi-file-earmark-post-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-5-.5H7a.5.5 0 0 1 0 1H4.5a.5.5 0 0 1 0-1zm0 3h7a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5z"
-            />
-          </svg> -->
           <p>Guardar</p>
         </button>
       </div>
-    </form>
+    </form> -->
   </div>
 </div>

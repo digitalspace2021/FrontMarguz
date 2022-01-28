@@ -1,0 +1,118 @@
+
+.caja-blanca {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+.logBox {
+  max-height: 80%;
+  z-index: 100000;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  overflow-y: scroll;
+  width: 75%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .headerBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    h5 {
+      color: black;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+    }
+  }
+  .bodyBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    margin: 20px auto;
+    #paymentAcordion{
+        width: 100% !important;
+    }
+    .saveButton {
+        padding: 10px 5px;
+        margin: 20px 0 0 0;
+        display: flex;
+        border-radius: 10px;
+        background-color: #27ae60;
+        width: 200px;
+        font-weight: bold;
+        justify-content: flex-start;
+        color: white;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        fa-icon {
+          margin-left: 15px;
+        }
+        p {
+          margin: 0 0 0 50px;
+        }
+        &:hover {
+          color: #27ae60;
+          background-color: white;
+        }
+      }
+  }
+}
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 23px;
+  height: 23px;
+}
+
+.closeButton .closeB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.closeButton .closeB:hover {
+  background-color: black;
+  color: white;
+}
+
+.blackBox {
+  position: fixed;
+  z-index: 8000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: height 0.2s ease-out;
+  overflow: hidden;
+  background-color: rgba(155, 155, 155, 0.5);
+  border: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .logBox {
+    width: 80%;
+  }
+}

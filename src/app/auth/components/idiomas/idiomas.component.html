@@ -1,39 +1,7 @@
 <div class="blackBox" (click)="close()"></div>
 <div class="logBox">
   <div class="bodyBox">
-    <form>
-      <div
-        *ngFor="let idioma of idiomasDisponibles; let i = index"
-        class="idiomaRow"
-      >
-        <!--         <label for="">
-          <input
-            type="checkbox"
-            [(ngModel)]="idiomasSeleccionados[i]"
-            [ngModelOptions]="{ standalone: true }"
-            (change)="handleCheck(i)"
-            name=""
-            id=""
-          />
-          {{ idioma.materia }}
-        </label>
- -->
-
-        <mat-checkbox
-          class="idiomaCheckbox"
-          [(ngModel)]="idiomasSeleccionados[i]"
-          [ngModelOptions]="{ standalone: true }"
-          (change)="handleCheck(i)"
-          >{{ idioma.materia }}</mat-checkbox
-        >
-      </div>
-      <div class="idiomaButton">
-        <button class="btn" type="button" (click)="close()">
-          <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
-          <p>Hecho</p>
-        </button>
-      </div>
-    </form>
+    <app-idiomas></app-idiomas>
   </div>
 </div>
 <app-error

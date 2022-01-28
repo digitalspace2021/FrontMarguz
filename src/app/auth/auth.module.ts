@@ -16,16 +16,17 @@ import { RestaurarContrasenaComponent } from './containers/restaurar-contrasena/
 import { HeaderAuthComponent } from './components/header-auth/header-auth.component';
 import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HorarioComponent } from './components/horario/horario.component';
 import { RegistroComponent } from './containers/registro/registro.component';
 import { FormRegistroComponent } from './components/form-registro/form-registro.component';
-import { IdiomasComponent } from './components/idiomas/idiomas.component';
+import { IdiomasModalComponent } from './components/idiomas/idiomas.component';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { HorarioModalComponent } from './components/horario/horario.component';
 @NgModule({
   declarations: [
     AuthComponent,
     BotonFacebookComponent,
     BotonGoogleComponent,
+    HorarioModalComponent,
     ValidacionComponent,
     LoginComponent,
     RegistroEstudianteComponent,
@@ -33,10 +34,9 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     ResetearContrasenaComponent,
     RestaurarContrasenaComponent,
     HeaderAuthComponent,
-    HorarioComponent,
     FormRegistroComponent,
     RegistroComponent,
-    IdiomasComponent,
+    IdiomasModalComponent,
   ],
   imports: [
     CommonModule,

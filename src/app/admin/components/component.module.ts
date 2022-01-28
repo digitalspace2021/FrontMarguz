@@ -11,6 +11,8 @@ import { EditarMateriaComponent } from './editar-materia/editar-materia.componen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { EditarClaseComponent } from './editar-clase/editar-clase.component';
+import { RegistroModalComponent } from './registro-modal/registro-modal.component';
+import { AuthModule } from 'src/app/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { EditarClaseComponent } from './editar-clase/editar-clase.component';
     GuardadoComponent,
     HeaderAdminComponent,
     EditarClaseComponent,
+    RegistroModalComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, FormsModule],
+  imports: [CommonModule, FontAwesomeModule, FormsModule, AuthModule],
   exports: [
     EditarMateriaComponent,
     AgregarMateriaComponent,
@@ -32,6 +35,7 @@ import { EditarClaseComponent } from './editar-clase/editar-clase.component';
     DeshabilitarComponent,
     GuardadoComponent,
     HeaderAdminComponent,
+    RegistroModalComponent
   ],
 })
 export class ComponentModule {}

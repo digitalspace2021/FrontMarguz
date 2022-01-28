@@ -51,18 +51,16 @@
                 </div>
               </div>
               <div class="buttom-cont">
-                <button
+                <a
                   class="btn btn-primary group-inputs text-center mb-2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#openModalHorario"
+                  href="profesores/horario"
                 >
                   <i class="fas fa-calendar-alt" style="float: left"></i
                   ><span>Editar Horarios</span>
-                </button>
+                </a>
                 <button
                   class="btn btn-primary group-inputs text-center mb-2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modalEditarPagos"
+                  (click)="openPago()"
                 >
                   <i class="fas fa-credit-card-blank" style="float: left"></i
                   ><span>Editar información de Pagos</span>
@@ -413,33 +411,7 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="openModalHorario"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h5 class="modal-title">Horario</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          #ModalClose
-        ></button>
-      </div>
-      <div class="modal-body">
-        <app-calendario></app-calendario>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
+<!-- <div
   class="modal fade"
   id="modalEditarPagos"
   tabindex="-1"
@@ -463,7 +435,8 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<app-editar-pago (closePago)="closePago($event)" *ngIf="isPago"></app-editar-pago>
 
 <div
   class="modal fade"

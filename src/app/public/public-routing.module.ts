@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuscadorComponent } from './containers/buscador/buscador.component';
+import { NotFoundComponent } from './containers/not-found/not-found.component';
 import { PerfilProfesorComponent } from './containers/perfil-profesor/perfil-profesor.component';
 import { PoliticasEstudianteComponent } from './containers/politicas-estudiante/politicas-estudiante.component';
 import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-profesor/politicas-pago-profesor.component';

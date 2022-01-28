@@ -1,4 +1,4 @@
-import { ListaMateriasComponent } from './../../containers/lista-materias/lista-materias.component';
+import { ListaMateriasComponent } from '../../containers/lista-materias/lista-materias.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { Materia } from '../../class/Materia';
 import { MateriaService } from '../../services/materia.service';

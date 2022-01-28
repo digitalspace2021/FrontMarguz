@@ -1,6 +1,6 @@
-import { MateriaService } from './../../../admin/services/materia.service';
-import { UsuarioService } from './../../../admin/services/usuario.service';
-import { AuthService } from './../../../auth/services/auth.service';
+import { MateriaService } from '../../../admin/services/materia.service';
+import { UsuarioService } from '../../../admin/services/usuario.service';
+import { AuthService } from '../../../auth/services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
   Component,
@@ -41,6 +41,7 @@ export class PerfilComponent implements OnInit {
   cam = faCamera;
   //-----------------
   formPerfil!: FormGroup;
+  detallesDePago: any;
 
   constructor(
     private authService: AuthService,
@@ -103,6 +104,7 @@ export class PerfilComponent implements OnInit {
     this.materiaSv
       .listMateria()
       .subscribe((resp) => (this.materias = resp.materias));
+    this.changerCountrys();
   }
 
   changerCountrys() {
@@ -150,5 +152,13 @@ export class PerfilComponent implements OnInit {
 
   openFileSystem() {
     this.selectFile.nativeElement.click();
+  }
+  isPago: boolean = false;
+  openPago() {
+    this.isPago = true;
+  }
+  closePago(detallesDePago: any) {
+    this.detallesDePago = detallesDePago;
+    this.isPago = false;
   }
 }

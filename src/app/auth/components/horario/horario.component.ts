@@ -2,15 +2,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {  } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle, faMinusCircle, faSave } from '@fortawesome/free-solid-svg-icons';
 @Component({
-  selector: 'app-horario',
+  selector: 'app-horario-modal',
   templateUrl: './horario.component.html',
   styleUrls: ['./horario.component.scss'],
 })
-export class HorarioComponent implements OnInit {
+export class HorarioModalComponent implements OnInit {
   plusIcon = faPlusCircle;
   minusIcon = faMinusCircle;
   saveIcon = faSave;
-  @Input() horarios: any = [
+    @Input() horarios: any = [
     {
       dia: 'Lunes',
       inicio: '8:00am',
