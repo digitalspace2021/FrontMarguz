@@ -1,0 +1,132 @@
+.logBox {
+  background-color: #ffffff;
+  border-radius: 3px;
+  max-height: 80%;
+  z-index: 100000;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  overflow-y: scroll;
+  width: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .bodyBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 20px auto;
+    form {
+      width: 100%;
+      .idiomaRow {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+        .idiomaCheckbox{
+
+        }
+        label {
+          color: #5d495e;
+          text-align: center;
+          width: 100%;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          input {
+            &:checked {
+              background-color: #e31b36;
+            }
+          }
+        }
+      }
+      .idiomaButton {
+        margin-top: 15%;
+        button {
+          margin: auto;
+          padding: 10px 5px;
+          display: flex;
+          border-radius: 10px;
+          background-color: #27ae60;
+          width: 200px;
+          font-weight: bold;
+          justify-content: flex-start;
+          color: white;
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+          fa-icon {
+            margin-left: 15px;
+          }
+          p {
+            margin: 0 0 0 50px;
+          }
+          &:hover {
+            color: #27ae60;
+            background-color: white;
+          }
+        }
+      }
+    }
+  }
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #e31b36!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #e31b36;
+}
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 23px;
+  height: 23px;
+}
+
+.closeButton .closeB {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.closeButton .closeB:hover {
+  background-color: black;
+  color: white;
+}
+
+.blackBox {
+  position: fixed;
+  z-index: 8000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: height 0.2s ease-out;
+  overflow: hidden;
+  background-color: rgba(155, 155, 155, 0.5);
+  border: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .logBox {
+    width: 80%;
+  }
+}
