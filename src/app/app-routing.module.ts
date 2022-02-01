@@ -29,22 +29,22 @@ const routes: Routes = [
       canActivate: [AuthGuard, AdminGuard]
   },
   {
-    path: '',
-    loadChildren: () =>
-      import('./public/public.module').then((m) => m.PublicModule),
-  },
-  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'shared',
     loadChildren: () => import('./shared/shared.module').then((m) => m.SharedModule),
+  }, 
+  {
+    path: '',
+    loadChildren: () =>
+      import('./public/public.module').then((m) => m.PublicModule),
   },
   {
     path: '**',     loadChildren: () =>
     import('./public/public.module').then((m) => m.PublicModule),
-  },
+  }, 
 ];
 
 @NgModule({

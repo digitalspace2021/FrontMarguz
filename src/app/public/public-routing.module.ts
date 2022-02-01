@@ -17,6 +17,7 @@ const routes: Routes = [
     { path: 'politicas/estudiante', component: PoliticasEstudianteComponent },
     { path: 'politicas/profesor', component: PoliticasProfesorComponent },
     { path: 'politicas/pago', component: PoliticasPagoProfesorComponent },
+    { path: '**', component: NotFoundComponent },
   ] },
 ];
 

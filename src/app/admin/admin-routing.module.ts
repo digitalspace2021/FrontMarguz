@@ -45,10 +45,6 @@ const routes: Routes = [
         component : EditarHorarioComponent
       },
       {
-        path: 'editar-clase',
-        component : EditarClaseComponent
-      },
-      {
         path: '**',
         redirectTo : "admin-usuario"
         

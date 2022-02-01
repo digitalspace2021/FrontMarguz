@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { PublicService } from '../../services/public.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class BuscadorComponent implements OnInit {
   profesores: any;
   idiomas: any;
 
-  constructor(private publicService: PublicService, public sanitizer:DomSanitizer) {}
+  constructor(private publicService: PublicService, public sanitizer:DomSanitizer, private router: Router) {}
 
   ngOnInit(): void {
     /*     this.publicService.getIdiomas().subscribe((data: any) => {
@@ -35,6 +36,7 @@ export class BuscadorComponent implements OnInit {
     ];
     this.profesores = [
       {
+        id: 1,
         nombre: 'Alejandra Gonzalez',
         pais: 'Colombia',
         valor: 50000,
@@ -46,6 +48,7 @@ export class BuscadorComponent implements OnInit {
           ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
       },
       {
+        id: 2,
         nombre: 'Fabiola León',
         pais: 'Colombia',
         valor: 20000,
@@ -57,6 +60,7 @@ export class BuscadorComponent implements OnInit {
           ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
       },
       {
+        id: 3,
         nombre: 'Daniela Rodriguez',
         pais: 'Colombia',
         valor: 70000,
@@ -68,5 +72,8 @@ export class BuscadorComponent implements OnInit {
           ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
       },
     ];
+  }
+  abrirPerfil(id: number){
+    this.router.navigate([`perfil/${id}`])
   }
 }

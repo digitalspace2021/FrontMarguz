@@ -22,7 +22,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    //SharedModule,
+    SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,

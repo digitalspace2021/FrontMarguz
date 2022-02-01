@@ -12,9 +12,6 @@ children: [
   },
   {
     path: '', component: CalendarioComponent
-  },
-  {
-    path: 'buscador', component: BuscadorComponent
   }
 ]
 }];

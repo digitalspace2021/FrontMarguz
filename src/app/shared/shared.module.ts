@@ -1,4 +1,4 @@
-import { FooterAppComponent } from './components/footer-app/footer-app.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,26 +23,25 @@ import { IdiomasComponent } from './components/idiomas/idiomas.component';
     ConfirmComponent,
     HeaderComponent,
     HorarioComponent,
-    FooterAppComponent,
     FooterComponent,
-    IdiomasComponent
+    IdiomasComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
-    //PublicModule,
+    FormsModule,
     //SharedRoutingModule
   ],
   exports: [
     LoaderComponent,
     HorarioComponent,
     IdiomasComponent,
+    FooterComponent,
     ErrorComponent,
     ConfirmComponent,
     HeaderComponent,
-    FooterAppComponent,
     FooterComponent,
   ],
 })
