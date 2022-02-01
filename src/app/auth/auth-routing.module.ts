@@ -38,6 +38,11 @@ const routes: Routes = [
         path: 'restaurar',
         component: RestaurarContrasenaComponent,
       },
+      {
+        path: '**',
+        redirectTo : ""
+        
+      }
     ],
   },
 ];
