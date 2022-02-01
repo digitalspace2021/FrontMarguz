@@ -1,16 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-a {
-  text-decoration: none;
+html {
+  font-size: 14px;
 }
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
 .app {
   background-color: #edf4f4;
-  height: 100vh;
 }
 
 .appBox {
   overflow-y: hidden;
   min-height: 100vh;
 }
+
 .containerBox {
   margin-bottom: 100px !important;
   overflow-y: hidden;
@@ -31,7 +47,6 @@ a {
     height: 60px;
   }
 }
-
 .errorTag {
   font-size: 0.8em;
   color: red;
@@ -39,4 +54,16 @@ a {
   width: 100%;
   margin-bottom: 18px;
   text-align: right;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px;
+}
+.fab {
+  color: red;
+  font-size: 18px;
+  margin-left: 10px;
 }
