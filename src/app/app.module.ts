@@ -27,7 +27,9 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    AppRoutingModule,AngularFileUploaderModule
+    AppRoutingModule,
+    AngularFileUploaderModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

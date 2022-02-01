@@ -1,14 +1,3 @@
-a {
-  margin-left: 5px;
-}
-
-.txt-copy {
-  font-size: 12px;
-  font-weight: 100;
-  text-decoration: none;
-  color: rgb(121, 116, 116);
-}
-
 .footer {
   bottom: 0;
   width: 100%;
@@ -16,17 +5,9 @@ a {
   height: 100%;
   display: flex;
   align-items: center;
+  background-color: #ffffff;
+  padding: 10px;
 }
-
-
-.footerx {
-  background-color: #FFFFFF; 
-  padding: 20px;
-  padding-left: 37px;
-  position: relative;
-  z-index: 999;
-}
-
 
 .fab {
   color: red;
