@@ -12,6 +12,11 @@ children: [
   },
   {
     path: '', component: CalendarioComponent
+  },
+  {
+    path: '**',
+    redirectTo : ""
+    
   }
 ]
 }];
