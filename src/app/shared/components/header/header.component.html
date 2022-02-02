@@ -32,7 +32,7 @@
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item item">
         <small>{{ usuario }}</small>
-        <img class="avatar" [src]="foto" alt="avatar" />
+        <img class="avatar" [src]="fotoLink" alt="avatar" />
         <div class="dropdown">
           <button class="dropbtn btn-light btn-sm">
             <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
@@ -70,7 +70,7 @@
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item item">
         <small>{{ usuario }}</small>
-        <img class="avatar" [src]="foto" alt="avatar" />
+        <img class="avatar" [src]="fotoLink" alt="avatar" />
         <div class="dropdown">
           <button class="dropbtn btn-light btn-sm">
             <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
@@ -92,7 +92,7 @@
         (click)="menuActive(1)"
         style="margin-right: 10px"
       >
-        <a class="nav-link" href="buscador">Buscar un tutor</a>
+        <a class="nav-link" href="/">Buscar un tutor</a>
       </li>
       <li
         class="nav-item"
@@ -116,7 +116,7 @@
         <small>{{ usuario }}</small>
         <img
           class="avatar"
-          src="../../../../assets/avatar-icon.jpg"
+          [src]="fotoLink"
           alt="avatar"
         />
         <div class="dropdown">

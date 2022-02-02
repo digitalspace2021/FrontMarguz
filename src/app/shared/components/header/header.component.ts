@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   dataUsuario?: any;
 
   usuario?: string;
-  foto?: string;
+  fotoLink?: string;
 
   constructor(
     private authService: AuthService,
@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
       this.dataUsuario = JSON.parse(this.dataUsuario);
 
       this.usuario = this.dataUsuario.nombre + ' ' + this.dataUsuario.apellido;
-      this.foto = this.dataUsuario.foto_perfil;
+      this.fotoLink = this.dataUsuario.fotoLink_perfil? this.dataUsuario.fotoLink_perfil : "assets/avatar-icon.jpg";
       let tipoUsuario = this.authService.getTipoUsuario();
       switch (tipoUsuario) {
         case '0':

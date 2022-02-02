@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   faPlusCircle,
   faMinusCircle,
@@ -12,6 +12,7 @@ import {
 })
 export class DetalleDePagoComponent implements OnInit {
   saveIcon = faSave;
+  @Input() tipoUsuario: string = "0";
   @Output() closePago = new EventEmitter<string>();
   detallesDePago: any;
   constructor() {}

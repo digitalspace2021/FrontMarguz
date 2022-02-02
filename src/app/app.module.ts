@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import localeEs from '@angular/common/locales/es-CO';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es-CO');
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,9 +30,10 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     ReactiveFormsModule,
     FontAwesomeModule,
     FormsModule,
-    AppRoutingModule,AngularFileUploaderModule, //BrowserAnimationsModule
+    AppRoutingModule,
+    AngularFileUploaderModule, //BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {

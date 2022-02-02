@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-detalle-de-clase',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detalle-de-clase.component.scss']
 })
 export class DetalleDeClaseComponent implements OnInit {
+  @Input() tipoUsuario: string = "0";
 
   constructor() { }
 

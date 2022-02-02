@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { DatePipe } from '@angular/common';
 import { SharedComponent } from './shared.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -40,6 +40,9 @@ import { EditarClaseComponent } from './components/editar-clase/editar-clase.com
     ReactiveFormsModule,
     FormsModule,
     //SharedRoutingModule
+  ],
+  providers: [
+    DatePipe
   ],
   exports: [
     LoaderComponent,

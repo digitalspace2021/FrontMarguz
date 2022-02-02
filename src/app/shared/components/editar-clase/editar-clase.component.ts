@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-editar-clase',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editar-clase.component.scss']
 })
 export class EditarClaseComponent implements OnInit {
+  @Input() tipoUsuario: string = "0";
 
   constructor() { }
 
