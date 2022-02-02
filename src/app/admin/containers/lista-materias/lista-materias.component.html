@@ -47,7 +47,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let mat of materias | paginate: { itemsPerPage: 10, currentPage: page }">
+              <tr
+                *ngFor="
+                  let mat of materias
+                    | paginate: { itemsPerPage: 10, currentPage: page }
+                "
+              >
                 <td>
                   <input
                     type="radio"
@@ -62,10 +67,10 @@
           </table>
         </div>
         <pagination-controls
-        (pageChange)="page = $event"
-        previousLabel="Anterior"
-        nextLabel="Proximo"
-      ></pagination-controls>
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Proximo"
+        ></pagination-controls>
       </div>
     </div>
   </div>
