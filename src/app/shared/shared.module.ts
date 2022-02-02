@@ -15,6 +15,10 @@ import { PublicModule } from '../public/public.module';
 import { HorarioComponent } from './components/horario/horario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IdiomasComponent } from './components/idiomas/idiomas.component';
+import { DetalleDePagoComponent } from './components/detalle-de-pago/detalle-de-pago.component';
+import { DetalleDeClaseComponent } from './components/detalle-de-clase/detalle-de-clase.component';
+import { CronogramaComponent } from './components/cronograma/cronograma.component';
+import { EditarClaseComponent } from './components/editar-clase/editar-clase.component';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -25,7 +29,10 @@ import { IdiomasComponent } from './components/idiomas/idiomas.component';
     HorarioComponent,
     FooterComponent,
     IdiomasComponent,
-    FooterComponent
+    FooterComponent,
+    DetalleDePagoComponent,
+    DetalleDeClaseComponent,
+    CronogramaComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +50,9 @@ import { IdiomasComponent } from './components/idiomas/idiomas.component';
     ConfirmComponent,
     HeaderComponent,
     FooterComponent,
+    DetalleDePagoComponent,
+    DetalleDeClaseComponent,
+    CronogramaComponent,
   ],
 })
 export class SharedModule {}
