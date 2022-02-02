@@ -8,10 +8,18 @@
     </h1>
   </div>
   <div class="col-md-6" style="text-align: right !important">
-    <button class="btn btn-light" style="margin-right: 15px">
+    <button
+      class="btn btn-light"
+      style="margin-right: 15px"
+      (click)="habilitar()"
+    >
       <fa-icon style="font-size: 14px; color: green" [icon]="user"></fa-icon>
     </button>
-    <button class="btn btn-light" style="margin-right: 15px">
+    <button
+      class="btn btn-light"
+      (click)="deshabilitar()"
+      style="margin-right: 15px"
+    >
       <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
     </button>
     <button
@@ -21,10 +29,10 @@
     >
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
     </button>
-    <button class="btn btn-light" style="margin-right: 15px">
+    <button class="btn btn-light" style="margin-right: 15px" (click)="editar()">
       <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
     </button>
-    <button class="btn btn-danger">
+    <button class="btn btn-danger" (click)="eliminar()">
       <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
     </button>
   </div>
@@ -139,8 +147,12 @@
   </div>
 </div>
 
-
-<app-registro-modal [tipoUsuario]="tipoUsuario"  (completarRegistro)="registrar($event)" (closeModal)="isRegistro=false;" *ngIf="isRegistro"></app-registro-modal>
+<app-registro-modal
+  [tipoUsuario]="tipoUsuario"
+  (completarRegistro)="registrar($event)"
+  (closeModal)="isRegistro = false"
+  *ngIf="isRegistro"
+></app-registro-modal>
 
 <app-error
   [msg]="errorMessage"
@@ -153,5 +165,12 @@
   [msg]="registroExitosoMessage"
   buttonMsg="Aceptar"
   *ngIf="isRegistroExitoso"
+  (closeConfirm)="closeConfirmRegistro()"
+></app-confirm>
+<app-confirm
+  [title]="titleConfirm"
+  [msg]="confirmMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isConfirm"
   (closeConfirm)="closeConfirm()"
 ></app-confirm>

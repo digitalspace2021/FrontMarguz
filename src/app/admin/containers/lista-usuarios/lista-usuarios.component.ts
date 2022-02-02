@@ -35,9 +35,8 @@ export class ListaUsuariosComponent implements OnInit {
   tipo: string = '0';
   action: boolean = false;
 
-
   page?: number;
-  
+
   constructor(
     private usuarioSv: UsuarioService,
     private authService: AuthService
@@ -47,6 +46,32 @@ export class ListaUsuariosComponent implements OnInit {
     this.listUsuario();
   }
 
+  habilitar() {
+    this.openConfirm("Habilitar usuario", "Usuario habilitado exitosamente");
+  }
+  deshabilitar() {
+    this.openConfirm("Deshabilitar usuario", "Usuario deshabilitado exitosamente");
+
+  }
+  eliminar() {
+    this.openConfirm("Eliminar usuario", "Usuario eliminado exitosamente");
+
+  }
+  editar() {
+    
+  }
+  isConfirm: boolean = false;
+  confirmMessage: string = '';
+  titleConfirm: string = '';
+
+  openConfirm(title: string, message: string) {
+    this.titleConfirm = title;
+    this.confirmMessage = message;
+    this.isConfirm = true;
+  }
+  closeConfirm() {
+    this.isConfirm = false;
+  }
   listUsuario() {
     this.usuarioSv
       .listUsuario()
@@ -76,7 +101,7 @@ export class ListaUsuariosComponent implements OnInit {
         .registrar(usuario)
         .then((resp: any) => {
           if (resp.code == 200) {
-            this.openConfirm();
+            this.openConfirmRegistro();
           } else {
             this.openError(resp.message);
           }
@@ -90,22 +115,22 @@ export class ListaUsuariosComponent implements OnInit {
   isRegistroExitoso: boolean = false;
   registroExitosoMessage: string = 'Ha registrado correctamente al usuario.';
 
-  openConfirm() {
+  openConfirmRegistro() {
     this.isRegistroExitoso = true;
   }
-  closeConfirm(){
+  closeConfirmRegistro() {
     this.isRegistroExitoso = false;
   }
   isError: boolean = false;
   openRegistro() {
     this.isRegistro = true;
   }
-  closeRegistro(){
+  closeRegistro() {
     this.isRegistro = false;
   }
   isRegistro: boolean = false;
 
-  errorMessage: string = "";
+  errorMessage: string = '';
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;

@@ -88,6 +88,10 @@ export class BuscadorComponent implements OnInit {
     this.router.navigate([`perfil/${id}`]);
   }
 
+  restablecerFiltros(){
+    this.profesoresList = this.profesores;
+  }
+
   filtrarResultados() {
     this.profesoresList = this.profesores.filter((profesor: any) => {
       if (

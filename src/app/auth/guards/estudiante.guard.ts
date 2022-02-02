@@ -14,7 +14,7 @@ export class EstudianteGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 /*     if ((this.auth.getTipoUsuario() != "2")) {
-      this.router.navigate(["/not-found"]);
+      this.router.navigate(["/"]);
       return false;
     } */
     return true;
