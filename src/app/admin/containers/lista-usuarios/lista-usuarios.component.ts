@@ -27,7 +27,6 @@ export class ListaUsuariosComponent implements OnInit {
   trash = faTrashAlt;
 
   tipoUsuario: number = 2;
-
   usuarios: IDataUsuario[] = [];
   usuariosSearch: IDataUsuario[] = [];
 
@@ -47,19 +46,18 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   habilitar() {
-    this.openConfirm("Habilitar usuario", "Usuario habilitado exitosamente");
+    this.openConfirm('Habilitar usuario', 'Usuario habilitado exitosamente');
   }
   deshabilitar() {
-    this.openConfirm("Deshabilitar usuario", "Usuario deshabilitado exitosamente");
-
+    this.openConfirm(
+      'Deshabilitar usuario',
+      'Usuario deshabilitado exitosamente'
+    );
   }
   eliminar() {
-    this.openConfirm("Eliminar usuario", "Usuario eliminado exitosamente");
-
+    this.openConfirm('Eliminar usuario', 'Usuario eliminado exitosamente');
   }
-  editar() {
-    
-  }
+  editar() {}
   isConfirm: boolean = false;
   confirmMessage: string = '';
   titleConfirm: string = '';
@@ -77,14 +75,15 @@ export class ListaUsuariosComponent implements OnInit {
       .listUsuario()
       .subscribe(
         (resp) => (
-          (this.usuarios = resp.usuario),
-          (this.usuariosSearch = resp.usuario),
-          this.changeTab(1)
+          (this.usuarios = resp.usuarios),
+          (this.usuariosSearch = resp.usuarios),
+          this.changeTab()
         )
       );
   }
 
-  changeTab(tipo: number) {
+  changeTab(tipo: number = 2) {
+    debugger;
     this.tipoUsuario = tipo;
     this.usuarios = this.usuariosSearch.filter(
       (u) => parseInt(u.tipo_usuario) == tipo
@@ -102,6 +101,7 @@ export class ListaUsuariosComponent implements OnInit {
         .then((resp: any) => {
           if (resp.code == 200) {
             this.openConfirmRegistro();
+            this.listUsuario();
           } else {
             this.openError(resp.message);
           }

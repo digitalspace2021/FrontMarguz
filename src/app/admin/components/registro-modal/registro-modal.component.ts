@@ -13,10 +13,12 @@ export class RegistroModalComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
   registrar(usuario: any) {
     this.completarRegistro.emit(usuario);
   }
-  close(){
-    this.closeModal.emit()
+
+  close() {
+    this.closeModal.emit();
   }
 }

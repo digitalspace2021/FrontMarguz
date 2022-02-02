@@ -67,7 +67,7 @@ export class PerfilComponent implements OnInit {
   getUser() {
     this.usuarioSv
       .getUsuario(24)
-      .subscribe((resp) => this.loadData(resp.usuario));
+      .subscribe((resp) => this.loadData(resp.usuarios));
   }
 
   loadData(data: any) {

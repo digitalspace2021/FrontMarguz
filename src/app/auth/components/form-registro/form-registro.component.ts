@@ -45,6 +45,9 @@ export class FormRegistroComponent implements OnInit {
   icon = faPlusCircle;
   calendar = faCalendar;
   //---------------
+  isHorario: boolean = false;
+  isIdiomas: boolean = false;
+
   registroForm = new FormGroup({
     identificacion: new FormControl('', Validators.required),
     nombre: new FormControl('', Validators.required),
@@ -199,13 +202,13 @@ export class FormRegistroComponent implements OnInit {
         tipo_usuario: this.tipoUsuario,
         foto_perfil: '',
       };
+
       this.registrar.emit(value);
     } catch (e: any) {
       this.openError(e.message);
     }
   }
-  isHorario: boolean = false;
-  isIdiomas: boolean = false;
+
   openHorario() {
     this.isHorario = true;
   }
