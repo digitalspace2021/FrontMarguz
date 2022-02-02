@@ -11,6 +11,7 @@ import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-prof
 import { HeaderPublicComponent } from './components/header-public/header-public.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     SharedModule,
     HttpClientModule,
-
+    FormsModule,
+    ReactiveFormsModule,
     PublicRoutingModule
   ],
   exports:[

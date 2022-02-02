@@ -12,20 +12,18 @@
       <div class="col-12">
         <div class="caja-blanca2 text-center">
           <span><i class="fas fa-comment-alt"></i> Idioma</span>
-          <select class="form-selects">
+          <select class="form-selects" [(ngModel)]="idiomaSelected">
             <option *ngFor="let idioma of idiomas" [value]="idioma">{{idioma}}</option>
           </select>
           <span style="margin-left:30px;"><i class="fas fa-tag"></i> Precio</span>
-          <input class="priceInput" type="text" name="" placeholder="Min" id="">
-          <input class="priceInput" type="text" name="" placeholder="Max" id="">
+          <input class="priceInput" type="text" name="" placeholder="Min" id="" [(ngModel)]="minPrice">
+          <input class="priceInput" type="text" name="" placeholder="Max" id="" [(ngModel)]="maxPrice">
           <span style="margin-left:30px;"> Buscar</span>
           <div class="d-flex">
-            <input class="form-control d-inline me-2" type="search" placeholder="" aria-label="Search">
+            <input class="form-control d-inline me-2" type="search" placeholder="" aria-label="Search"  [(ngModel)]="name">
             <i class="fas fa-search searchs"></i>
           </div>
-          <div>
-            <button></button>
-          </div>
+          <button (click)="filtrarResultados()">Filtrar</button>
         </div>
       </div>
       <br />
@@ -33,7 +31,7 @@
 
     <!-- LISTA DE PROFESORES -->
 
-    <div  *ngFor="let profesor of profesores" class="row">
+    <div  *ngFor="let profesor of profesoresList" class="row">
       <div class="col-12">
         <div class="caja-blanca mt-4">
           <div class="row">

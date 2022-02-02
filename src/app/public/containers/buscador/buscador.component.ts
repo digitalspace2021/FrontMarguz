@@ -10,9 +10,19 @@ import { PublicService } from '../../services/public.service';
 })
 export class BuscadorComponent implements OnInit {
   profesores: any;
+  profesoresList: any;
   idiomas: any;
 
-  constructor(private publicService: PublicService, public sanitizer:DomSanitizer, private router: Router) {}
+  idiomaSelected: string = 'Inglés';
+  minPrice: number = 0;
+  maxPrice: number = 100000;
+  name: string = '';
+
+  constructor(
+    private publicService: PublicService,
+    public sanitizer: DomSanitizer,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     /*     this.publicService.getIdiomas().subscribe((data: any) => {
@@ -72,8 +82,23 @@ export class BuscadorComponent implements OnInit {
           ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
       },
     ];
+    this.profesoresList = [...this.profesores];
   }
-  abrirPerfil(id: number){
-    this.router.navigate([`perfil/${id}`])
+  abrirPerfil(id: number) {
+    this.router.navigate([`perfil/${id}`]);
+  }
+
+  filtrarResultados() {
+    this.profesoresList = this.profesores.filter((profesor: any) => {
+      if (
+        profesor.idiomas.includes(this.idiomaSelected) &&
+        parseInt(profesor.valor) <= this.maxPrice &&
+        parseInt(profesor.valor) >= this.minPrice &&
+        profesor.nombre.includes(this.name)
+      ) {
+        return true;
+      }
+      return false;
+    });
   }
 }
