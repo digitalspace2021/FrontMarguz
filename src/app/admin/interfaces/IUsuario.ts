@@ -2,7 +2,7 @@ export interface IUsuario {
   status: string;
   code: number;
   message: string;
-  usuario: IDataUsuario[];
+  usuarios: IDataUsuario[];
 }
 
 export interface IDataUsuario {
@@ -40,6 +40,6 @@ export interface Pivot {
 }
 
 export interface Ilogin {
-   email : string, 
-   password : string
+  email: string;
+  password: string;
 }

@@ -27,7 +27,6 @@ export class ListaUsuariosComponent implements OnInit {
   trash = faTrashAlt;
 
   tipoUsuario: number = 2;
-
   usuarios: IDataUsuario[] = [];
   usuariosSearch: IDataUsuario[] = [];
 
@@ -35,9 +34,8 @@ export class ListaUsuariosComponent implements OnInit {
   tipo: string = '0';
   action: boolean = false;
 
-
   page?: number;
-  
+
   constructor(
     private usuarioSv: UsuarioService,
     private authService: AuthService
@@ -52,14 +50,15 @@ export class ListaUsuariosComponent implements OnInit {
       .listUsuario()
       .subscribe(
         (resp) => (
-          (this.usuarios = resp.usuario),
-          (this.usuariosSearch = resp.usuario),
-          this.changeTab(1)
+          (this.usuarios = resp.usuarios),
+          (this.usuariosSearch = resp.usuarios),
+          this.changeTab()
         )
       );
   }
 
-  changeTab(tipo: number) {
+  changeTab(tipo: number = 2) {
+    debugger;
     this.tipoUsuario = tipo;
     this.usuarios = this.usuariosSearch.filter(
       (u) => parseInt(u.tipo_usuario) == tipo
@@ -77,6 +76,7 @@ export class ListaUsuariosComponent implements OnInit {
         .then((resp: any) => {
           if (resp.code == 200) {
             this.openConfirm();
+            this.listUsuario();
           } else {
             this.openError(resp.message);
           }
@@ -93,19 +93,19 @@ export class ListaUsuariosComponent implements OnInit {
   openConfirm() {
     this.isRegistroExitoso = true;
   }
-  closeConfirm(){
+  closeConfirm() {
     this.isRegistroExitoso = false;
   }
   isError: boolean = false;
   openRegistro() {
     this.isRegistro = true;
   }
-  closeRegistro(){
+  closeRegistro() {
     this.isRegistro = false;
   }
   isRegistro: boolean = false;
 
-  errorMessage: string = "";
+  errorMessage: string = '';
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;

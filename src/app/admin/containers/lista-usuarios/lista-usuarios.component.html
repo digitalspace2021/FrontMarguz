@@ -120,9 +120,9 @@
                 <td>{{ user.nombre }}</td>
                 <td>{{ user.apellido }}</td>
                 <td>{{ user.telefono }}</td>
-                <td>pais</td>
-                <td>estado</td>
-                <td>ciudad</td>
+                <td>{{ user.pais }}</td>
+                <td>{{ user.estado }}</td>
+                <td>{{ user.ciudad }}</td>
                 <td><a href="javascrip:;">Idiomas</a></td>
                 <td>{{ user.email }}</td>
               </tr>
@@ -130,6 +130,7 @@
           </table>
         </div>
         <pagination-controls
+          class="paginado"
           (pageChange)="page = $event"
           previousLabel="Anterior"
           nextLabel="Proximo"
@@ -139,8 +140,12 @@
   </div>
 </div>
 
-
-<app-registro-modal [tipoUsuario]="tipoUsuario"  (completarRegistro)="registrar($event)" (closeModal)="isRegistro=false;" *ngIf="isRegistro"></app-registro-modal>
+<app-registro-modal
+  [tipoUsuario]="tipoUsuario"
+  (completarRegistro)="registrar($event)"
+  (closeModal)="isRegistro = false"
+  *ngIf="isRegistro"
+></app-registro-modal>
 
 <app-error
   [msg]="errorMessage"
