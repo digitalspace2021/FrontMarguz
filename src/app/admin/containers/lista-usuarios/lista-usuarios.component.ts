@@ -95,7 +95,7 @@ export class ListaUsuariosComponent implements OnInit {
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
   }
   async registrar(usuario: any) {
-    try {
+    /* try {
       this.authService
         .registrar(usuario)
         .then((resp: any) => {
@@ -110,7 +110,7 @@ export class ListaUsuariosComponent implements OnInit {
         .catch((e) => this.openError(e.message));
     } catch (e: any) {
       this.openError(e.message);
-    }
+    }*/
   }
   isRegistroExitoso: boolean = false;
   registroExitosoMessage: string = 'Ha registrado correctamente al usuario.';

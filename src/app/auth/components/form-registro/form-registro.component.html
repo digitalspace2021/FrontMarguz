@@ -56,38 +56,35 @@
   <div class="formInput">
     <label for="pais" class="col-form-label">Pais</label>
     <select
-      [ngModelOptions]="{ standalone: true }"
-      [(ngModel)]="countrySelected"
       class="form-control"
+      formControlName="pais"
       (change)="changeStates()"
     >
-      <option *ngFor="let country of countries" [value]="country.country_name">
-        {{ country.country_name }}
+      <option value="0" selected>Seleccionar Pais</option>
+      <option [value]="item.country_name" *ngFor="let item of countries">
+        {{ item.country_name }}
       </option>
     </select>
   </div>
   <div class="formInput">
     <label for="estado" class="col-form-label">Estado</label>
     <select
-      [ngModelOptions]="{ standalone: true }"
-      [(ngModel)]="stateSelected"
       class="form-control"
+      formControlName="estado"
       (change)="changeCities()"
     >
-      <option *ngFor="let state of states" [value]="state.state_name">
-        {{ state.state_name }}
+      <option value="0" selected>Seleccionar estado</option>
+      <option [value]="item.state_name" *ngFor="let item of states">
+        {{ item.state_name }}
       </option>
     </select>
   </div>
   <div class="formInput">
     <label for="ciudad" class="col-form-label">Ciudad</label>
-    <select
-      [(ngModel)]="citySelected"
-      [ngModelOptions]="{ standalone: true }"
-      class="form-control"
-    >
-      <option *ngFor="let city of cities" [value]="city.city_name">
-        {{ city.city_name }}
+    <select class="form-control" formControlName="ciudad">
+      <option value="0" selected>Seleccionar ciudad</option>
+      <option [value]="item.city_name" *ngFor="let item of cities">
+        {{ item.city_name }}
       </option>
     </select>
   </div>
@@ -104,8 +101,9 @@
       Por favor ingrese su correo
     </div>
   </div>
+
   <div class="formInput">
-    <label for="email" class="col-form-label">Contraseña</label>
+    <label class="col-form-label">Contraseña</label>
     <input type="password" formControlName="contrasena" class="form-control" />
     <div
       class="errorTag"
@@ -117,6 +115,25 @@
       Por favor ingrese una contraseña
     </div>
   </div>
+
+  <div class="formInput">
+    <label class="col-form-label">Confirmar Contraseña</label>
+    <input
+      type="password"
+      formControlName="contrasenaConfim"
+      class="form-control"
+    />
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.contrasenaConfim.errors?.required &&
+        (fRegistro.contrasenaConfim.touched || fRegistro.contrasenaConfim.dirty)
+      "
+    >
+      Por favor confirme su contraseña
+    </div>
+  </div>
+
   <div class="fileBoxes">
     <div *ngIf="isProfesor" class="fileInput">
       <label for="documentacion" class="col-form-label"

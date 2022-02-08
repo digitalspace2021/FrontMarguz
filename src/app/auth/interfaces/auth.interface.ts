@@ -1,20 +1,22 @@
-export interface Login {
-  email?: string;
-  contrasena?: string;
+export interface ILogin {
+  status: string;
+  code: number;
+  messages: string;
+  result: result;
 }
 
-export interface DataUsuario {
-  id?: number;
-  nombre: string;
-  apellido: string;
-  telefono: string;
-  pais: string;
-  estado: string;
-  ciudad: string;
+export interface result {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  user: user;
+}
+
+export interface user {
+  name: string;
   email: string;
-  contrasena: string;
-  foto_perfil?: string;
-  tipo_usuario: number;
-  created_at?: Date;
-  updated_at?: Date;
+  status: number;
+  role: string;
+  permission: string[];
+  acount: null;
 }

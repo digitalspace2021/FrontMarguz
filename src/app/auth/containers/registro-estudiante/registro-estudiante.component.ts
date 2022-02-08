@@ -30,7 +30,8 @@ export class RegistroEstudianteComponent implements OnInit {
   stateSelected: string = '';
   citySelected: string = '';
   isRegistroExitoso: boolean = false;
-  registroExitosoMessage: string = 'Su cuenta ha sido registrada exitosamente, por favor revise su bandeja de entrada para validar su correo electrónico.';
+  registroExitosoMessage: string =
+    'Su cuenta ha sido registrada exitosamente, por favor revise su bandeja de entrada para validar su correo electrónico.';
   isError: boolean = false;
   errorMessage: string = '';
 
@@ -67,7 +68,6 @@ export class RegistroEstudianteComponent implements OnInit {
       })
       .catch((err) => console.error(err));
   }
-
 
   login() {
     this.isRegistroExitoso = false;
@@ -107,7 +107,8 @@ export class RegistroEstudianteComponent implements OnInit {
         throw new Error(
           'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
         );
-/*       let usuario = {
+
+      let usuario = {
         nombre: this.registroForm.get('nombre')?.value,
         apellido: this.registroForm.get('apellido')?.value,
         telefono: this.registroForm.get('telefono')?.value,
@@ -117,20 +118,21 @@ export class RegistroEstudianteComponent implements OnInit {
         email: this.registroForm.get('email')?.value,
         contrasena: this.registroForm.get('contrasena')?.value,
         tipo_usuario: 2,
-        foto_perfil: ""
-      }; */
+        foto_perfil: '',
+      };
 
-      this.authService.registrar(usuario).then((resp: any) => {
+      /*  this.authService.registrar(usuario).then((resp: any) => {
         if (resp.code == 200) {
           this.openConfirm();
         } else {
           this.openError(resp.message);
         }
-      }).catch((e) => this.openError(e.message));
+      }).catch((e) => this.openError(e.message));*/
     } catch (e: any) {
       this.openError(e.message);
     }
   }
+
   openConfirm() {
     this.isRegistroExitoso = true;
   }
