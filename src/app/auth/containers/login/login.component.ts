@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Login } from '../../interfaces/auth.interface';
+import { ILogin } from '../../interfaces/auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +13,11 @@ import { Login } from '../../interfaces/auth.interface';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginData: Login = {};
-
   loginForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+
   isInicioExitoso: boolean = false;
   inicioExitosoMessage: string = 'Ha iniciado sesión exitosamente';
   isError: boolean = false;
@@ -27,6 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
+
   async dashboard() {
     let tipoUsuario = parseInt(this.authService.getTipoUsuario());
     if (tipoUsuario == 0) {
@@ -37,21 +37,28 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['estudiantes']);
     }
   }
-  async login() {
+  /**
+   * @return null
+   * ******************************
+   */
+
+  login() {
     try {
       if (!this.validate())
         throw new Error(
           'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
         );
 
-      this.loginData.email = this.loginForm.get('email')?.value;
-      this.loginData.contrasena = this.loginForm.get('password')?.value;
+      let login = {
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+      };
 
       this.authService
-        .login(this.loginData)
+        .login(login)
         .then((resp: any) => {
           if (resp.code == 200) {
-            localStorage.setItem('user', JSON.stringify(resp.usuario));
+            localStorage.setItem('user', JSON.stringify(resp.result));
             this.openConfirm();
           } else {
             this.openError(resp.message);

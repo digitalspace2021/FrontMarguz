@@ -53,23 +53,36 @@ export class FormRegistroComponent implements OnInit {
     nombre: new FormControl('', Validators.required),
     apellido: new FormControl('', Validators.required),
     telefono: new FormControl('', Validators.required),
+    pais: new FormControl('Colombia', Validators.required),
+    estado: new FormControl('', Validators.required),
+    ciudad: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
     contrasena: new FormControl('', Validators.required),
+    contrasenaConfim: new FormControl('', Validators.required),
+    hojaVida: new FormControl(''),
+    fotoPerfil: new FormControl(''),
+    docuCedula: new FormControl(''),
   });
+
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
   isRegistroExitoso: boolean = false;
   registroExitosoMessage: string =
-    'Su cuenta ha sido registrada exitosamente, por favor revise su bandeja de entrada para validar su correo electrónico.';
+    'Su cuenta ha sido registrada exitosamente, por favor revise su ' +
+    'bandeja de entrada para validar su correo electrónico.';
   isError: boolean = false;
   errorMessage: string = '';
+
   @ViewChild('documentacionUpload')
   private documentacionUpload?: AngularFileUploaderComponent;
+
   @ViewChild('cedulaUpload')
   private cedulaUpload?: AngularFileUploaderComponent;
+
   @ViewChild('perfilUpload')
   private perfilUpload?: AngularFileUploaderComponent;
+
   documentacionConfig = {
     uploadAPI: {
       url: 'https://example-file-upload-api',
@@ -80,6 +93,7 @@ export class FormRegistroComponent implements OnInit {
       sizeLimit: 'Size Limit',
     },
   };
+
   cedulaConfig = {
     uploadAPI: {
       url: 'https://example-file-upload-api',
@@ -90,6 +104,7 @@ export class FormRegistroComponent implements OnInit {
       sizeLimit: 'Size Limit',
     },
   };
+
   perfilConfig = {
     uploadAPI: {
       url: 'https://example-file-upload-api',
@@ -111,30 +126,37 @@ export class FormRegistroComponent implements OnInit {
     } else {
       this.isAdmin = true;
     }
+    this.changerCountrys();
+  }
+
+  resetDocumentacion() {
+    if (this.documentacionUpload) this.documentacionUpload.resetFileUpload();
+  }
+
+  resetCedula() {
+    if (this.cedulaUpload) this.cedulaUpload.resetFileUpload();
+  }
+
+  resetPerfil() {
+    if (this.perfilUpload) this.perfilUpload.resetFileUpload();
+  }
+
+  changerCountrys() {
     this.authService
       .getCountries()
       .then((data) => {
         this.countries = data;
-        this.countrySelected = 'Colombia';
         this.changeStates();
       })
       .catch((err) => console.error(err));
   }
-  resetDocumentacion() {
-    if (this.documentacionUpload) this.documentacionUpload.resetFileUpload();
-  }
-  resetCedula() {
-    if (this.cedulaUpload) this.cedulaUpload.resetFileUpload();
-  }
-  resetPerfil() {
-    if (this.perfilUpload) this.perfilUpload.resetFileUpload();
-  }
+
   changeStates() {
     this.authService
-      .getStates(this.countrySelected)
+      .getStates(this.registroForm.get('pais')?.value)
       .then((data) => {
         this.states = data;
-        this.stateSelected = this.states[0].state_name;
+        this.registroForm.get('estado')?.setValue(this.states[0].state_name);
         this.changeCities();
       })
       .catch((err) => console.error(err));
@@ -142,10 +164,10 @@ export class FormRegistroComponent implements OnInit {
 
   changeCities() {
     this.authService
-      .getCities(this.stateSelected)
+      .getCities(this.registroForm.get('estado')?.value)
       .then((data) => {
         this.cities = data;
-        this.citySelected = this.cities[0].city_name;
+        this.registroForm.get('ciudad')?.setValue(this.cities[0].city_name);
       })
       .catch((err) => console.error(err));
   }
@@ -190,17 +212,13 @@ export class FormRegistroComponent implements OnInit {
         throw new Error(
           'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
         );
+
+      console.log(this.perfilUpload);
+
       let value = {
-        nombre: this.registroForm.get('nombre')?.value,
-        apellido: this.registroForm.get('apellido')?.value,
-        telefono: this.registroForm.get('telefono')?.value,
-        pais: this.countrySelected,
-        estado: this.stateSelected,
-        ciudad: this.citySelected,
-        email: this.registroForm.get('email')?.value,
-        contrasena: this.registroForm.get('contrasena')?.value,
-        tipo_usuario: this.tipoUsuario,
-        foto_perfil: '',
+        form: this.registroForm,
+        horarios: this.horarios,
+        idiomas: this.idiomas,
       };
 
       this.registrar.emit(value);

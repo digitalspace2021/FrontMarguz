@@ -11,10 +11,6 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./registro-profesor.component.scss'],
 })
 export class RegistroProfesorComponent implements OnInit {
-  countries: any;
-  states: any;
-  cities: any;
-
   //-------------icon
   icon = faPlusCircle;
   horarios = [
@@ -24,74 +20,27 @@ export class RegistroProfesorComponent implements OnInit {
       cierre: '2:00pm',
     },
   ];
+
   calendar = faCalendar;
   user = faUserPlus;
   //----------------------------
-
   isRegistroExitoso: boolean = false;
   registroExitosoMessage: string =
-    'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada, para empezar por favor revise su bandeja de entrada para validar su correo electrónico.';
-
-  registroForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
-    nombre: new FormControl('', Validators.required),
-    apellido: new FormControl('', Validators.required),
-    telefono: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    contrasena: new FormControl('', Validators.required),
-    intereses: new FormControl(''),
-  });
-
-  countrySelected: string = '';
-  stateSelected: string = '';
-  citySelected: string = '';
+    'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada, ' +
+    'para empezar por favor revise su bandeja de entrada para validar su correo electrónico.';
   isError: boolean = false;
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-  async agregarHorario() {
-    this.openHorario();
-  }
-  async agregarIdiomas() {}
 
-  ngOnInit() {
-    this.authService
-      .getCountries()
-      .then((data) => {
-        this.countries = data;
-        this.countrySelected = 'Colombia';
-        this.changeStates();
-      })
-      .catch((err) => console.error(err));
-  }
-
-  changeStates() {
-    this.authService
-      .getStates(this.countrySelected)
-      .then((data) => {
-        this.states = data;
-        this.stateSelected = this.states[0].state_name;
-        this.changeCities();
-      })
-      .catch((err) => console.error(err));
-  }
-
-  changeCities() {
-    this.authService
-      .getCities(this.stateSelected)
-      .then((data) => {
-        this.cities = data;
-        this.citySelected = this.cities[0].city_name;
-      })
-      .catch((err) => console.error(err));
-  }
+  ngOnInit() {}
 
   login() {
     this.isRegistroExitoso = false;
     this.router.navigate(['/auth/login']);
   }
 
-  validate() {
+  /*validate() {
     if (this.fRegistro.nombre.errors && this.fRegistro.nombre.errors.required)
       return false;
     if (
@@ -112,39 +61,52 @@ export class RegistroProfesorComponent implements OnInit {
     )
       return false;
     return true;
-  }
+  }*/
 
-  get fRegistro() {
-    return this.registroForm.controls;
-  }
-
-  async registrar(usuario: any) {
+  registrar(value: any) {
     try {
+      let registroForm = new FormGroup(value.form);
 
-/*       let usuario = {
-        nombre: this.registroForm.get('nombre')?.value,
-        apellido: this.registroForm.get('apellido')?.value,
-        telefono: this.registroForm.get('telefono')?.value,
-        pais: this.countrySelected,
-        estado: this.stateSelected,
-        ciudad: this.citySelected,
-        email: this.registroForm.get('email')?.value,
-        contrasena: this.registroForm.get('contrasena')?.value,
-        tipo_usuario: 1,
-        foto_perfil: ""
-      }; */
+      let formData = new FormData();
 
-      this.authService.registrar(usuario).then((resp: any) => {
-        if (resp.code == 200) {
-          this.openConfirm();
-        } else {
-          this.openError(resp.message);
-        }
-      }).catch((e) => this.openError(e.message));
+      formData.append('name', registroForm.get('nombre')?.value);
+      formData.append('lastname', registroForm.get('apellido')?.value);
+      formData.append('email', registroForm.get('email')?.value);
+      formData.append('password', registroForm.get('contrasena')?.value);
+      formData.append(
+        'password_confirmation',
+        registroForm.get('contrasenaConfim')?.value
+      );
+      formData.append(
+        'identification',
+        registroForm.get('identificacion')?.value
+      );
+      formData.append('cellphone', registroForm.get('telefono')?.value);
+      formData.append('country', registroForm.get('pais')?.value);
+      formData.append('state', registroForm.get('estado')?.value);
+      formData.append('city', registroForm.get('ciudad')?.value);
+      formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
+      formData.append(
+        'pdf_identification',
+        registroForm.get('docuCedula')?.value
+      );
+      formData.append('pdf_documentation', registroForm.get('hojaVida')?.value);
+
+      this.authService
+        .registrarTeacher(formData)
+        .then((resp: any) => {
+          if (resp.code == 200) {
+            this.openConfirm();
+          } else {
+            this.openError(resp.message);
+          }
+        })
+        .catch((e) => this.openError(e.message));
     } catch (e: any) {
       this.openError(e.message);
     }
   }
+
   openConfirm() {
     this.isRegistroExitoso = true;
   }

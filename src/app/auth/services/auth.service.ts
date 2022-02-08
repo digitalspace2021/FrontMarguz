@@ -1,46 +1,57 @@
-import { IDataUsuario, IUsuario } from '../../admin/interfaces/IUsuario';
+import { ILogin } from './../interfaces/auth.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DataUsuario, Login } from '../interfaces/auth.interface';
+import { environment } from 'src/environments/environment';
+
+const env = environment.host;
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  address: string = `https://marguz.co/marguzapi/public`;
+  address = env + 'auth/';
 
   constructor(private http: HttpClient) {}
 
-  async registrar(usuario: DataUsuario) {
-    let endpoint = `${this.address}/usuarios`;
-
+  registrarTeacher(formData: FormData) {
+    let endPoint = this.address + 'register/teacher';
     return new Promise((resolve, reject) => {
-      this.http
-        .post<DataUsuario>(endpoint, { json: JSON.stringify(usuario) }, {})
-        .subscribe(
-          (data: any) => {
-            resolve(data);
-          },
-          (error: any) => {
-            reject(new Error(error.message));
-          }
-        );
+      this.http.post<any>(endPoint, formData).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
     });
   }
 
-  async login(login: Login) {
-    let endpoint = `${this.address}/login`;
+  registrarStudent(formData: FormData) {
+    let endPoint = this.address + 'register/student';
     return new Promise((resolve, reject) => {
-      this.http
-        .post<IUsuario>(endpoint, { json: JSON.stringify(login) }, {})
-        .subscribe(
-          (data: any) => {
-            resolve(data);
-          },
-          (error: any) => {
-            reject(new Error(error.message));
-          }
-        );
+      this.http.post<any>(endPoint, formData).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
+    });
+  }
+
+  login(login: any) {
+    let endPoint = this.address + 'login';
+    return new Promise((resolve, reject) => {
+      this.http.post<ILogin>(endPoint, login).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
     });
   }
 

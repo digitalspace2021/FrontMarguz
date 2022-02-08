@@ -65,6 +65,7 @@ label {
         margin: 0 0 0 10px;
       }
     }
+
     .bodyBox {
       display: flex;
       flex-direction: column;
@@ -116,13 +117,13 @@ label {
           flex-wrap: wrap;
           align-items: center;
           label {
-            width: calc( 25% - 10px);
+            width: calc(25% - 10px);
             text-align: right;
           }
           input {
             margin-left: 10px;
             border-radius: 10px;
-//            width: calc(100% - 130px);
+            //            width: calc(100% - 130px);
             width: 75%;
           }
           select {

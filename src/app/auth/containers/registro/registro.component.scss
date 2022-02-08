@@ -1,169 +1,168 @@
 .mb-4 {
-    margin-bottom: -0.5rem !important;
-  }
-  
-  .card-encabezado {
-    height: 68px;
-  }
-  
-  .social-btn {
-    height: 40px;
-    border-radius: 5px;
-  }
-  
-  .fa-facebook,
-  .fa-google {
-    margin-right: 30px;
-  }
-  
-  .input-login {
-    border-radius: 30px;
-  }
-  
-  .btn-login {
-    border-radius: 10px;
-  }
-  
-  hr {
-    background-color: black;
-    width: 100%;
-  }
-  
-  .containerBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .contentBox {
-      width: 65%;
-      .headerBox {
-        background-color: #e31b36;
-        color: white;
-        height: 60px;
-        padding: 10px;
+  margin-bottom: -0.5rem !important;
+}
+
+.card-encabezado {
+  height: 68px;
+}
+
+.social-btn {
+  height: 40px;
+  border-radius: 5px;
+}
+
+.fa-facebook,
+.fa-google {
+  margin-right: 30px;
+}
+
+.input-login {
+  border-radius: 30px;
+}
+
+.btn-login {
+  border-radius: 10px;
+}
+
+hr {
+  background-color: black;
+  width: 100%;
+}
+
+.containerBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .contentBox {
+    width: 65%;
+    .headerBox {
+      background-color: #e31b36;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+      p {
+        margin: 0 0 0 10px;
+        font-weight: bold;
+        font-size: 30px;
+      }
+    }
+    .bodyBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+      border-radius: 0 0 10px 10px;
+
+      p {
+        text-align: center;
+        margin: 10px 0;
+      }
+      .buttonsBox {
+        width: 100%;
         display: flex;
-        justify-content: center;
         align-items: center;
-        border-radius: 10px 10px 0 0;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-        p {
-          margin: 0 0 0 10px;
-          font-weight: bold;
-          font-size: 30px;
+        justify-content: space-around;
+        padding: 30px 20px 20px 20px;
+        button {
+          border-radius: 5px;
+          border: 1px solid #e31b36;
+          background-color: #e31b36;
+          padding: 10px;
+          a {
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+          }
+          &:hover {
+            background-color: white;
+            a {
+              color: #e31b36;
+            }
+          }
         }
       }
-      .bodyBox {
+      .divider {
+        border: #a195a1 solid;
+        border-width: 1px 0 0 0;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+        .circleBox {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 42px;
+          width: 42px;
+          border-radius: 100px;
+          background-color: #a195a1;
+          margin: -24px 0 0 0;
+          .innerCircleBox {
+            height: 15px;
+            width: 15px;
+            border-radius: 100px;
+            border: white solid 2px;
+          }
+        }
+      }
+      .formBox {
+        padding: 20px;
+        width: 50%;
+        form {
+          width: 100%;
+          .formInput {
+            input {
+              border-radius: 10px;
+            }
+            margin: 15px;
+          }
+          .formCheckbox {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            input {
+              margin: 0 5px 0 0;
+              border-radius: 0;
+            }
+          }
+          .formButton {
+            margin: 15px;
+            display: flex;
+            justify-content: center;
+            button {
+              background-color: #24aa24;
+              color: white;
+              width: 100%;
+              border-radius: 10px;
+              height: 48px;
+              padding: 10px;
+            }
+          }
+        }
+      }
+      .recoverBox {
+        width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 0 0 10px 10px;
-        p{
-            text-align: center;
-            margin: 10px 0;
+        margin: 0 0 30px 0;
+        p {
+          margin: 0;
         }
-        .buttonsBox {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          padding: 30px 20px 20px 20px;
-          button {
-            border-radius: 5px;
-            border: 1px solid #e31b36;
-            background-color: #e31b36;
-            padding: 10px;
-            a {
-              color: white;
-              font-size: 17px;
-              font-weight: 600;
-            }
-            &:hover{
-              background-color: white;
-              a{
-                color: #e31b36;
-        
-              }
-            }
-          }
-        }
-        .divider {
-          border: #a195a1 solid;
-          border-width: 1px 0 0 0;
-          width: 95%;
-          display: flex;
-          justify-content: center;
-          margin: 20px;
-          .circleBox {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 42px;
-            width: 42px;
-            border-radius: 100px;
-            background-color: #a195a1;
-            margin: -24px 0 0 0;
-            .innerCircleBox {
-              height: 15px;
-              width: 15px;
-              border-radius: 100px;
-              border: white solid 2px;
-            }
-          }
-        }
-        .formBox {
-          padding: 20px;
-          width: 50%;
-          form {
-            width: 100%;
-            .formInput {
-              input {
-                border-radius: 10px;
-              }
-              margin: 15px;
-            }
-            .formCheckbox {
-              display: flex;
-              align-items: center;
-              justify-content: flex-start;
-              input {
-                margin: 0 5px 0 0;
-                border-radius: 0;
-              }
-            }
-            .formButton {
-              margin: 15px;
-              display: flex;
-              justify-content: center;
-              button {
-                background-color: #24aa24;
-                color: white;
-                width: 100%;
-                border-radius: 10px;
-                height: 48px;
-                padding: 10px;
-              }
-            }
-          }
-        }
-        .recoverBox {
-          width: 50%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 0 0 30px 0;
-          p {
-            margin: 0;
-          }
-          a {
-            color: #e31b36;
-            cursor: pointer;
-            &:hover {
-              font-weight: bold;
-            }
+        a {
+          color: #e31b36;
+          cursor: pointer;
+          &:hover {
+            font-weight: bold;
           }
         }
       }
     }
   }
-  
+}
