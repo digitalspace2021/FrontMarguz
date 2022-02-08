@@ -84,7 +84,7 @@ export class HeaderComponent implements OnInit {
     this.mnuActive = mnu;
   }
   async logout() {
-    this.authService.logout();
+    await this.authService.logout();
     this.router.navigate(['/auth/']);
   }
 }

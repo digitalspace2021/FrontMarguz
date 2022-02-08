@@ -2,17 +2,19 @@ import { IDataUsuario, IUsuario } from '../../admin/interfaces/IUsuario';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataUsuario, Login } from '../interfaces/auth.interface';
+import { rejects } from 'assert';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  address: string = `https://marguz.co/marguzapi/public`;
+  addressVieja: string = `https://marguz.co/marguzapi/public`;
+  addressTest: string = `http://api.marguz.co/api/v1`;
 
   constructor(private http: HttpClient) {}
 
   async registrar(usuario: DataUsuario) {
-    let endpoint = `${this.address}/usuarios`;
+    let endpoint = `${this.addressTest}/auth/registrar`;
 
     return new Promise((resolve, reject) => {
       this.http
@@ -29,7 +31,7 @@ export class AuthService {
   }
 
   async login(login: Login) {
-    let endpoint = `${this.address}/login`;
+    let endpoint = `${this.addressTest}/auth/login`;
     return new Promise((resolve, reject) => {
       this.http
         .post<IUsuario>(endpoint, { json: JSON.stringify(login) }, {})
@@ -50,7 +52,33 @@ export class AuthService {
   }
 
   async logout() {
-    localStorage.removeItem('user');
+    try {
+      localStorage.removeItem('user');
+      let token = this.getToken();
+      let headers: any;
+      headers = headers.append('Authorization', token);
+      let endpoint = `${this.addressTest}/auth/logout`;
+      return new Promise((resolve, reject) => {
+        this.http.post(endpoint, {}, {}).subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(new Error(error.message));
+          }
+        );
+      });
+    } catch (e: any) {
+      throw new Error(e.message);
+    }
+  }
+
+  getToken() {
+    let token = localStorage.getItem('token');
+    if (token == null) {
+      throw new Error('Token no existente');
+    }
+    return `Bearer ${token}`;
   }
 
   getTipoUsuario() {
