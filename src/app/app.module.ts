@@ -1,6 +1,7 @@
+import { JwtInterceptorInterceptor } from './auth/interceptor/jwt-interceptor.interceptor';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
@@ -33,7 +34,14 @@ registerLocaleData(localeEs, 'es-CO');
     AppRoutingModule,
     AngularFileUploaderModule, //BrowserAnimationsModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-CO' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
