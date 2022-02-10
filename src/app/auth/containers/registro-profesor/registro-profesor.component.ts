@@ -91,7 +91,9 @@ export class RegistroProfesorComponent implements OnInit {
         registroForm.get('docuCedula')?.value
       );
       formData.append('pdf_documentation', registroForm.get('hojaVida')?.value);
-
+      formData.append('schedules_available', value.horarios);
+      formData.append('languajes', value.idiomas);
+      
       this.authService
         .registrarTeacher(formData)
         .then((resp: any) => {

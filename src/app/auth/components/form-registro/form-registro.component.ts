@@ -12,6 +12,7 @@ import {
   faPlusCircle,
   faMinusCircle,
   faUserPlus,
+  faPaperclip,
 } from '@fortawesome/free-solid-svg-icons';
 import { AngularFileUploaderComponent } from 'angular-file-uploader';
 import { AuthService } from '../../services/auth.service';
@@ -43,6 +44,7 @@ export class FormRegistroComponent implements OnInit {
   // -----icon
   user = faUserPlus;
   icon = faPlusCircle;
+  faPaperclip = faPaperclip;
   calendar = faCalendar;
   //---------------
   isHorario: boolean = false;
@@ -63,7 +65,7 @@ export class FormRegistroComponent implements OnInit {
     fotoPerfil: new FormControl(''),
     docuCedula: new FormControl(''),
   });
-
+  filename = ['', '', '']
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
@@ -73,48 +75,6 @@ export class FormRegistroComponent implements OnInit {
     'bandeja de entrada para validar su correo electrónico.';
   isError: boolean = false;
   errorMessage: string = '';
-
-  @ViewChild('documentacionUpload')
-  private documentacionUpload?: AngularFileUploaderComponent;
-
-  @ViewChild('cedulaUpload')
-  private cedulaUpload?: AngularFileUploaderComponent;
-
-  @ViewChild('perfilUpload')
-  private perfilUpload?: AngularFileUploaderComponent;
-
-  documentacionConfig = {
-    uploadAPI: {
-      url: 'https://example-file-upload-api',
-    },
-    theme: 'attachPin',
-    replaceTexts: {
-      attachPinBtn: 'Examinar o arrastrar',
-      sizeLimit: 'Size Limit',
-    },
-  };
-
-  cedulaConfig = {
-    uploadAPI: {
-      url: 'https://example-file-upload-api',
-    },
-    theme: 'attachPin',
-    replaceTexts: {
-      attachPinBtn: 'Examinar o arrastrar',
-      sizeLimit: 'Size Limit',
-    },
-  };
-
-  perfilConfig = {
-    uploadAPI: {
-      url: 'https://example-file-upload-api',
-    },
-    theme: 'attachPin',
-    replaceTexts: {
-      attachPinBtn: 'Examinar o arrastrar',
-      sizeLimit: 'Size Limit',
-    },
-  };
 
   constructor(private authService: AuthService) {}
 
@@ -129,16 +89,47 @@ export class FormRegistroComponent implements OnInit {
     this.changerCountrys();
   }
 
-  resetDocumentacion() {
-    if (this.documentacionUpload) this.documentacionUpload.resetFileUpload();
+  handleFile(event: any, index: number) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      switch (index) {
+        case 0:
+          this.registroForm.get('hojaVida')?.setValue(file);
+          this.filename[0]= file.name;
+
+          break;
+        case 1:
+          this.registroForm.get('fotoPerfil')?.setValue(file);
+          this.filename[1]= file.name;
+
+          break;
+
+        default:
+          this.registroForm.get('docuCedula')?.setValue(file);
+          this.filename[2]= file.name;
+          break;
+      }
+    }
   }
 
-  resetCedula() {
-    if (this.cedulaUpload) this.cedulaUpload.resetFileUpload();
-  }
+  resetFile(id: number) {
+    switch (id) {
+      case 0:
+        this.registroForm.get('hojaVida')?.setValue('');
+        this.filename[0]= "";
 
-  resetPerfil() {
-    if (this.perfilUpload) this.perfilUpload.resetFileUpload();
+        break;
+      case 1:
+        this.registroForm.get('fotoPerfil')?.setValue('');
+        this.filename[1]= "";
+
+        break;
+
+      default:
+        this.registroForm.get('docuCedula')?.setValue('');
+        this.filename[2]= "";
+        break;
+    }
   }
 
   changerCountrys() {
@@ -212,8 +203,6 @@ export class FormRegistroComponent implements OnInit {
         throw new Error(
           'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
         );
-
-      console.log(this.perfilUpload);
 
       let value = {
         form: this.registroForm,

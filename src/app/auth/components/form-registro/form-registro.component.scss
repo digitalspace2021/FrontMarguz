@@ -116,6 +116,13 @@ form {
         align-items: center;
         justify-content: center;
         height: 100px;
+        .fileButton{
+          border: 2px dashed #2f80ed !important;
+          border-radius: 10px !important;
+          color: #2f80ed !important;
+          padding: 6px 12px;
+          background-color: transparent;
+        }
       }
     }
     .resetFile {

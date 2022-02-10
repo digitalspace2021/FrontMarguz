@@ -140,39 +140,81 @@
         >Documentación - Hoja de vida</label
       >
       <div class="inputFile">
-        <angular-file-uploader
+        <input
           #documentacionUpload
-          [config]="documentacionConfig"
+          hidden="true"
+          type="file"
+          onclick="this.value=null"
+          accept=".pdf"
+          (change)="handleFile($event, 0)"
+        />
+        <button
+          *ngIf="filename[0] == ''"
+          mat-flat-button
+          class="fileButton"
+          (click)="documentacionUpload.click()"
         >
-        </angular-file-uploader>
+          Examinar o arrastrar <fa-icon [icon]="faPaperclip"></fa-icon>
+        </button>
+        <span *ngIf="filename[0]">{{ filename[0] }}</span>
       </div>
       <fa-icon
         class="resetFile"
-        (click)="resetDocumentacion()"
+        (click)="resetFile(0)"
         [icon]="minusIcon"
       ></fa-icon>
     </div>
     <div *ngIf="isProfesor" class="fileInput">
       <label for="cedula" class="col-form-label">Adjuntar cédula</label>
       <div class="inputFile">
-        <angular-file-uploader #cedulaUpload [config]="cedulaConfig">
-        </angular-file-uploader>
+        <input
+          #cedulaUpload
+          hidden="true"
+          type="file"
+          accept=".pdf"
+          onclick="this.value=null"
+          (change)="handleFile($event, 1)"
+        />
+        <button
+          *ngIf="filename[1] == ''"
+          mat-flat-button
+          class="fileButton"
+          (click)="cedulaUpload.click()"
+        >
+          Examinar o arrastrar <fa-icon [icon]="faPaperclip"></fa-icon>
+        </button>
+        <span *ngIf="filename[1]">{{ filename[1] }}</span>
       </div>
       <fa-icon
         class="resetFile"
-        (click)="resetCedula()"
+        (click)="resetFile(1)"
         [icon]="minusIcon"
       ></fa-icon>
     </div>
     <div class="fileInput" *ngIf="isProfesor || isEstudiante">
       <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
       <div class="inputFile">
-        <angular-file-uploader #perfilUpload [config]="perfilConfig">
-        </angular-file-uploader>
+        <input
+          #perfilUpload
+          hidden="true"
+          type="file"
+          onclick="this.value=null"
+          accept=".jpg, .png"
+          (change)="handleFile($event, 2)"
+        />
+        <button
+          *ngIf="filename[2] == ''"
+          mat-flat-button
+          class="fileButton"
+          (click)="perfilUpload.click()"
+        >
+          Examinar o arrastrar <fa-icon [icon]="faPaperclip"></fa-icon>
+        </button>
+        <span *ngIf="filename[2]">{{ filename[2] }}</span>
       </div>
       <fa-icon
         class="resetFile"
-        (click)="resetPerfil()"
+        (click)="resetFile(2)"
         [icon]="minusIcon"
       ></fa-icon>
     </div>

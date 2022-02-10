@@ -101,33 +101,42 @@ export class RegistroEstudianteComponent implements OnInit {
     return this.registroForm.controls;
   }
 
-  async registrar(usuario: any) {
+  async registrar(value: any) {
     try {
-      if (!this.validate())
-        throw new Error(
-          'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
-        );
+      let registroForm = new FormGroup(value.form);
 
-      let usuario = {
-        nombre: this.registroForm.get('nombre')?.value,
-        apellido: this.registroForm.get('apellido')?.value,
-        telefono: this.registroForm.get('telefono')?.value,
-        pais: this.countrySelected,
-        estado: this.stateSelected,
-        ciudad: this.citySelected,
-        email: this.registroForm.get('email')?.value,
-        contrasena: this.registroForm.get('contrasena')?.value,
-        tipo_usuario: 2,
-        foto_perfil: '',
-      };
+      let formData = new FormData();
 
-      /*  this.authService.registrar(usuario).then((resp: any) => {
-        if (resp.code == 200) {
-          this.openConfirm();
-        } else {
-          this.openError(resp.message);
-        }
-      }).catch((e) => this.openError(e.message));*/
+      formData.append('name', registroForm.get('nombre')?.value);
+      formData.append('lastname', registroForm.get('apellido')?.value);
+      formData.append('email', registroForm.get('email')?.value);
+      formData.append('password', registroForm.get('contrasena')?.value);
+      formData.append(
+        'password_confirmation',
+        registroForm.get('contrasenaConfim')?.value
+      );
+      formData.append(
+        'identification',
+        registroForm.get('identificacion')?.value
+      );
+      formData.append('cellphone', registroForm.get('telefono')?.value);
+      formData.append('country', registroForm.get('pais')?.value);
+      formData.append('state', registroForm.get('estado')?.value);
+      formData.append('city', registroForm.get('ciudad')?.value);
+      formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
+      formData.append('schedules_available', value.horarios);
+      formData.append('languajes', value.idiomas);
+      
+      this.authService
+        .registrarStudent(formData)
+        .then((resp: any) => {
+          if (resp.code == 200) {
+            this.openConfirm();
+          } else {
+            this.openError(resp.message);
+          }
+        })
+        .catch((e) => this.openError(e.message));
     } catch (e: any) {
       this.openError(e.message);
     }
