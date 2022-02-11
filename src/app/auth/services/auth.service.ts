@@ -55,6 +55,20 @@ export class AuthService {
     });
   }
 
+  refresh(login: any) {
+    let endPoint = this.address + 'refresh';
+    return new Promise((resolve, reject) => {
+      this.http.post(endPoint, {}).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
+    });
+  }
+
   isAuthenticated() {
     if (localStorage.getItem('user')) return true;
     return false;
