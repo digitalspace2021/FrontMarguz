@@ -22,13 +22,15 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     this.user = localStorage.getItem('user') || undefined;
     let req = request;
+    let jsonUser: any;
 
     if (this.user) {
-      const token = JSON.parse(this.user).access_token;
-      if (token) {
+      jsonUser = JSON.parse(this.user);
+
+      if (jsonUser.token) {
         req = request.clone({
           setHeaders: {
-            authorization: 'Bearer ' + token,
+            authorization: 'Bearer ' + jsonUser.token,
           },
         });
       }
@@ -37,7 +39,13 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
-          this.router.navigateByUrl('auth');
+          if (jsonUser) {
+            //--- servicio
+            // jsonUser.token = newToken;
+            localStorage.setItem('user', JSON.stringify(jsonUser));
+          } else {
+            this.router.navigateByUrl('auth');
+          }
         }
         return throwError(err);
       })
