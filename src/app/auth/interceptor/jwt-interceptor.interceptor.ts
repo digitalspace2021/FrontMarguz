@@ -9,12 +9,13 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class JwtInterceptorInterceptor implements HttpInterceptor {
   user?: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -40,9 +41,12 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
           if (jsonUser) {
-            //--- servicio
-            // jsonUser.token = newToken;
-            localStorage.setItem('user', JSON.stringify(jsonUser));
+            this.auth.refresh().then((data: any) => {
+              if (data.code == 200) {
+                jsonUser.token = data.result.token;
+                localStorage.setItem('user', JSON.stringify(jsonUser));
+              }
+            });
           } else {
             this.router.navigateByUrl('auth');
           }

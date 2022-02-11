@@ -55,7 +55,7 @@ export class AuthService {
     });
   }
 
-  refresh(login: any) {
+  refresh() {
     let endPoint = this.address + 'refresh';
     return new Promise((resolve, reject) => {
       this.http.post(endPoint, {}).subscribe(
