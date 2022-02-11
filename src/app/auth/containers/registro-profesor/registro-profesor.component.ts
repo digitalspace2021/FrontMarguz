@@ -40,29 +40,6 @@ export class RegistroProfesorComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
-  /*validate() {
-    if (this.fRegistro.nombre.errors && this.fRegistro.nombre.errors.required)
-      return false;
-    if (
-      this.fRegistro.apellido.errors &&
-      this.fRegistro.apellido.errors.required
-    )
-      return false;
-    if (this.fRegistro.email.errors && this.fRegistro.email.errors.required)
-      return false;
-    if (
-      this.fRegistro.telefono.errors &&
-      this.fRegistro.telefono.errors.required
-    )
-      return false;
-    if (
-      this.fRegistro.contrasena.errors &&
-      this.fRegistro.contrasena.errors.required
-    )
-      return false;
-    return true;
-  }*/
-
   registrar(value: any) {
     try {
       let registroForm = new FormGroup(value.form);

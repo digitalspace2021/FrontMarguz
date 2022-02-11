@@ -21,6 +21,8 @@
 
         <mat-checkbox
           class="idiomaCheckbox"
+          [name]="idioma.materia"
+          ngDefaultControl
           [(ngModel)]="idiomasSeleccionados[i]"
           [ngModelOptions]="{ standalone: true }"
           (change)="handleCheck(i)"
