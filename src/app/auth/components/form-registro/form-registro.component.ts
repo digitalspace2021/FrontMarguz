@@ -160,7 +160,8 @@ export class FormRegistroComponent implements OnInit {
         this.cities = data;
         this.registroForm.get('ciudad')?.setValue(this.cities[0].city_name);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => 
+      console.error(err));
   }
 
   async agregarIntereses() {}

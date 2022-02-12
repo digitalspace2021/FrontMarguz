@@ -42,10 +42,9 @@ export class RegistroProfesorComponent implements OnInit {
 
   registrar(value: any) {
     try {
-      let registroForm = new FormGroup(value.form);
+      let registroForm = value.form;
 
       let formData = new FormData();
-      debugger;
       formData.append('name', registroForm.get('nombre')?.value);
       formData.append('lastname', registroForm.get('apellido')?.value);
       formData.append('email', registroForm.get('email')?.value);
