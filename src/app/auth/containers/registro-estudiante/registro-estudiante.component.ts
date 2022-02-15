@@ -105,6 +105,7 @@ export class RegistroEstudianteComponent implements OnInit {
     try {
       let registroForm = new FormGroup(value.form);
 
+      let arrayIdioma = value.idiomas;
       let formData = new FormData();
 
       formData.append('name', registroForm.get('nombre')?.value);
@@ -124,9 +125,11 @@ export class RegistroEstudianteComponent implements OnInit {
       formData.append('state', registroForm.get('estado')?.value);
       formData.append('city', registroForm.get('ciudad')?.value);
       formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
-      formData.append('schedules_available', value.horarios);
-      formData.append('languajes', value.idiomas);
-      
+
+      arrayIdioma.forEach((elements: any, index: any) => {
+        formData.append('languajes[' + index + ']', elements.id);
+      });
+
       this.authService
         .registrarStudent(formData)
         .then((resp: any) => {
