@@ -1,13 +1,14 @@
 export interface IMateria {
   status: string;
   code: number;
-  message: string;
-  materias: IDataMateria[];
+  messages: null;
+  result: Result[];
 }
 
-export interface IDataMateria {
+export interface Result {
   id: number;
-  materia: string;
-  created_at: string;
-  updated_at: string;
+  name: string;
+  status: number;
+  created_at: Date;
+  updated_at: Date;
 }

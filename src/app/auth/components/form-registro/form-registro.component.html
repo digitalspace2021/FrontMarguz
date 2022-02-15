@@ -270,8 +270,8 @@
       >Intereses <br
     /></label>
     <div class="idiomasList">
-      <p *ngFor="let item of idiomas">
-        {{ item.idioma }}
+      <p *ngFor="let item of IdiomasAsing">
+        {{ item.idiomas }}
       </p>
     </div>
     <div class="addIdioma">
@@ -297,6 +297,7 @@
 
 <app-idiomas-modal
   [idiomas]="idiomas"
+  [idiomasAsing]="IdiomasAsing"
   *ngIf="isIdiomas"
   [isProfesor]="tipoUsuario == 1"
   (closeIdiomas)="closeIdiomas($event)"

@@ -21,52 +21,34 @@ export class IdiomasModalComponent implements OnInit {
   plusIcon = faPlusCircle;
   minusIcon = faMinusCircle;
   saveIcon = faSave;
+
   @Input() idiomas: any = [];
+  @Input() idiomasAsing: any = [];
   @Input() isProfesor: boolean = false;
+  @Output() closeIdiomas = new EventEmitter();
   idiomasDisponibles: any;
   idiomasSeleccionados: any;
 
-  @Output() closeIdiomas = new EventEmitter();
-  constructor(
-    private materiaSv: MateriaService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.idiomasDisponibles = [
-      { materia: 'Español' },
-      { materia: 'Inglés' },
-      { materia: 'Portugués' },
-      { materia: 'Italiano' },
-      { materia: 'Japonés' },
-    ];
-
-    /*     this.materiaSv
-      .listMateria()
-      .subscribe((resp) => (this.idiomasDisponibles = resp.materias)); */
-    this.idiomasSeleccionados = [...this.idiomasDisponibles].map((x) => false);
-    this.changeDetectorRef.detectChanges();
-    this.idiomas.forEach((idioma: any) => {
-      let index = this.idiomasDisponibles.findIndex(
-        (disponible: any) => disponible.materia == idioma
-      );
-      if (index != -1) {
-        this.idiomasSeleccionados[index] = true;
-      }
+    this.idiomas.forEach((element: any) => {
+      this.AddIntereses(element.name);
     });
-    this.changeDetectorRef.markForCheck();
   }
-  handleCheck(index: number) {
-    if (this.idiomasSeleccionados[index]) {
-      this.addIdioma(this.idiomasDisponibles[index].materia, index);
-    } else {
-      this.removeIdioma(this.idiomasDisponibles[index].materia);
-    }
+
+  AddIntereses(value: any) {
+    if (this.idiomasAsing.includes(value)) return;
+    this.idiomasAsing.push(value);
+    const index = this.idiomasDisponibles.indexOf(value);
+    this.idiomasDisponibles.splice(index, 1);
   }
+
   removeIdioma(idioma: string) {
     let index = this.idiomas.indexOf(idioma);
     this.idiomas.splice(index, 1);
   }
+
   addIdioma(idioma: string, index: number) {
     if (this.isProfesor && this.idiomas.length >= 3) {
       this.changeDetectorRef.detectChanges();
@@ -77,6 +59,7 @@ export class IdiomasModalComponent implements OnInit {
       this.idiomas.push(idioma);
     }
   }
+
   close() {
     this.closeIdiomas.emit(this.idiomas);
   }

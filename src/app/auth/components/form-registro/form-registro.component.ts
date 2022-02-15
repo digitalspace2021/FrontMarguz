@@ -14,7 +14,8 @@ import {
   faUserPlus,
   faPaperclip,
 } from '@fortawesome/free-solid-svg-icons';
-import { AngularFileUploaderComponent } from 'angular-file-uploader';
+import { IMateria } from 'src/app/admin/interfaces/IMateria';
+import { MateriaService } from 'src/app/admin/services/materia.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -40,11 +41,9 @@ export class FormRegistroComponent implements OnInit {
       cierre: '2:00pm',
     },
   ];
-  idiomas = [
-    { id: 1, idioma: 'Ingles' },
-    { id: 2, idioma: 'Frances' },
-    { id: 3, idioma: 'Italiano' },
-  ];
+  idiomas!: IMateria;
+  IdiomasAsing: any;
+
   // -----icon
   user = faUserPlus;
   icon = faPlusCircle;
@@ -83,7 +82,10 @@ export class FormRegistroComponent implements OnInit {
   isError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private materiaSv: MateriaService
+  ) {}
 
   ngOnInit() {
     if (this.tipoUsuario == 1) {
@@ -94,6 +96,12 @@ export class FormRegistroComponent implements OnInit {
       this.isAdmin = true;
     }
     this.changerCountrys();
+  }
+
+  intereses() {
+    this.materiaSv.listInteresOrLenguages().subscribe((data: IMateria) => {
+      this.idiomas = data;
+    });
   }
 
   handleFile(event: any, index: number) {

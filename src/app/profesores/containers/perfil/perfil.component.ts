@@ -103,7 +103,7 @@ export class PerfilComponent implements OnInit {
   listMateria() {
     this.materiaSv
       .listMateria()
-      .subscribe((resp) => (this.materias = resp.materias));
+      .subscribe((resp) => (this.materias = resp.result));
     this.changerCountrys();
   }
 
