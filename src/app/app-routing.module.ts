@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { EstudianteGuard } from './auth/guards/estudiante.guard';
@@ -14,37 +15,28 @@ const routes: Routes = [
       import('./estudiantes/estudiantes.module').then(
         (m) => m.EstudiantesModule
       ),
-      canActivate: [AuthGuard, EstudianteGuard]
+    canActivate: [AuthGuard, EstudianteGuard],
   },
   {
     path: 'profesores',
     loadChildren: () =>
       import('./profesores/profesores.module').then((m) => m.ProfesoresModule),
-      canActivate: [AuthGuard, ProfesorGuard]
+    canActivate: [AuthGuard, ProfesorGuard],
   },
   {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-      canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'shared',
-    loadChildren: () => import('./shared/shared.module').then((m) => m.SharedModule),
-  }, 
-  {
-    path: '',
-    loadChildren: () =>
-      import('./public/public.module').then((m) => m.PublicModule),
+    path: '**',
+    redirectTo: 'auth',
   },
-  {
-    path: '**',     loadChildren: () =>
-    import('./public/public.module').then((m) => m.PublicModule),
-  }, 
 ];
 
 @NgModule({
