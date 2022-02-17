@@ -14,7 +14,8 @@ import {
   faUserPlus,
   faPaperclip,
 } from '@fortawesome/free-solid-svg-icons';
-import { AngularFileUploaderComponent } from 'angular-file-uploader';
+import { IMateria } from 'src/app/admin/interfaces/IMateria';
+import { MateriaService } from 'src/app/admin/services/materia.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -40,7 +41,9 @@ export class FormRegistroComponent implements OnInit {
       cierre: '2:00pm',
     },
   ];
-  idiomas = [];
+  idiomas!: IMateria;
+  IdiomasAsing: any;
+
   // -----icon
   user = faUserPlus;
   icon = faPlusCircle;
@@ -58,14 +61,17 @@ export class FormRegistroComponent implements OnInit {
     pais: new FormControl('Colombia', Validators.required),
     estado: new FormControl('', Validators.required),
     ciudad: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl(
+      '',
+      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')
+    ),
     contrasena: new FormControl('', Validators.required),
     contrasenaConfim: new FormControl('', Validators.required),
     hojaVida: new FormControl(''),
     fotoPerfil: new FormControl(''),
     docuCedula: new FormControl(''),
   });
-  filename = ['', '', '']
+  filename = ['', '', ''];
   countrySelected: string = '';
   stateSelected: string = '';
   citySelected: string = '';
@@ -76,7 +82,10 @@ export class FormRegistroComponent implements OnInit {
   isError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private materiaSv: MateriaService
+  ) {}
 
   ngOnInit() {
     if (this.tipoUsuario == 1) {
@@ -89,24 +98,28 @@ export class FormRegistroComponent implements OnInit {
     this.changerCountrys();
   }
 
+  intereses() {
+    this.materiaSv.listInteresOrLenguages().subscribe((data: IMateria) => {
+      this.idiomas = data;
+    });
+  }
+
   handleFile(event: any, index: number) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       switch (index) {
         case 0:
           this.registroForm.get('hojaVida')?.setValue(file);
-          this.filename[0]= file.name;
+          this.filename[0] = file.name;
 
           break;
         case 1:
-          this.registroForm.get('fotoPerfil')?.setValue(file);
-          this.filename[1]= file.name;
-
-          break;
-
-        default:
           this.registroForm.get('docuCedula')?.setValue(file);
-          this.filename[2]= file.name;
+          this.filename[1] = file.name;
+          break;
+        default:
+          this.registroForm.get('fotoPerfil')?.setValue(file);
+          this.filename[2] = file.name;
           break;
       }
     }
@@ -116,18 +129,16 @@ export class FormRegistroComponent implements OnInit {
     switch (id) {
       case 0:
         this.registroForm.get('hojaVida')?.setValue('');
-        this.filename[0]= "";
-
+        this.filename[0] = '';
         break;
       case 1:
-        this.registroForm.get('fotoPerfil')?.setValue('');
-        this.filename[1]= "";
-
+        this.registroForm.get('docuCedula')?.setValue('');
+        this.filename[1] = '';
         break;
 
       default:
-        this.registroForm.get('docuCedula')?.setValue('');
-        this.filename[2]= "";
+        this.registroForm.get('fotoPerfil')?.setValue('');
+        this.filename[2] = '';
         break;
     }
   }
@@ -160,8 +171,7 @@ export class FormRegistroComponent implements OnInit {
         this.cities = data;
         this.registroForm.get('ciudad')?.setValue(this.cities[0].city_name);
       })
-      .catch((err) => 
-      console.error(err));
+      .catch((err) => console.error(err));
   }
 
   async agregarIntereses() {}

@@ -46,6 +46,7 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
               if (data.code == 200) {
                 jsonUser.token = data.result.token;
                 localStorage.setItem('user', JSON.stringify(jsonUser));
+                this.intercept(request, next);
               }
             }); */
           } else {

@@ -44,6 +44,9 @@ export class RegistroProfesorComponent implements OnInit {
     try {
       let registroForm = value.form;
 
+      let arrayIdioma = value.idiomas;
+      let arrayHorario = value.horarios;
+
       let formData = new FormData();
       formData.append('name', registroForm.get('nombre')?.value);
       formData.append('lastname', registroForm.get('apellido')?.value);
@@ -67,8 +70,24 @@ export class RegistroProfesorComponent implements OnInit {
         registroForm.get('docuCedula')?.value
       );
       formData.append('pdf_documentation', registroForm.get('hojaVida')?.value);
-      formData.append('schedules_available', value.horarios);
-      formData.append('languajes', value.idiomas);
+      arrayHorario.forEach((elements: any, index: any) => {
+        formData.append(
+          'schedules_available[' + index + '][day]',
+          elements.dia
+        );
+        formData.append(
+          'schedules_available[' + index + '][start]',
+          elements.inicio
+        );
+        formData.append(
+          'schedules_available[' + index + '][end]',
+          elements.cierre
+        );
+      });
+
+      arrayIdioma.forEach((elements: any, index: any) => {
+        formData.append('languajes[' + index + ']', elements.id);
+      });
 
       this.authService
         .registrarTeacher(formData)
@@ -88,12 +107,10 @@ export class RegistroProfesorComponent implements OnInit {
   openConfirm() {
     this.isRegistroExitoso = true;
   }
-
   openError(message: string) {
     this.errorMessage = message;
     this.isError = true;
   }
-
   isHorario: boolean = false;
   openHorario() {
     this.isHorario = true;
@@ -102,7 +119,6 @@ export class RegistroProfesorComponent implements OnInit {
     this.isHorario = false;
     this.horarios = horarios;
   }
-
   closeError() {
     this.isError = false;
     this.errorMessage = '';

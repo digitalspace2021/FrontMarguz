@@ -9,9 +9,9 @@ import {
   faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { Materia } from '../../class/Materia';
-import { IDataMateria } from '../../interfaces/IMateria';
 import { MateriaService } from '../../services/materia.service';
 import Swal from 'sweetalert2';
+import { result } from 'src/app/auth/interfaces/auth.interface';
 
 @Component({
   selector: 'app-lista-materias',
@@ -26,13 +26,13 @@ export class ListaMateriasComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
   add = faPlusCircle;
-  materias: IDataMateria[] = [];
+  materias!: result;
   materiaItem: Materia = new Materia();
   title?: string;
   action: boolean = false;
 
   page?: number;
-  
+
   constructor(private materiaSv: MateriaService) {}
 
   ngOnInit(): void {
@@ -40,13 +40,13 @@ export class ListaMateriasComponent implements OnInit {
   }
 
   ngOnChanges() {
-      this.listMateria();
+    this.listMateria();
   }
 
   listMateria() {
-    this.materiaSv
+    /* this.materiaSv
       .listMateria()
-      .subscribe((resp) => (this.materias = resp.materias));
+      .subscribe((resp) => (this.materias = resp.result));*/
   }
 
   mostrarModal(title: string, action: boolean = false) {
