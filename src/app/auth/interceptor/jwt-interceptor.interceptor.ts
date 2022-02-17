@@ -27,7 +27,7 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
 
     if (this.user) {
       jsonUser = JSON.parse(this.user);
-
+/*TODO: CREAR LOGICA PARA AGREGAR TOKEN SEGUN WITHCREDENTIALS */
       if (jsonUser.token) {
         req = request.clone({
           setHeaders: {
@@ -41,12 +41,13 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
           if (jsonUser) {
-            this.auth.refresh().then((data: any) => {
+            /* MOVER REFRESH A UNA FUNCION GLOBAL CON TIMEOUT */
+/*             this.auth.refresh().then((data: any) => {
               if (data.code == 200) {
                 jsonUser.token = data.result.token;
                 localStorage.setItem('user', JSON.stringify(jsonUser));
               }
-            });
+            }); */
           } else {
             this.router.navigateByUrl('auth');
           }

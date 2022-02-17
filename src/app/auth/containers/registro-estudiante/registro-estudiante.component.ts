@@ -103,7 +103,7 @@ export class RegistroEstudianteComponent implements OnInit {
 
   async registrar(value: any) {
     try {
-      let registroForm = new FormGroup(value.form);
+      let registroForm = value.form;
 
       let formData = new FormData();
 
@@ -124,7 +124,6 @@ export class RegistroEstudianteComponent implements OnInit {
       formData.append('state', registroForm.get('estado')?.value);
       formData.append('city', registroForm.get('ciudad')?.value);
       formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
-      formData.append('schedules_available', value.horarios);
       formData.append('languajes', value.idiomas);
       
       this.authService

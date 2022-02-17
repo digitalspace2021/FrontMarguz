@@ -39,6 +39,19 @@ export class AuthService {
         }
       );
     });
+  }  
+  registrarAdmin(formData: FormData) {
+    let endPoint = this.address + 'register/admin';
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(endPoint, formData).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
+    });
   }
 
   login(login: any) {
