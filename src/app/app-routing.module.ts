@@ -5,8 +5,6 @@ import { AdminGuard } from './auth/guards/admin.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { EstudianteGuard } from './auth/guards/estudiante.guard';
 import { ProfesorGuard } from './auth/guards/profesor.guard';
-import { NotFoundComponent } from './public/containers/not-found/not-found.component';
-import { SharedComponent } from './shared/shared.component';
 
 const routes: Routes = [
   {
