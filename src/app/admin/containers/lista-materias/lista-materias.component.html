@@ -17,21 +17,6 @@
     >
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
     </button>
-    <button
-      class="btn btn-light"
-      style="margin-right: 15px"
-      (click)="mostrarModal('Editar Materia', true)"
-    >
-      <fa-icon
-        style="font-size: 14px; color: red"
-        [icon]="edit"
-        data-bs-toggle="modal"
-        data-bs-target="#openModal"
-      ></fa-icon>
-    </button>
-    <button class="btn btn-danger" (click)="deleteMateria()">
-      <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
-    </button>
   </div>
 </div>
 <!-- Table -->
@@ -43,26 +28,53 @@
           <table class="table table-sm table-hover table-stripped text-left">
             <thead>
               <tr>
-                <th></th>
+                <th width="500"></th>
+                <th width="100"></th>
+                <th width="100"></th>
               </tr>
             </thead>
             <tbody>
-              <!--    <tr
+              <tr
                 *ngFor="
                   let mat of materias
                     | paginate: { itemsPerPage: 10, currentPage: page }
                 "
               >
                 <td>
-                  <input
-                    type="radio"
-                    (change)="getItem(mat)"
-                    style="margin-right: 5px"
-                    name="check"
-                  />
-                  <label [for]="mat.id">{{ mat.materia }}</label>
+                  <label [for]="mat.id">{{ mat.name }}</label>
                 </td>
-              </tr>-->
+                <td>
+                  <label *ngIf="mat.status == 1" style="color: green"
+                    >Activo</label
+                  >
+                  <label *ngIf="mat.status != 1" style="color: red"
+                    >Inactivo</label
+                  >
+                </td>
+                <td>
+                  <button
+                    class="btn btn-light btn-sm"
+                    style="margin-right: 15px"
+                    (click)="mostrarModal('Editar Materia', true, mat)"
+                  >
+                    <fa-icon
+                      style="font-size: 14px; color: red"
+                      [icon]="edit"
+                      data-bs-toggle="modal"
+                      data-bs-target="#openModal"
+                    ></fa-icon>
+                  </button>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteMateria(mat.id)"
+                  >
+                    <fa-icon
+                      style="font-size: 14px; color: white"
+                      [icon]="trash"
+                    ></fa-icon>
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

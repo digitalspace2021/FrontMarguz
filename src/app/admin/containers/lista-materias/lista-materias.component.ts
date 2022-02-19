@@ -26,7 +26,7 @@ export class ListaMateriasComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
   add = faPlusCircle;
-  materias!: result;
+  materias: any;
   materiaItem: Materia = new Materia();
   title?: string;
   action: boolean = false;
@@ -44,23 +44,20 @@ export class ListaMateriasComponent implements OnInit {
   }
 
   listMateria() {
-    /* this.materiaSv
-      .listMateria()
-      .subscribe((resp) => (this.materias = resp.result));*/
+    this.materiaSv.listInteresOrLenguages().subscribe((resp) => {
+      this.materias = resp.result;
+    });
   }
 
-  mostrarModal(title: string, action: boolean = false) {
+  mostrarModal(title: string, action: boolean = false, mat: any = []) {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
+    this.materiaItem = mat;
   }
 
-  getItem(item: any) {
-    this.materiaItem = item;
-  }
-
-  deleteMateria() {
+  deleteMateria(id: number) {
     if (this.materiaItem) {
-      this.materiaSv.deleteMateria(this.materiaItem.id).subscribe((resp) => {
+      this.materiaSv.deleteInteresOrLenguages(id).subscribe(() => {
         Swal.fire('Registro eliminado con exito', 'Eliminar', 'success').then(
           () => {
             this.listMateria();
