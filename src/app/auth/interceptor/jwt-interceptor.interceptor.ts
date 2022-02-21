@@ -40,17 +40,7 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
-          if (jsonUser) {
-            this.auth.refresh().then((data: any) => {
-              if (data.code == 200) {
-                jsonUser.token = data.result.token;
-                localStorage.setItem('user', JSON.stringify(jsonUser));
-                this.intercept(request, next);
-              }
-            });
-          } else {
-            this.router.navigateByUrl('auth');
-          }
+          this.router.navigateByUrl('auth');
         }
         return throwError(err);
       })
