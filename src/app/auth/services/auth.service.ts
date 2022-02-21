@@ -110,7 +110,9 @@ export class AuthService {
   }
 
   getToken() {
-    let token = localStorage.getItem('token');
+
+    let user= JSON.parse(localStorage.getItem('user') as any);
+    let token = user.token;
     if (token == null) {
       throw new Error('Token no existente');
     }
