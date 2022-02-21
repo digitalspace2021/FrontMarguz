@@ -93,7 +93,7 @@ export class PerfilComponent implements OnInit {
 
   listMateria() {
     this.materiaSv
-      .listMateria()
+      .listInteresOrLenguages()
       .subscribe((resp: any) => (this.materias = resp.materias));
   }
 

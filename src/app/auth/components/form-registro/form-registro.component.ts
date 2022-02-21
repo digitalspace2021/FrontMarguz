@@ -99,7 +99,7 @@ export class FormRegistroComponent implements OnInit {
   }
 
   intereses() {
-    this.materiaSv.listInteresOrLenguages().subscribe((data: IMateria) => {
+    this.materiaSv.listRegInteresOrLenguages().subscribe((data: IMateria) => {
       this.idiomas = data;
     });
   }
