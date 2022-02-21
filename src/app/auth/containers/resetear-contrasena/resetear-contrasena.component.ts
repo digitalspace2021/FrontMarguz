@@ -19,7 +19,7 @@ export class ResetearContrasenaComponent implements OnInit {
   reseteoExitosoMessage: string = 'Se le ha enviado un correo con las intrucciones para restaurar su contraseña';
   login() {
     this.isReseteoExitoso = false;
-    this.router.navigate(["/auth/login"])
+    this.router.navigate(["/login"])
   }  
   async resetear(){
     this.openConfirm();

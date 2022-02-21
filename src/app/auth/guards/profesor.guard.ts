@@ -10,7 +10,7 @@ export class ProfesorGuard implements CanActivate {
 
   constructor(public auth: AuthService, private router: Router) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-/*     if ((this.auth.getTipoUsuario() != "1")) {
+/*     if ((this.auth.getTipoUsuario() != "Teacher")) {
       this.router.navigate(["/"]);
       return false;
     } */

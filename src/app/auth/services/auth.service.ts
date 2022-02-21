@@ -118,7 +118,7 @@ export class AuthService {
   }
 
   getTipoUsuario() {
-    return JSON.parse(localStorage.getItem('user') as any).tipo_usuario;
+    return JSON.parse(localStorage.getItem('user') as any).user.role;
   }
 
   async getCountriesToken() {

@@ -71,6 +71,44 @@ export class ListaUsuariosComponent implements OnInit {
     this.isConfirm = false;
   }
   listUsuario() {
+    switch (this.tipoUsuario) {
+      case 0:
+        this.usuarioSv
+        .listUsuarioAdmin()
+        .subscribe(
+          (resp) => (
+            (this.usuarios = resp.usuarios),
+            (this.usuariosSearch = resp.usuarios),
+            this.changeTab()
+          )
+        );
+          
+        break;
+        case 1:
+          this.usuarioSv
+          .listUsuarioTeacher()
+          .subscribe(
+            (resp) => (
+              (this.usuarios = resp.usuarios),
+              (this.usuariosSearch = resp.usuarios),
+              this.changeTab()
+            )
+          );
+            
+          break;
+      
+      default:
+        this.usuarioSv
+        .listUsuarioStudent()
+        .subscribe(
+          (resp) => (
+            (this.usuarios = resp.usuarios),
+            (this.usuariosSearch = resp.usuarios),
+            this.changeTab()
+          )
+        );
+          break;
+    }
     this.usuarioSv
       .listUsuario()
       .subscribe(
@@ -83,11 +121,11 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   changeTab(tipo: number = 2) {
-    debugger;
     this.tipoUsuario = tipo;
-    this.usuarios = this.usuariosSearch.filter(
+    this.listUsuario;
+    /* this.usuarios = this.usuariosSearch.filter(
       (u) => parseInt(u.tipo_usuario) == tipo
-    );
+    ); */
   }
 
   openModal(title: string, action: boolean = false) {

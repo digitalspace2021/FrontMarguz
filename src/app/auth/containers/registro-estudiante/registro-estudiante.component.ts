@@ -71,7 +71,7 @@ export class RegistroEstudianteComponent implements OnInit {
 
   login() {
     this.isRegistroExitoso = false;
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 
   validate() {
