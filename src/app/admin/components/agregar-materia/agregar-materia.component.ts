@@ -28,7 +28,7 @@ export class AgregarMateriaComponent implements OnInit {
 
   ngOnChanges(): void {
     if (this.action) {
-      this.materiaInput = this.materia.materia;
+      this.materiaInput = this.materia.name;
     } else {
       this.materiaInput = '';
     }
@@ -40,8 +40,8 @@ export class AgregarMateriaComponent implements OnInit {
       this.val = false;
       // valida que tipo de registro se va a realizar
       if (!this.action) {
-        materia.materia = this.materiaInput;
-        this.materiaSv.createMateria(materia).subscribe((resp) => {
+        materia.name = this.materiaInput;
+        this.materiaSv.createInteresOrLenguages(materia).subscribe((resp) => {
           if (resp) {
             Swal.fire('Registro exitoso...', 'Guardado', 'success').then(() => {
               this.materiaL.listMateria();
@@ -51,8 +51,8 @@ export class AgregarMateriaComponent implements OnInit {
         });
       } else {
         materia = this.materia;
-        materia.materia = this.materiaInput;
-        this.materiaSv.updateMateria(materia).subscribe((resp) => {
+        materia.name = this.materiaInput;
+        this.materiaSv.updateInteresOrLenguages(materia).subscribe((resp) => {
           if (resp) {
             Swal.fire('Registro exitoso...', 'Actualizado', 'success').then(
               () => {

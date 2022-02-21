@@ -1,5 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Materia } from '../class/Materia';
 import { IMateria } from '../interfaces/IMateria';
@@ -10,32 +11,51 @@ const api = environment.host;
   providedIn: 'root',
 })
 export class MateriaService {
-  url: string = 'https://marguz.co/marguzapi/public/materias';
+  endPointReg = api + 'auth/register/InterestOrLanguages';
+  endPoint = api + 'InterestOrLanguages';
 
-  constructor(private http: HttpClient) {}
+  user = localStorage.getItem('user') || undefined;
+  headers!: HttpHeaders;
+
+  constructor(private http: HttpClient) {
+    this.generarToken();
+  }
+
+  generarToken() {
+    let token;
+    this.user = localStorage.getItem('user') || undefined;
+    if (this.user) {
+      token = JSON.parse(this.user).access_token;
+    }
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer' + token,
+    });
+  }
+
+  listRegInteresOrLenguages() {
+    return this.http.get<IMateria>(this.endPointReg);
+  }
 
   listInteresOrLenguages() {
-    let endPoint = api + 'api/v1/auth/register/InterestOrLanguages';
-    return this.http.get<IMateria>(endPoint);
+    return this.http.get<IMateria>(this.endPoint, { headers: this.headers });
   }
 
-  listMateria() {
-    return this.http.get<IMateria>(this.url);
-  }
-
-  createMateria(materia: Materia) {
-    return this.http.post<IMateria>(this.url, {
-      json: JSON.stringify(materia),
+  createInteresOrLenguages(materia: Materia) {
+    return this.http.post<IMateria>(this.endPoint, materia, {
+      headers: this.headers,
     });
   }
 
-  updateMateria(materia: Materia) {
-    return this.http.put<IMateria>(`${this.url}/${materia.id}`, {
-      json: JSON.stringify({ materia: materia.materia }),
+  updateInteresOrLenguages(materia: Materia) {
+    return this.http.put<IMateria>(`${this.endPoint}/${materia.id}`, materia, {
+      headers: this.headers,
     });
   }
 
-  deleteMateria(id: any) {
-    return this.http.delete(`${this.url}/${id}`);
+  deleteInteresOrLenguages(id: any) {
+    return this.http.delete(`${this.endPoint}/${id}`, {
+      headers: this.headers,
+    });
   }
 }
