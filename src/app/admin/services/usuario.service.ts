@@ -9,7 +9,7 @@ const env = environment.host;
   providedIn: 'root',
 })
 export class UsuarioService {
-  address = env + 'users/';
+  address = env + 'users';
   url: string = 'https://marguz.co/marguzapi/public/usuarios';
 
   constructor(private http: HttpClient) {}
@@ -24,17 +24,17 @@ export class UsuarioService {
 
   listUsuarioStudent() {
     let url = `${this.address}/students`
-    return this.http.get<IUsuario>(this.url);
+    return this.http.get(url);
   }
 
   listUsuarioTeacher() {
     let url = `${this.address}/teachers`
-    return this.http.get<IUsuario>(this.url);
+    return this.http.get(url);
   }
 
   listUsuarioAdmin() {
     let url = `${this.address}/administrators`
-    return this.http.get<IUsuario>(this.url);
+    return this.http.get(url);
   }
 
   createUsuario(Usuario: Usuario) {

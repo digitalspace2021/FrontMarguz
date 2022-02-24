@@ -23,7 +23,6 @@ export class IdiomasModalComponent implements OnInit {
   saveIcon = faSave;
 
   @Input() idiomas: any = [];
-  @Input() idiomasAsing: any = [];
   @Input() isProfesor: boolean = false;
   @Output() closeIdiomas = new EventEmitter();
   idiomasDisponibles: any;
@@ -32,22 +31,11 @@ export class IdiomasModalComponent implements OnInit {
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.idiomas.forEach((element: any) => {
+/*     this.idiomas.forEach((element: any) => {
       this.AddIntereses(element.name);
-    });
+    }); */
   }
 
-  AddIntereses(value: any) {
-    if (this.idiomasAsing.includes(value)) return;
-    this.idiomasAsing.push(value);
-    const index = this.idiomasDisponibles.indexOf(value);
-    this.idiomasDisponibles.splice(index, 1);
-  }
-
-  removeIdioma(idioma: string) {
-    let index = this.idiomas.indexOf(idioma);
-    this.idiomas.splice(index, 1);
-  }
 
   addIdioma(idioma: string, index: number) {
     if (this.isProfesor && this.idiomas.length >= 3) {
@@ -60,9 +48,13 @@ export class IdiomasModalComponent implements OnInit {
     }
   }
 
+  emit(idiomas:any) {
+    this.closeIdiomas.emit(idiomas);
+  }
   close() {
     this.closeIdiomas.emit(this.idiomas);
   }
+  
   isError: boolean = false;
 
   errorMessage: string = '';

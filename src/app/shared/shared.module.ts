@@ -19,6 +19,7 @@ import { DetalleDePagoComponent } from './components/detalle-de-pago/detalle-de-
 import { DetalleDeClaseComponent } from './components/detalle-de-clase/detalle-de-clase.component';
 import { CronogramaComponent } from './components/cronograma/cronograma.component';
 import { EditarClaseComponent } from './components/editar-clase/editar-clase.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -39,6 +40,7 @@ import { EditarClaseComponent } from './components/editar-clase/editar-clase.com
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
+    MatCheckboxModule,
     //SharedRoutingModule
   ],
   providers: [

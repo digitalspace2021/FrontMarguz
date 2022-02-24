@@ -12,9 +12,9 @@ export class HorarioComponent implements OnInit {
   saveIcon = faSave;
     @Input() horarios: any = [
     {
-      dia: 'Lunes',
-      inicio: '8:00am',
-      cierre: '2:00pm',
+      day: 'Lunes',
+      start: '8:00am',
+      end: '2:00pm',
     },
   ];
   @Output() closeHorario = new EventEmitter<string>();
@@ -22,9 +22,9 @@ export class HorarioComponent implements OnInit {
 
   addHorario() {
     this.horarios.push({
-      dia: 'Lunes',
-      inicio: '8:00am',
-      cierre: '2:00pm',
+      day: 'Lunes',
+      start: '8:00am',
+      end: '2:00pm',
     });
   }
 

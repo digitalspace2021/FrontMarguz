@@ -47,35 +47,35 @@
           <ul style="list-style: none; text-decoration: none; display: flex">
             <li
               style="margin-right: 10px !important"
-              [ngClass]="{ 'text-danger': tipoUsuario == 2 }"
+              [ngClass]="{ 'text-danger': tipoUsuario == 'Student' }"
             >
               <a
                 href="javascript:;"
-                [ngClass]="{ 'select-tab': tipoUsuario == 2 }"
+                [ngClass]="{ 'select-tab': tipoUsuario == 'Student' }"
                 class="tab"
-                (click)="changeTab(2)"
+                (click)="changeTab('Student')"
                 >Estudiantes</a
               >
               <fa-icon
-                *ngIf="tipoUsuario == 2"
+                *ngIf="tipoUsuario == 'Student'"
                 style="font-size: 14px"
                 [icon]="icon"
               ></fa-icon>
             </li>
             <li
               style="margin-right: 10px !important"
-              [ngClass]="{ 'text-danger': tipoUsuario == 1 }"
+              [ngClass]="{ 'text-danger': tipoUsuario == 'Teacher' }"
             >
               <a
                 href="javascript:;"
-                [ngClass]="{ 'select-tab': tipoUsuario == 1 }"
+                [ngClass]="{ 'select-tab': tipoUsuario == 'Teacher' }"
                 class="tab"
-                (click)="changeTab(1)"
+                (click)="changeTab('Teacher')"
                 >Profesores</a
               >
 
               <fa-icon
-                *ngIf="tipoUsuario == 1"
+                *ngIf="tipoUsuario == 'Teacher'"
                 style="font-size: 14px"
                 [icon]="icon"
               ></fa-icon>
@@ -83,17 +83,17 @@
 
             <li
               style="margin-right: 10px !important"
-              [ngClass]="{ 'text-danger': tipoUsuario == 0 }"
+              [ngClass]="{ 'text-danger': tipoUsuario == 'Admin' }"
             >
               <a
                 href="javascript:;"
-                [ngClass]="{ 'select-tab': tipoUsuario == 0 }"
+                [ngClass]="{ 'select-tab': tipoUsuario == 'Admin' }"
                 class="tab"
-                (click)="changeTab(0)"
+                (click)="changeTab('Admin')"
                 >Administradores</a
               >
               <fa-icon
-                *ngIf="tipoUsuario == 0"
+                *ngIf="tipoUsuario == 'Admin'"
                 style="font-size: 14px"
                 [icon]="icon"
               ></fa-icon>
@@ -127,15 +127,15 @@
               >
                 <td><input type="checkbox" /></td>
                 <td>{{ user.id }}</td>
-                <td>{{ user.nombre }}</td>
-                <td>{{ user.apellido }}</td>
-                <td>{{ user.telefono }}</td>
-                <td>{{ user.pais }}</td>
-                <td>{{ user.estado }}</td>
-                <td>{{ user.ciudad }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.cellphone }}</td>
+                <td>{{ user.country }}</td>
+                <td>{{ user.state }}</td>
+                <td>{{ user.city }}</td>
                 <td><a href="javascrip:;">Idiomas</a></td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.status }}</td>
+                <td>{{ user.status? 'Activo':'Inactivo' }}</td>
                 <td></td>
 <!--                 <td><input type="checkbox" /></td>
                 <td>{{ user.id }}</td>

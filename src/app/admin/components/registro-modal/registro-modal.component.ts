@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./registro-modal.component.scss'],
 })
 export class RegistroModalComponent implements OnInit {
-  @Input() tipoUsuario: number = 0;
+  @Input() tipoUsuario: string = "Admin";
   @Output() completarRegistro = new EventEmitter<any>();
   @Output() closeModal = new EventEmitter<any>();
 

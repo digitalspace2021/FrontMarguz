@@ -28,10 +28,10 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
     if (this.user) {
       jsonUser = JSON.parse(this.user);
 /*TODO: CREAR LOGICA PARA AGREGAR TOKEN SEGUN WITHCREDENTIALS */
-      if (jsonUser.token) {
+      if (jsonUser.access_token) {
         req = request.clone({
           setHeaders: {
-            authorization: 'Bearer ' + jsonUser.token,
+            authorization: 'Bearer ' + jsonUser.access_token,
           },
         });
       }

@@ -7,14 +7,14 @@ export interface IUsuario {
 
 export interface IDataUsuario {
   id: number;
-  nombre: string;
-  apellido: string;
-  telefono: string;
-  pais: string;
-  estado: string;
-  ciudad: string;
+  name: string;
+  lastname: string;
+  cellphone: string;
+  country: string;
+  state: string;
+  city: string;
   email: string;
-  contrasena: string;
+  password: string;
   status: number;
   foto_perfil?: string;
   zona_horaria?: null;

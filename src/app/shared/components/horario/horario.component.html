@@ -1,11 +1,11 @@
 <form>
   <div *ngFor="let horario of horarios; let i = index" class="horarioRow">
     <div class="horarioInput">
-      <label class="horarioLabel" for="dia">Dia</label>
+      <label class="horarioLabel" for="day">Dia</label>
       <select
         class="form-selects"
         [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="horario.dia"
+        [(ngModel)]="horario.day"
         aria-label="Default select example"
       >
         <option selected></option>
@@ -19,11 +19,11 @@
       </select>
     </div>
     <div class="horarioInput">
-      <label class="horarioLabel" for="inicio">Hora</label>
+      <label class="horarioLabel" for="start">Hora</label>
       <select
         class="form-selects"
         [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="horario.inicio"
+        [(ngModel)]="horario.start"
         aria-label="Default select example"
       >
         <option selected></option>
@@ -58,7 +58,7 @@
       <select
         class="form-selects"
         [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="horario.cierre"
+        [(ngModel)]="horario.end"
         aria-label="Default select example"
       >
         <option selected></option>

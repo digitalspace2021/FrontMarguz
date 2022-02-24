@@ -14,7 +14,7 @@ import {
   faUserPlus,
   faPaperclip,
 } from '@fortawesome/free-solid-svg-icons';
-import { IMateria } from 'src/app/admin/interfaces/IMateria';
+import { Result } from 'src/app/admin/interfaces/IMateria';
 import { MateriaService } from 'src/app/admin/services/materia.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -24,7 +24,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
-  @Input() tipoUsuario: number = 0;
+  @Input() tipoUsuario: string = "Admin";
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
@@ -36,12 +36,13 @@ export class FormRegistroComponent implements OnInit {
 
   horarios = [
     {
-      dia: 'Lunes',
-      inicio: '8:00am',
-      cierre: '2:00pm',
+      day: 'Lunes',
+      start: '8:00am',
+      end: '2:00pm',
     },
   ];
-  idiomas!: IMateria;
+
+  idiomas: Array<Result> = [];
   IdiomasAsing: any;
 
   // -----icon
@@ -88,9 +89,9 @@ export class FormRegistroComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.tipoUsuario == 1) {
+    if (this.tipoUsuario == "Teacher") {
       this.isProfesor = true;
-    } else if (this.tipoUsuario == 2) {
+    } else if (this.tipoUsuario == "Student") {
       this.isEstudiante = true;
     } else {
       this.isAdmin = true;
@@ -98,11 +99,6 @@ export class FormRegistroComponent implements OnInit {
     this.changerCountrys();
   }
 
-  intereses() {
-    this.materiaSv.listRegInteresOrLenguages().subscribe((data: IMateria) => {
-      this.idiomas = data;
-    });
-  }
 
   handleFile(event: any, index: number) {
     if (event.target.files.length > 0) {

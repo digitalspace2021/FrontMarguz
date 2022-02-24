@@ -26,9 +26,9 @@ export class ListaUsuariosComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
 
-  tipoUsuario: number = 2;
-  usuarios: IDataUsuario[] = [];
-  usuariosSearch: IDataUsuario[] = [];
+  tipoUsuario: string = 'Student';
+  usuarios: any[] = [];
+  usuariosSearch: any[] = [];
 
   title: string = '';
   tipo: string = '0';
@@ -71,27 +71,29 @@ export class ListaUsuariosComponent implements OnInit {
     this.isConfirm = false;
   }
   listUsuario() {
+    this.usuarios = [];
+    this.usuariosSearch = [];
     switch (this.tipoUsuario) {
-      case 0:
+      case 'Admin':
         this.usuarioSv
         .listUsuarioAdmin()
         .subscribe(
-          (resp) => (
-            (this.usuarios = resp.usuarios),
-            (this.usuariosSearch = resp.usuarios),
-            this.changeTab()
+          (resp:any) => (
+            (this.usuarios = resp.result.data),
+            (this.usuariosSearch = resp.result.data)
+            //this.changeTab()
           )
         );
           
         break;
-        case 1:
+        case 'Teacher':
           this.usuarioSv
           .listUsuarioTeacher()
           .subscribe(
-            (resp) => (
-              (this.usuarios = resp.usuarios),
-              (this.usuariosSearch = resp.usuarios),
-              this.changeTab()
+            (resp:any) => (
+              (this.usuarios = resp.result.data),
+              (this.usuariosSearch = resp.result.data)
+              //this.changeTab()
             )
           );
             
@@ -101,15 +103,15 @@ export class ListaUsuariosComponent implements OnInit {
         this.usuarioSv
         .listUsuarioStudent()
         .subscribe(
-          (resp) => (
-            (this.usuarios = resp.usuarios),
-            (this.usuariosSearch = resp.usuarios),
-            this.changeTab()
+          (resp:any) => (
+            (this.usuarios = resp.result.data),
+            (this.usuariosSearch = resp.result.data)
+            //this.changeTab()
           )
         );
           break;
     }
-    this.usuarioSv
+/*     this.usuarioSv
       .listUsuario()
       .subscribe(
         (resp) => (
@@ -117,12 +119,12 @@ export class ListaUsuariosComponent implements OnInit {
           (this.usuariosSearch = resp.usuarios),
           this.changeTab()
         )
-      );
+      ); */
   }
 
-  changeTab(tipo: number = 2) {
+  changeTab(tipo: string = 'Student') {
     this.tipoUsuario = tipo;
-    this.listUsuario;
+    this.listUsuario();
     /* this.usuarios = this.usuariosSearch.filter(
       (u) => parseInt(u.tipo_usuario) == tipo
     ); */
@@ -156,11 +158,11 @@ export class ListaUsuariosComponent implements OnInit {
       formData.append('city', registroForm.get('ciudad')?.value);
       formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
 
-      if (this.tipoUsuario == 1 || this.tipoUsuario == 2) {
+      if (this.tipoUsuario == 'Teacher' || this.tipoUsuario == 'Student') {
         formData.append('languajes', value.idiomas);
       }
 
-      if (this.tipoUsuario == 1) {
+      if (this.tipoUsuario == 'Teacher') {
         formData.append(
           'pdf_identification',
           registroForm.get('docuCedula')?.value
@@ -172,7 +174,7 @@ export class ListaUsuariosComponent implements OnInit {
         formData.append('schedules_available', value.horarios);
       }
 
-      if (this.tipoUsuario == 2) {
+      if (this.tipoUsuario == 'Student') {
         this.authService
           .registrarStudent(formData)
           .then((resp: any) => {
@@ -184,7 +186,7 @@ export class ListaUsuariosComponent implements OnInit {
           })
           .catch((e) => this.openError(e.message));
       }
-      if (this.tipoUsuario == 1) {
+      if (this.tipoUsuario == 'Teacher') {
         this.authService
           .registrarTeacher(formData)
           .then((resp: any) => {
@@ -196,7 +198,7 @@ export class ListaUsuariosComponent implements OnInit {
           })
           .catch((e) => this.openError(e.message));
       }
-      if (this.tipoUsuario == 0) {
+      if (this.tipoUsuario == 'Admin') {
         this.authService
           .registrarAdmin(formData)
           .then((resp: any) => {

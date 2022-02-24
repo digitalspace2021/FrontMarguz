@@ -252,8 +252,8 @@
     <div class="horarioBox">
       <div class="horarioList">
         <p *ngFor="let horario of horarios">
-          {{ horario.dia }}: <b>{{ horario.inicio }}</b> -
-          <b>{{ horario.cierre }}</b>
+          {{ horario.day }}: <b>{{ horario.start }}</b> -
+          <b>{{ horario.end }}</b>
         </p>
       </div>
       <button type="button" class="botonHorario" (click)="isHorario = true">
@@ -270,8 +270,8 @@
       >Intereses <br
     /></label>
     <div class="idiomasList">
-      <p *ngFor="let item of IdiomasAsing">
-        {{ item.idiomas }}
+      <p *ngFor="let item of idiomas">
+        {{ item.name }}
       </p>
     </div>
     <div class="addIdioma">
@@ -297,8 +297,7 @@
 
 <app-idiomas-modal
   [idiomas]="idiomas"
-  [idiomasAsing]="IdiomasAsing"
   *ngIf="isIdiomas"
-  [isProfesor]="tipoUsuario == 1"
+  [isProfesor]="tipoUsuario == 'Teacher'"
   (closeIdiomas)="closeIdiomas($event)"
 ></app-idiomas-modal>
