@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Usuario } from '../class/Usuario';
 import { IUsuario } from '../interfaces/IUsuario';
 
+const env = environment.host;
 @Injectable({
   providedIn: 'root',
 })
 export class UsuarioService {
-<<<<<<< HEAD
   address = env + 'users';
-=======
->>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
   url: string = 'https://marguz.co/marguzapi/public/usuarios';
 
   constructor(private http: HttpClient) {}
@@ -23,7 +22,6 @@ export class UsuarioService {
     return this.http.get<IUsuario>(this.url);
   }
 
-<<<<<<< HEAD
   listUsuarioStudent() {
     let url = `${this.address}/students`
     return this.http.get(url);
@@ -39,8 +37,6 @@ export class UsuarioService {
     return this.http.get(url);
   }
 
-=======
->>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
   createUsuario(Usuario: Usuario) {
     return this.http.post<IUsuario>(this.url, {
       json: JSON.stringify(Usuario),

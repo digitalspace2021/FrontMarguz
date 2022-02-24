@@ -27,13 +27,8 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
 
     if (this.user) {
       jsonUser = JSON.parse(this.user);
-<<<<<<< HEAD
 /*TODO: CREAR LOGICA PARA AGREGAR TOKEN SEGUN WITHCREDENTIALS */
       if (jsonUser.access_token) {
-=======
-
-      if (jsonUser.token) {
->>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
         req = request.clone({
           setHeaders: {
             authorization: 'Bearer ' + jsonUser.access_token,
