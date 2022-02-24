@@ -37,7 +37,7 @@ export class RegistroProfesorComponent implements OnInit {
 
   login() {
     this.isRegistroExitoso = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/login']);
   }
 
   registrar(value: any) {

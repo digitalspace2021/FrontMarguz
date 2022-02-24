@@ -36,6 +36,6 @@ export class HeaderAdminComponent implements OnInit {
   }
   async logout() {
     this.authService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/login']);
   }
 }

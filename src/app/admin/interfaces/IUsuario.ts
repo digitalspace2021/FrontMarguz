@@ -14,8 +14,12 @@ export interface IDataUsuario {
   state: string;
   city: string;
   email: string;
+<<<<<<< HEAD
   password: string;
   status: number;
+=======
+  contrasena: string;
+>>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
   foto_perfil?: string;
   zona_horaria?: null;
   descripcion?: null | string;

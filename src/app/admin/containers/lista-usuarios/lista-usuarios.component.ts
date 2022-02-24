@@ -71,6 +71,7 @@ export class ListaUsuariosComponent implements OnInit {
     this.isConfirm = false;
   }
   listUsuario() {
+<<<<<<< HEAD
     this.usuarios = [];
     this.usuariosSearch = [];
     switch (this.tipoUsuario) {
@@ -112,6 +113,9 @@ export class ListaUsuariosComponent implements OnInit {
           break;
     }
 /*     this.usuarioSv
+=======
+    this.usuarioSv
+>>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
       .listUsuario()
       .subscribe(
         (resp) => (
@@ -122,18 +126,26 @@ export class ListaUsuariosComponent implements OnInit {
       ); */
   }
 
+<<<<<<< HEAD
   changeTab(tipo: string = 'Student') {
     this.tipoUsuario = tipo;
     this.listUsuario();
     /* this.usuarios = this.usuariosSearch.filter(
+=======
+  changeTab(tipo: number = 2) {
+    debugger;
+    this.tipoUsuario = tipo;
+    this.usuarios = this.usuariosSearch.filter(
+>>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
       (u) => parseInt(u.tipo_usuario) == tipo
-    ); */
+    );
   }
 
   openModal(title: string, action: boolean = false) {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
   }
+<<<<<<< HEAD
   async registrar(value: any) {
     try {
       let registroForm = value.form;
@@ -211,9 +223,25 @@ export class ListaUsuariosComponent implements OnInit {
           .catch((e) => this.openError(e.message));
       }
 
+=======
+  async registrar(usuario: any) {
+    /* try {
+      this.authService
+        .registrar(usuario)
+        .then((resp: any) => {
+          if (resp.code == 200) {
+            this.openConfirmRegistro();
+            this.listUsuario();
+          } else {
+            this.openError(resp.message);
+          }
+          this.closeRegistro();
+        })
+        .catch((e) => this.openError(e.message));
+>>>>>>> f8feb72a880007ea1217c9ccfcb10c6696fb89f1
     } catch (e: any) {
       this.openError(e.message);
-    }
+    }*/
   }
   isRegistroExitoso: boolean = false;
   registroExitosoMessage: string = 'Ha registrado correctamente al usuario.';

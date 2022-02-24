@@ -20,7 +20,7 @@ export class RestaurarContrasenaComponent implements OnInit {
   reseteoExitosoMessage: string = 'Se ha modificado su contraseña correctamente';
   login() {
     this.isReseteoExitoso = false;
-    this.router.navigate(["/"])
+    this.router.navigate(["/auth/login"])
   }  
   openConfirm() {
     this.isReseteoExitoso = true;

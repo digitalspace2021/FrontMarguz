@@ -71,7 +71,7 @@ export class RegistroEstudianteComponent implements OnInit {
 
   login() {
     this.isRegistroExitoso = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/login']);
   }
 
   validate() {
@@ -103,7 +103,7 @@ export class RegistroEstudianteComponent implements OnInit {
 
   async registrar(value: any) {
     try {
-      let registroForm = value.form;
+      let registroForm = new FormGroup(value.form);
 
       let arrayIdioma = value.idiomas;
       let formData = new FormData();
