@@ -178,7 +178,7 @@ export class ListaUsuariosComponent implements OnInit {
         this.authService
           .registrarStudent(formData)
           .then((resp: any) => {
-            if (resp.code == 200) {
+            if (resp.code == 201) {
               this.openConfirmRegistro();
             } else {
               this.openError(resp.message);
@@ -190,7 +190,7 @@ export class ListaUsuariosComponent implements OnInit {
         this.authService
           .registrarTeacher(formData)
           .then((resp: any) => {
-            if (resp.code == 200) {
+            if (resp.code == 201) {
               this.openConfirmRegistro();
             } else {
               this.openError(resp.message);
@@ -202,7 +202,7 @@ export class ListaUsuariosComponent implements OnInit {
         this.authService
           .registrarAdmin(formData)
           .then((resp: any) => {
-            if (resp.code == 200) {
+            if (resp.code == 201) {
               this.openConfirmRegistro();
             } else {
               this.openError(resp.message);

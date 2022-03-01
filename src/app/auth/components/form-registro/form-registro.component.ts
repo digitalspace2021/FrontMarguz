@@ -24,7 +24,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
-  @Input() tipoUsuario: string = "Admin";
+  @Input() tipoUsuario: string = 'Admin';
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
@@ -66,7 +66,17 @@ export class FormRegistroComponent implements OnInit {
       '',
       Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')
     ),
-    contrasena: new FormControl('', Validators.required),
+    contrasena: new FormControl(
+      '',
+      Validators.compose(
+        [
+          Validators.pattern('[a-z]'),
+          Validators.pattern('[A-Z]'),
+          Validators.pattern('[0-9]'),
+          Validators.pattern('[@$!%*#?&]'),
+      ]
+      )
+    ),
     contrasenaConfim: new FormControl('', Validators.required),
     hojaVida: new FormControl(''),
     fotoPerfil: new FormControl(''),
@@ -89,9 +99,9 @@ export class FormRegistroComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.tipoUsuario == "Teacher") {
+    if (this.tipoUsuario == 'Teacher') {
       this.isProfesor = true;
-    } else if (this.tipoUsuario == "Student") {
+    } else if (this.tipoUsuario == 'Student') {
       this.isEstudiante = true;
     } else {
       this.isAdmin = true;
@@ -99,23 +109,51 @@ export class FormRegistroComponent implements OnInit {
     this.changerCountrys();
   }
 
-
   handleFile(event: any, index: number) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       switch (index) {
         case 0:
+          if (file.size > 2048000) {
+            this.openError('El arhivo no puede pesar mas de 2Mb');
+            return;
+          }
           this.registroForm.get('hojaVida')?.setValue(file);
           this.filename[0] = file.name;
 
           break;
         case 1:
+          if (file.size > 2048000) {
+            this.openError('El arhivo no puede pesar mas de 2Mb');
+            return;
+          }
           this.registroForm.get('docuCedula')?.setValue(file);
           this.filename[1] = file.name;
           break;
         default:
-          this.registroForm.get('fotoPerfil')?.setValue(file);
-          this.filename[2] = file.name;
+          if (file.size > 512000) {
+            this.openError('El arhivo no puede pesar mas de 512Kb');
+            return;
+          }
+          const reader: any = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = (e: any) => {
+            const image = new Image();
+            image.src = e.target.result;
+            image.onload = (rs: any) => {
+              const width = rs.currentTarget['width'];
+              const height = rs.currentTarget['height'];
+
+              if (width < 250 || height < 250) {
+                this.openError(
+                  'Las dimensiones de la imagen deben ser minimo 250 de ancho por 250 de alto'
+                );
+                return;
+              }
+              this.registroForm.get('fotoPerfil')?.setValue(file);
+              this.filename[2] = file.name;
+            };
+          };
           break;
       }
     }

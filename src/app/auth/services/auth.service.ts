@@ -89,14 +89,11 @@ export class AuthService {
 
   async logout() {
     try {
-      localStorage.removeItem('user');
-      let token = this.getToken();
-      let headers: any;
-      headers = headers.append('Authorization', token);
       let endpoint = `${this.address}logout`;
       return new Promise((resolve, reject) => {
         this.http.post(endpoint, {}, {}).subscribe(
           (data) => {
+            this.forceLogout();
             resolve(data);
           },
           (error: any) => {
@@ -109,6 +106,11 @@ export class AuthService {
     }
   }
 
+  forceLogout(){
+    localStorage.removeItem('user');
+    return;
+  }
+
   getToken() {
     let token = localStorage.getItem('token');
     if (token == null) {
@@ -118,7 +120,7 @@ export class AuthService {
   }
 
   getTipoUsuario() {
-    return JSON.parse(localStorage.getItem('user') as any).tipo_usuario;
+    return JSON.parse(localStorage.getItem('user') as any).user.role;
   }
 
   async getCountriesToken() {

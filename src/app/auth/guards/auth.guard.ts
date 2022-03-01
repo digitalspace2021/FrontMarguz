@@ -18,8 +18,26 @@ export class AuthGuard implements CanActivate {
   constructor(public auth: AuthService, private router: Router) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.user = localStorage.getItem('user') || undefined;
-    if (!this.user) {
-      this.router.navigateByUrl('auth');
+    if (!this.user && state.url != '/') {
+      this.router.navigate(['/']);
+      return false;
+    }
+    if (this.user && state.url == '/') {
+      let tipo = this.auth.getTipoUsuario();
+      switch (tipo) {
+        case 'Admin':
+          this.router.navigate(['/admin']);
+
+          break;
+        case 'Teacher':
+          this.router.navigate(['/profesores']);
+
+          break;
+
+        default:
+          this.router.navigate(['/estudiantes']);
+          break;
+      }
     }
     return true;
   }

@@ -37,7 +37,7 @@ export class RegistroProfesorComponent implements OnInit {
 
   login() {
     this.isRegistroExitoso = false;
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 
   registrar(value: any) {
@@ -92,7 +92,7 @@ export class RegistroProfesorComponent implements OnInit {
       this.authService
         .registrarTeacher(formData)
         .then((resp: any) => {
-          if (resp.code == 200) {
+          if (resp.code == 201) {
             this.openConfirm();
           } else {
             this.openError(resp.message);

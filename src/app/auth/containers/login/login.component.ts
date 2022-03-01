@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   async dashboard() {
-    let tipoUsuario = parseInt(this.authService.getTipoUsuario());
-    if (tipoUsuario == 0) {
+    let tipoUsuario = this.authService.getTipoUsuario();
+    if (tipoUsuario == "Admin") {
       this.router.navigate(['admin/admin-usuario']);
-    } else if (tipoUsuario == 1) {
+    } else if (tipoUsuario == "Teacher") {
       this.router.navigate(['profesores']);
     } else {
       this.router.navigate(['estudiantes']);

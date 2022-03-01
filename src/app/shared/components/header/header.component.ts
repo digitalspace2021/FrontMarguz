@@ -54,17 +54,17 @@ export class HeaderComponent implements OnInit {
     let isAuthenticated = this.authService.isAuthenticated();
     if (isAuthenticated) {
       this.dataUsuario = localStorage.getItem('user');
-      this.dataUsuario = JSON.parse(this.dataUsuario);
+      this.dataUsuario = JSON.parse(this.dataUsuario).user;
 
-      this.usuario = this.dataUsuario.nombre + ' ' + this.dataUsuario.apellido;
+      this.usuario = this.dataUsuario.name + ' ' + this.dataUsuario.lastname;
       this.fotoLink = this.dataUsuario.fotoLink_perfil? this.dataUsuario.fotoLink_perfil : "assets/avatar-icon.jpg";
       let tipoUsuario = this.authService.getTipoUsuario();
       switch (tipoUsuario) {
-        case '0':
+        case 'Admin':
           this.isAdmin = true;
           this.logoLink = 'admin/';
           break;
-        case '1':
+        case 'Teacher':
           this.isProfesor = true;
           this.logoLink = 'profesores/';
 
@@ -85,6 +85,6 @@ export class HeaderComponent implements OnInit {
   }
   async logout() {
     await this.authService.logout();
-    this.router.navigate(['/auth/']);
+    this.router.navigate(['/']);
   }
 }
