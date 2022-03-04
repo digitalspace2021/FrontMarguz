@@ -13,6 +13,34 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  restaurePassword(data: any) {
+    let endPoint = env + '/password/reset';
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(endPoint, data).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
+    });
+  }
+
+  resetPassword(email: string) {
+    let endPoint = env + 'password/reset-request';
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(endPoint, { email: email }).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(new Error(error.message));
+        }
+      );
+    });
+  }
+
   registrarTeacher(formData: FormData) {
     let endPoint = this.address + 'register/teacher';
     return new Promise((resolve, reject) => {
@@ -40,6 +68,7 @@ export class AuthService {
       );
     });
   }
+
   registrarAdmin(formData: FormData) {
     let endPoint = this.address + 'register/administrator';
     return new Promise((resolve, reject) => {
