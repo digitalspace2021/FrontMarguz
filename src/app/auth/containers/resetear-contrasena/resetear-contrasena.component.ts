@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -8,28 +9,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./resetear-contrasena.component.scss'],
 })
 export class ResetearContrasenaComponent implements OnInit {
-  constructor(private location: Location, private router: Router) {}
+  email!: string;
+  isReseteoExitoso: boolean = false;
+  reseteoExitosoMessage: string =
+    'Se le ha enviado un correo con las intrucciones para restaurar su contraseña';
+  isError: boolean = false;
+  errorMessage: string = '';
+
+  constructor(
+    private location: Location,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
   back(): void {
     this.location.back();
   }
-  isReseteoExitoso: boolean = false;
-  reseteoExitosoMessage: string = 'Se le ha enviado un correo con las intrucciones para restaurar su contraseña';
+
   login() {
     this.isReseteoExitoso = false;
-    this.router.navigate(["/"])
-  }  
-  async resetear(){
-    this.openConfirm();
-  }
-  openConfirm() {
-    this.isReseteoExitoso = true;
+    this.router.navigate(['/auth/login']);
   }
 
-  isError: boolean = false;
-  errorMessage: string = '';
+  resetear() {
+    this.authService
+      .resetPassword(this.email)
+      .then(() => {
+        this.login();
+      })
+      .catch((err) => console.error);
+  }
+
   openError(message: string) {
     this.errorMessage = message;
     this.isError = true;

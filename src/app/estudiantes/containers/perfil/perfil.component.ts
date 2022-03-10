@@ -55,7 +55,6 @@ export class PerfilComponent implements OnInit {
   }
 
   loadData(data: any) {
-    console.log(data);
     this.formPerfil.get('id')?.setValue(data.id);
     this.formPerfil.get('apellido')?.setValue(data.apellido);
     this.formPerfil.get('nombre')?.setValue(data.nombre);
