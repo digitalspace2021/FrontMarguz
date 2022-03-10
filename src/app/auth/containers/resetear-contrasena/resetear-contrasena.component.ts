@@ -30,7 +30,7 @@ export class ResetearContrasenaComponent implements OnInit {
 
   login() {
     this.isReseteoExitoso = false;
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 
   resetear() {

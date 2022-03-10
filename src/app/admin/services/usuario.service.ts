@@ -83,14 +83,10 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: any) {
-<<<<<<< HEAD
-    return this.http.delete(`${this.address}/${id}`);
+    return this.http.delete(`${this.address}/${id}`, { headers: this.headers });
   }
   habilitar(id: any){
     return this.http.put(`${this.address}/status/${id}`, {});
 
-=======
-    return this.http.delete(`${this.address}/${id}`, { headers: this.headers });
->>>>>>> 8ec4021c516879209093a60657f5053fb7957977
   }
 }

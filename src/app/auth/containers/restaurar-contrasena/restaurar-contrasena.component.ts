@@ -57,13 +57,8 @@ export class RestaurarContrasenaComponent implements OnInit {
 
   login() {
     this.isReseteoExitoso = false;
-<<<<<<< HEAD
     this.router.navigate(["/"])
   }  
-=======
-    this.router.navigate(['/auth/login']);
-  }
->>>>>>> 8ec4021c516879209093a60657f5053fb7957977
   openConfirm() {
     this.isReseteoExitoso = true;
   }
