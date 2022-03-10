@@ -14,11 +14,26 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanActivate {
   user?: any;
-
+  whitelist = [
+    '/',
+    '/registro',
+    '/registro/profesores',
+    '/registro/estudiantes',
+    '/public',
+    '/perfil/:',
+    '/politicas/estudiante',
+    '/politicas/profesor',
+    '/politicas/pago',
+  ];
   constructor(public auth: AuthService, private router: Router) {}
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.user = localStorage.getItem('user') || undefined;
-    if (!this.user && state.url != '/') {
+    if (
+      !this.user &&
+      (state.url.includes('admin') ||
+        state.url.includes('profesores') ||
+        state.url.includes('estudiantes'))
+    ) {
       this.router.navigate(['/']);
       return false;
     }

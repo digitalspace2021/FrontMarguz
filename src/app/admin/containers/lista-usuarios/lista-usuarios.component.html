@@ -8,12 +8,12 @@
     </h1>
   </div>
   <div class="col-md-6" style="text-align: right !important">
-    <button
+<!--     <button
       class="btn btn-light"
       style="margin-right: 15px"
       (click)="habilitar()"
     >
-      <fa-icon style="font-size: 14px; color: green" [icon]="user"></fa-icon>
+      <fa-icon style="font-size: 14px; color: green" [icon]="userIcon"></fa-icon>
     </button>
     <button
       class="btn btn-light"
@@ -21,16 +21,13 @@
       style="margin-right: 15px"
     >
       <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
-    </button>
+    </button> -->
     <button
       class="btn btn-light"
       style="margin-right: 15px"
       (click)="openRegistro()"
     >
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
-    </button>
-    <button class="btn btn-light" style="margin-right: 15px" (click)="editar()">
-      <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
     </button>
     <button class="btn btn-danger" (click)="eliminar()">
       <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
@@ -114,6 +111,8 @@
                 <th>Ciudad</th>
                 <th>Idiomas a ver</th>
                 <th>Email</th>
+                <th>Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +123,7 @@
                 "
               >
                 <td><input type="checkbox" /></td>
-                <td>{{ user.id }}</td>
+                <td>{{ user.identification }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.cellphone }}</td>
@@ -134,20 +133,33 @@
                 <td><a href="javascrip:;">Idiomas</a></td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.status? 'Activo':'Inactivo' }}</td>
-                <td></td>
-<!--                 <td><input type="checkbox" /></td>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.cellphone }}</td>
-                <td>{{ user.country }}</td>
-                <td>{{ user.state }}</td>
-                <td>{{ user.city }}</td>
-                <td><a href="javascrip:;">Idiomas</a></td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.status }}</td>
-                <td></td>
- -->              </tr>
+                <td>
+                  <button
+                  class="btn btn-light"
+                  style="margin-right: 15px"
+                  (click)="habilitar(user.id)"
+                  *ngIf="!user.status"
+                >
+                  <fa-icon style="font-size: 14px; color: green" [icon]="userIcon"></fa-icon>
+                </button>
+                <button
+                  class="btn btn-light"
+                  (click)="deshabilitar(user.id)"
+                  style="margin-right: 15px"
+                  *ngIf="user.status"
+                >
+                  <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
+                </button>
+                <button class="btn btn-light" style="margin-right: 15px" (click)="editar()">
+                  <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
+                </button>
+                <button class="btn btn-danger" (click)="eliminar()">
+                  <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
+                </button>
+
+
+                </td>
+             </tr>
             </tbody>
           </table>
         </div>

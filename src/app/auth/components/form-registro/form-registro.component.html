@@ -59,10 +59,9 @@
   <div class="formInput">
     <label for="telefono" class="col-form-label">Telefono</label>
     <input
-      type="tel"
+      type="number"
       formControlName="telefono"
       class="form-control"
-      maxlength="10"
     />
     <div
       class="errorTag"
@@ -121,6 +120,13 @@
     >
       Por favor ingrese su correo
     </div>
+    <div
+    class="errorTag"
+    *ngIf="
+      fRegistro.email.errors?.email"
+  >
+    Por favor ingrese un correo válido
+  </div>
   </div>
 
   <div class="formInput">
@@ -143,6 +149,22 @@
     >
       Por favor ingrese una contraseña
     </div>
+    <div
+      class="errorTag"
+      *ngIf="
+        checkLength()
+      "
+    >
+      La contraseña debe tener un mínimo de 8 carácteres
+    </div>
+    <div
+      class="errorTag"
+      *ngIf="
+        fRegistro.contrasena.errors?.pattern
+      "
+    >
+      La contraseña debe tener al menos una minúscula, una mayúscula, un número y un carácter especial de los siguientes: @ $ ! % * # ? &
+    </div>
   </div>
 
   <div class="formInput">
@@ -162,7 +184,17 @@
     >
       Por favor confirme su contraseña
     </div>
+    <div
+      class="errorTag"
+      *ngIf="
+        registroForm.hasError('notSame') &&
+        (fRegistro.contrasenaConfim.touched || fRegistro.contrasenaConfim.dirty)
+      "
+    >
+      Las contraseñas no coinciden
+    </div>
   </div>
+  
 
   <div class="fileBoxes">
     <div *ngIf="isProfesor" class="fileInput">
@@ -282,7 +314,7 @@
     </div>
   </div>
   <div class="formButton">
-    <button type="button" (click)="submit()">Registrarme</button>
+    <button type="button" [disabled]="checkIsFormValid()" (click)="submit()">Registrarme</button>
   </div>
 </form>
 

@@ -19,7 +19,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class ListaUsuariosComponent implements OnInit {
   icon = faSortDown;
-  user = faUserCheck;
+  userIcon = faUserCheck;
   minus = faMinusCircle;
   add = faPlusCircle;
   close = faWindowClose;
@@ -45,14 +45,20 @@ export class ListaUsuariosComponent implements OnInit {
     this.listUsuario();
   }
 
-  habilitar() {
-    this.openConfirm('Habilitar usuario', 'Usuario habilitado exitosamente');
+  habilitar(id: number) {
+    this.usuarioSv.habilitar(id).subscribe((resp: any) => {
+      this.openConfirm('Habilitar usuario', 'Usuario habilitado exitosamente');
+      this.listUsuario();
+    });
   }
-  deshabilitar() {
-    this.openConfirm(
-      'Deshabilitar usuario',
-      'Usuario deshabilitado exitosamente'
-    );
+  deshabilitar(id: number) {
+    this.usuarioSv.habilitar(id).subscribe((resp: any) => {
+      this.openConfirm(
+        'Deshabilitar usuario',
+        'Usuario deshabilitado exitosamente'
+      );
+      this.listUsuario();
+    });
   }
   eliminar() {
     this.openConfirm('Eliminar usuario', 'Usuario eliminado exitosamente');
@@ -75,43 +81,37 @@ export class ListaUsuariosComponent implements OnInit {
     this.usuariosSearch = [];
     switch (this.tipoUsuario) {
       case 'Admin':
-        this.usuarioSv
-        .listUsuarioAdmin()
-        .subscribe(
-          (resp:any) => (
+        this.usuarioSv.listUsuarioAdmin().subscribe(
+          (resp: any) => (
             (this.usuarios = resp.result.data),
             (this.usuariosSearch = resp.result.data)
             //this.changeTab()
           )
         );
-          
+
         break;
-        case 'Teacher':
-          this.usuarioSv
-          .listUsuarioTeacher()
-          .subscribe(
-            (resp:any) => (
-              (this.usuarios = resp.result.data),
-              (this.usuariosSearch = resp.result.data)
-              //this.changeTab()
-            )
-          );
-            
-          break;
-      
-      default:
-        this.usuarioSv
-        .listUsuarioStudent()
-        .subscribe(
-          (resp:any) => (
+      case 'Teacher':
+        this.usuarioSv.listUsuarioTeacher().subscribe(
+          (resp: any) => (
             (this.usuarios = resp.result.data),
             (this.usuariosSearch = resp.result.data)
             //this.changeTab()
           )
         );
-          break;
+
+        break;
+
+      default:
+        this.usuarioSv.listUsuarioStudent().subscribe(
+          (resp: any) => (
+            (this.usuarios = resp.result.data),
+            (this.usuariosSearch = resp.result.data)
+            //this.changeTab()
+          )
+        );
+        break;
     }
-/*     this.usuarioSv
+    /*     this.usuarioSv
       .listUsuario()
       .subscribe(
         (resp) => (
@@ -210,7 +210,6 @@ export class ListaUsuariosComponent implements OnInit {
           })
           .catch((e: any) => this.openError(e.message));
       }
-
     } catch (e: any) {
       this.openError(e.message);
     }

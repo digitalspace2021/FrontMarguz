@@ -6,7 +6,14 @@ import {
   EventEmitter,
   ViewChild,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import {
   faCalendar,
   faPlusCircle,
@@ -24,6 +31,17 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
+
+
+
+  checkPasswords: ValidatorFn = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
+      let pass = group.get('contrasena')? group.get('contrasena')!.value: null;
+      let confirmPass = group.get('contrasenaConfim')? group.get('contrasenaConfim')!.value: null;
+      return pass === confirmPass ? null : { notSame: true };
+  };
+
   @Input() tipoUsuario: string = 'Admin';
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
@@ -54,34 +72,36 @@ export class FormRegistroComponent implements OnInit {
   isHorario: boolean = false;
   isIdiomas: boolean = false;
 
-  registroForm = new FormGroup({
-    identificacion: new FormControl('', Validators.required),
-    nombre: new FormControl('', Validators.required),
-    apellido: new FormControl('', Validators.required),
-    telefono: new FormControl('', Validators.required),
-    pais: new FormControl('Colombia', Validators.required),
-    estado: new FormControl('', Validators.required),
-    ciudad: new FormControl('', Validators.required),
-    email: new FormControl(
-      '',
-      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')
-    ),
-    contrasena: new FormControl(
-      '',
-      Validators.compose(
-        [
-          Validators.pattern('[a-z]'),
-          Validators.pattern('[A-Z]'),
-          Validators.pattern('[0-9]'),
-          Validators.pattern('[@$!%*#?&]'),
-      ]
-      )
-    ),
-    contrasenaConfim: new FormControl('', Validators.required),
-    hojaVida: new FormControl(''),
-    fotoPerfil: new FormControl(''),
-    docuCedula: new FormControl(''),
-  });
+  registroForm: FormGroup= new FormGroup(
+    {
+      identificacion: new FormControl('', Validators.required),
+      nombre: new FormControl('', Validators.required),
+      apellido: new FormControl('', Validators.required),
+      telefono: new FormControl('', Validators.required),
+      pais: new FormControl('Colombia', Validators.required),
+      estado: new FormControl('', Validators.required),
+      ciudad: new FormControl('', Validators.required),
+      email: new FormControl(
+        '',
+        Validators.email
+        //Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')
+      ),
+      contrasena: new FormControl(
+        '',
+        Validators.compose([
+          Validators.minLength(8),
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?])[A-Za-z0-9@$!%*#?]{8,}$'
+          ),
+        ])
+      ),
+      contrasenaConfim: new FormControl('', Validators.required),
+      hojaVida: new FormControl(''),
+      fotoPerfil: new FormControl(''),
+      docuCedula: new FormControl(''),
+    },
+    { validators: this.checkPasswords }
+  );
   filename = ['', '', ''];
   countrySelected: string = '';
   stateSelected: string = '';
@@ -107,6 +127,30 @@ export class FormRegistroComponent implements OnInit {
       this.isAdmin = true;
     }
     this.changerCountrys();
+  }
+
+
+  checkLength() {
+    console.log(this.fRegistro.contrasena.errors);
+    let value =
+      this.fRegistro.contrasena.errors?.minlength?.requiredLength >
+      this.fRegistro.contrasena.errors?.minlength?.actualLength;
+    return value;
+  }
+
+  checkIsFormValid() {
+    let formValid = this.registroForm.valid;
+    let idiomasLength = this.idiomas.length > 0;
+    let files = false;
+    if (this.isEstudiante) {
+      files = this.filename[2] == '';
+    } else if (this.isProfesor) {
+      files =
+        this.filename[0] == '' ||
+        this.filename[1] == '' ||
+        this.filename[2] == '';
+    }
+    return !formValid || !idiomasLength || files;
   }
 
   handleFile(event: any, index: number) {
