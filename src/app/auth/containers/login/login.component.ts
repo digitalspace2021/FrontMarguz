@@ -58,10 +58,10 @@ export class LoginComponent implements OnInit {
         .login(login)
         .then((resp: any) => {
           if (resp.code == 200) {
-            if(!resp.result.user.email_verified_at){
+            /* if(!resp.result.user.email_verified_at){
               this.openError('Usuario con correo no validado. Por favor, valide su correo e intente de nuevo.');
               return;
-            }
+            } */
             localStorage.setItem('user', JSON.stringify(resp.result));
             this.openConfirm();
           } else {
