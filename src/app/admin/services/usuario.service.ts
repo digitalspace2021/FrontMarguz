@@ -54,19 +54,18 @@ export class UsuarioService {
     return this.http.get(url, { headers: this.headers });
   }
 
-
   registerStudent(data: any) {
-    let url = `${this.address}/student`
+    let url = `${this.address}/student`;
     return this.http.post(url, data);
   }
 
   registerTeacher(data: any) {
-    let url = `${this.address}/teacher`
+    let url = `${this.address}/teacher`;
     return this.http.get(url, data);
   }
 
   registerAdmin(data: any) {
-    let url = `${this.address}/administrator`
+    let url = `${this.address}/administrator`;
     return this.http.get(url, data);
   }
 
@@ -85,8 +84,7 @@ export class UsuarioService {
   deleteUsuario(id: any) {
     return this.http.delete(`${this.address}/${id}`, { headers: this.headers });
   }
-  habilitar(id: any){
+  habilitar(id: any) {
     return this.http.put(`${this.address}/status/${id}`, {});
-
   }
 }

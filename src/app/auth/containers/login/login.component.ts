@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit {
 
   async dashboard() {
     let tipoUsuario = this.authService.getTipoUsuario();
-    if (tipoUsuario == "Admin") {
+    if (tipoUsuario == 'Admin') {
       this.router.navigate(['admin/admin-usuario']);
-    } else if (tipoUsuario == "Teacher") {
+    } else if (tipoUsuario == 'Teacher') {
       this.router.navigate(['profesores']);
     } else {
       this.router.navigate(['estudiantes']);
@@ -43,37 +43,27 @@ export class LoginComponent implements OnInit {
    */
 
   login() {
-    try {
-      if (!this.validate())
-        throw new Error(
-          'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
-        );
-
+    if (this.validate()) {
       let login = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       };
-
       this.authService
         .login(login)
         .then((resp: any) => {
-          if (resp.code == 200) {
-            /* if(!resp.result.user.email_verified_at){
-              this.openError('Usuario con correo no validado. Por favor, valide su correo e intente de nuevo.');
-              return;
-            } */
-            localStorage.setItem('user', JSON.stringify(resp.result));
-            this.openConfirm();
-          } else {
-            this.openError(resp.message);
-          }
+          localStorage.setItem('user', JSON.stringify(resp.result));
+          this.openConfirm();
         })
-        .catch((e) =>
-         this.openError(e.message)
-         );
-    } catch (e: any) {
-      console.log(e)
-      this.openError(e.message);
+        .catch((e) => {
+          this.openError(
+            'correo o contraseña no validas o correo no verificado'
+          );
+          this.loginForm.get('email')?.setValue('');
+          this.loginForm.get('password')?.setValue('');
+          console.log(e.message);
+        });
+    } else {
+      this.openError('email o contraseña no validos');
     }
   }
 
