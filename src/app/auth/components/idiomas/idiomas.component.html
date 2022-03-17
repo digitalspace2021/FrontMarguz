@@ -1,0 +1,11 @@
+<div class="blackBox" (click)="close()"></div>
+<div class="logBox">
+  <div class="bodyBox">
+    <app-idiomas [isProfesor]="isProfesor" [idiomas]="idiomas" (closeIdiomas)="emit($event)"></app-idiomas>
+  </div>
+</div>
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>

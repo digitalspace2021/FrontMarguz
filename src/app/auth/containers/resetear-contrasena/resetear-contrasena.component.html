@@ -5,7 +5,7 @@
     </div>
     <div class="bodyBox">
       <div class="backItem" (click)="back()">
-        <img src="assets/iconos/back.png" alt="">
+        <img src="assets/iconos/back.png" alt="" />
         <p>Volver</p>
       </div>
 
@@ -15,7 +15,8 @@
           <div class="formInput">
             <input
               type="text"
-              formControlName="email"
+              name="email"
+              [(ngModel)]="email"
               class="form-control"
               placeholder="Email"
             />
@@ -26,9 +27,22 @@
             </button>
           </div>
         </form>
-
         <br />
       </div>
     </div>
   </div>
 </div>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  title="Reseteo exitoso"
+  [msg]="reseteoExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isReseteoExitoso"
+  (closeConfirm)="login()"
+></app-confirm>

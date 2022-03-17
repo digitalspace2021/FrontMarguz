@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boton-facebook.component.scss']
 })
 export class BotonFacebookComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {

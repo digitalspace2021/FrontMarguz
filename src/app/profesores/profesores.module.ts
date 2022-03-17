@@ -1,5 +1,9 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ProfesoresRoutingModule } from './profesores-routing.module';
 import { ProfesoresComponent } from './profesores.component';
@@ -11,6 +15,9 @@ import { EditarPagoComponent } from './components/editar-pago/editar-pago.compon
 import { CalendarioComponent } from './containers/calendario/calendario.component';
 import { PerfilComponent } from './containers/perfil/perfil.component';
 import { HorarioComponent } from './containers/horario/horario.component';
+import { SharedModule } from '../shared/shared.module';
+import { HeaderProfesorComponent } from './components/header-profesor/header-profesor.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -23,11 +30,17 @@ import { HorarioComponent } from './containers/horario/horario.component';
     EditarPagoComponent,
     CalendarioComponent,
     PerfilComponent,
-    HorarioComponent
+      HorarioComponent,
+    HeaderProfesorComponent
   ],
   imports: [
+    MatNativeDateModule,
+    MatDatepickerModule,
     CommonModule,
-    ProfesoresRoutingModule
+    SharedModule,
+    FontAwesomeModule,
+    ProfesoresRoutingModule,
+     ReactiveFormsModule
   ]
 })
 export class ProfesoresModule { }

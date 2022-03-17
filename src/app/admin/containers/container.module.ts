@@ -1,7 +1,10 @@
-import { SharedModule } from './../../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListAdminComponent } from './list-admin/list-admin.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AgregarEstudianteComponent } from './agregar-estudiante/agregar-estudiante.component';
 import { EditarEstudianteComponent } from './editar-estudiante/editar-estudiante.component';
@@ -12,6 +15,11 @@ import { EditarProfesorComponent } from './editar-profesor/editar-profesor.compo
 import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 import { EditarHorarioComponent } from './editar-horario/editar-horario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CalendarioComponent } from './calendario/calendario.component';
+import { ComponentModule } from '../components/component.module';
+import { AuthModule } from 'src/app/auth/auth.module';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ListAdminComponent } from './list-admin/list-admin.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +32,20 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EditarProfesorComponent,
     EditarClaseComponent,
     EditarHorarioComponent,
+    CalendarioComponent,
+    PerfilComponent,
   ],
   imports: [
-    CommonModule, FontAwesomeModule, SharedModule
+    CommonModule,
+    FontAwesomeModule,
+    SharedModule,
+    ComponentModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    AuthModule,   
+    NgxPaginationModule
   ],
-  exports : [
+  exports: [
     ListAdminComponent,
     AgregarEstudianteComponent,
     EditarEstudianteComponent,
@@ -38,6 +55,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EditarProfesorComponent,
     EditarClaseComponent,
     EditarHorarioComponent,
-  ]
+  ],
 })
-export class ContainerModule { }
+export class ContainerModule {}

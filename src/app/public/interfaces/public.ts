@@ -1,2 +1,2 @@
-export interface Public {
+export interface IProfesor {
 }

@@ -1,0 +1,225 @@
+.mb-4 {
+  margin-bottom: -0.5rem !important;
+}
+
+.card-encabezado {
+  height: 68px;
+}
+
+.social-btn {
+  height: 40px;
+  border-radius: 5px;
+}
+
+.fa-facebook,
+.fa-google {
+  margin-right: 30px;
+}
+
+.input-register {
+  border-radius: 15px;
+  width: 250px;
+}
+
+.btn-login {
+  border-radius: 10px;
+}
+
+hr {
+  background-color: black;
+  width: 100%;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+
+.div1 > .afu-dragndrop-box {
+  height: 45px !important;
+  border-radius: 8px !important;
+  width: 200px !important;
+}
+
+form {
+  width: 100%;
+  .formInput {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    label {
+      width: calc(25% - 10px);
+      text-align: right;
+    }
+    input {
+      width: 75%;
+
+      margin-left: 10px;
+      border-radius: 10px;
+    }
+    select {
+      margin-left: 10px;
+      width: 75%;
+    }
+    .tagLine{
+      font-size: 10px;
+    text-align: right;
+    width: 70%;
+    margin-left: 30%;
+    }
+    margin: 15px;
+    .horarioBox {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      .horarioList {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+      }
+      .botonHorario {
+        background-color: #2f80ed;
+        margin-left: 10px;
+        color: white;
+        width: 100%;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        border: 1px solid #2f80ed;
+        font-weight: bold;
+        height: 48px;
+        padding: 10px;
+        &:hover {
+          color: #2f80ed;
+          background-color: white;
+        }
+      }
+    }
+  }
+  .fileBoxes {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    align-items: center;
+    .fileInput {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 15px;
+      align-items: center;
+      width: 100%;
+      label {
+        width: calc(25% - 10px);
+        text-align: right;
+      }
+      .inputFile {
+        background-color: #d6dade;
+        border-radius: 10px;
+        width: 60%;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        .fileButton{
+          border: 2px dashed #2f80ed !important;
+          border-radius: 10px !important;
+          color: #2f80ed !important;
+          padding: 6px 12px;
+          background-color: transparent;
+        }
+      }
+    }
+    .resetFile {
+      color: #e31b36;
+      margin: 0 1%;
+      border-radius: 100px;
+      cursor: pointer;
+      font-size: 25px;
+      line-height: 25px;
+      width: 25px;
+      height: 25px;
+      border-radius: 100px;
+      cursor: pointer;
+      &:hover {
+        background-color: #e31b36;
+        color: white;
+      }
+    }
+  }
+  .formIdiomas {
+    justify-content: space-between;
+    .idiomasList {
+      display: flex;
+      width: 50%;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      p {
+        font-weight: bold;
+        margin: 5px;
+      }
+    }
+    label {
+      width: 25% !important;
+      span {
+        font-style: italic;
+      }
+    }
+    .addIdioma {
+      padding: 10px !important;
+      display: flex;
+      align-items: center;
+
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+      border-radius: 5px;
+      background-color: white;
+      fa-icon {
+        cursor: pointer;
+        margin: 0;
+        line-height: 30px;
+        color: #e31b36;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 100px;
+        border: 1px solid #e31b36;
+        font-weight: 500;
+        height: 30px;
+        width: 30px;
+        font-size: 30px;
+        &:hover {
+          color: white;
+          background-color: #e31b36;
+        }
+      }
+    }
+  }
+  .formCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    input {
+      margin: 0 5px 0 0;
+      border-radius: 0;
+    }
+  }
+  .formButton {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    button {
+      background-color: #24aa24;
+      border: solid 1px #24aa24;
+      color: white;
+      width: 30%;
+      border-radius: 10px;
+      height: 40px;
+      padding: 8px;
+      outline: none;
+    }
+  }
+}

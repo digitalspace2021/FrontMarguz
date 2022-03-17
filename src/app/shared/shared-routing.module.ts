@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from '../public/containers/not-found/not-found.component';
 import { SharedComponent } from './shared.component';
 
-const routes: Routes = [{ path: '', component: SharedComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: SharedComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SharedRoutingModule { }
+export class SharedRoutingModule {}

@@ -8,6 +8,10 @@ import { PerfilProfesorComponent } from './containers/perfil-profesor/perfil-pro
 import { PoliticasProfesorComponent } from './containers/politicas-profesor/politicas-profesor.component';
 import { PoliticasEstudianteComponent } from './containers/politicas-estudiante/politicas-estudiante.component';
 import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-profesor/politicas-pago-profesor.component';
+import { HeaderPublicComponent } from './components/header-public/header-public.component';
+import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,11 +21,19 @@ import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-prof
     PerfilProfesorComponent,
     PoliticasProfesorComponent,
     PoliticasEstudianteComponent,
-    PoliticasPagoProfesorComponent
+    PoliticasPagoProfesorComponent,
+    HeaderPublicComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     PublicRoutingModule
+  ],
+  exports:[
+    HeaderPublicComponent
   ]
 })
 export class PublicModule { }

@@ -1,7 +1,7 @@
 <div class="containerBox">
   <div class="contentBox">
     <div class="headerBox">
-      <p>Iniciar Sesion</p>
+      <p style="font-weight:600">Iniciar sesión</p>
     </div>
     <div class="bodyBox">
       <div class="buttonsBox">
@@ -14,8 +14,7 @@
         </div>
       </div>
       <div class="formBox">
-        <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
-        <form>
+        <form [formGroup]="loginForm">
           <div class="formInput">
             <input
               type="text"
@@ -23,14 +22,33 @@
               class="form-control"
               placeholder="Email"
             />
+
+            <div
+              class="errorTag"
+              *ngIf="
+                fLogin.email.errors?.required &&
+                (fLogin.email.touched || fLogin.email.dirty)
+              "
+            >
+              Debe ingresar un correo
+            </div>
           </div>
           <div class="formInput">
             <input
               type="password"
-              formControlName="contrasena"
+              formControlName="password"
               class="form-control"
               placeholder="Contraseña"
             />
+            <div
+              class="errorTag"
+              *ngIf="
+                fLogin.password.errors?.required &&
+                (fLogin.password.touched || fLogin.password.dirty)
+              "
+            >
+              Debe ingresar su contraseña
+            </div>
           </div>
           <div class="formInput formCheckbox">
             <input
@@ -39,19 +57,33 @@
               value=""
               id="flexCheckDefault"
             />
-            <label for="nombre" class="col-form-label">Recordarme</label>
+            <label for="nombre" class="col-form-label" style="color:#999999">Recordarme</label>
           </div>
           <div class="formButton">
-            <button type="button" (click)="login()">Inicia Sesión</button>
+            <button  type="button" (click)="login()">Inicia sesión</button>
           </div>
         </form>
 
         <br />
       </div>
       <div class="recoverBox">
-        <p>¿No recuerdas tus datos de acceso?</p>
-        <a routerLink="/auth/recuperar">Recuperar contraseña</a>
+        <p class="mb-2" style="color:#6c6c6c">¿No recuerdas tus datos de acceso?</p>
+        <a routerLink="/recuperar" style="font-weight: 600;">Recuperar contraseña</a>
       </div>
     </div>
   </div>
 </div>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  title="Inicio de sesión exitoso"
+  [msg]="inicioExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isInicioExitoso"
+  (closeConfirm)="dashboard()"
+></app-confirm>

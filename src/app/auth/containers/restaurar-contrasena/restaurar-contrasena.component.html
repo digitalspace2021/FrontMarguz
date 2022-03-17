@@ -5,12 +5,19 @@
     </div>
     <div class="bodyBox">
       <div class="formBox">
-        <!-- <form [formGroup]="loginForm" style="width: 40%;"> -->
-        <form>
+        <form [formGroup]="loginForm" novalidate>
+          <div class="formInput">
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control input-login"
+              placeholder="Ingresa tu email"
+            />
+          </div>
           <div class="formInput">
             <input
               type="password"
-              formControlName="contrasena"
+              formControlName="password"
               class="form-control input-login"
               placeholder="Ingresa tu nueva contrseña"
             />
@@ -18,18 +25,37 @@
           <div class="formInput">
             <input
               type="password"
-              formControlName="contrasena2"
+              formControlName="password_confirmation"
               class="form-control input-login"
               placeholder="Repite tu nueva contraseña"
             />
           </div>
           <div class="formButton">
-            <button type="button" (click)="restaurar()">Restaurar contraseña</button>
+            <button
+              type="button"
+              [disabled]="!loginForm.valid"
+              (click)="restaurar()"
+            >
+              Restaurar contraseña
+            </button>
           </div>
         </form>
-
         <br />
       </div>
     </div>
   </div>
 </div>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+
+<app-confirm
+  title="Reseteo exitoso"
+  [msg]="reseteoExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isReseteoExitoso"
+  (closeConfirm)="login()"
+></app-confirm>

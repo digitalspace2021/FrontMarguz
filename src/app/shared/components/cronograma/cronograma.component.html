@@ -1,0 +1,274 @@
+<div class="d-inline-block styless">
+  <span>
+    <fa-icon (click)="backRange()" class="rowIcon" [icon]="backRow"></fa-icon>
+  </span>
+  <span>
+    <fa-icon (click)="nextRange()" class="rowIcon" [icon]="nextRow"></fa-icon>
+  </span>
+</div>
+<div class="d-inline" style="margin-left: 10px; font-weight: 400">
+  <span>{{ inicioRange | date: "MMM d, y" }}</span> -
+  <span>{{ finRange | date: "MMM d, y" }}</span>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="ajust scoppes"></th>
+      <th scope="col" class="ajust" *ngFor="let day of range">
+     <span class="rangeDays">{{day | date: "EE dd"}}</span> <span class="date"></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">09:00</th>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">10:00</th>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">11:00</th>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td
+        class="dashed marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span class="date_span">10:00 - 11:00</span
+        ><span class="name_span">Juliana</span>
+      </td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">12:00</th>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td
+        class="td-scoppes marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span style="float: right"
+          ><i class="fas fa-check-circle icon-marcado"></i
+        ></span>
+      </td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td
+        class="dashed marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span class="date_span">10:00 - 11:00</span
+        ><span class="name_span">Juliana</span>
+      </td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">13:00</th>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td
+        class="td-scoppes marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span style="float: right"
+          ><i class="fas fa-check-circle icon-marcado"></i
+        ></span>
+      </td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td
+        class="dashed marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span class="date_span">10:00 - 11:00</span
+        ><span class="name_span">Juliana</span>
+      </td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td
+        class="dashed marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span class="date_span">10:00 - 11:00</span
+        ><span class="name_span">Juliana</span>
+      </td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">14:00</th>
+      <td class="td-scoppes"></td>
+      <td
+        class="td-scoppes marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span style="float: right"
+          ><i class="fas fa-check-circle icon-marcado"></i
+        ></span>
+      </td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td
+        class="td-scoppes marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span style="float: right"
+          ><i class="fas fa-check-circle icon-marcado"></i
+        ></span>
+      </td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td
+        class="dashed marcadoAzul dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span class="date_span">10:00 - 11:00</span
+        ><span class="name_span">Juliana</span>
+      </td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td
+        class="dashed marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span class="date_span">10:00 - 11:00</span
+        ><span class="name_span">Juliana</span>
+      </td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">15:00</th>
+      <td
+        class="td-scoppes marcadoAzul dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span style="float: right"
+          ><i class="fas fa-check-circle icon-marcadoAzul"></i
+        ></span>
+      </td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td
+        class="td-scoppes marcado dashed-no-bordered"
+        data-bs-toggle="modal"
+        data-bs-target="#modalDetallesAdmin"
+      >
+        <span style="float: right"
+          ><i class="fas fa-check-circle icon-marcado"></i
+        ></span>
+      </td>
+      <td class="td-scoppes"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row"></th>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+      <td class="dashed"></td>
+    </tr>
+    <tr>
+      <th class="scoppes" scope="row">16:00</th>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+      <td class="td-scoppes"></td>
+    </tr>
+  </tbody>
+</table>

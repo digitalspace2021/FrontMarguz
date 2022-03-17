@@ -1,57 +1,126 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { faPray } from '@fortawesome/free-solid-svg-icons';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { faCalendar, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-registro-profesor',
   templateUrl: './registro-profesor.component.html',
   styleUrls: ['./registro-profesor.component.scss'],
 })
 export class RegistroProfesorComponent implements OnInit {
-  countries: any;
-  states: any;
-  cities: any;
+  //-------------icon
+  icon = faPlusCircle;
+  horarios = [
+    {
+      dia: 'Lunes',
+      inicio: '8:00am',
+      cierre: '2:00pm',
+    },
+  ];
 
-  registerForm: FormGroup = new FormGroup({
-    id: new FormControl(),
-    nombre: new FormControl(),
-    apellido: new FormControl(),
-    telefono: new FormControl(),
-    email: new FormControl(),
-    contrasena: new FormControl(),
-    intereses: new FormControl(),
-  });
+  calendar = faCalendar;
+  user = faUserPlus;
+  //----------------------------
+  isRegistroExitoso: boolean = false;
+  registroExitosoMessage: string =
+    'Su cuenta ingresará a un proceso de validación y en tiempo de 10 días o una semana su cuenta quedará habilitada, ' +
+    'para empezar por favor revise su bandeja de entrada para validar su correo electrónico.';
+  isError: boolean = false;
+  errorMessage: string = '';
 
-  countrySelected: string = '';
-  stateSelected: string = '';
-  citySelected: string = '';
+  constructor(private authService: AuthService, private router: Router) {}
 
-  constructor(private authService: AuthService) {}
+  ngOnInit() {}
 
-  async ngOnInit() {
-    this.countries = await this.authService.getCountries();
-    this.countrySelected = "Colombia";
-    await this.countryChange()
+  login() {
+    this.isRegistroExitoso = false;
+    this.router.navigate(['/']);
   }
-  async countryChange() {
-    this.stateSelected = ""
-    this.citySelected = ""
-    console.log("changing")
-    this.states = await this.authService.getStates(this.countrySelected);
-    if(this.states.length == 0) {
-      alert(`Información de estados del paìs ${this.countrySelected} no disponibles`);
-      return
+
+  registrar(value: any) {
+    try {
+      let registroForm = value.form;
+
+      let arrayIdioma = value.idiomas;
+      let arrayHorario = value.horarios;
+
+      let formData = new FormData();
+      formData.append('name', registroForm.get('nombre')?.value);
+      formData.append('lastname', registroForm.get('apellido')?.value);
+      formData.append('email', registroForm.get('email')?.value);
+      formData.append('password', registroForm.get('contrasena')?.value);
+      formData.append(
+        'password_confirmation',
+        registroForm.get('contrasenaConfim')?.value
+      );
+      formData.append(
+        'identification',
+        registroForm.get('identificacion')?.value
+      );
+      formData.append('cellphone', registroForm.get('telefono')?.value);
+      formData.append('country', registroForm.get('pais')?.value);
+      formData.append('state', registroForm.get('estado')?.value);
+      formData.append('city', registroForm.get('ciudad')?.value);
+      formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
+      formData.append(
+        'pdf_identification',
+        registroForm.get('docuCedula')?.value
+      );
+      formData.append('pdf_documentation', registroForm.get('hojaVida')?.value);
+      arrayHorario.forEach((elements: any, index: any) => {
+        formData.append(
+          'schedules_available[' + index + '][day]',
+          elements.dia
+        );
+        formData.append(
+          'schedules_available[' + index + '][start]',
+          elements.inicio
+        );
+        formData.append(
+          'schedules_available[' + index + '][end]',
+          elements.cierre
+        );
+      });
+
+      arrayIdioma.forEach((elements: any, index: any) => {
+        formData.append('languajes[' + index + ']', elements.id);
+      });
+
+      this.authService
+        .registrarTeacher(formData)
+        .then((resp: any) => {
+          if (resp.code == 201) {
+            this.openConfirm();
+          } else {
+            this.openError(resp.message);
+          }
+        })
+        .catch((e) => this.openError(e.message));
+    } catch (e: any) {
+      this.openError(e.message);
     }
-    this.stateSelected = this.states[0].state_name;
-    await this.stateChange()
   }
-  async stateChange() {
-    this.cities = await this.authService.getCities(this.stateSelected);
-    if(this.cities.length == 0) {
-      alert(`Información de ciudades del estad ${this.stateSelected} no disponibles`);
-      return
-    }
-    this.citySelected = this.cities[0].city_name;
+
+  openConfirm() {
+    this.isRegistroExitoso = true;
   }
-  async register() {}
+  openError(message: string) {
+    this.errorMessage = message;
+    this.isError = true;
+  }
+  isHorario: boolean = false;
+  openHorario() {
+    this.isHorario = true;
+  }
+  closeHorario(horarios: any) {
+    this.isHorario = false;
+    this.horarios = horarios;
+  }
+  closeError() {
+    this.isError = false;
+    this.errorMessage = '';
+  }
 }

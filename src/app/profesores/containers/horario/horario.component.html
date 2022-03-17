@@ -1,1 +1,19 @@
-<p>horario works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <img
+        src="assets/Logo/Vector.svg"
+        class="img-fluid"
+        style="position: relative; bottom: 13px; margin-right: 10px"
+      />
+      <h1 class="d-inline-block edit_perfil">
+        Editar Horarios <span id="span_edit_perfil">Profesor</span>
+      </h1>
+    </div>
+    <div class="col-12 caja-blanca">
+        <app-horario
+        [horarios]="horarios"
+        (closeHorario)="guardarHorario($event)"></app-horario>
+    </div>
+  </div>
+</div>

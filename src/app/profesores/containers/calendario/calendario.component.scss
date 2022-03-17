@@ -1,0 +1,441 @@
+
+        .colorContainer {
+          background-color: #ecf3f3;
+      }
+
+      .dropdown-item {
+          text-decoration: underline;
+      }
+
+      body {
+          overflow-x: hidden;
+      }
+
+      @media (min-width:1244px) {
+          .mobiles {
+              display: block;
+          }
+      }
+
+      @media (max-width:1244px) {
+          .mobiles {
+              display: none;
+          }
+
+          .mobiles2 {
+              display: block !important;
+          }
+
+          .btn.dropdown-toggle {
+              padding: 0;
+          }
+      }
+
+      .dropdown-menu {
+          position: absolute;
+          z-index: 1000;
+          display: none;
+          padding-right: 20px;
+          min-width: 12rem;
+          padding-bottom: 18px;
+          padding-top: 18px;
+          padding-left: 4px;
+          margin: 0;
+          font-size: 1rem;
+          color: #212529;
+          list-style: none;
+          background-color: #ecf3f3;
+          background-clip: padding-box;
+          border: 1px solid rgba(0, 0, 0, .15);
+          border-radius: 0.25rem;
+      }
+
+      #name_perfil {
+          color: #333;
+          text-transform: capitalize;
+      }
+
+      .imgs {
+          width: 112px;
+      }
+
+      .nav-item {
+          margin-left: 20px;
+      }
+
+      .name_span {
+          position: relative;
+          font-size: 12px;
+          font-weight: 600;
+          top: 4px;
+          right: 52px;
+      }
+
+      .date_span {
+          position: relative;
+          float: left;
+          font-weight: 200;
+          font-size: 10px;
+          bottom: 6px;
+          right: 2px;
+      }
+
+      .dashed {
+          background-color: #ecf3f3 !important;
+          height: 34px !important;
+          width: 18px !important;
+          border-top: 1px solid black;
+          border-right: 1px solid black;
+          border-left: 1px solid black;
+          border-bottom: 2px dashed #615b5b !important;
+      }
+
+      .datepicker {
+          font-family: "Roboto", sans-serif;
+          width: 390px;
+          background: #fdfdfd;
+          border-radius: 10px;
+          margin: 15px auto;
+          overflow: hidden;
+      }
+
+      .datepicker .ui-datepicker-inline {
+          padding: 20px;
+      }
+
+      .datepicker .ui-datepicker-header {
+          text-align: center;
+          font-size: 14px;
+          padding-bottom: 1.5em;
+          font-weight: 800;
+          color: rgb(28, 28, 28);
+      }
+
+      .datepicker .ui-datepicker-header .ui-datepicker-prev,
+      .datepicker .ui-datepicker-header .ui-datepicker-next {
+          float: left;
+          cursor: pointer;
+          font-size: 1.4em;
+          padding: 0 5px;
+          margin-top: -8px;
+          color: #5b646e;
+          transition: 0.6s;
+      }
+
+      .datepicker .ui-datepicker-header .ui-datepicker-next {
+          float: right;
+      }
+
+      .datepicker .ui-datepicker-header .ui-datepicker-prev:hover {
+          transform: translateX(-25px);
+      }
+
+      .datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+          transform: translateX(25px);
+      }
+
+      .datepicker .ui-datepicker-calendar {
+          width: 100%;
+          text-align: center;
+      }
+
+      .datepicker .ui-datepicker-calendar thead {
+          color: #ddd;
+      }
+
+      .datepicker .ui-datepicker-calendar tr th,
+      .datepicker .ui-datepicker-calendar tr td {
+          padding-bottom: 0.4em;
+      }
+
+      .datepicker .ui-datepicker-calendar a {
+          color: #333;
+          text-decoration: none;
+          display: block;
+          margin: 0 auto;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          border-radius: 50%;
+          border: 1px solid transparent;
+          cursor: pointer;
+      }
+
+      .datepicker .ui-datepicker-calendar a:hover {
+          background: #96b5b5;
+          color: #fff;
+          transition: 0.3s;
+          transform: scale(1);
+      }
+
+      .datepicker .ui-datepicker-calendar .ui-state-highlight {
+          border: 2px solid #e7e7e7;
+          background: #ecf3f3;
+          color: #838d8d;
+      }
+
+      .datepicker .ui-datepicker-calendar .ui-state-highlight:hover {
+          color: #fff;
+      }
+
+      .primeraCol {
+          padding: 10px;
+          background: #ecf3f3;
+          margin-right: 14px;
+      }
+
+      .segundaCol {
+          border-radius: 10px;
+          padding: 10px;
+          background-color: white;
+      }
+
+      .colPaddings {
+          padding-right: 0;
+      }
+
+      .ajust {
+          text-align: center;
+          border: 1px solid gray;
+          font-weight: 400;
+          padding: 5px;
+          text-transform: lowercase;
+      }
+
+      .styless {
+          border: 1px solid gray;
+          margin-left: 93px;
+          padding: 5px;
+          border-radius: 10px;
+          font-size: 10px;
+          margin-bottom: 10px;
+      }
+
+      .table> :not(:last-child)> :last-child>* {
+          border-bottom-color: #a195a1;
+      }
+
+      .td-scoppes {
+          background-color: #ecf3f3 !important;
+          padding: 13px !important;
+          border: 1px solid black;
+          text-decoration: line-through;
+      }
+
+      .scoppes {
+          width: 8%;
+          border: none;
+          position: relative;
+          top: 13px;
+          font-weight: 400;
+      }
+
+      .datepicker .ui-datepicker-header .ui-datepicker-next:hover {
+          transform: none;
+      }
+
+      .datepicker .ui-datepicker-header .ui-datepicker-prev:hover {
+          transform: none;
+      }
+
+      .button-add {
+          display: inline;
+          background-color: transparent;
+          z-index: 10;
+      }
+
+      .dashed-no-bordered {
+          cursor: pointer;
+          border-top: 0px #56ccf2 !important;
+          border-bottom: 0px #56ccf2 !important;
+      }
+
+      .marcadoAzul {
+          color: #3d5188;
+          background-color: #56ccf2 !important;
+      }
+
+      .marcado {
+          color: #e9a162;
+          background-color: #ffecdb !important;
+      }
+
+      .icon-marcado {
+          font-size: 14px;
+          display: flex;
+          color: #e69f60;
+      }
+
+      .icon-marcadoAzul {
+          font-size: 14px;
+          display: flex;
+          color: #3d5188;
+      }
+
+      .bt {
+          height: 63px;
+          margin-bottom: 80px;
+          margin-right: 58px;
+          background: white;
+          border: gray;
+          padding: 20px;
+          float: right;
+          box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+          width: 58px;
+          font-size: 18px;
+          color: green;
+          position: relative;
+          z-index: 20;
+      }
+
+      .bt:hover {
+          transition: 0.3s;
+          border-radius: 10px;
+          border: 1px solid rgb(2, 177, 2);
+      }
+
+      @media (min-width: 1244px) {
+          .sombraContainer {
+              box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+              border-radius: 10px;
+          }
+
+          .datepicker {
+              width: 100%;
+          }
+
+
+      }
+
+      .caja-filtro {
+          height: 400px;
+          overflow: auto;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 10px;
+      }
+
+
+
+      .caja-filtro .table td {
+          font-size: 12px;
+      }
+
+      @media (max-width: 768px) {
+          .datepicker {
+              font-family: "Roboto", sans-serif;
+              width: 317px !important;
+              background: #fdfdfd;
+              border-radius: 10px;
+              margin: 15px auto;
+              overflow: hidden;
+          }
+      }
+
+
+
+      .footerx {
+          background-color: #FFFFFF; 
+          padding: 20px;
+          padding-left: 37px;
+          position: relative;
+          z-index: 999;
+      }
+
+      .btn-primary-extra {
+          color: whitesmoke;
+          font-size: 14px;
+          font-weight: 600;
+          -webkit-box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+          -moz-box-shadow: 0px 4px 5px 0px rgba(230, 230, 230, 1);
+          box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+          background-color: #f34049e0;
+      }
+
+      .btn-primary-extra:hover {
+          color: whitesmoke;
+          font-size: 14px;
+          font-weight: 600;
+          -webkit-box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+          -moz-box-shadow: 0px 4px 5px 0px rgba(230, 230, 230, 1);
+          box-shadow: 0px 4px 5px 0px rgb(230 230 230);
+          background-color: #db1f28e0;
+      }
+
+      .ths {
+          font-weight: 500;
+      }
+
+      .fab {
+          color: red;
+          font-size: 18px;
+          margin-left: 10px;
+      }
+
+      @media (max-width:758px) {
+          .segundaCol {
+              height: 546px;
+              width: 101%;
+              overflow: auto;
+              border-radius: 10px;
+              padding: 10px;
+              background-color: white;
+          }
+
+          .name_span {
+              position: relative;
+              font-size: 12px;
+              font-weight: 600;
+              top: -5px;
+              right: 4px;
+          }
+      }
+
+      .modal-body {
+          color: #5D495E;
+          border: none;
+      }
+
+      .title {
+          font-weight: 700;
+          font-size: 22px;
+      }
+
+      .text-boldes {
+          font-weight: 600;
+      }
+
+      .bs {
+          border-radius: 15px;
+          margin-left: 10px;
+      }
+
+      .detalles-clase {
+          padding-left: 60px;
+          padding-right: 60px;
+      }
+
+      .text-boldes span {
+          font-weight: 300 !important;
+      }
+
+      .subtitle {
+          font-weight: 200;
+          font-style: italic;
+          font-size: 26px;
+          text-align: center;
+      }
+
+      .modal-footer {
+          border: none;
+      }
+
+      .modal-header {
+          border: none;
+      }
+
+      .colPaddings2 {
+          padding-right: 20px;
+          padding-left: 0px;
+      }
+  
