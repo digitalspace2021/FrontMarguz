@@ -9,21 +9,21 @@ import { PoliticasProfesorComponent } from './containers/politicas-profesor/poli
 import { PublicComponent } from './public.component';
 
 const routes: Routes = [
-  { path: '', component: PublicComponent,
-  children: [
-    { path: '', component: BuscadorComponent},
-
-    { path: 'perfil/:id', component: PerfilProfesorComponent },
-    { path: 'politicas/estudiante', component: PoliticasEstudianteComponent },
-    { path: 'politicas/profesor', component: PoliticasProfesorComponent },
-    { path: 'politicas/pago', component: PoliticasPagoProfesorComponent },
-    { path: '**', component: NotFoundComponent },
-  ] },
+  {
+    path: '', component: PublicComponent,
+    children: [
+      { path: '', component: BuscadorComponent },
+      { path: 'perfil/:id', component: PerfilProfesorComponent },
+      { path: 'politicas/estudiante', component: PoliticasEstudianteComponent },
+      { path: 'politicas/profesor', component: PoliticasProfesorComponent },
+      { path: 'politicas/pago', component: PoliticasPagoProfesorComponent },
+      { path: '**', component: NotFoundComponent },
+    ]
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PublicRoutingModule {}
- 
+export class PublicRoutingModule { }

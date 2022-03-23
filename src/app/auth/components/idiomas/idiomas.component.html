@@ -1,11 +1,15 @@
 <div class="blackBox" (click)="close()"></div>
 <div class="logBox">
   <div class="bodyBox">
+    <div class="closeButton">
+      <button class="btn btn-white close" (click)="close()">
+        <fa-icon class="text-danger" style="font-size: 14px" [icon]="faTimes"></fa-icon>
+      </button>
+    </div>
+    <!-- <button class="btn btn-white close" (click)="close()" style="margin-right: 15px">
+      <fa-icon style="font-size: 14px" [icon]="faTimes"></fa-icon>
+    </button> -->
     <app-idiomas [isProfesor]="isProfesor" [idiomas]="idiomas" (closeIdiomas)="emit($event)"></app-idiomas>
   </div>
 </div>
-<app-error
-  [msg]="errorMessage"
-  (closeError)="closeError()"
-  *ngIf="isError"
-></app-error>
+<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>

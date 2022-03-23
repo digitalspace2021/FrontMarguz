@@ -1,17 +1,7 @@
 <form class="idiomasForm">
-  <div
-    *ngFor="let idioma of idiomasDisponibles; let i = index"
-    class="idiomaRow"
-  >
-    <mat-checkbox
-      class="idiomaCheckbox"
-      [name]="idioma.materia"
-      ngDefaultControl
-      [(ngModel)]="idiomasSeleccionados[i]"
-      [ngModelOptions]="{ standalone: true }"
-      (change)="handleCheck(i)"
-      >{{ idioma.name }}</mat-checkbox
-    >
+  <div *ngFor="let idioma of idiomasDisponibles; let i = index" class="idiomaRow">
+    <mat-checkbox class="idiomaCheckbox" [name]="idioma.materia" ngDefaultControl [(ngModel)]="idiomasSeleccionados[i]"
+      [ngModelOptions]="{ standalone: true }" (change)="handleCheck(i)">{{ idioma.name }}</mat-checkbox>
   </div>
   <div class="idiomaButton">
     <button class="btn" type="button" (click)="close()">
@@ -20,8 +10,4 @@
     </button>
   </div>
 </form>
-<app-error
-  [msg]="errorMessage"
-  (closeError)="closeError()"
-  *ngIf="isError"
-></app-error>
+<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
