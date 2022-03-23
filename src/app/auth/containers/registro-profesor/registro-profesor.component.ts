@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faCalendar, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
+import { getErrors } from 'src/app/shared/utils/get-errors';
 
 @Component({
   selector: 'app-registro-profesor',
@@ -11,6 +13,8 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./registro-profesor.component.scss'],
 })
 export class RegistroProfesorComponent implements OnInit {
+
+  env = environment.host;
   //-------------icon
   icon = faPlusCircle;
   horarios = [
@@ -31,9 +35,10 @@ export class RegistroProfesorComponent implements OnInit {
   isError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   login() {
     this.isRegistroExitoso = false;
@@ -98,7 +103,7 @@ export class RegistroProfesorComponent implements OnInit {
             this.openError(resp.message);
           }
         })
-        .catch((e) => this.openError(e.message));
+        .catch((e) => this.openError(getErrors(e)));
     } catch (e: any) {
       this.openError(e.message);
     }
@@ -106,6 +111,9 @@ export class RegistroProfesorComponent implements OnInit {
 
   openConfirm() {
     this.isRegistroExitoso = true;
+  }
+  goToPolicies() {
+    window.open(`/public/politicas/profesor`, "_blank");
   }
   openError(message: string) {
     this.errorMessage = message;
