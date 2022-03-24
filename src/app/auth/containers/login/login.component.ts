@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ILogin } from '../../interfaces/auth.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +21,22 @@ export class LoginComponent implements OnInit {
 
   isInicioExitoso: boolean = false;
   inicioExitosoMessage: string = 'Ha iniciado sesión exitosamente';
+  verifyExitosoMessage: string = 'Su cuenta ha sido verificada exitosamente';
   isError: boolean = false;
   errorMessage: string = '';
+  isVerifyExitosoMessage: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private activedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activedRoute.queryParams
+      .subscribe(params => {
+        if (params.verify) {
+          this.openConfirmVerify();
+        }
+      }
+      );
+  }
 
   async dashboard() {
     let tipoUsuario = this.authService.getTipoUsuario();
@@ -83,9 +94,21 @@ export class LoginComponent implements OnInit {
     this.isInicioExitoso = true;
   }
 
+  openConfirmVerify() {
+    this.isVerifyExitosoMessage = true;
+  }
+
   openError(message: string) {
     this.errorMessage = message;
     this.isError = true;
+  }
+
+  closeConfirmVerify() {
+    this.isVerifyExitosoMessage = false;
+    this.router.navigate([], {
+      relativeTo: this.activedRoute,
+      queryParams: [],
+    });
   }
 
   closeError() {
