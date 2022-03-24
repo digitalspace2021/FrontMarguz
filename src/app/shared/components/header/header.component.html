@@ -1,31 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" [href]="logoLink"
-    ><img class="img-logo" src="assets/Recurso_1.png" alt="logo"
-  /></a>
+  <a class="navbar-brand" [href]="logoLink"><img class="img-logo" src="assets/Recurso_1.png" alt="logo" /></a>
   <div *ngIf="isAdmin" class="collapse navbar-collapse" id="adminNav">
     <ul class="navbar-nav">
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 1 }"
-        (click)="menuActive(1)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 1 }" (click)="menuActive(1)" style="margin-right: 10px">
         <a class="nav-link" href="admin/admin-usuario">Usuarios</a>
       </li>
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 2 }"
-        (click)="menuActive(2)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 2 }" (click)="menuActive(2)" style="margin-right: 10px">
         <a class="nav-link" href="admin/admin-materia">Materias</a>
       </li>
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 3 }"
-        (click)="menuActive(3)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 3 }" (click)="menuActive(3)" style="margin-right: 10px">
         <a class="nav-link" href="admin/admin-clase">Clases</a>
       </li>
     </ul>
@@ -50,20 +33,10 @@
   </div>
   <div *ngIf="isProfesor" class="collapse navbar-collapse" id="profesorNav">
     <ul class="navbar-nav">
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 1 }"
-        (click)="menuActive(1)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 1 }" (click)="menuActive(1)" style="margin-right: 10px">
         <a class="nav-link" href="profesores/perfil">Perfil</a>
       </li>
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 2 }"
-        (click)="menuActive(2)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 2 }" (click)="menuActive(2)" style="margin-right: 10px">
         <a class="nav-link" href="profesores/">Calendario</a>
       </li>
     </ul>
@@ -86,39 +59,20 @@
   </div>
   <div *ngIf="isEstudiante" class="collapse navbar-collapse" id="estudianteNav">
     <ul class="navbar-nav">
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 1 }"
-        (click)="menuActive(1)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 1 }" (click)="menuActive(1)" style="margin-right: 10px">
         <a class="nav-link" href="/">Buscar un tutor</a>
       </li>
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 1 }"
-        (click)="menuActive(1)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 1 }" (click)="menuActive(1)" style="margin-right: 10px">
         <a class="nav-link" href="estudiantes/perfil">Perfil</a>
       </li>
-      <li
-        class="nav-item"
-        [ngClass]="{ active: mnuActive == 2 }"
-        (click)="menuActive(2)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item" [ngClass]="{ active: mnuActive == 2 }" (click)="menuActive(2)" style="margin-right: 10px">
         <a class="nav-link" href="estudiantes/">Calendario</a>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item item">
         <small>{{ usuario }}</small>
-        <img
-          class="avatar"
-          [src]="fotoLink"
-          alt="avatar"
-        />
+        <img class="avatar" [src]="fotoLink" alt="avatar" />
         <div class="dropdown">
           <button class="dropbtn btn-light btn-sm">
             <fa-icon style="font-size: 24px" [icon]="icon"></fa-icon>
@@ -134,20 +88,12 @@
   </div>
   <div *ngIf="isPublic" class="collapse navbar-collapse" id="publicNav">
     <ul class="navbar-nav public-navbar-nav">
-      <li
-        class="nav-item public-nav-item"
-        [ngClass]="{ active: mnuActive == 2 }"
-        (click)="menuActive(2)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item public-nav-item" [ngClass]="{ active: mnuActive == 2 }" (click)="menuActive(2)"
+        style="margin-right: 10px">
         <a class="nav-link" href="/registro">Regístrate</a>
       </li>
-      <li
-        class="nav-item public-nav-item"
-        [ngClass]="{ active: mnuActive == 2 }"
-        (click)="menuActive(2)"
-        style="margin-right: 10px"
-      >
+      <li class="nav-item public-nav-item" [ngClass]="{ active: mnuActive == 2 }" (click)="menuActive(2)"
+        style="margin-right: 10px">
         <a class="nav-link" href="/">Inicia sesión</a>
       </li>
     </ul>
