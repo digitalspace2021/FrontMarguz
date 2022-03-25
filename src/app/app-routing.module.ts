@@ -30,13 +30,13 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
   },
   {
+    path: 'public',
+    loadChildren: () => import('./public/public.module').then((m) => m.PublicModule),
+  },
+  {
     path: '',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'public',
-    loadChildren: () => import('./public/public.module').then((m) => m.PublicModule),
   },
   {
     path: '**',
@@ -48,4 +48,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

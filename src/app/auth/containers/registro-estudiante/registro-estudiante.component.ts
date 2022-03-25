@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { faPlusCircle, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { getErrors } from 'src/app/shared/utils/get-errors';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -35,7 +36,7 @@ export class RegistroEstudianteComponent implements OnInit {
   isError: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authService
@@ -103,10 +104,11 @@ export class RegistroEstudianteComponent implements OnInit {
 
   async registrar(value: any) {
     try {
-      let registroForm = new FormGroup(value.form);
+      let registroForm = value.form;
 
       let arrayIdioma = value.idiomas;
       let formData = new FormData();
+
 
       formData.append('name', registroForm.get('nombre')?.value);
       formData.append('lastname', registroForm.get('apellido')?.value);
@@ -116,6 +118,7 @@ export class RegistroEstudianteComponent implements OnInit {
         'password_confirmation',
         registroForm.get('contrasenaConfim')?.value
       );
+
       formData.append(
         'identification',
         registroForm.get('identificacion')?.value
@@ -126,9 +129,11 @@ export class RegistroEstudianteComponent implements OnInit {
       formData.append('city', registroForm.get('ciudad')?.value);
       formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
 
+
       arrayIdioma.forEach((elements: any, index: any) => {
-        formData.append('languajes[' + index + ']', elements.id);
+        formData.append('interest[' + index + ']', elements.id);
       });
+
 
       this.authService
         .registrarStudent(formData)
@@ -139,7 +144,9 @@ export class RegistroEstudianteComponent implements OnInit {
             this.openError(resp.message);
           }
         })
-        .catch((e) => this.openError(e.message));
+        .catch((e) => {
+          this.openError(getErrors(e))
+        });
     } catch (e: any) {
       this.openError(e.message);
     }

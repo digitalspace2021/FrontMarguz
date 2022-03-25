@@ -7,9 +7,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import {
-  faPlusCircle,
-  faMinusCircle,
-  faSave,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { MateriaService } from 'src/app/admin/services/materia.service';
 @Component({
@@ -18,9 +16,10 @@ import { MateriaService } from 'src/app/admin/services/materia.service';
   styleUrls: ['./idiomas.component.scss'],
 })
 export class IdiomasModalComponent implements OnInit {
-  plusIcon = faPlusCircle;
-  minusIcon = faMinusCircle;
-  saveIcon = faSave;
+
+
+  faTimes = faTimes;
+
 
   @Input() idiomas: any = [];
   @Input() isProfesor: boolean = false;
@@ -28,12 +27,12 @@ export class IdiomasModalComponent implements OnInit {
   idiomasDisponibles: any;
   idiomasSeleccionados: any;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-/*     this.idiomas.forEach((element: any) => {
-      this.AddIntereses(element.name);
-    }); */
+    /*     this.idiomas.forEach((element: any) => {
+          this.AddIntereses(element.name);
+        }); */
   }
 
 
@@ -48,13 +47,13 @@ export class IdiomasModalComponent implements OnInit {
     }
   }
 
-  emit(idiomas:any) {
+  emit(idiomas: any) {
     this.closeIdiomas.emit(idiomas);
   }
   close() {
     this.closeIdiomas.emit(this.idiomas);
   }
-  
+
   isError: boolean = false;
 
   errorMessage: string = '';

@@ -11,10 +11,10 @@ const env = environment.host;
 export class AuthService {
   address = env + 'auth/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   restaurePassword(data: any) {
-    let endPoint = env + '/password/reset';
+    let endPoint = env + 'password/reset';
     return new Promise((resolve, reject) => {
       this.http.get<any>(endPoint, data).subscribe(
         (data: any) => {
@@ -49,7 +49,8 @@ export class AuthService {
           resolve(data);
         },
         (error: any) => {
-          reject(new Error(error.message));
+          reject(error.error.errors);
+          // reject(new Error(error.message));
         }
       );
     });
@@ -63,7 +64,8 @@ export class AuthService {
           resolve(data);
         },
         (error: any) => {
-          reject(new Error(error.message));
+          reject(error.error.errors);
+          // reject(new Error(error.message));
         }
       );
     });
@@ -135,7 +137,7 @@ export class AuthService {
     }
   }
 
-  forceLogout(){
+  forceLogout() {
     localStorage.removeItem('user');
     return;
   }

@@ -10,7 +10,7 @@ export class ErrorComponent implements OnInit {
   @Input() title: string = "ERROR";
   @Output() closeError = new EventEmitter<string>();
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.msg = this.msg.replace(/^\:/, "");

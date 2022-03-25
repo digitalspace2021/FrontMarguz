@@ -37,9 +37,9 @@ export class FormRegistroComponent implements OnInit {
   checkPasswords: ValidatorFn = (
     group: AbstractControl
   ): ValidationErrors | null => {
-      let pass = group.get('contrasena')? group.get('contrasena')!.value: null;
-      let confirmPass = group.get('contrasenaConfim')? group.get('contrasenaConfim')!.value: null;
-      return pass === confirmPass ? null : { notSame: true };
+    let pass = group.get('contrasena') ? group.get('contrasena')!.value : null;
+    let confirmPass = group.get('contrasenaConfim') ? group.get('contrasenaConfim')!.value : null;
+    return pass === confirmPass ? null : { notSame: true };
   };
 
   @Input() tipoUsuario: string = 'Admin';
@@ -47,7 +47,7 @@ export class FormRegistroComponent implements OnInit {
   isAdmin: boolean = false;
   isProfesor: boolean = false;
   minusIcon = faMinusCircle;
-  @Output() registrar = new EventEmitter<any>();
+  @Output() registrar = new EventEmitter();
   countries: any;
   states: any;
   cities: any;
@@ -72,7 +72,7 @@ export class FormRegistroComponent implements OnInit {
   isHorario: boolean = false;
   isIdiomas: boolean = false;
 
-  registroForm: FormGroup= new FormGroup(
+  registroForm: FormGroup = new FormGroup(
     {
       identificacion: new FormControl('', Validators.required),
       nombre: new FormControl('', Validators.required),
@@ -116,7 +116,7 @@ export class FormRegistroComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private materiaSv: MateriaService
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (this.tipoUsuario == 'Teacher') {
@@ -131,7 +131,6 @@ export class FormRegistroComponent implements OnInit {
 
 
   checkLength() {
-    console.log(this.fRegistro.contrasena.errors);
     let value =
       this.fRegistro.contrasena.errors?.minlength?.requiredLength >
       this.fRegistro.contrasena.errors?.minlength?.actualLength;
@@ -150,6 +149,7 @@ export class FormRegistroComponent implements OnInit {
         this.filename[1] == '' ||
         this.filename[2] == '';
     }
+
     return !formValid || !idiomasLength || files;
   }
 
@@ -252,7 +252,7 @@ export class FormRegistroComponent implements OnInit {
       .catch((err) => console.error(err));
   }
 
-  async agregarIntereses() {}
+  async agregarIntereses() { }
 
   validate() {
     if (this.fRegistro.nombre.errors && this.fRegistro.nombre.errors.required)
@@ -287,22 +287,30 @@ export class FormRegistroComponent implements OnInit {
   }
 
   submit() {
-    try {
-      if (!this.validate())
-        throw new Error(
-          'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
-        );
-
-      let value = {
-        form: this.registroForm,
-        horarios: this.horarios,
-        idiomas: this.idiomas,
-      };
-
-      this.registrar.emit(value);
-    } catch (e: any) {
-      this.openError(e.message);
+    // try {
+    console.log('submit');
+    if (!this.validate()) {
+      throw new Error(
+        'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
+      );
     }
+
+    console.log('submit');
+
+    let value = {
+      form: this.registroForm,
+      horarios: this.horarios,
+      idiomas: this.idiomas,
+    };
+
+    console.log(value);
+
+    this.registrar.emit(value);
+
+    // } catch (e: any) {
+    //   console.log('submit');
+    //   this.openError(e.message);
+    // }
   }
 
   openHorario() {
