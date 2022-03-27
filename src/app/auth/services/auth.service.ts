@@ -184,8 +184,8 @@ export class AuthService {
   async getCountries() {
     let headers = new HttpHeaders();
     let token = await this.getCountriesToken();
-    headers = headers.append('Accept', 'application/json');
-    headers = headers.append('Authorization', `Bearer ${token}`);
+    // headers = headers.append('Accept', 'application/json');
+    // headers = headers.append('Authorization', `Bearer ${token}`);
     //let endpoint = "/inquiry";
     let endpoint = 'https://www.universal-tutorial.com/api/countries/';
 

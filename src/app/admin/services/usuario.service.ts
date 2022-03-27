@@ -10,7 +10,7 @@ const env = environment.host;
   providedIn: 'root',
 })
 export class UsuarioService {
-  address = env + 'users';
+  address = env + 'auth/user';
   url: string = 'https://marguz.co/marguzapi/public/users';
   user = localStorage.getItem('user') || undefined;
   headers!: HttpHeaders;
@@ -31,11 +31,12 @@ export class UsuarioService {
     });
   }
 
-  getUsuario(id: number) {
-    return this.http.get<IUsuario>(this.address + '/' + id, {
+  getUsuario() {
+    return this.http.get<IUsuario>(this.address, {
       headers: this.headers,
     });
   }
+
   listUsuario() {
     return this.http.get<IUsuario>(this.address);
   }

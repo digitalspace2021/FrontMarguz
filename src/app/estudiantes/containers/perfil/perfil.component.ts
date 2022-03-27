@@ -39,7 +39,7 @@ export class PerfilComponent implements OnInit {
     private buildForm: FormBuilder,
     private usuarioSv: UsuarioService,
     private materiaSv: MateriaService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.builder();
@@ -49,8 +49,9 @@ export class PerfilComponent implements OnInit {
   }
 
   getUser() {
+    // TODO// make dinamical get id for get data fromcurrent user 
     this.usuarioSv
-      .getUsuario(24)
+      .getUsuario()
       .subscribe((resp: any) => this.loadData(resp.usuario));
   }
 

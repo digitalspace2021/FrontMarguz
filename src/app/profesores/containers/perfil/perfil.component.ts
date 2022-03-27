@@ -48,7 +48,7 @@ export class PerfilComponent implements OnInit {
     private buildForm: FormBuilder,
     private usuarioSv: UsuarioService,
     private materiaSv: MateriaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.builder();
@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
 
   getUser() {
     this.usuarioSv
-      .getUsuario(24)
+      .getUsuario()
       .subscribe((resp) => this.loadData(resp.usuarios));
   }
 
