@@ -8,10 +8,13 @@ import {
   faSave,
 } from '@fortawesome/free-solid-svg-icons';
 import { MateriaService } from 'src/app/admin/services/materia.service';
+import { InfoProfile } from 'src/app/shared/utils/response';
+
 export interface IIntereses {
   id: number;
-  materia: string;
+  name: string;
 }
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -33,6 +36,7 @@ export class PerfilComponent implements OnInit {
   cam = faCamera;
   //-----------------
   formPerfil!: FormGroup;
+  infoProfile: any = new InfoProfile();
 
   constructor(
     private authService: AuthService,
@@ -43,7 +47,6 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
     this.builder();
-    this.changerCountrys();
     this.getUser();
     this.listMateria();
   }
@@ -52,21 +55,25 @@ export class PerfilComponent implements OnInit {
     // TODO// make dinamical get id for get data fromcurrent user 
     this.usuarioSv
       .getUsuario()
-      .subscribe((resp: any) => this.loadData(resp.usuario));
+      .subscribe((resp: any) => this.loadData(resp));
   }
 
   loadData(data: any) {
-    this.formPerfil.get('id')?.setValue(data.id);
-    this.formPerfil.get('apellido')?.setValue(data.apellido);
-    this.formPerfil.get('nombre')?.setValue(data.nombre);
-    this.formPerfil.get('telefono')?.setValue(data.telefono);
-    this.formPerfil.get('email')?.setValue(data.email);
-    this.formPerfil.get('pais')?.setValue(data.pais);
-    this.formPerfil.get('estado')?.setValue(data.estado);
-    this.formPerfil.get('ciudad')?.setValue(data.ciudad);
-    this.formPerfil.get('zona')?.setValue(data.zona_horaria);
-    this.formPerfil.get('descripcion')?.setValue(data.descripcion);
-    //this.img = data.foto_perfil;
+
+    this.infoProfile = data;
+
+    this.formPerfil.get('id')?.setValue(this.infoProfile.acount.identification);
+    this.formPerfil.get('apellido')?.setValue(this.infoProfile.lastname);
+    this.formPerfil.get('nombre')?.setValue(this.infoProfile.name);
+    this.formPerfil.get('telefono')?.setValue(this.infoProfile.acount.cellphone);
+    this.formPerfil.get('email')?.setValue(this.infoProfile.email);
+    // this.formPerfil.get('pais')?.setValue(this.infoProfile.acount.country);
+    // this.formPerfil.get('estado')?.setValue(this.infoProfile.acount.state);
+    // this.formPerfil.get('ciudad')?.setValue(this.infoProfile.acount.city);
+    this.formPerfil.get('zona')?.setValue(this.infoProfile.zona_horaria);
+    this.changerCountrys();
+    // this.formPerfil.get('descripcion')?.setValue(this.infoProfile.descripcion);
+    //this.img = this.infoProfile.foto_perfil;
   }
 
   builder() {
@@ -94,15 +101,15 @@ export class PerfilComponent implements OnInit {
   listMateria() {
     this.materiaSv
       .listInteresOrLenguages()
-      .subscribe((resp: any) => (this.materias = resp.materias));
+      .subscribe((resp: any) => (this.materias = resp.result));
   }
 
   changerCountrys() {
     this.authService
       .getCountries()
-      .then((data) => {
-        this.countries = data;
-        this.formPerfil.get('pais')?.setValue('Colombia');
+      .then((data: any) => {
+        this.countries = data.result
+        this.formPerfil.get('pais')?.setValue(this.infoProfile.acount.country);
         this.changeStates();
       })
       .catch((err) => console.error(err));
@@ -111,9 +118,9 @@ export class PerfilComponent implements OnInit {
   changeStates() {
     this.authService
       .getStates(this.formPerfil.get('pais')?.value)
-      .then((data) => {
-        this.states = data;
-        this.formPerfil.get('estado')?.setValue(this.states[0].state_name);
+      .then((data: any) => {
+        this.states = data.result;
+        this.formPerfil.get('estado')?.setValue(this.infoProfile.acount.state);
         this.changeCities();
       })
       .catch((err) => console.error(err));
@@ -122,9 +129,9 @@ export class PerfilComponent implements OnInit {
   changeCities() {
     this.authService
       .getCities(this.formPerfil.get('estado')?.value)
-      .then((data) => {
-        this.cities = data;
-        this.formPerfil.get('ciudad')?.setValue(this.cities[0].city_name);
+      .then((data: any) => {
+        this.cities = data.result;
+        this.formPerfil.get('ciudad')?.setValue(this.infoProfile.acount.city);
       })
       .catch((err) => console.error(err));
   }

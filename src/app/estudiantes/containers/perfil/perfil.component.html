@@ -11,25 +11,11 @@
   <form [formGroup]="formPerfil" novalidate>
     <div class="row mt-2">
       <div class="col-4 container-img animate__animated animate__bounce">
-        <img
-          [src]="img"
-          class="rounded img"
-          alt="Cinque Terre"
-          style="border-radius: 10px"
-        />
+        <img [src]="img" class="rounded img" alt="Cinque Terre" style="border-radius: 10px" />
         <div class="adjunt-cam">
-          <fa-icon
-            style="font-size: 14px; color: red"
-            [icon]="cam"
-            (click)="openFileSystem()"
-          ></fa-icon>
+          <fa-icon style="font-size: 14px; color: red" [icon]="cam" (click)="openFileSystem()"></fa-icon>
         </div>
-        <input
-          type="file"
-          style="display: none"
-          (change)="addImagen()"
-          #selectFile
-        />
+        <input type="file" style="display: none" (change)="addImagen()" #selectFile />
       </div>
       <div class="col-8">
         <div class="row">
@@ -39,11 +25,7 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Apellido</label>
-            <input
-              type="text"
-              formControlName="apellido"
-              class="form-control"
-            />
+            <input type="text" formControlName="apellido" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Nombre</label>
@@ -51,38 +33,23 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Telefono</label>
-            <input
-              type="text"
-              formControlName="telefono"
-              class="form-control"
-            />
+            <input type="text" formControlName="telefono" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Pais</label>
-            <select
-              class="form-control"
-              formControlName="pais"
-              (change)="changeStates()"
-            >
+            <select class="form-control" formControlName="pais" (change)="changeStates()">
               <option value="0" selected>Seleccionar Pais</option>
-              <option
-                [value]="item.country_name"
-                *ngFor="let item of countries"
-              >
-                {{ item.country_name }}
+              <option [value]="item.id" *ngFor="let item of countries">
+                {{ item.name }}
               </option>
             </select>
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Estado</label>
-            <select
-              class="form-control"
-              formControlName="estado"
-              (change)="changeCities()"
-            >
+            <select class="form-control" formControlName="estado" (change)="changeCities()">
               <option value="0" selected>Seleccionar estado</option>
-              <option [value]="item.state_name" *ngFor="let item of states">
-                {{ item.state_name }}
+              <option [value]="item.id" *ngFor="let item of states">
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -90,8 +57,8 @@
             <label class="label-ajust">Ciudad</label>
             <select class="form-control" formControlName="ciudad">
               <option value="0" selected>Seleccionar ciudad</option>
-              <option [value]="item.city_name" *ngFor="let item of cities">
-                {{ item.city_name }}
+              <option [value]="item.id" *ngFor="let item of cities">
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -111,10 +78,7 @@
               <option value="Mountain Time (US &amp; Canada)">
                 (GMT-07:00) Mountain Time (US &amp; Canada)
               </option>
-              <option
-                value="Central Time (US &amp; Canada)"
-                selected="selected"
-              >
+              <option value="Central Time (US &amp; Canada)" selected="selected">
                 (GMT-06:00) Central Time (US &amp; Canada)
               </option>
               <option value="Eastern Time (US &amp; Canada)">
@@ -269,49 +233,25 @@
           </div>
           <div class="form-group col-12">
             <label class="label-ajust">Descripción</label>
-            <textarea
-              class="form-control"
-              formControlName="descripcion"
-              cols="30"
-              rows="3"
-            ></textarea>
+            <textarea class="form-control" formControlName="descripcion" cols="30" rows="3"></textarea>
           </div>
           <div class="form-group col-10 mt-3">
             <label class="label-ajust">Intereses</label><br />
             <div class="row">
               <div class="col-3" *ngFor="let item of intereses">
                 <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    checked
-                    disabled
-                    style="color: red; opacity: 100%; margin-right: 3px"
-                    type="checkbox"
-                    [value]="item.id"
-                    [id]="item.materia"
-                  />
-                  <label
-                    class="form-check-label"
-                    style="font-size: 12px"
-                    [for]="item.materia"
-                  >
-                    {{ item.materia }}
+                  <input class="form-check-input" checked disabled style="color: red; opacity: 100%; margin-right: 3px"
+                    type="checkbox" [value]="item.id" [id]="item.id" />
+                  <label class="form-check-label" style="font-size: 12px" [for]="item.name">
+                    {{ item.name }}
                   </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-2 mt-4">
-            <button
-              type="button"
-              class="btn"
-              data-bs-toggle="modal"
-              data-bs-target="#modalIntereses"
-            >
-              <fa-icon
-                style="font-size: 24px; color: red"
-                [icon]="add"
-              ></fa-icon>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalIntereses">
+              <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
             </button>
           </div>
           <div class="form-group col-12 mt-2 d-flex justify-content-between">
@@ -328,23 +268,12 @@
 </div>
 <!-- MODAL IDIOMAS -->
 
-<div
-  class="modal fade"
-  id="modalIntereses"
-  tabindex="-1"
-  aria-labelledby="Label"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalIntereses" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Label"></h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <table class="table table-sm table-strike">
@@ -353,16 +282,13 @@
               <td>
                 <div class="d-block mb-5">
                   <label>
-                    {{ item.materia }}
+                    {{ item.name }}
                   </label>
                 </div>
               </td>
               <td>
                 <button class="btn btn-sm" (click)="AddIntereses(item)">
-                  <fa-icon
-                    style="font-size: 24px; color: red"
-                    [icon]="add"
-                  ></fa-icon>
+                  <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
                 </button>
               </td>
             </tr>
