@@ -55,8 +55,8 @@ export class HeaderComponent implements OnInit {
     if (isAuthenticated) {
       this.dataUsuario = localStorage.getItem('user');
       this.dataUsuario = JSON.parse(this.dataUsuario);
-      this.usuario = this.dataUsuario.user.original.result.name;
-      // this.usuario = this.dataUsuario.name + ' ' + this.dataUsuario.lastname;
+      // this.usuario = this.dataUsuario.user.original.result.name;
+      this.usuario = this.dataUsuario.name + ' ' + this.dataUsuario.lastname;
       this.fotoLink = this.dataUsuario.fotoLink_perfil ? this.dataUsuario.fotoLink_perfil : "assets/avatar-icon.jpg";
       let tipoUsuario = this.authService.getTipoUsuario();
       switch (tipoUsuario) {
