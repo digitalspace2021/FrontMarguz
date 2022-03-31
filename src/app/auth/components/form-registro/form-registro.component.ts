@@ -44,7 +44,7 @@ export class FormRegistroComponent implements OnInit {
   };
 
   @Input() tipoUsuario: string = 'Admin';
-  @Input() data: any = userModel;
+  @Input() data: any = new userModel;
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
@@ -94,7 +94,6 @@ export class FormRegistroComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.data);
     this.registroForm = new FormGroup(
 
       {
