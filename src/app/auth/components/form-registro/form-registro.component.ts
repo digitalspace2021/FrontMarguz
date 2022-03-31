@@ -24,6 +24,7 @@ import {
 import { Result } from 'src/app/admin/interfaces/IMateria';
 import { MateriaService } from 'src/app/admin/services/materia.service';
 import { AuthService } from '../../services/auth.service';
+import { userModel } from './user.model';
 
 @Component({
   selector: 'app-form-registro',
@@ -43,6 +44,7 @@ export class FormRegistroComponent implements OnInit {
   };
 
   @Input() tipoUsuario: string = 'Admin';
+  @Input() data: any = userModel;
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
@@ -60,7 +62,7 @@ export class FormRegistroComponent implements OnInit {
     },
   ];
 
-  idiomas: Array<Result> = [];
+  idiomas: Array<any> = [];
   IdiomasAsing: any;
 
   // -----icon
@@ -72,36 +74,8 @@ export class FormRegistroComponent implements OnInit {
   isHorario: boolean = false;
   isIdiomas: boolean = false;
 
-  registroForm: FormGroup = new FormGroup(
-    {
-      identificacion: new FormControl('', Validators.required),
-      nombre: new FormControl('', Validators.required),
-      apellido: new FormControl('', Validators.required),
-      telefono: new FormControl('', Validators.required),
-      pais: new FormControl('Colombia', Validators.required),
-      estado: new FormControl('', Validators.required),
-      ciudad: new FormControl('', Validators.required),
-      email: new FormControl(
-        '',
-        Validators.email
-        //Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')
-      ),
-      contrasena: new FormControl(
-        '',
-        Validators.compose([
-          Validators.minLength(8),
-          Validators.pattern(
-            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?])[A-Za-z0-9@$!%*#?]{8,}$'
-          ),
-        ])
-      ),
-      contrasenaConfim: new FormControl('', Validators.required),
-      hojaVida: new FormControl(''),
-      fotoPerfil: new FormControl(''),
-      docuCedula: new FormControl(''),
-    },
-    { validators: this.checkPasswords }
-  );
+  registroForm!: FormGroup;
+
   filename = ['', '', ''];
   countrySelected: string = '';
   stateSelected: string = '';
@@ -119,6 +93,39 @@ export class FormRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    console.log(this.data);
+    this.registroForm = new FormGroup(
+
+      {
+        identificacion: new FormControl(this.data.acount.identification, Validators.required),
+        nombre: new FormControl(this.data.name, Validators.required),
+        apellido: new FormControl(this.data.lastname, Validators.required),
+        telefono: new FormControl(this.data.acount.cellphone, Validators.required),
+        pais: new FormControl(this.data.acount.country, Validators.required),
+        estado: new FormControl(this.data.acount.state, Validators.required),
+        ciudad: new FormControl(this.data.acount.city, Validators.required),
+        email: new FormControl(this.data.email, Validators.email),
+        contrasena: new FormControl(
+          '',
+          Validators.compose([
+            Validators.minLength(8),
+            Validators.pattern(
+              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?])[A-Za-z0-9@$!%*#?]{8,}$'
+            ),
+          ])
+        ),
+        contrasenaConfim: new FormControl('', Validators.required),
+        hojaVida: new FormControl(''),
+        fotoPerfil: new FormControl(''),
+        docuCedula: new FormControl(''),
+      },
+      { validators: this.checkPasswords }
+
+    )
+
+
+
     if (this.tipoUsuario == 'Teacher') {
       this.isProfesor = true;
     } else if (this.tipoUsuario == 'Student') {
@@ -224,8 +231,8 @@ export class FormRegistroComponent implements OnInit {
   changerCountrys() {
     this.authService
       .getCountries()
-      .then((data) => {
-        this.countries = data;
+      .then((data: any) => {
+        this.countries = data.result;
         this.changeStates();
       })
       .catch((err) => console.error(err));
@@ -234,10 +241,10 @@ export class FormRegistroComponent implements OnInit {
   changeStates() {
     this.authService
       .getStates(this.registroForm.get('pais')?.value)
-      .then((data) => {
-        this.states = data;
-        this.registroForm.get('estado')?.setValue(this.states[0].state_name);
-        this.changeCities();
+      .then((data: any) => {
+        this.states = data.result;
+        // this.registroForm.get('estado')?.setValue(this.states[0].name);
+        // this.changeCities();
       })
       .catch((err) => console.error(err));
   }
@@ -245,8 +252,8 @@ export class FormRegistroComponent implements OnInit {
   changeCities() {
     this.authService
       .getCities(this.registroForm.get('estado')?.value)
-      .then((data) => {
-        this.cities = data;
+      .then((data: any) => {
+        this.cities = data.result;
         this.registroForm.get('ciudad')?.setValue(this.cities[0].city_name);
       })
       .catch((err) => console.error(err));

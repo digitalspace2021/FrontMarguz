@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-const env = environment.host + 'users';;
+const env = environment.host;
 
 @Injectable({
     providedIn: 'root',
@@ -19,10 +19,10 @@ export class UserService {
         return `Bearer ${token}`;
     }
 
-    async getDataForUdate() {
+    async getDataForUdate(id: number) {
 
         let headers = new HttpHeaders();
-        let endpoint = env;
+        let endpoint = env + 'admin/profile/user/' + id;
 
         return new Promise((resolve, reject) => {
             this.http
@@ -31,7 +31,6 @@ export class UserService {
                 })
                 .subscribe(
                     (data) => {
-                        console.log(data);
                         resolve(data);
                     },
                     (error: any) => {
