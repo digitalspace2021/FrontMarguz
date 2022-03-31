@@ -126,8 +126,8 @@
   </div>
 </div>
 
-<app-registro-modal [tipoUsuario]="tipoUsuario" [data]="data" (completarRegistro)="registrar($event)"
-  (closeModal)="isRegistro = false" *ngIf="isRegistro"></app-registro-modal>
+<app-registro-modal [tipoUsuario]="tipoUsuario" [data]="data" [titleModal]="titleModal"
+  (completarRegistro)="registrar($event)" (closeModal)="isRegistro = false" *ngIf="isRegistro"></app-registro-modal>
 
 <app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
 

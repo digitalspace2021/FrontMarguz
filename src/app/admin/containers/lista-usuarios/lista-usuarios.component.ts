@@ -30,6 +30,7 @@ export class ListaUsuariosComponent implements OnInit {
   tempList: Array<any> = [];
 
   tipoUsuario: string = 'Student';
+  titleModal: string = ''
   usuarios: any[] = [];
   usuariosSearch: any[] = [];
   data: any[] = [];
@@ -97,6 +98,8 @@ export class ListaUsuariosComponent implements OnInit {
   closeConfirm() {
     this.isConfirm = false;
   }
+
+
   listUsuario() {
     this.usuarios = [];
     this.usuariosSearch = [];
@@ -248,25 +251,38 @@ export class ListaUsuariosComponent implements OnInit {
   }
   isError: boolean = false;
 
-  openRegistro(type: string) {
-    this.userService
-      .getDataForUdate()
-      .then((resp: any) => {
-        console.log(resp);
-        this.data = resp.result
-      })
-      .catch((e) => this.openError(e.message));
+  openRegistro(type: string): any {
 
-    this.typeModal = type
-    this.isRegistro = true;
+    if (this.tempList.length > 1) this.openError('solo puede seleccionar un usuario para esta accion')
+    if (type === 'create') {
+      this.titleModal = 'Registrar usuario'
+      this.typeModal = type
+      this.isRegistro = true;
+    }
+
+    if (type === 'edit') {
+      if (this.tempList.length <= 0) return false
+      this.titleModal = 'Actualizar usuario'
+      this.userService
+        .getDataForUdate(this.tempList[0])
+        .then((resp: any) => {
+          this.data = resp.result
+          this.typeModal = type
+          this.isRegistro = true;
+        })
+        .catch((e) => this.openError(e.message));
+
+    }
+
   }
 
   closeRegistro() {
     this.isRegistro = false;
   }
   isRegistro: boolean = false;
-
   errorMessage: string = '';
+
+
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;
