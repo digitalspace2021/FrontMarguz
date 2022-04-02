@@ -38,7 +38,7 @@ export class MateriaService {
   }
 
   listInteresOrLenguages() {
-    return this.http.get<IMateria>(this.endPoint, { headers: this.headers });
+    return this.http.get<IMateria>(this.endPointReg, { headers: this.headers });
   }
 
   createInteresOrLenguages(materia: Materia) {

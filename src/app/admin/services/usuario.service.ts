@@ -10,6 +10,7 @@ const env = environment.host;
   providedIn: 'root',
 })
 export class UsuarioService {
+  address2 = env + 'auth/user';
   address = env + 'users';
   url: string = 'https://marguz.co/marguzapi/public/users';
   user = localStorage.getItem('user') || undefined;
@@ -31,15 +32,17 @@ export class UsuarioService {
     });
   }
 
-  getUsuario(id: number) {
-    return this.http.get<IUsuario>(this.address + '/' + id, {
+  getUsuario() {
+    return this.http.get<IUsuario>(this.address2, {
       headers: this.headers,
     });
   }
+
   listUsuario() {
     return this.http.get<IUsuario>(this.address);
   }
   listUsuarioStudent() {
+    console.log(this.address);
     let url = `${this.address}/students`;
     return this.http.get(url, { headers: this.headers });
   }
@@ -84,7 +87,7 @@ export class UsuarioService {
   deleteUsuario(id: any) {
     return this.http.delete(`${this.address}/${id}`, { headers: this.headers });
   }
-  habilitar(id: any) {
-    return this.http.put(`${this.address}/status/${id}`, {});
+  habilitar(data: any) {
+    return this.http.post(`${this.address}/multiple/status/`, { users: data });
   }
 }

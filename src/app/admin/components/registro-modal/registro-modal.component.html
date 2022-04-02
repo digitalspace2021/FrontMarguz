@@ -1,16 +1,13 @@
 <div class="blackBox" (click)="close()"></div>
 <div class="logBox caja-blanca">
   <div class="headerBox">
-    <h5>Registrar usuario</h5>
+    <h5>{{titleModal}}</h5>
     <div class="closeButton">
       <button class="closeB" (click)="close()">X</button>
     </div>
   </div>
   <br />
   <div class="bodyBox">
-    <app-form-registro
-      [tipoUsuario]="tipoUsuario"
-      (registrar)="registrar($event)"
-    ></app-form-registro>
+    <app-form-registro [tipoUsuario]="tipoUsuario" [data]="data" (registrar)="registrar($event)"></app-form-registro>
   </div>
 </div>

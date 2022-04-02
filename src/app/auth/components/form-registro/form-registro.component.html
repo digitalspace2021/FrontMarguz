@@ -45,8 +45,8 @@
     <label for="pais" class="col-form-label">Pais</label>
     <select class="form-control" formControlName="pais" (change)="changeStates()">
       <option value="0" selected>Seleccionar Pais</option>
-      <option [value]="item.country_name" *ngFor="let item of countries">
-        {{ item.country_name }}
+      <option [value]="item.id" *ngFor="let item of countries">
+        {{ item.name }}
       </option>
     </select>
   </div>
@@ -54,8 +54,8 @@
     <label for="estado" class="col-form-label">Estado</label>
     <select class="form-control" formControlName="estado" (change)="changeCities()">
       <option value="0" selected>Seleccionar estado</option>
-      <option [value]="item.state_name" *ngFor="let item of states">
-        {{ item.state_name }}
+      <option [value]="item.id" *ngFor="let item of states">
+        {{ item.name }}
       </option>
     </select>
   </div>
@@ -63,8 +63,8 @@
     <label for="ciudad" class="col-form-label">Ciudad</label>
     <select class="form-control" formControlName="ciudad">
       <option value="0" selected>Seleccionar ciudad</option>
-      <option [value]="item.city_name" *ngFor="let item of cities">
-        {{ item.city_name }}
+      <option [value]="item.id" *ngFor="let item of cities">
+        {{ item.name }}
       </option>
     </select>
   </div>

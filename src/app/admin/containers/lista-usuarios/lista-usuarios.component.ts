@@ -9,6 +9,7 @@ import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { UserService } from 'src/app/auth/services/user.service';
 import { IDataUsuario } from '../../interfaces/IUsuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -26,44 +27,65 @@ export class ListaUsuariosComponent implements OnInit {
   edit = faEdit;
   trash = faTrashAlt;
 
+  tempList: Array<any> = [];
+
   tipoUsuario: string = 'Student';
+  titleModal: string = ''
   usuarios: any[] = [];
   usuariosSearch: any[] = [];
+  data: any[] = [];
 
   title: string = '';
   tipo: string = '0';
   action: boolean = false;
 
   page?: number;
+  typeModal: string = 'create';
 
   constructor(
     private usuarioSv: UsuarioService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.listUsuario();
   }
 
-  habilitar(id: number) {
-    this.usuarioSv.habilitar(id).subscribe((resp: any) => {
+  setUser(event: any) {
+
+    let id: string = event.target.value;
+    let tempList: Array<any> = [];
+
+    if (event.target.checked) this.tempList.push(id)
+    if (!event.target.checked) {
+      tempList = this.tempList.filter(data => data != id)
+      this.tempList = tempList
+    }
+  }
+
+  habilitar() {
+    this.usuarioSv.habilitar(this.tempList).subscribe((resp: any) => {
       this.openConfirm('Habilitar usuario', 'Usuario habilitado exitosamente');
       this.listUsuario();
+      this.tempList = []
     });
   }
-  deshabilitar(id: number) {
-    this.usuarioSv.habilitar(id).subscribe((resp: any) => {
+
+  deshabilitar() {
+    this.usuarioSv.habilitar(this.tempList).subscribe((resp: any) => {
       this.openConfirm(
-        'Deshabilitar usuario',
-        'Usuario deshabilitado exitosamente'
+        'Cambio de estados',
+        'Operación Exitosa'
       );
       this.listUsuario();
+      this.tempList = []
     });
   }
   eliminar() {
     this.openConfirm('Eliminar usuario', 'Usuario eliminado exitosamente');
   }
-  editar() {}
+  editar() { }
   isConfirm: boolean = false;
   confirmMessage: string = '';
   titleConfirm: string = '';
@@ -76,6 +98,8 @@ export class ListaUsuariosComponent implements OnInit {
   closeConfirm() {
     this.isConfirm = false;
   }
+
+
   listUsuario() {
     this.usuarios = [];
     this.usuariosSearch = [];
@@ -134,6 +158,8 @@ export class ListaUsuariosComponent implements OnInit {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
   }
+
+
   async registrar(value: any) {
     try {
       let registroForm = value.form;
@@ -224,15 +250,39 @@ export class ListaUsuariosComponent implements OnInit {
     this.isRegistroExitoso = false;
   }
   isError: boolean = false;
-  openRegistro() {
-    this.isRegistro = true;
+
+  openRegistro(type: string): any {
+
+    if (this.tempList.length > 1) this.openError('solo puede seleccionar un usuario para esta accion')
+    if (type === 'create') {
+      this.titleModal = 'Registrar usuario'
+      this.typeModal = type
+      this.isRegistro = true;
+    }
+
+    if (type === 'edit') {
+      if (this.tempList.length <= 0) return false
+      this.titleModal = 'Actualizar usuario'
+      this.userService
+        .getDataForUdate(this.tempList[0])
+        .then((resp: any) => {
+          this.data = resp.result
+          this.typeModal = type
+          this.isRegistro = true;
+        })
+        .catch((e) => this.openError(e.message));
+
+    }
+
   }
+
   closeRegistro() {
     this.isRegistro = false;
   }
   isRegistro: boolean = false;
-
   errorMessage: string = '';
+
+
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;

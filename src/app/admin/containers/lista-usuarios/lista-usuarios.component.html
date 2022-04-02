@@ -2,13 +2,11 @@
 <div class="row mt-4 mb-3">
   <div class="col-md-6">
     <h1 style="color: #e31b36">
-      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px"
-        >Usuario</sup
-      >
+      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px">Usuario</sup>
     </h1>
   </div>
   <div class="col-md-6" style="text-align: right !important">
-<!--     <button
+    <!--     <button
       class="btn btn-light"
       style="margin-right: 15px"
       (click)="habilitar()"
@@ -22,15 +20,16 @@
     >
       <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
     </button> -->
-    <button
-      class="btn btn-light"
-      style="margin-right: 15px"
-      (click)="openRegistro()"
-    >
+    <button class="btn btn-light" style="margin-right: 15px" (click)="openRegistro('create')">
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
     </button>
-    <button class="btn btn-danger" (click)="eliminar()">
-      <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
+
+    <button class="btn btn-light" style="margin-right: 15px" (click)="openRegistro('edit')">
+      <fa-icon style="font-size: 14px; color: rgb(0, 89, 255)" [icon]="edit"></fa-icon>
+    </button>
+
+    <button class="btn btn-danger" (click)="deshabilitar()">
+      <fa-icon style="font-size: 14px; color: white" [icon]="userIcon"></fa-icon>
     </button>
   </div>
 </div>
@@ -42,58 +41,22 @@
         <!-- Tabs -->
         <div class="row mb-1">
           <ul style="list-style: none; text-decoration: none; display: flex">
-            <li
-              style="margin-right: 10px !important"
-              [ngClass]="{ 'text-danger': tipoUsuario == 'Student' }"
-            >
-              <a
-                href="javascript:;"
-                [ngClass]="{ 'select-tab': tipoUsuario == 'Student' }"
-                class="tab"
-                (click)="changeTab('Student')"
-                >Estudiantes</a
-              >
-              <fa-icon
-                *ngIf="tipoUsuario == 'Student'"
-                style="font-size: 14px"
-                [icon]="icon"
-              ></fa-icon>
+            <li style="margin-right: 10px !important" [ngClass]="{ 'text-danger': tipoUsuario == 'Student' }">
+              <a href="javascript:;" [ngClass]="{ 'select-tab': tipoUsuario == 'Student' }" class="tab"
+                (click)="changeTab('Student')">Estudiantes</a>
+              <fa-icon *ngIf="tipoUsuario == 'Student'" style="font-size: 14px" [icon]="icon"></fa-icon>
             </li>
-            <li
-              style="margin-right: 10px !important"
-              [ngClass]="{ 'text-danger': tipoUsuario == 'Teacher' }"
-            >
-              <a
-                href="javascript:;"
-                [ngClass]="{ 'select-tab': tipoUsuario == 'Teacher' }"
-                class="tab"
-                (click)="changeTab('Teacher')"
-                >Profesores</a
-              >
+            <li style="margin-right: 10px !important" [ngClass]="{ 'text-danger': tipoUsuario == 'Teacher' }">
+              <a href="javascript:;" [ngClass]="{ 'select-tab': tipoUsuario == 'Teacher' }" class="tab"
+                (click)="changeTab('Teacher')">Profesores</a>
 
-              <fa-icon
-                *ngIf="tipoUsuario == 'Teacher'"
-                style="font-size: 14px"
-                [icon]="icon"
-              ></fa-icon>
+              <fa-icon *ngIf="tipoUsuario == 'Teacher'" style="font-size: 14px" [icon]="icon"></fa-icon>
             </li>
 
-            <li
-              style="margin-right: 10px !important"
-              [ngClass]="{ 'text-danger': tipoUsuario == 'Admin' }"
-            >
-              <a
-                href="javascript:;"
-                [ngClass]="{ 'select-tab': tipoUsuario == 'Admin' }"
-                class="tab"
-                (click)="changeTab('Admin')"
-                >Administradores</a
-              >
-              <fa-icon
-                *ngIf="tipoUsuario == 'Admin'"
-                style="font-size: 14px"
-                [icon]="icon"
-              ></fa-icon>
+            <li style="margin-right: 10px !important" [ngClass]="{ 'text-danger': tipoUsuario == 'Admin' }">
+              <a href="javascript:;" [ngClass]="{ 'select-tab': tipoUsuario == 'Admin' }" class="tab"
+                (click)="changeTab('Admin')">Administradores</a>
+              <fa-icon *ngIf="tipoUsuario == 'Admin'" style="font-size: 14px" [icon]="icon"></fa-icon>
             </li>
           </ul>
         </div>
@@ -116,13 +79,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="
+              <tr *ngFor="
                   let user of usuarios
                     | paginate: { itemsPerPage: 10, currentPage: page }
-                "
-              >
-                <td><input type="checkbox" /></td>
+                ">
+                <td><input type="checkbox" value="{{user.id}}" (click)="setUser($event)" /></td>
                 <td>{{ user.identification }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.lastname }}</td>
@@ -133,7 +94,7 @@
                 <td><a href="javascrip:;">Idiomas</a></td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.status? 'Activo':'Inactivo' }}</td>
-                <td>
+                <!-- <td>
                   <button
                   class="btn btn-light"
                   style="margin-right: 15px"
@@ -153,48 +114,24 @@
                 <button class="btn btn-light" style="margin-right: 15px" (click)="editar()">
                   <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
                 </button>
-
-
-                </td>
-             </tr>
+                </td> -->
+              </tr>
             </tbody>
           </table>
         </div>
-        <pagination-controls
-          class="paginado"
-          (pageChange)="page = $event"
-          previousLabel="Anterior"
-          nextLabel="Proximo"
-        ></pagination-controls>
+        <pagination-controls class="paginado" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Proximo">
+        </pagination-controls>
       </div>
     </div>
   </div>
 </div>
 
-<app-registro-modal
-  [tipoUsuario]="tipoUsuario"
-  (completarRegistro)="registrar($event)"
-  (closeModal)="isRegistro = false"
-  *ngIf="isRegistro"
-></app-registro-modal>
+<app-registro-modal [tipoUsuario]="tipoUsuario" [data]="data" [titleModal]="titleModal"
+  (completarRegistro)="registrar($event)" (closeModal)="isRegistro = false" *ngIf="isRegistro"></app-registro-modal>
 
-<app-error
-  [msg]="errorMessage"
-  (closeError)="closeError()"
-  *ngIf="isError"
-></app-error>
+<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
 
-<app-confirm
-  title="Registro exitoso"
-  [msg]="registroExitosoMessage"
-  buttonMsg="Aceptar"
-  *ngIf="isRegistroExitoso"
-  (closeConfirm)="closeConfirmRegistro()"
-></app-confirm>
-<app-confirm
-  [title]="titleConfirm"
-  [msg]="confirmMessage"
-  buttonMsg="Aceptar"
-  *ngIf="isConfirm"
-  (closeConfirm)="closeConfirm()"
-></app-confirm>
+<app-confirm title="Registro exitoso" [msg]="registroExitosoMessage" buttonMsg="Aceptar" *ngIf="isRegistroExitoso"
+  (closeConfirm)="closeConfirmRegistro()"></app-confirm>
+<app-confirm [title]="titleConfirm" [msg]="confirmMessage" buttonMsg="Aceptar" *ngIf="isConfirm"
+  (closeConfirm)="closeConfirm()"></app-confirm>

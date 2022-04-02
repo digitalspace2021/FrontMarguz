@@ -183,11 +183,11 @@ export class AuthService {
   }
   async getCountries() {
     let headers = new HttpHeaders();
-    let token = await this.getCountriesToken();
-    headers = headers.append('Accept', 'application/json');
-    headers = headers.append('Authorization', `Bearer ${token}`);
+    // let token = await this.getCountriesToken();
+    // headers = headers.append('Accept', 'application/json');
+    // headers = headers.append('Authorization', `Bearer ${token}`);
     //let endpoint = "/inquiry";
-    let endpoint = 'https://www.universal-tutorial.com/api/countries/';
+    let endpoint = env + 'geolocation/country';
 
     return new Promise((resolve, reject) => {
       this.http
@@ -195,7 +195,7 @@ export class AuthService {
           headers: headers,
         })
         .subscribe(
-          (data: any) => {
+          (data) => {
             resolve(data);
           },
           (error: any) => {
@@ -206,11 +206,11 @@ export class AuthService {
   }
   async getStates(country: string) {
     let headers = new HttpHeaders();
-    let token = await this.getCountriesToken();
-    headers = headers.append('Accept', 'application/json');
-    headers = headers.append('Authorization', `Bearer ${token}`);
+    // let token = await this.getCountriesToken();
+    // headers = headers.append('Accept', 'application/json');
+    // headers = headers.append('Authorization', `Bearer ${token}`);
     //let endpoint = "/inquiry";
-    let endpoint = `https://www.universal-tutorial.com/api/states/${country}`;
+    let endpoint = env + 'geolocation/state/' + country;
 
     return new Promise((resolve, reject) => {
       this.http
@@ -230,10 +230,10 @@ export class AuthService {
   async getCities(state: string) {
     let headers = new HttpHeaders();
     let token = await this.getCountriesToken();
-    headers = headers.append('Accept', 'application/json');
-    headers = headers.append('Authorization', `Bearer ${token}`);
+    // headers = headers.append('Accept', 'application/json');
+    // headers = headers.append('Authorization', `Bearer ${token}`);
     //let endpoint = "/inquiry";
-    let endpoint = `https://www.universal-tutorial.com/api/cities/${state}`;
+    let endpoint = env + 'geolocation/city/' + state;
 
     return new Promise((resolve, reject) => {
       this.http

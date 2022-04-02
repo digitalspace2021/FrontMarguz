@@ -7,12 +7,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class RegistroModalComponent implements OnInit {
   @Input() tipoUsuario: string = "Admin";
+  @Input() titleModal: string = '';
+  @Input() data: any;
   @Output() completarRegistro = new EventEmitter<any>();
   @Output() closeModal = new EventEmitter<any>();
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+
+  }
 
   registrar(usuario: any) {
     this.completarRegistro.emit(usuario);
