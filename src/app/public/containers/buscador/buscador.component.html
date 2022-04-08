@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mt-5">
-        <img src="assets/Logo/Vector.svg" class="img-fluid" style="position: relative; bottom: 13px; margin-right: 10px" />
+        <img
+          src="assets/Logo/Vector.svg"
+          class="img-fluid"
+          style="position: relative; bottom: 13px; margin-right: 10px"
+        />
         <h1 class="d-inline-block edit_perfil mb-4">
           Buscar profesores de idiomas
         </h1>
@@ -12,19 +16,51 @@
       <div class="col-12">
         <div class="caja-blanca2 text-center">
           <span><i class="fas fa-comment-alt"></i> Idioma</span>
-          <select class="form-selects" [(ngModel)]="idiomaSelected">
-            <option *ngFor="let idioma of idiomas" [value]="idioma">{{idioma}}</option>
+          <select
+            class="form-selects"
+            name="idiomaSelected"
+            [(ngModel)]="idiomaSelected"
+          >
+            <option *ngFor="let idioma of idiomas" [value]="idioma.name">
+              {{ idioma.name }}
+            </option>
           </select>
-          <span style="margin-left:30px;"><i class="fas fa-tag"></i> Precio</span>
-          <input class="priceInput" type="text" name="" placeholder="Min" id="" [(ngModel)]="minPrice">
-          <input class="priceInput" type="text" name="" placeholder="Max" id="" [(ngModel)]="maxPrice">
-          <span style="margin-left:30px;"> Buscar</span>
+          <span style="margin-left: 30px"
+            ><i class="fas fa-tag"></i> Precio</span
+          >
+          <input
+            class="priceInput"
+            type="text"
+            name=""
+            placeholder="Min"
+            id=""
+            [(ngModel)]="minPrice"
+          />
+          <input
+            class="priceInput"
+            type="text"
+            name=""
+            placeholder="Max"
+            id=""
+            [(ngModel)]="maxPrice"
+          />
+          <span style="margin-left: 30px"> Buscar</span>
           <div class="d-flex">
-            <input class="form-control d-inline me-2" type="search" placeholder="" aria-label="Search"  [(ngModel)]="name">
+            <input
+              class="form-control d-inline me-2"
+              type="search"
+              placeholder=""
+              aria-label="Search"
+              [(ngModel)]="name"
+            />
             <i class="fas fa-search searchs"></i>
           </div>
-          <button (click)="filtrarResultados()">Filtrar</button>
-          <button (click)="restablecerFiltros()">Reestablecer</button>
+          <button class="btn btn-primary" (click)="filtrarResultados()">
+            Filtrar
+          </button>
+          <button class="btn btn-danger" (click)="restablecerFiltros()">
+            Reestablecer
+          </button>
         </div>
       </div>
       <br />
@@ -32,42 +68,102 @@
 
     <!-- LISTA DE PROFESORES -->
 
-    <div  *ngFor="let profesor of profesoresList" class="row">
+    <div *ngFor="let profesor of profesoresList" class="row">
       <div class="col-12">
         <div class="caja-blanca mt-4">
           <div class="row">
             <div class="col-sm-12 col-md-4 col-xs-12 col-lg-2 col-xl-2">
-              <span><b>{{profesor.nombre}}</b></span>
-              <img class="img-body mt-3"
-                src="https://img.europapress.es/fotoweb/fotonoticia_20150331134913-15031252329_420.jpg">
+              <span
+                ><b>{{ profesor.name + " " + profesor.lastname }}</b></span
+              >
+              <ng-template
+                [ngIf]="profesor.url_photo_perfil"
+                [ngIfElse]="elseBlock"
+              >
+                <img
+                  class="img-body mt-3"
+                  [src]="host + profesor.url_photo_perfil"
+                />
+              </ng-template>
+              <ng-template #elseBlock>
+                <img class="img-body mt-3" src="./assets/avatar-icon.jpg" />
+              </ng-template>
 
-              <button class="btn btn-verde d-block btns mt-3" (click)="abrirPerfil(profesor.id)" type="button">Contratar</button>
+              <button
+                class="btn btn-verde d-block btns mt-3"
+                (click)="abrirPerfil(profesor.id)"
+                type="button"
+              >
+                Contratar
+              </button>
             </div>
             <div class="col-sm-12 col-md-4 col-xs-12 col-lg-4 col-xl-4 move">
               <span class="ajust-world">
                 <i class="fas fa-check-circle circle"></i>
-                <i class="fas fa-globe-americas" style="color:#2F80ED;margin-left:6px;"><b class="country">{{profesor.pais}}</b></i>
-                <br>
+                <i
+                  class="fas fa-globe-americas"
+                  style="color: #2f80ed; margin-left: 6px"
+                  ><b class="country">{{ profesor.country }}</b></i
+                >
+                <br />
               </span>
-              <p class="mt-5" style="color:#ababab">
+              <p class="mt-5" style="color: #ababab">
                 Enseña:
-                <span *ngFor="let idioma of profesor.idiomas" class="enseña">{{idioma}} </span> 
+                <span *ngFor="let idioma of profesor.languages" class="enseña"
+                  >{{ idioma.name }}
+                </span>
               </p>
-              <p style="color:#ababab">
+              <p style="color: #ababab">
                 Habla:
-                <span *ngFor="let idioma of profesor.habla;"class="enseña">{{idioma}} </span>
+                <span *ngFor="let idioma of profesor.languages" class="enseña"
+                  >{{ idioma.name }}
+                </span>
               </p>
               <p class="descp mb-4">
-                {{profesor.descripcion}}</p>
+                {{
+                  profesor.description
+                    ? profesor.description
+                    : "Sin descripción"
+                }}
+              </p>
             </div>
             <div class="col-sm-12 col-md-4 col-xs-12 col-lg-5 col-xl-5">
-              <span class="a58clases">{{profesor.numeroDeClases}} clases <i class="fas fa-clock"></i></span>
-              <iframe class="img-body2 mt-3" style="float:right" [src]="sanitizer.bypassSecurityTrustResourceUrl(profesor.link)"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-              <p class="dats">Costo por hora: <span class="price">${{profesor.valor}}</span></p>
+              <span class="a58clases">
+                12 clases <i class="fas fa-clock"></i
+              ></span>
 
+              <ng-template [ngIf]="profesor.url_youtube" [ngIfElse]="elseVideo">
+                <iframe
+                  class="img-body2 mt-3"
+                  style="float: right"
+                  [src]="
+                    sanitizer.bypassSecurityTrustResourceUrl(
+                      profesor.url_youtube
+                    )
+                  "
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </ng-template>
+              <ng-template #elseVideo>
+                <iframe
+                  class="img-body2 mt-3"
+                  style="float: right"
+                  src=" https://www.youtube.com/embed/idn6ssYRS0I"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </ng-template>
+              <p class="dats">
+                Costo por hora:
+                <span class="price"
+                  >${{ profesor.price ? profesor.price : 0 }}</span
+                >
+              </p>
             </div>
           </div>
         </div>

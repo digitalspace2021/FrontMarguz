@@ -1,26 +1,33 @@
-import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IUsuario } from '../../admin/interfaces/IUsuario';
 
-
+const env = environment.host;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PublicService {
-  url: string = 'https://marguz.co/marguzapi/public/profesores';
+  address = env + 'admin/profile';
+  user = localStorage.getItem('user') || undefined;
+  headers!: HttpHeaders;
 
   constructor(private http: HttpClient) {}
 
-
-  getProfesores(){
-    return this.http.get<Array<IUsuario>>(this.url + "/" );
-  }  
-  getProfesor(id: any){
-    return this.http.get<Array<IUsuario>>(`${this.url}/${id}`);
-  }  
-  getIdiomas(){
-    return this.http.get<Array<IUsuario>>(this.url + "/" );
+  generarToken() {
+    let token;
+    this.user = localStorage.getItem('user') || undefined;
+    if (this.user) {
+      token = JSON.parse(this.user).access_token;
+    }
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token,
+    });
   }
 
+  getUsuarioTeacher(id: number) {
+    let url = `${this.address}/user/${id}`;
+    return this.http.get(url, { headers: this.headers });
+  }
 }
