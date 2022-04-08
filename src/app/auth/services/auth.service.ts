@@ -29,16 +29,18 @@ export class AuthService {
 
   resetPassword(email: string) {
     let endPoint = env + 'password/reset-request';
-    return new Promise((resolve, reject) => {
-      this.http.post<any>(endPoint, { email: email }).subscribe(
-        (data: any) => {
-          resolve(data);
-        },
-        (error: any) => {
-          reject(new Error(error.message));
-        }
-      );
-    });
+    return this.http.post<any>(endPoint, { email: email })
+
+    // return new Promise((resolve, reject) => {
+    //   this.http.post<any>(endPoint, { email: email }).subscribe(
+    //     (data: any) => {
+    //       resolve(data);
+    //     },
+    //     (error: any) => {
+    //       reject(error.error.errors);
+    //     }
+    //   );
+    // });
   }
 
   registrarTeacher(formData: FormData) {
@@ -204,7 +206,7 @@ export class AuthService {
         );
     });
   }
-  async getStates(country: string) {
+  async getStates(country: number) {
     let headers = new HttpHeaders();
     // let token = await this.getCountriesToken();
     // headers = headers.append('Accept', 'application/json');
@@ -227,7 +229,7 @@ export class AuthService {
         );
     });
   }
-  async getCities(state: string) {
+  async getCities(state: number) {
     let headers = new HttpHeaders();
     let token = await this.getCountriesToken();
     // headers = headers.append('Accept', 'application/json');

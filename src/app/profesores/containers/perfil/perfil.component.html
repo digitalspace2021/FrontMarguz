@@ -91,62 +91,31 @@
     <div class="row mt-2">
       <div class="col-4">
         <div class="container-img animate__animated animate__bounce">
-          <img
-            [src]="img"
-            class="rounded img"
-            alt="Cinque Terre"
-            style="border-radius: 10px"
-          />
+          <img [src]="img" class="rounded img" alt="Cinque Terre" style="border-radius: 10px" />
           <div class="adjunt-cam">
-            <fa-icon
-              style="font-size: 14px; color: red"
-              [icon]="cam"
-              (click)="openFileSystem()"
-            ></fa-icon>
+            <fa-icon style="font-size: 14px; color: red" [icon]="cam" (click)="openFileSystem()"></fa-icon>
           </div>
-          <input
-            type="file"
-            style="display: none"
-            (change)="addImagen()"
-            #selectFile
-          />
+          <input type="file" style="display: none" (change)="addImagen()" #selectFile />
         </div>
         <div class="container-btn">
           <div class="iframe-edit animate__animated animate__bounce">
-            <iframe
-              src="https://www.youtube.com/embed/Frw3Hg4lAKk"
-              title="YouTube video player"
-              frameborder="0"
+            <iframe src="https://www.youtube.com/embed/Frw3Hg4lAKk" title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              width="100%"
-            ></iframe>
+              allowfullscreen width="100%"></iframe>
             <div class="circle-iframe">
               <i class="fas fa-link" style="font-size: 14px; color: red"></i>
             </div>
           </div>
           <div class="buttom-cont">
-            <a
-              class="btn btn-primary group-inputs text-center mb-2"
-              href="profesores/horario"
-            >
-              <i class="fas fa-calendar-alt" style="float: left"></i
-              ><span>Editar Horarios</span>
+            <a class="btn btn-primary group-inputs text-center mb-2" href="profesores/horario">
+              <i class="fas fa-calendar-alt" style="float: left"></i><span>Editar Horarios</span>
             </a>
-            <button
-              class="btn btn-primary group-inputs text-center mb-2"
-              (click)="openPago()"
-            >
-              <i class="fas fa-credit-card-blank" style="float: left"></i
-              ><span>Editar información de Pagos</span>
+            <button class="btn btn-primary group-inputs text-center mb-2" (click)="openPago()">
+              <i class="fas fa-credit-card-blank" style="float: left"></i><span>Editar información de Pagos</span>
             </button>
-            <button
-              class="btn btn-primary group-inputs text-center"
-              data-bs-toggle="modal"
-              data-bs-target="#openModalClase"
-            >
-              <i class="fas fa-comment-edit" style="float: left"></i
-              ><span>Editar Clase</span>
+            <button class="btn btn-primary group-inputs text-center" data-bs-toggle="modal"
+              data-bs-target="#openModalClase">
+              <i class="fas fa-comment-edit" style="float: left"></i><span>Editar Clase</span>
             </button>
           </div>
         </div>
@@ -159,11 +128,7 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Apellido</label>
-            <input
-              type="text"
-              formControlName="apellido"
-              class="form-control"
-            />
+            <input type="text" formControlName="apellido" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Nombre</label>
@@ -171,38 +136,23 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Telefono</label>
-            <input
-              type="text"
-              formControlName="telefono"
-              class="form-control"
-            />
+            <input type="text" formControlName="telefono" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Pais</label>
-            <select
-              class="form-control"
-              formControlName="pais"
-              (change)="changeStates()"
-            >
+            <select class="form-control" formControlName="pais" (change)="changeStates()">
               <option value="0" selected>Seleccionar Pais</option>
-              <option
-                [value]="item.country_name"
-                *ngFor="let item of countries"
-              >
-                {{ item.country_name }}
+              <option [value]="item.id" *ngFor="let item of countries">
+                {{ item.name }}
               </option>
             </select>
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Estado</label>
-            <select
-              class="form-control"
-              formControlName="estado"
-              (change)="changeCities()"
-            >
+            <select class="form-control" formControlName="estado" (change)="changeCities()">
               <option value="0" selected>Seleccionar estado</option>
-              <option [value]="item.state_name" *ngFor="let item of states">
-                {{ item.state_name }}
+              <option [value]="item.id" *ngFor="let item of states">
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -210,8 +160,8 @@
             <label class="label-ajust">Ciudad</label>
             <select class="form-control" formControlName="ciudad">
               <option value="0" selected>Seleccionar ciudad</option>
-              <option [value]="item.city_name" *ngFor="let item of cities">
-                {{ item.city_name }}
+              <option [value]="item.id" *ngFor="let item of cities">
+                {{ item.name }}
               </option>
             </select>
           </div>
@@ -231,10 +181,7 @@
               <option value="Mountain Time (US &amp; Canada)">
                 (GMT-07:00) Mountain Time (US &amp; Canada)
               </option>
-              <option
-                value="Central Time (US &amp; Canada)"
-                selected="selected"
-              >
+              <option value="Central Time (US &amp; Canada)" selected="selected">
                 (GMT-06:00) Central Time (US &amp; Canada)
               </option>
               <option value="Eastern Time (US &amp; Canada)">
@@ -393,41 +340,20 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Descripción</label>
-            <textarea
-              class="form-control"
-              formControlName="descripcion"
-              cols="30"
-              rows="3"
-            ></textarea>
+            <textarea class="form-control" formControlName="descripcion" cols="30" rows="3"></textarea>
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Titulo Profesional</label>
-            <textarea
-              class="form-control"
-              formControlName="descripcion"
-              cols="30"
-              rows="3"
-            ></textarea>
+            <textarea class="form-control" formControlName="descripcion" cols="30" rows="3"></textarea>
           </div>
           <div class="form-group col-10 mt-3">
             <label class="label-ajust">Intereses</label><br />
             <div class="row">
               <div class="col-3" *ngFor="let item of intereses">
                 <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    checked
-                    disabled
-                    style="color: red; opacity: 100%; margin-right: 3px"
-                    type="checkbox"
-                    [value]="item.id"
-                    [id]="item.materia"
-                  />
-                  <label
-                    class="form-check-label"
-                    style="font-size: 12px"
-                    [for]="item.materia"
-                  >
+                  <input class="form-check-input" checked disabled style="color: red; opacity: 100%; margin-right: 3px"
+                    type="checkbox" [value]="item.id" [id]="item.materia" />
+                  <label class="form-check-label" style="font-size: 12px" [for]="item.materia">
                     {{ item.materia }}
                   </label>
                 </div>
@@ -435,16 +361,8 @@
             </div>
           </div>
           <div class="col-2 mt-4">
-            <button
-              type="button"
-              class="btn"
-              data-bs-toggle="modal"
-              data-bs-target="#modalIntereses"
-            >
-              <fa-icon
-                style="font-size: 24px; color: red"
-                [icon]="add"
-              ></fa-icon>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalIntereses">
+              <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
             </button>
           </div>
           <div class="form-group col-12 mt-2 d-flex justify-content-between">
@@ -460,29 +378,14 @@
   </form>
 </div>
 
-<app-detalle-de-pago
-  (closePago)="closePago($event)"
-  *ngIf="isPago"
-></app-detalle-de-pago>
+<app-detalle-de-pago (closePago)="closePago($event)" *ngIf="isPago"></app-detalle-de-pago>
 
-<div
-  class="modal fade"
-  id="openModalClase"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="openModalClase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title">Editar Clase</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          #ModalClose
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #ModalClose></button>
       </div>
       <div class="modal-body"></div>
     </div>
@@ -491,23 +394,12 @@
 
 <!-- MODAL IDIOMAS -->
 
-<div
-  class="modal fade"
-  id="modalIntereses"
-  tabindex="-1"
-  aria-labelledby="Label"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalIntereses" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Label"></h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <table class="table table-sm table-strike">
@@ -522,10 +414,7 @@
               </td>
               <td>
                 <button class="btn btn-sm" (click)="AddIntereses(item)">
-                  <fa-icon
-                    style="font-size: 24px; color: red"
-                    [icon]="add"
-                  ></fa-icon>
+                  <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
                 </button>
               </td>
             </tr>

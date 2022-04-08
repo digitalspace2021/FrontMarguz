@@ -21,6 +21,7 @@ import { FormRegistroComponent } from './components/form-registro/form-registro.
 import { IdiomasModalComponent } from './components/idiomas/idiomas.component';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { HorarioModalComponent } from './components/horario/horario.component';
+import { LoaderComponent } from '../shared/components/loader/loader.component';
 @NgModule({
   declarations: [
     AuthComponent,
@@ -49,7 +50,8 @@ import { HorarioModalComponent } from './components/horario/horario.component';
     FontAwesomeModule,
     AngularFileUploaderModule,
     MatCheckboxModule,
+    SharedModule
   ],
   exports: [FormRegistroComponent],
 })
-export class AuthModule {}
+export class AuthModule { }
