@@ -27,14 +27,15 @@ export class RegistroEstudianteComponent implements OnInit {
     email: new FormControl('', Validators.required),
     contrasena: new FormControl('', Validators.required),
   });
-  countrySelected: string = '';
-  stateSelected: string = '';
-  citySelected: string = '';
+  countrySelected: number = 1;
+  stateSelected: number = 1;
+  citySelected: number = 1;
   isRegistroExitoso: boolean = false;
   registroExitosoMessage: string =
     'Su cuenta ha sido registrada exitosamente, por favor revise su bandeja de entrada para validar su correo electrónico.';
   isError: boolean = false;
   errorMessage: string = '';
+  load = false
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -43,7 +44,7 @@ export class RegistroEstudianteComponent implements OnInit {
       .getCountries()
       .then((data) => {
         this.countries = data;
-        this.countrySelected = 'Colombia';
+        this.countrySelected = 1;
         this.changeStates();
       })
       .catch((err) => console.error(err));
@@ -54,7 +55,7 @@ export class RegistroEstudianteComponent implements OnInit {
       .getStates(this.countrySelected)
       .then((data) => {
         this.states = data;
-        this.stateSelected = this.states[0].state_name;
+        console.log(data);
         this.changeCities();
       })
       .catch((err) => console.error(err));
@@ -65,7 +66,8 @@ export class RegistroEstudianteComponent implements OnInit {
       .getCities(this.stateSelected)
       .then((data) => {
         this.cities = data;
-        this.citySelected = this.cities[0].city_name;
+        console.log(data);
+        // this.citySelected = this.cities[0].name;
       })
       .catch((err) => console.error(err));
   }
@@ -76,6 +78,7 @@ export class RegistroEstudianteComponent implements OnInit {
   }
 
   validate() {
+
     if (this.fRegistro.nombre.errors && this.fRegistro.nombre.errors.required)
       return false;
     if (
@@ -104,8 +107,9 @@ export class RegistroEstudianteComponent implements OnInit {
 
   async registrar(value: any) {
     try {
-      let registroForm = value.form;
 
+      this.load = true;
+      let registroForm = value.form;
       let arrayIdioma = value.idiomas;
       let formData = new FormData();
 
@@ -143,11 +147,14 @@ export class RegistroEstudianteComponent implements OnInit {
           } else {
             this.openError(resp.message);
           }
+          this.load = false;
         })
         .catch((e) => {
+          this.load = false;
           this.openError(getErrors(e))
         });
     } catch (e: any) {
+      this.load = false;
       this.openError(e.message);
     }
   }

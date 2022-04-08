@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faMinusCircle,
   faPlusCircle,
@@ -45,6 +46,7 @@ export class ListaUsuariosComponent implements OnInit {
   constructor(
     private usuarioSv: UsuarioService,
     private authService: AuthService,
+    private router: Router,
     private userService: UserService
   ) { }
 
@@ -251,37 +253,39 @@ export class ListaUsuariosComponent implements OnInit {
   }
   isError: boolean = false;
 
-  openRegistro(type: string): any {
 
+  openEdit(): any {
     if (this.tempList.length > 1) this.openError('solo puede seleccionar un usuario para esta accion')
-    if (type === 'create') {
-      this.titleModal = 'Registrar usuario'
-      this.typeModal = type
-      this.isRegistro = true;
-    }
+    this.router.navigate(['profesores/perfil'], { queryParams: { id: this.tempList[0] }, queryParamsHandling: 'merge' });
+  }
 
-    if (type === 'edit') {
-      if (this.tempList.length <= 0) return false
-      this.titleModal = 'Actualizar usuario'
-      this.userService
-        .getDataForUdate(this.tempList[0])
-        .then((resp: any) => {
-          this.data = resp.result
-          this.typeModal = type
-          this.isRegistro = true;
-        })
-        .catch((e) => this.openError(e.message));
+  openRegistro(): any {
 
-    }
+    this.titleModal = 'Registrar usuario'
+    this.typeModal = 'create'
+    this.isRegistro = true;
+
+    // if (type === 'edit') {
+    //   if (this.tempList.length <= 0) return false
+    //   this.titleModal = 'Actualizar usuario'
+    //   this.userService
+    //     .getDataForUdate(this.tempList[0])
+    //     .then((resp: any) => {
+    //       this.data = resp.result
+    //       this.typeModal = type
+    //       this.isRegistro = true;
+    //     })
+    //     .catch((e) => this.openError(e.message));
+    // }
 
   }
 
   closeRegistro() {
     this.isRegistro = false;
   }
+
   isRegistro: boolean = false;
   errorMessage: string = '';
-
 
   openError(message: string) {
     this.isError = true;

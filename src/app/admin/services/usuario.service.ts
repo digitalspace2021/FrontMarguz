@@ -12,6 +12,9 @@ const env = environment.host;
 export class UsuarioService {
   address2 = env + 'auth/user';
   address = env + 'users';
+
+  endpointUpdateTeacher = env + 'admin/profile/user/';
+
   url: string = 'https://marguz.co/marguzapi/public/users';
   user = localStorage.getItem('user') || undefined;
   headers!: HttpHeaders;
@@ -32,7 +35,14 @@ export class UsuarioService {
     });
   }
 
-  getUsuario() {
+  getUsuario(params = null) {
+
+    if (params) {
+      return this.http.get<IUsuario>(this.endpointUpdateTeacher + params, {
+        headers: this.headers,
+      });
+    }
+
     return this.http.get<IUsuario>(this.address2, {
       headers: this.headers,
     });

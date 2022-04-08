@@ -93,18 +93,17 @@ export class FormRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.registroForm = new FormGroup(
 
       {
-        identificacion: new FormControl(this.data.acount.identification, Validators.required),
-        nombre: new FormControl(this.data.name, Validators.required),
-        apellido: new FormControl(this.data.lastname, Validators.required),
-        telefono: new FormControl(this.data.acount.cellphone, Validators.required),
-        pais: new FormControl(this.data.acount.country, Validators.required),
-        estado: new FormControl(this.data.acount.state, Validators.required),
-        ciudad: new FormControl(this.data.acount.city, Validators.required),
-        email: new FormControl(this.data.email, Validators.email),
+        identificacion: new FormControl(this.data.acount?.identification, Validators.required),
+        nombre: new FormControl(this.data?.name, Validators.required),
+        apellido: new FormControl(this.data?.lastname, Validators.required),
+        telefono: new FormControl(this.data.acount?.cellphone, Validators.required),
+        pais: new FormControl(this.data.acount?.country, Validators.required),
+        estado: new FormControl(this.data.acount?.state, Validators.required),
+        ciudad: new FormControl(this.data.acount?.city, Validators.required),
+        email: new FormControl(this.data?.email, Validators.email),
         contrasena: new FormControl(
           '',
           Validators.compose([
@@ -293,30 +292,21 @@ export class FormRegistroComponent implements OnInit {
   }
 
   submit() {
-    // try {
-    console.log('submit');
-    if (!this.validate()) {
-      throw new Error(
-        'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
-      );
+    try {
+      if (!this.validate()) {
+        throw new Error(
+          'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
+        );
+      }
+      let value = {
+        form: this.registroForm,
+        horarios: this.horarios,
+        idiomas: this.idiomas,
+      };
+      this.registrar.emit(value);
+    } catch (e: any) {
+      this.openError(e.message);
     }
-
-    console.log('submit');
-
-    let value = {
-      form: this.registroForm,
-      horarios: this.horarios,
-      idiomas: this.idiomas,
-    };
-
-    console.log(value);
-
-    this.registrar.emit(value);
-
-    // } catch (e: any) {
-    //   console.log('submit');
-    //   this.openError(e.message);
-    // }
   }
 
   openHorario() {
