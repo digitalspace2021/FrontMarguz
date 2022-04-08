@@ -93,18 +93,17 @@ export class FormRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.registroForm = new FormGroup(
 
       {
-        identificacion: new FormControl(this.data.acount.identification, Validators.required),
-        nombre: new FormControl(this.data.name, Validators.required),
-        apellido: new FormControl(this.data.lastname, Validators.required),
-        telefono: new FormControl(this.data.acount.cellphone, Validators.required),
-        pais: new FormControl(this.data.acount.country, Validators.required),
-        estado: new FormControl(this.data.acount.state, Validators.required),
-        ciudad: new FormControl(this.data.acount.city, Validators.required),
-        email: new FormControl(this.data.email, Validators.email),
+        identificacion: new FormControl(this.data.acount?.identification, Validators.required),
+        nombre: new FormControl(this.data?.name, Validators.required),
+        apellido: new FormControl(this.data?.lastname, Validators.required),
+        telefono: new FormControl(this.data.acount?.cellphone, Validators.required),
+        pais: new FormControl(this.data.acount?.country, Validators.required),
+        estado: new FormControl(this.data.acount?.state, Validators.required),
+        ciudad: new FormControl(this.data.acount?.city, Validators.required),
+        email: new FormControl(this.data?.email, Validators.email),
         contrasena: new FormControl(
           '',
           Validators.compose([
