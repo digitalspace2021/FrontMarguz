@@ -1,3 +1,4 @@
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,7 +14,6 @@ import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     PublicComponent,
@@ -22,18 +22,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PoliticasProfesorComponent,
     PoliticasEstudianteComponent,
     PoliticasPagoProfesorComponent,
-    HeaderPublicComponent
+    HeaderPublicComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    PublicRoutingModule
+    PublicRoutingModule,
+    NgxPaginationModule,
   ],
-  exports:[
-    HeaderPublicComponent
-  ]
+  exports: [HeaderPublicComponent],
 })
-export class PublicModule { }
+export class PublicModule {}

@@ -26,6 +26,11 @@ export class PublicService {
     });
   }
 
+  searchTearcher(data: any) {
+    let url = `${env}users/search/teachers`;
+    return this.http.post(url, data, { headers: this.headers });
+  }
+
   getUsuarioTeacher(id: number) {
     let url = `${this.address}/user/${id}`;
     return this.http.get(url, { headers: this.headers });

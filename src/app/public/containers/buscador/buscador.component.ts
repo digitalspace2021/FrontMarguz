@@ -1,3 +1,4 @@
+import { PublicService } from './../../services/public.service';
 import { environment } from 'src/environments/environment';
 import { MateriaService } from './../../../admin/services/materia.service';
 import { UsuarioService } from './../../../admin/services/usuario.service';
@@ -13,19 +14,18 @@ import { Router } from '@angular/router';
 export class BuscadorComponent implements OnInit {
   public host = environment.hostImg;
 
-  profesores: any;
   profesoresList: any;
   idiomas!: any;
-
+  page?: number;
   idiomaSelected: string = 'Todos';
   minPrice: number = 0;
-  maxPrice: number = 100000;
+  maxPrice: number = 0;
   name: string = '';
 
   constructor(
     public sanitizer: DomSanitizer,
     private router: Router,
-    private userService: UsuarioService,
+    private publicService: PublicService,
     private materiaSv: MateriaService
   ) {}
 
@@ -46,9 +46,16 @@ export class BuscadorComponent implements OnInit {
   }
 
   getTeacher() {
-    this.userService.listUsuarioTeacher().subscribe((resp: any) => {
-      this.profesores = resp.result.data;
-      this.profesoresList = [...this.profesores];
+    let data: any;
+    data = {
+      name_search: this.name,
+      lenguage_search:
+        this.idiomaSelected == 'Todos' ? '' : this.idiomaSelected,
+      price_minor: this.minPrice,
+      price_m: this.maxPrice,
+    };
+    this.publicService.searchTearcher(data).subscribe((resp: any) => {
+      this.profesoresList = resp.result;
     });
   }
 
@@ -57,27 +64,14 @@ export class BuscadorComponent implements OnInit {
   }
 
   restablecerFiltros() {
-    this.profesoresList = this.profesores;
+    this.name = '';
+    this.idiomaSelected = 'Todos';
+    this.minPrice = 0;
+    this.maxPrice = 0;
+    this.getTeacher();
   }
 
   filtrarResultados() {
-    debugger;
-    if (this.idiomaSelected != 'Todos') {
-      this.profesoresList = this.profesores.filter((profesor: any) => {
-        if (
-          profesor.languages.includes(
-            (resp: any) => resp.name === this.idiomaSelected
-          ) &&
-          parseInt(profesor.price) <= this.maxPrice &&
-          parseInt(profesor.price) >= this.minPrice &&
-          profesor.name.includes(this.name)
-        ) {
-          return true;
-        }
-        return false;
-      });
-    } else {
-      this.restablecerFiltros();
-    }
+    this.getTeacher();
   }
 }
