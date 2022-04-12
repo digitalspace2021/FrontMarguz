@@ -18,6 +18,7 @@ import { HorarioComponent } from './containers/horario/horario.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderProfesorComponent } from './components/header-profesor/header-profesor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SharedModule,
     FontAwesomeModule,
     ProfesoresRoutingModule,
-     ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class ProfesoresModule { }

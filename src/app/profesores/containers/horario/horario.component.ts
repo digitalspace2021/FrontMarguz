@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HorarioService } from './horario.service';
+import { UsuarioService } from '../../../admin/services/usuario.service';
 
 @Component({
   selector: 'app-horario-contenedor',
@@ -7,18 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HorarioComponent implements OnInit {
   horarios: any;
-  constructor() {}
+  id:number = 0;
+  constructor( private _schedule: HorarioService, private _user: UsuarioService ) {}
 
   ngOnInit(): void {
-    this.horarios = [
-      {
-        dia: 'Lunes',
-        inicio: '8:00am',
-        cierre: '2:00pm',
-      },
-    ];
+    this.getSchedule();
   }
+
+  getSchedule(){
+    this._user.getUsuario()
+    .subscribe( (res:any) => {
+      this.id = res.id;
+      this.horarios = res.acount.schedules_available;
+    })
+  }
+
   guardarHorario(horarios: any) {
     this.horarios = horarios;
+    this._schedule.saveScheduleNews({schedules_available:horarios}, this.id).subscribe();
   }
 }
