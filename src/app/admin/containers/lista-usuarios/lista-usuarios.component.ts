@@ -29,6 +29,7 @@ export class ListaUsuariosComponent implements OnInit {
   trash = faTrashAlt;
 
   tempList: Array<any> = [];
+  interestAndLanguages = '';
 
   tipoUsuario: string = 'Student';
   titleModal: string = ''
@@ -39,6 +40,7 @@ export class ListaUsuariosComponent implements OnInit {
   title: string = '';
   tipo: string = '0';
   action: boolean = false;
+  showInteretAndLanguagesBrand: boolean = false;
 
   page?: number;
   typeModal: string = 'create';
@@ -255,8 +257,22 @@ export class ListaUsuariosComponent implements OnInit {
 
 
   openEdit(): any {
+
+    let usersTypes: any = {
+      'Teacher': 'profesores/perfil',
+      'Student': 'estudiantes/perfil',
+      'Admin': 'profesores/perfil'
+    }
+
+    console.log([
+      usersTypes,
+      this.tipoUsuario,
+      usersTypes[this.tipoUsuario]
+    ]);
+
     if (this.tempList.length > 1) this.openError('solo puede seleccionar un usuario para esta accion')
-    this.router.navigate(['profesores/perfil'], { queryParams: { id: this.tempList[0] }, queryParamsHandling: 'merge' });
+    this.tipoUsuario
+    this.router.navigate([usersTypes[this.tipoUsuario]], { queryParams: { id: this.tempList[0] }, queryParamsHandling: 'merge' });
   }
 
   openRegistro(): any {
@@ -290,6 +306,15 @@ export class ListaUsuariosComponent implements OnInit {
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;
+  }
+
+  showInteretAndLanguages(user: any) {
+
+    this.interestAndLanguages = ''
+    if (this.tipoUsuario == 'Admin') return
+    if (this.tipoUsuario == 'Teacher') user.languages.map((el: any) => this.interestAndLanguages += el.name + "\n" + "\r ")
+    if (this.tipoUsuario == 'Student') user.interest.map((el: any) => this.interestAndLanguages += el.name + "\n" + "\r ")
+    this.showInteretAndLanguagesBrand = true;
   }
 
   closeError() {

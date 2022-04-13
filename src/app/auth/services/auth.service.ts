@@ -75,6 +75,21 @@ export class AuthService {
     });
   }
 
+  updateStudent(formData: FormData, id: number) {
+    let endPoint = env + 'admin/profile/student/' + id;
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(endPoint, formData).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(error.error.errors);
+          // reject(new Error(error.message));
+        }
+      );
+    });
+  }
+
   registrarStudent(formData: FormData) {
     let endPoint = this.address + 'register/student';
     return new Promise((resolve, reject) => {

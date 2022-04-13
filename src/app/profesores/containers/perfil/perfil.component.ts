@@ -16,6 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Params } from '@angular/router';
 import { getErrors } from 'src/app/shared/utils/get-errors';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 
 
 export interface IIntereses {
@@ -39,7 +40,7 @@ export class PerfilComponent implements OnInit {
   errorMessage: string = '';
   link: string = ''
 
-  img?: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
+  img: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
 
   //iconos
   add = faPlusCircle;
@@ -49,6 +50,8 @@ export class PerfilComponent implements OnInit {
   formPerfil!: FormGroup;
   detallesDePago: any;
   myParams: any = null
+  msg: string = ''
+  show: boolean = false
 
   constructor(
     private authService: AuthService,
@@ -98,13 +101,12 @@ export class PerfilComponent implements OnInit {
     this.formPerfil.get('description')?.setValue(data.result.acount.description);
     this.formPerfil.get('price')?.setValue(data.result.acount.price);
     this.img = data.result.acount.url_photo_perfil;
+    this.link = data.result.acount.url_youtube;
     this.changerCountrys();
 
     data?.result?.acount?.languajes?.forEach((element: any) => {
       this.intereses.push(element);
     })
-
-
   }
 
   builder() {
@@ -205,22 +207,17 @@ export class PerfilComponent implements OnInit {
       this.authService
         .updateTeacher(formData, this.myParams)
         .then((resp: any) => {
-          console.log(resp);
-          // if (resp.code == 201) {
-          //   this.openConfirm();
-          // } else {
-          //   this.openError(resp.message);
-          // }
+          if (resp.code == 202) {
+            this.msg = 'Actualización correcta'
+            this.show = true;
+          } else {
+            this.openError(resp.message);
+          }
         })
         .catch((e) => this.openError(getErrors(e)));
     } catch (e: any) {
-      console.log(e.message);
       this.openError(e.message);
     }
-  }
-
-  getYoutobeUrl() {
-
   }
 
   openError(message: string) {
@@ -232,6 +229,5 @@ export class PerfilComponent implements OnInit {
     this.isError = false;
     this.errorMessage = '';
   }
-
 
 }

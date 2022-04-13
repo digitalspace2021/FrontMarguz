@@ -91,7 +91,7 @@
     <div class="row mt-2">
       <div class="col-4">
         <div class="container-img animate__animated animate__bounce">
-          <img [src]="img" class="rounded img" alt="Cinque Terre" style="border-radius: 10px" />
+          <img [src]="img | media" class="rounded img" alt="Cinque Terre" style="border-radius: 10px" />
           <div class="adjunt-cam">
             <fa-icon style="font-size: 14px; color: red" [icon]="cam" (click)="openFileSystem()"></fa-icon>
           </div>
@@ -99,7 +99,7 @@
         </div>
         <div class="container-btn">
           <div class="iframe-edit animate__animated animate__bounce">
-            <iframe src="https://www.youtube.com/embed/Frw3Hg4lAKk" title="YouTube video player" frameborder="0"
+            <iframe [src]="link | safe" title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen width="100%"></iframe>
             <div class="circle-iframe" data-bs-toggle="modal" data-bs-target="#modalLinkUrl">
@@ -440,5 +440,9 @@
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
   </div>
 </div>
+
+
+<app-confirm title="Actualización exitosa" [msg]="msg" buttonMsg="Aceptar" *ngIf="show" (closeConfirm)="show=false">
+</app-confirm>
 
 <app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>

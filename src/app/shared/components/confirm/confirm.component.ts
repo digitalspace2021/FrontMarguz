@@ -11,7 +11,7 @@ export class ConfirmComponent implements OnInit {
   @Input() buttonMsg: string = "";
   @Output() closeConfirm = new EventEmitter<string>();
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.msg = this.msg.replace(/^\:/, "");
