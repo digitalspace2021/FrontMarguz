@@ -31,16 +31,16 @@ export class IdiomasComponent implements OnInit {
   constructor(
     private materiaSv: MateriaService,
     private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-/*     this.idiomasDisponibles = [
-      { materia: 'Español' },
-      { materia: 'Inglés' },
-      { materia: 'Portugués' },
-      { materia: 'Italiano' },
-      { materia: 'Japonés' },
-    ]; */
+    /*     this.idiomasDisponibles = [
+          { materia: 'Español' },
+          { materia: 'Inglés' },
+          { materia: 'Portugués' },
+          { materia: 'Italiano' },
+          { materia: 'Japonés' },
+        ]; */
 
     this.materiaSv.listRegInteresOrLenguages().subscribe((data: any) => {
       this.idiomasDisponibles = data.result;

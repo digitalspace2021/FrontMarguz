@@ -15,11 +15,12 @@ import {
   faSave,
 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Params } from '@angular/router';
+import { getErrors } from 'src/app/shared/utils/get-errors';
 
 
 export interface IIntereses {
   id: number;
-  materia: string;
+  name: string;
 }
 
 @Component({
@@ -34,6 +35,9 @@ export class PerfilComponent implements OnInit {
   cities: any;
   materias: any;
   intereses: IIntereses[] = [];
+  isError: boolean = false;
+  errorMessage: string = '';
+  link: string = ''
 
   img?: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
 
@@ -44,6 +48,7 @@ export class PerfilComponent implements OnInit {
   //-----------------
   formPerfil!: FormGroup;
   detallesDePago: any;
+  myParams: any = null
 
   constructor(
     private authService: AuthService,
@@ -55,95 +60,92 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.builder();
-    this.changerCountrys();
     this.getUser();
     this.listMateria();
   }
 
   AddIntereses(value: any) {
-    if (this.intereses.includes(value)) return;
-    this.intereses.push(value);
+    if (!this.intereses.find((el: any) => el.id === value.id)) this.intereses.push(value);
     const index = this.materias.indexOf(value);
     this.materias.splice(index, 1);
+
   }
 
   getUser() {
 
-    let myParams: any = null
     this.route.queryParamMap
       .subscribe((params) => {
         let obj: any = { ...params.keys, ...params }
-        myParams = obj.params.id
+        this.myParams = obj.params.id
       });
 
     this.usuarioSv
-      .getUsuario(myParams)
+      .getUsuario(this.myParams)
       .subscribe((resp) => this.loadData(resp));
   }
 
   loadData(data: any) {
-    console.log(data);
-    this.formPerfil.get('id')?.setValue(data.result.id);
-    this.formPerfil.get('apellido')?.setValue(data.result.apellido);
-    this.formPerfil.get('nombre')?.setValue(data.result.nombre);
-    this.formPerfil.get('telefono')?.setValue(data.result.telefono);
+    this.formPerfil.get('identification')?.setValue(data.result.acount.identification);
+    this.formPerfil.get('lastname')?.setValue(data.result.lastname);
+    this.formPerfil.get('name')?.setValue(data.result.name);
+    this.formPerfil.get('cellphone')?.setValue(data.result.acount.cellphone);
+    this.formPerfil.get('title_professional')?.setValue(data.result.acount.title_professional);
     this.formPerfil.get('email')?.setValue(data.result.email);
-    this.formPerfil.get('pais')?.setValue(data.result.acount.country);
-    this.formPerfil.get('estado')?.setValue(data.result.acount.state);
-    this.formPerfil.get('ciudad')?.setValue(data.result.acount.city);
-    this.formPerfil.get('zona')?.setValue(data.result.zona_horaria);
-    this.formPerfil.get('descripcion')?.setValue(data.result.descripcion);
-    //this.img = data.foto_perfil;
+    this.formPerfil.get('country')?.setValue(data.result.acount.country);
+    this.formPerfil.get('state')?.setValue(data.result.acount.state);
+    this.formPerfil.get('city')?.setValue(data.result.acount.city);
+    this.formPerfil.get('time_zone')?.setValue(data.result.acount.time_zone);
+    this.formPerfil.get('description')?.setValue(data.result.acount.description);
+    this.formPerfil.get('price')?.setValue(data.result.acount.price);
+    this.img = data.result.acount.url_photo_perfil;
+    this.changerCountrys();
+
+    data?.result?.acount?.languajes?.forEach((element: any) => {
+      this.intereses.push(element);
+    })
+
+
   }
 
   builder() {
     this.formPerfil = this.buildForm.group({
-      id: [{ value: '', disabled: true }],
-      apellido: ['', Validators.required],
-      nombre: ['', Validators.required],
-      telefono: ['', Validators.required],
+      identification: [{ value: '' }],
+      lastname: ['', Validators.required],
+      name: ['', Validators.required],
+      cellphone: ['', Validators.required],
+      title_professional: ['', Validators.required],
       email: ['', Validators.required],
-      pais: ['', Validators.required],
-      estado: ['', Validators.required],
-      ciudad: ['', Validators.required],
-      zona: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      country: ['', Validators.required],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      time_zone: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      link: ['', Validators.required],
     });
   }
 
   listMateria() {
     this.materiaSv
       .listInteresOrLenguages()
-      .subscribe((resp) => (this.materias = resp));
-    this.changerCountrys();
+      .subscribe((resp) => { this.materias = resp.result.map((el: any) => { return { 'id': el.id, 'name': el.name } }) })
   }
 
   changerCountrys() {
     this.authService
       .getCountries()
       .then((data: any) => {
-        console.log(data.result);
         this.countries = data.result;
-        // this.formPerfil.get('pais')?.setValue('Colombia');
-
-
-        console.log(
-          this.formPerfil.get('pais')?.value
-        );
-
         this.changeStates();
       })
       .catch((err) => console.error(err));
   }
 
   changeStates() {
-    console.log(this.formPerfil.get('pais')?.value);
     this.authService
-      .getStates(0)
-      // .getStates(this.formPerfil.get('pais')?.value)
+      .getStates(this.formPerfil.get('country')?.value)
       .then((data: any) => {
         this.states = data.result;
-        // this.formPerfil.get('estado')?.setValue(this.states[0].state_name);
         this.changeCities();
       })
       .catch((err) => console.error(err));
@@ -151,10 +153,9 @@ export class PerfilComponent implements OnInit {
 
   changeCities() {
     this.authService
-      .getCities(0)
+      .getCities(this.formPerfil.get('state')?.value)
       .then((data: any) => {
         this.cities = data.result;
-        // this.formPerfil.get('ciudad')?.setValue(this.cities[0].city_name);
       })
       .catch((err) => console.error(err));
   }
@@ -173,12 +174,64 @@ export class PerfilComponent implements OnInit {
   openFileSystem() {
     this.selectFile.nativeElement.click();
   }
+
   isPago: boolean = false;
   openPago() {
     this.isPago = true;
   }
+
   closePago(detallesDePago: any) {
     this.detallesDePago = detallesDePago;
     this.isPago = false;
   }
+
+  update() {
+    try {
+
+      let formData = new FormData();
+
+      for (const [key, value] of Object.entries(this.formPerfil.value)) {
+        formData.append(key, this.formPerfil.get(key)?.value);
+      }
+
+      formData.append('url_youtube', this.link);
+
+      this.intereses.forEach((elements: any, index: any) => {
+        formData.append('languajes[' + index + ']', elements.id);
+      });
+
+      // this.myParams
+
+      this.authService
+        .updateTeacher(formData, this.myParams)
+        .then((resp: any) => {
+          console.log(resp);
+          // if (resp.code == 201) {
+          //   this.openConfirm();
+          // } else {
+          //   this.openError(resp.message);
+          // }
+        })
+        .catch((e) => this.openError(getErrors(e)));
+    } catch (e: any) {
+      console.log(e.message);
+      this.openError(e.message);
+    }
+  }
+
+  getYoutobeUrl() {
+
+  }
+
+  openError(message: string) {
+    this.errorMessage = message;
+    this.isError = true;
+  }
+
+  closeError() {
+    this.isError = false;
+    this.errorMessage = '';
+  }
+
+
 }

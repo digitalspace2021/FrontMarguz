@@ -1,4 +1,4 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -30,7 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EditarPagoComponent,
     CalendarioComponent,
     PerfilComponent,
-      HorarioComponent,
+    HorarioComponent,
     HeaderProfesorComponent
   ],
   imports: [
@@ -39,8 +39,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     SharedModule,
     FontAwesomeModule,
+    FormsModule,
     ProfesoresRoutingModule,
-     ReactiveFormsModule
+    ReactiveFormsModule
   ]
 })
 export class ProfesoresModule { }
