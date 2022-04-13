@@ -42,6 +42,7 @@ export class PerfilComponent implements OnInit {
   //-----------------
   formPerfil!: FormGroup;
   detallesDePago: any;
+  user:any;
 
   constructor(
     private authService: AuthService,
@@ -67,7 +68,10 @@ export class PerfilComponent implements OnInit {
   getUser() {
     this.usuarioSv
       .getUsuario()
-      .subscribe((resp) => this.loadData(resp));
+      .subscribe((resp) => {
+        this.user = resp;
+        this.loadData(resp)
+      });
   }
 
   loadData(data: any) {

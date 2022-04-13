@@ -26,6 +26,6 @@ export class HorarioComponent implements OnInit {
 
   guardarHorario(horarios: any) {
     this.horarios = horarios;
-    this._schedule.saveScheduleNews({schedules_available:horarios}, this.id).subscribe();
+    this._schedule.saveScheduleNews({schedules_available:horarios}, this.id).subscribe(res => this.getSchedule());
   }
 }

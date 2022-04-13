@@ -87,7 +87,7 @@ export class FormRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.horarios = this.data ? this.data.acount.schedules_available : [];
+    this.horarios = this.data ? this.data.acount?.schedules_available : [];
 
     this.registroForm = new FormGroup(
 
