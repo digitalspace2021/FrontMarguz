@@ -87,7 +87,7 @@
 </div>
 
 <div class="card card-body mb-5">
-  <form [formGroup]="formPerfil" novalidate>
+  <form [formGroup]="formPerfil" novalidate (submit)="update()">
     <div class="row mt-2">
       <div class="col-4">
         <div class="container-img animate__animated animate__bounce">
@@ -102,7 +102,7 @@
             <iframe src="https://www.youtube.com/embed/Frw3Hg4lAKk" title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen width="100%"></iframe>
-            <div class="circle-iframe">
+            <div class="circle-iframe" data-bs-toggle="modal" data-bs-target="#modalLinkUrl">
               <i class="fas fa-link" style="font-size: 14px; color: red"></i>
             </div>
           </div>
@@ -124,23 +124,23 @@
         <div class="row">
           <div class="form-group col-6">
             <label class="label-ajust">Identificación</label>
-            <input type="text" formControlName="id" class="form-control" />
+            <input type="text" formControlName="identification" readonly class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Apellido</label>
-            <input type="text" formControlName="apellido" class="form-control" />
+            <input type="text" formControlName="lastname" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Nombre</label>
-            <input type="text" formControlName="nombre" class="form-control" />
+            <input type="text" formControlName="name" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Telefono</label>
-            <input type="text" formControlName="telefono" class="form-control" />
+            <input type="text" formControlName="cellphone" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Pais</label>
-            <select class="form-control" formControlName="pais" (change)="changeStates()">
+            <select class="form-control" formControlName="country" (change)="changeStates()">
               <option value="0" selected>Seleccionar Pais</option>
               <option [value]="item.id" *ngFor="let item of countries">
                 {{ item.name }}
@@ -149,7 +149,7 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Estado</label>
-            <select class="form-control" formControlName="estado" (change)="changeCities()">
+            <select class="form-control" formControlName="state" (change)="changeCities()">
               <option value="0" selected>Seleccionar estado</option>
               <option [value]="item.id" *ngFor="let item of states">
                 {{ item.name }}
@@ -158,7 +158,7 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Ciudad</label>
-            <select class="form-control" formControlName="ciudad">
+            <select class="form-control" formControlName="city">
               <option value="0" selected>Seleccionar ciudad</option>
               <option [value]="item.id" *ngFor="let item of cities">
                 {{ item.name }}
@@ -171,7 +171,7 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Zona Horaria</label>
-            <select class="form-control" formControlName="zona">
+            <select class="form-control" formControlName="time_zone">
               <option value="Hawaii">(GMT-10:00) Hawaii</option>
               <option value="Alaska">(GMT-09:00) Alaska</option>
               <option value="Pacific Time (US &amp; Canada)">
@@ -336,15 +336,15 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Valor</label>
-            <input type="number" formControlName="email" class="form-control" />
+            <input type="number" formControlName="price" class="form-control" />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Descripción</label>
-            <textarea class="form-control" formControlName="descripcion" cols="30" rows="3"></textarea>
+            <textarea class="form-control" formControlName="description" cols="30" rows="3"></textarea>
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Titulo Profesional</label>
-            <textarea class="form-control" formControlName="descripcion" cols="30" rows="3"></textarea>
+            <textarea class="form-control" formControlName="title_professional" cols="30" rows="3"></textarea>
           </div>
           <div class="form-group col-10 mt-3">
             <label class="label-ajust">Intereses</label><br />
@@ -352,9 +352,9 @@
               <div class="col-3" *ngFor="let item of intereses">
                 <div class="form-check">
                   <input class="form-check-input" checked disabled style="color: red; opacity: 100%; margin-right: 3px"
-                    type="checkbox" [value]="item.id" [id]="item.materia" />
-                  <label class="form-check-label" style="font-size: 12px" [for]="item.materia">
-                    {{ item.materia }}
+                    type="checkbox" [value]="item.id" [id]="item.name" />
+                  <label class="form-check-label" style="font-size: 12px" [for]="item.name">
+                    {{ item.name }}
                   </label>
                 </div>
               </div>
@@ -408,7 +408,7 @@
               <td>
                 <div class="d-block mb-5">
                   <label>
-                    {{ item.materia }}
+                    {{ item.name }}
                   </label>
                 </div>
               </td>
@@ -424,3 +424,21 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="modalLinkUrl" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="Label"> Link de Youtube </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="link">
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+</div>
+
+<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
