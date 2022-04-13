@@ -1,7 +1,10 @@
+import { PublicService } from './../../services/public.service';
+import { environment } from 'src/environments/environment';
+import { MateriaService } from './../../../admin/services/materia.service';
+import { UsuarioService } from './../../../admin/services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { PublicService } from '../../services/public.service';
 
 @Component({
   selector: 'app-buscador',
@@ -9,100 +12,66 @@ import { PublicService } from '../../services/public.service';
   styleUrls: ['./buscador.component.scss'],
 })
 export class BuscadorComponent implements OnInit {
-  profesores: any;
-  profesoresList: any;
-  idiomas: any;
+  public host = environment.hostImg;
 
-  idiomaSelected: string = 'Inglés';
+  profesoresList: any;
+  idiomas!: any;
+  page?: number;
+  idiomaSelected: string = 'Todos';
   minPrice: number = 0;
-  maxPrice: number = 100000;
+  maxPrice: number = 0;
   name: string = '';
 
   constructor(
-    private publicService: PublicService,
     public sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private publicService: PublicService,
+    private materiaSv: MateriaService
   ) {}
 
   ngOnInit(): void {
-    /*     this.publicService.getIdiomas().subscribe((data: any) => {
-      try {
-        this.idiomas = data;
-      } catch (error) {}
-    });
-    this.publicService.getProfesores().subscribe((data: any) => {
-      try {
-        this.profesores = data;
-      } catch (error) {}
-    }); */
-    this.idiomas = [
-      'Español',
-      'Inglés',
-      'Portugués',
-      'Francés',
-      'Alemán',
-      'Italiano',
-      'Japonés',
-    ];
-    this.profesores = [
-      {
-        id: 1,
-        nombre: 'Alejandra Gonzalez',
-        pais: 'Colombia',
-        valor: 50000,
-        idiomas: ['Español', 'Inglés'],
-        habla: ['Español nativo', 'Inglés fluido'],
-        link: 'https://www.youtube.com/embed/idn6ssYRS0I',
-        numeroDeClases: 58,
-        descripcion:
-          ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
-      },
-      {
-        id: 2,
-        nombre: 'Fabiola León',
-        pais: 'Colombia',
-        valor: 20000,
-        idiomas: ['Inglés', 'Alemán'],
-        habla: ['Inglés', 'Alemán fluido'],
-        link: 'https://www.youtube.com/embed/idn6ssYRS0I',
-        numeroDeClases: 45,
-        descripcion:
-          ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
-      },
-      {
-        id: 3,
-        nombre: 'Daniela Rodriguez',
-        pais: 'Colombia',
-        valor: 70000,
-        idiomas: ['Japonés', 'Italiano'],
-        habla: ['Italiano nativo', 'Japonés fluido'],
-        numeroDeClases: 60,
-        link: 'https://www.youtube.com/embed/idn6ssYRS0I',
-        descripcion:
-          ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
-      },
-    ];
-    this.profesoresList = [...this.profesores];
-  }
-  abrirPerfil(id: number) {
-    this.router.navigate([`perfil/${id}`]);
+    this.getIntereses();
+    this.getTeacher();
   }
 
-  restablecerFiltros(){
-    this.profesoresList = this.profesores;
+  getIntereses() {
+    /*************Consulta los intereses
+     * Return @Array
+     * Params @Null
+     * *****************/
+    this.materiaSv.listInteresOrLenguages().subscribe((resp) => {
+      this.idiomas = resp.result;
+      this.idiomas.unshift({ id: 0, name: 'Todos' });
+    });
+  }
+
+  getTeacher() {
+    let data: any;
+    data = {
+      name_search: this.name,
+      lenguage_search:
+        this.idiomaSelected == 'Todos' ? '' : this.idiomaSelected,
+      price_minor: this.minPrice,
+      price_m: this.maxPrice,
+    };
+    this.publicService.searchTearcher(data).subscribe((resp: any) => {
+      this.profesoresList = resp.result;
+    });
+  }
+
+  abrirPerfil(id: number) {
+    this.router.navigate([`public/perfil/${id}`]);
+  }
+
+  restablecerFiltros() {
+    this.name = '';
+    this.idiomaSelected = 'Todos';
+    this.minPrice = 0;
+    this.maxPrice = 0;
+    this.getTeacher();
   }
 
   filtrarResultados() {
-    this.profesoresList = this.profesores.filter((profesor: any) => {
-      if (
-        profesor.idiomas.includes(this.idiomaSelected) &&
-        parseInt(profesor.valor) <= this.maxPrice &&
-        parseInt(profesor.valor) >= this.minPrice &&
-        profesor.nombre.includes(this.name)
-      ) {
-        return true;
-      }
-      return false;
-    });
+    this.getTeacher();
   }
 }

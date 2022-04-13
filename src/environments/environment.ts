@@ -4,11 +4,13 @@
 
 export const environment = {
   production: false,
+  
   // host: 'https://api.marguz.co/api/v1/',
   host: 'http://marguzbackendvfinal.test/api/v1/',
   media: 'http://marguzbackendvfinal.test/',
   // host: 'https://api.marguz.co/api/v1/',
   // host: 'https://api.marguz.co/api/v1/',
+  
 };
 
 /*

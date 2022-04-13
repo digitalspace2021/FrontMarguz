@@ -3,6 +3,7 @@ import {
   faMinusCircle,
   faPlusCircle,
   faSortDown,
+  faVrCardboard,
 } from '@fortawesome/free-solid-svg-icons';
 import { faUserCheck } from '@fortawesome/free-solid-svg-icons';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
@@ -56,7 +57,12 @@ export class ListaClasesComponent implements OnInit {
   close = faWindowClose;
   edit = faEdit;
   trash = faTrashAlt;
+  car = faVrCardboard;
   constructor() {}
 
   ngOnInit(): void {}
+
+  alerta() {
+    alert('hola mundo');
+  }
 }
