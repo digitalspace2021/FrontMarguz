@@ -4,12 +4,15 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   faCamera,
+  faMinus,
+  faMinusCircle,
   faPlusCircle,
   faSave,
 } from '@fortawesome/free-solid-svg-icons';
 import { MateriaService } from 'src/app/admin/services/materia.service';
 import { InfoProfile } from 'src/app/shared/utils/response';
 import { ActivatedRoute } from '@angular/router';
+import { getErrors } from 'src/app/shared/utils/get-errors';
 
 export interface IIntereses {
   id: number;
@@ -35,6 +38,7 @@ export class PerfilComponent implements OnInit {
   add = faPlusCircle;
   save = faSave;
   cam = faCamera;
+  minus = faMinusCircle;
   //-----------------
   formPerfil!: FormGroup;
   infoProfile: any = new InfoProfile();
@@ -127,7 +131,7 @@ export class PerfilComponent implements OnInit {
       time_zone: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
-      url_photo_perfil: ['', Validators.required],
+      photo_acount: ['', Validators.required],
     });
 
     // this.formPerfil = this.buildForm.group({
@@ -146,9 +150,13 @@ export class PerfilComponent implements OnInit {
 
   AddIntereses(value: any) {
     if (!this.intereses.find((el: any) => el.id === value.id)) this.intereses.push(value);
-    const index = this.materias.indexOf(value);
-    this.materias.splice(index, 1);
+    // const index = this.materias.indexOf(value);
+    // this.materias.splice(index, 1);
 
+  }
+
+  SubstrabIntereses(value: any) {
+    this.intereses = this.intereses.filter((el: any) => el.id !== value.id)
   }
 
   listMateria() {
@@ -195,7 +203,7 @@ export class PerfilComponent implements OnInit {
       };
       reader.readAsDataURL(imagen.files[0]);
 
-      this.formPerfil.get('url_photo_perfil')?.setValue(imagen.files[0]);
+      this.formPerfil.get('photo_acount')?.setValue(imagen.files[0]);
     }
   }
 
@@ -213,8 +221,6 @@ export class PerfilComponent implements OnInit {
         formData.append('interest[' + index + ']', elements.id);
       });
 
-      // this.myParams
-
       this.authService
         .updateStudent(formData, this.myParams)
         .then((resp: any) => {
@@ -225,8 +231,7 @@ export class PerfilComponent implements OnInit {
             this.openError(resp.message);
           }
         })
-        .catch((e) => console.log(e));
-      // .catch((e) => this.openError(getErrors(e)));
+        .catch((e) => this.openError(getErrors(e)));
     } catch (e: any) {
       // this.openError(e.message);
     }

@@ -40,6 +40,9 @@ export class LoginComponent implements OnInit {
 
   async dashboard() {
     let tipoUsuario = this.authService.getTipoUsuario();
+
+    console.log(tipoUsuario);
+
     if (tipoUsuario == 'Admin') {
       this.router.navigate(['admin/admin-usuario']);
     } else if (tipoUsuario == 'Teacher') {

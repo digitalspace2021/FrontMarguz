@@ -11,12 +11,12 @@ import {
 } from '@angular/core';
 import {
   faCamera,
+  faMinusCircle,
   faPlusCircle,
   faSave,
 } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Params } from '@angular/router';
 import { getErrors } from 'src/app/shared/utils/get-errors';
-import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 
 
 export interface IIntereses {
@@ -46,12 +46,16 @@ export class PerfilComponent implements OnInit {
   add = faPlusCircle;
   save = faSave;
   cam = faCamera;
+  minus = faMinusCircle;
   //-----------------
   formPerfil!: FormGroup;
   detallesDePago: any;
   myParams: any = null
   msg: string = ''
   show: boolean = false
+  dataUsuario?: any;
+  role: string = ''
+
 
   constructor(
     private authService: AuthService,
@@ -62,6 +66,11 @@ export class PerfilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.dataUsuario = localStorage.getItem("user");
+    this.dataUsuario = JSON.parse(this.dataUsuario)
+    this.role = this.dataUsuario?.user?.role
+
     this.builder();
     this.getUser();
     this.listMateria();
@@ -69,10 +78,20 @@ export class PerfilComponent implements OnInit {
 
   AddIntereses(value: any) {
     if (!this.intereses.find((el: any) => el.id === value.id)) this.intereses.push(value);
-    const index = this.materias.indexOf(value);
-    this.materias.splice(index, 1);
+    // const index = this.materias.indexOf(value);
+    // this.materias.splice(index, 1);
 
   }
+
+  SubstrabIntereses(value: any) {
+    this.intereses = this.intereses.filter((el: any) => el.id !== value.id)
+  }
+
+  // AddIntereses(value: any) {
+  //   if (!this.intereses.find((el: any) => el.id === value.id)) this.intereses.push(value);
+  //   const index = this.materias.indexOf(value);
+  //   this.materias.splice(index, 1);
+  // }
 
   getUser() {
 
@@ -124,6 +143,7 @@ export class PerfilComponent implements OnInit {
       description: ['', Validators.required],
       price: ['', Validators.required],
       link: ['', Validators.required],
+      photo_acount: ['', Validators.required],
     });
   }
 
@@ -170,6 +190,8 @@ export class PerfilComponent implements OnInit {
         this.img = e.target.result;
       };
       reader.readAsDataURL(imagen.files[0]);
+      this.formPerfil.get('photo_acount')?.setValue(imagen.files[0]);
+
     }
   }
 

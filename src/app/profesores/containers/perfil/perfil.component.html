@@ -360,7 +360,7 @@
               </div>
             </div>
           </div>
-          <div class="col-2 mt-4">
+          <div class="col-2 mt-4" *ngIf="role == 'Admin'">
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalIntereses">
               <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
             </button>
@@ -414,7 +414,10 @@
               </td>
               <td>
                 <button class="btn btn-sm" (click)="AddIntereses(item)">
-                  <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
+                  <fa-icon style="font-size: 24px; color: green" [icon]="add"></fa-icon>
+                </button>
+                <button class="btn btn-sm" (click)="SubstrabIntereses(item)">
+                  <fa-icon style="font-size: 24px; color: red" [icon]="minus"></fa-icon>
                 </button>
               </td>
             </tr>
