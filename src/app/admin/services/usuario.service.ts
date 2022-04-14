@@ -95,7 +95,7 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: any) {
-    return this.http.delete(`${this.address}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.address}/delete/${id}`, { headers: this.headers });
   }
   habilitar(data: any) {
     return this.http.post(`${this.address}/multiple/status/`, { users: data });

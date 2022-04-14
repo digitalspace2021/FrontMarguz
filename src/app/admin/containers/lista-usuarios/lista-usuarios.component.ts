@@ -86,9 +86,21 @@ export class ListaUsuariosComponent implements OnInit {
       this.tempList = []
     });
   }
+
+
+
   eliminar() {
-    this.openConfirm('Eliminar usuario', 'Usuario eliminado exitosamente');
+    this.usuarioSv.deleteUsuario(this.tempList[0]).subscribe((resp: any) => {
+      this.openConfirm(
+        'Eliminando usuario',
+        'Operación Exitosa'
+      );
+      this.listUsuario();
+      this.tempList = []
+    });
   }
+
+
   editar() { }
   isConfirm: boolean = false;
   confirmMessage: string = '';

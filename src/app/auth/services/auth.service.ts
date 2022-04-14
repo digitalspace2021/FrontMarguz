@@ -76,7 +76,10 @@ export class AuthService {
   }
 
   updateStudent(formData: FormData, id: number) {
+
     let endPoint = env + 'admin/profile/student/' + id;
+    if (!id) endPoint = env + 'admin/profile/student';
+
     return new Promise((resolve, reject) => {
       this.http.post<any>(endPoint, formData).subscribe(
         (data: any) => {
