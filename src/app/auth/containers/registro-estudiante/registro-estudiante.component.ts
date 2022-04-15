@@ -172,4 +172,6 @@ export class RegistroEstudianteComponent implements OnInit {
     this.isError = false;
     this.errorMessage = '';
   }
+
 }
+

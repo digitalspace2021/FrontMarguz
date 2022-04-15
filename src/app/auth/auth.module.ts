@@ -22,6 +22,8 @@ import { IdiomasModalComponent } from './components/idiomas/idiomas.component';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { HorarioModalComponent } from './components/horario/horario.component';
 import { LoaderComponent } from '../shared/components/loader/loader.component';
+import { MensajeriaModule } from '../admin/components/mensajeria/mensajeria.module';
+
 @NgModule({
   declarations: [
     AuthComponent,
@@ -50,7 +52,8 @@ import { LoaderComponent } from '../shared/components/loader/loader.component';
     FontAwesomeModule,
     AngularFileUploaderModule,
     MatCheckboxModule,
-    SharedModule
+    SharedModule,
+    MensajeriaModule
   ],
   exports: [FormRegistroComponent],
 })

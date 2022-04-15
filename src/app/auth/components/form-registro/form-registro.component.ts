@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  ElementRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -21,10 +22,10 @@ import {
   faUserPlus,
   faPaperclip,
 } from '@fortawesome/free-solid-svg-icons';
-import { Result } from 'src/app/admin/interfaces/IMateria';
 import { MateriaService } from 'src/app/admin/services/materia.service';
 import { AuthService } from '../../services/auth.service';
 import { userModel } from './user.model';
+import { listaMensaje, listaTipoMensaje } from 'src/app/shared/enum/listaMensajeria';
 
 @Component({
   selector: 'app-form-registro',
@@ -32,7 +33,11 @@ import { userModel } from './user.model';
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
+  @ViewChild("mostrarModal") mostrarModal! : ElementRef<HTMLInputElement>;
 
+  public mensajeGuardado = listaTipoMensaje.almacenado;
+  
+  public msgGuardado = listaMensaje.almacenado;
 
 
   checkPasswords: ValidatorFn = (
@@ -302,10 +307,23 @@ export class FormRegistroComponent implements OnInit {
         form: this.registroForm,
         horarios: this.horarios,
         idiomas: this.idiomas,
+        modal : this.mostrarModal
       };
       this.registrar.emit(value);
     } catch (e: any) {
       this.openError(e.message);
+    }
+  }
+
+  load(visible: boolean=true) {
+    let elemento = document.querySelector(".containerload");
+    if (elemento != null) {
+      if(visible){
+      elemento.classList.add("loadvisible");
+      }
+      else{
+        elemento.classList.remove("loadvisible");
+      }
     }
   }
 

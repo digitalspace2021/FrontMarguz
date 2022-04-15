@@ -24,7 +24,7 @@ import { AuthModule } from 'src/app/auth/auth.module';
     GuardadoComponent,
     HeaderAdminComponent,
     EditarClaseComponent,
-    RegistroModalComponent,
+    RegistroModalComponent
   ],
   imports: [CommonModule, FontAwesomeModule, FormsModule, AuthModule],
   exports: [

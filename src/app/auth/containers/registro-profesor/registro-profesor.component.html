@@ -28,3 +28,5 @@
 
 <app-confirm title="Registro exitoso" [msg]="registroExitosoMessage" buttonMsg="Aceptar" *ngIf="isRegistroExitoso"
   (closeConfirm)="login()"></app-confirm>
+
+  <app-loader *ngIf="load"></app-loader>
