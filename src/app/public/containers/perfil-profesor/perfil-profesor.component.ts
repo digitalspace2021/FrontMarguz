@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./perfil-profesor.component.scss'],
 })
 export class PerfilProfesorComponent implements OnInit {
-  public host = environment.hostImg;
+  public host = environment.media;
   profesor: any;
   id: number = 0;
 

@@ -55,9 +55,14 @@ export class HeaderComponent implements OnInit {
     if (isAuthenticated) {
       this.dataUsuario = localStorage.getItem('user');
       this.dataUsuario = JSON.parse(this.dataUsuario);
-      this.usuario = this.dataUsuario.user.name + ' ' + this.dataUsuario.user.lastname;
-      this.fotoLink = this.dataUsuario.user.fotoLink_perfil ? this.dataUsuario.user.fotoLink_perfil : "assets/avatar-icon.jpg";
+      this.usuario =
+        this.dataUsuario.user.name + ' ' + this.dataUsuario.user.lastname;
+      this.fotoLink = this.dataUsuario.user.fotoLink_perfil
+        ? this.dataUsuario.user.fotoLink_perfil
+        : 'assets/avatar-icon.jpg';
+
       let tipoUsuario = this.authService.getTipoUsuario();
+
       switch (tipoUsuario) {
         case 'Admin':
           this.isAdmin = true;
@@ -66,9 +71,7 @@ export class HeaderComponent implements OnInit {
         case 'Teacher':
           this.isProfesor = true;
           this.logoLink = 'profesores/';
-
           break;
-
         default:
           this.isEstudiante = true;
           this.logoLink = 'estudiantes/';
