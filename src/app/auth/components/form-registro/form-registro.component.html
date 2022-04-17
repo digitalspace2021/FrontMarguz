@@ -1,49 +1,81 @@
 <form [formGroup]="registroForm">
   <div class="formInput">
     <label for="identificacion" class="col-form-label">Identificación</label>
-    <input type="number" formControlName="identificacion" class="form-control" minlength="8" maxlength="26" />
+    <input
+      type="number"
+      formControlName="identificacion"
+      class="form-control"
+      minlength="8"
+      maxlength="26"
+    />
 
-    <div class="errorTag" *ngIf="
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.identificacion.errors?.required &&
         (fRegistro.identificacion.touched || fRegistro.identificacion.dirty)
-      ">
+      "
+    >
       Por favor ingrese su número de identificación
     </div>
   </div>
   <div class="formInput">
     <label for="nombre" class="col-form-label">Nombre</label>
-    <input type="text" formControlName="nombre" class="form-control" maxlength="50" />
+    <input
+      type="text"
+      formControlName="nombre"
+      class="form-control"
+      maxlength="50"
+    />
 
-    <div class="errorTag" *ngIf="
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.nombre.errors?.required &&
         (fRegistro.nombre.touched || fRegistro.nombre.dirty)
-      ">
+      "
+    >
       Por favor ingrese su nombre
     </div>
   </div>
   <div class="formInput">
     <label for="apellido" class="col-form-label">Apellido</label>
-    <input type="text" formControlName="apellido" class="form-control" maxlength="50" />
-    <div class="errorTag" *ngIf="
+    <input
+      type="text"
+      formControlName="apellido"
+      class="form-control"
+      maxlength="50"
+    />
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.apellido.errors?.required &&
         (fRegistro.apellido.touched || fRegistro.apellido.dirty)
-      ">
+      "
+    >
       Por favor ingrese su apellido
     </div>
   </div>
   <div class="formInput">
     <label for="telefono" class="col-form-label">Telefono</label>
     <input type="number" formControlName="telefono" class="form-control" />
-    <div class="errorTag" *ngIf="
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.telefono.errors?.required &&
         (fRegistro.telefono.touched || fRegistro.telefono.dirty)
-      ">
+      "
+    >
       Por favor ingrese su número de teléfono
     </div>
   </div>
   <div class="formInput">
     <label for="pais" class="col-form-label">Pais</label>
-    <select class="form-control" formControlName="pais" (change)="changeStates()">
+    <select
+      class="form-control"
+      formControlName="pais"
+      (change)="changeStates()"
+    >
       <option value="0" selected>Seleccionar Pais</option>
       <option [value]="item.id" *ngFor="let item of countries">
         {{ item.name }}
@@ -52,7 +84,11 @@
   </div>
   <div class="formInput">
     <label for="estado" class="col-form-label">Estado</label>
-    <select class="form-control" formControlName="estado" (change)="changeCities()">
+    <select
+      class="form-control"
+      formControlName="estado"
+      (change)="changeCities()"
+    >
       <option value="0" selected>Seleccionar estado</option>
       <option [value]="item.id" *ngFor="let item of states">
         {{ item.name }}
@@ -71,98 +107,162 @@
   <div class="formInput">
     <label for="email" class="col-form-label">Email</label>
     <input type="email" formControlName="email" class="form-control" />
-    <div class="errorTag" *ngIf="
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.email.errors?.required &&
         (fRegistro.email.touched || fRegistro.email.dirty)
-      ">
+      "
+    >
       Por favor ingrese su correo
     </div>
-    <div class="errorTag" *ngIf="
-      fRegistro.email.errors?.email">
+    <div class="errorTag" *ngIf="fRegistro.email.errors?.email">
       Por favor ingrese un correo válido
     </div>
   </div>
 
   <div class="formInput">
     <label class="col-form-label">Contraseña</label>
-    <input type="password" formControlName="contrasena" class="form-control" minlength="8" />
+    <input
+      type="password"
+      formControlName="contrasena"
+      class="form-control"
+      minlength="8"
+    />
     <div class="tagLine">
-      La contraseña debe tener una longitud mínima de 8 carácteres, al menos una minúscula, una mayúscula, un número y
-      un carácter especial de los siguientes: @ $ ! % * # ? &
+      La contraseña debe tener una longitud mínima de 8 carácteres, al menos una
+      minúscula, una mayúscula, un número y un carácter especial de los
+      siguientes: @ $ ! % * # ? &, Ejemplo: <strong><u>Prueba12*</u></strong>
     </div>
-    <div class="errorTag" *ngIf="
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.contrasena.errors?.required &&
         (fRegistro.contrasena.touched || fRegistro.contrasena.dirty)
-      ">
+      "
+    >
       Por favor ingrese una contraseña
     </div>
-    <div class="errorTag" *ngIf="
-        checkLength()
-      ">
+    <div class="errorTag" *ngIf="checkLength()">
       La contraseña debe tener un mínimo de 8 carácteres
     </div>
-    <div class="errorTag" *ngIf="
-        fRegistro.contrasena.errors?.pattern
-      ">
-      La contraseña debe tener al menos una minúscula, una mayúscula, un número y un carácter especial de los
-      siguientes: @ $ ! % * # ? &
+    <div class="errorTag" *ngIf="fRegistro.contrasena.errors?.pattern">
+      La contraseña debe tener al menos una minúscula, una mayúscula, un número
+      y un carácter especial de los siguientes: @ $ ! % * # ? &
     </div>
   </div>
 
   <div class="formInput">
     <label class="col-form-label">Confirmar Contraseña</label>
-    <input type="password" formControlName="contrasenaConfim" class="form-control" minlength="8" />
-    <div class="errorTag" *ngIf="
+    <input
+      type="password"
+      formControlName="contrasenaConfim"
+      class="form-control"
+      minlength="8"
+    />
+    <div
+      class="errorTag"
+      *ngIf="
         fRegistro.contrasenaConfim.errors?.required &&
         (fRegistro.contrasenaConfim.touched || fRegistro.contrasenaConfim.dirty)
-      ">
+      "
+    >
       Por favor confirme su contraseña
     </div>
-    <div class="errorTag" *ngIf="
+    <div
+      class="errorTag"
+      *ngIf="
         registroForm.hasError('notSame') &&
         (fRegistro.contrasenaConfim.touched || fRegistro.contrasenaConfim.dirty)
-      ">
+      "
+    >
       Las contraseñas no coinciden
     </div>
   </div>
 
-
   <div class="fileBoxes">
     <div *ngIf="isProfesor" class="fileInput">
-      <label for="documentacion" class="col-form-label">Documentación - Hoja de vida</label>
+      <label for="documentacion" class="col-form-label"
+        >Documentación - Hoja de vida</label
+      >
       <div class="inputFile">
-        <input #documentacionUpload hidden="true" type="file" onclick="this.value=null" accept=".pdf"
-          (change)="handleFile($event, 0)" />
-        <button *ngIf="filename[0] == ''" mat-flat-button class="fileButton" (click)="documentacionUpload.click()">
+        <input
+          #documentacionUpload
+          hidden="true"
+          type="file"
+          onclick="this.value=null"
+          accept=".pdf"
+          (change)="handleFile($event, 0)"
+        />
+        <button
+          *ngIf="filename[0] == ''"
+          mat-flat-button
+          class="fileButton"
+          (click)="documentacionUpload.click()"
+        >
           Examinar o arrastrar <fa-icon [icon]="faPaperclip"></fa-icon>
         </button>
         <span *ngIf="filename[0]">{{ filename[0] }}</span>
       </div>
-      <fa-icon class="resetFile" (click)="resetFile(0)" [icon]="minusIcon"></fa-icon>
+      <fa-icon
+        class="resetFile"
+        (click)="resetFile(0)"
+        [icon]="minusIcon"
+      ></fa-icon>
     </div>
     <div *ngIf="isProfesor" class="fileInput">
       <label for="cedula" class="col-form-label">Adjuntar cédula</label>
       <div class="inputFile">
-        <input #cedulaUpload hidden="true" type="file" accept=".pdf" onclick="this.value=null"
-          (change)="handleFile($event, 1)" />
-        <button *ngIf="filename[1] == ''" mat-flat-button class="fileButton" (click)="cedulaUpload.click()">
+        <input
+          #cedulaUpload
+          hidden="true"
+          type="file"
+          accept=".pdf"
+          onclick="this.value=null"
+          (change)="handleFile($event, 1)"
+        />
+        <button
+          *ngIf="filename[1] == ''"
+          mat-flat-button
+          class="fileButton"
+          (click)="cedulaUpload.click()"
+        >
           Examinar o arrastrar <fa-icon [icon]="faPaperclip"></fa-icon>
         </button>
         <span *ngIf="filename[1]">{{ filename[1] }}</span>
       </div>
-      <fa-icon class="resetFile" (click)="resetFile(1)" [icon]="minusIcon"></fa-icon>
+      <fa-icon
+        class="resetFile"
+        (click)="resetFile(1)"
+        [icon]="minusIcon"
+      ></fa-icon>
     </div>
     <div class="fileInput" *ngIf="isProfesor || isEstudiante">
       <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
       <div class="inputFile">
-        <input #perfilUpload hidden="true" type="file" onclick="this.value=null" accept=".jpg, .png"
-          (change)="handleFile($event, 2)" />
-        <button *ngIf="filename[2] == ''" mat-flat-button class="fileButton" (click)="perfilUpload.click()">
+        <input
+          #perfilUpload
+          hidden="true"
+          type="file"
+          onclick="this.value=null"
+          accept=".jpg, .png"
+          (change)="handleFile($event, 2)"
+        />
+        <button
+          *ngIf="filename[2] == ''"
+          mat-flat-button
+          class="fileButton"
+          (click)="perfilUpload.click()"
+        >
           Examinar o arrastrar <fa-icon [icon]="faPaperclip"></fa-icon>
         </button>
         <span *ngIf="filename[2]">{{ filename[2] }}</span>
       </div>
-      <fa-icon class="resetFile" (click)="resetFile(2)" [icon]="minusIcon"></fa-icon>
+      <fa-icon
+        class="resetFile"
+        (click)="resetFile(2)"
+        [icon]="minusIcon"
+      ></fa-icon>
     </div>
   </div>
 
@@ -182,8 +282,12 @@
     </div>
   </div>
   <div class="formInput formIdiomas">
-    <label *ngIf="isProfesor" for="intereses" class="col-form-label">Idiomas <br /><span>Max. 3 idiomas</span></label>
-    <label *ngIf="isEstudiante" for="intereses" class="col-form-label">Intereses <br /></label>
+    <label *ngIf="isProfesor" for="intereses" class="col-form-label"
+      >Idiomas <br /><span>Max. 3 idiomas</span></label
+    >
+    <label *ngIf="isEstudiante" for="intereses" class="col-form-label"
+      >Intereses <br
+    /></label>
     <div class="idiomasList">
       <p *ngFor="let item of idiomas">
         {{ item.name }}
@@ -194,34 +298,47 @@
     </div>
   </div>
   <div class="formButton">
-    <button type="button" [disabled]="checkIsFormValid()" (click)="submit()">Registrarme</button>
-    <button type="button"     
-           data-bs-toggle="modal"
-           hidden
-           #mostrarModal
-           data-bs-target="#openModal"></button>
-         
+    <button type="button" [disabled]="checkIsFormValid()" (click)="submit()">
+      Registrarme
+    </button>
+    <button
+      type="button"
+      data-bs-toggle="modal"
+      hidden
+      #mostrarModal
+      data-bs-target="#openModal"
+    ></button>
   </div>
 </form>
 
-<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
 
-<app-horario-modal [horarios]="horarios" *ngIf="isHorario" (closeHorario)="closeHorario($event)"></app-horario-modal>
+<app-horario-modal
+  [horarios]="horarios"
+  *ngIf="isHorario"
+  (closeHorario)="closeHorario($event)"
+></app-horario-modal>
 
-<app-idiomas-modal [idiomas]="idiomas" *ngIf="isIdiomas" [isProfesor]="tipoUsuario == 'Teacher'"
-  (closeIdiomas)="closeIdiomas($event)"></app-idiomas-modal>
+<app-idiomas-modal
+  [idiomas]="idiomas"
+  *ngIf="isIdiomas"
+  [isProfesor]="tipoUsuario == 'Teacher'"
+  (closeIdiomas)="closeIdiomas($event)"
+></app-idiomas-modal>
 
-  <div 
+<div
   class="modal fade"
-  id="openModal" 
+  id="openModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-
   <app-mensajeria
     [tipoMensaje]="mensajeGuardado"
     [mensaje]="msgGuardado"
   ></app-mensajeria>
-  
 </div>

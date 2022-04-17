@@ -1,17 +1,26 @@
 .logBox {
     background-color: #ffffff;
-    border-radius: 3px;
+    border-radius: 23px;
     max-height: 80%;
+    height: 313px;
     z-index: 100000;
     align-self: center;
     display: flex;
     flex-direction: column;
     position: fixed;
     overflow: hidden;
-    width: 50%;
+    width: 50%; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .img-logo {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    top: 19px;
+    align-self: center;
   }
   
   .blackBox {
@@ -28,30 +37,22 @@
   }
   
   .formButton {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     height: 52px;
-    color: white;
-    background-color: black;
+    background-color: #4EDA32;
     margin: auto;
-    margin-top: 5px;
-    margin-bottom: 23px;
-    border-style: solid;
+    border-style: hidden;
     border-width: 3px;
-    border-color: black;
-    border-radius: 8px;
+    border-radius: 14px;
     cursor: pointer;
+    padding: 10px;
   }
   
   .formButton:hover {
-    color: black;
-    background-color: white;
+    background-color: #43BB2B;
   }
   
   .formButton:active {
-    color: black;
-    background-color: white;
+    background-color: #43BB2B;
   }
   
   .formButton p {
@@ -106,23 +107,23 @@
   
   .confirmHeader {
     width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
     font-size: 23px;
-    font-weight: bold;
+    font-weight: 800;
     color: black;
     background-color: white;
-    margin: 0;
     text-align: center;
+    top: 32px;
+    position: relative;
   }
   
   .confirmContent {
     font-size: 18px;
     color: black;
-    padding-top: 42px;
     padding-bottom: 42px;
     margin: 0;
     text-align: center;
+    top: 45px;
+    position: relative;
   }
   
 @media screen and (max-width: 1000px) {

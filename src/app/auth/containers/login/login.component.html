@@ -1,7 +1,7 @@
 <div class="containerBox">
   <div class="contentBox">
     <div class="headerBox">
-      <p style="font-weight:600">Iniciar sesión</p>
+      <p style="font-weight: 600">Iniciar sesión</p>
     </div>
     <div class="bodyBox">
       <div class="buttonsBox">
@@ -16,27 +16,50 @@
       <div class="formBox">
         <form [formGroup]="loginForm">
           <div class="formInput">
-            <input type="text" formControlName="email" class="form-control" placeholder="Email" />
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              placeholder="Email"
+            />
 
-            <div class="errorTag" *ngIf="
+            <div
+              class="errorTag"
+              *ngIf="
                 fLogin.email.errors?.required &&
                 (fLogin.email.touched || fLogin.email.dirty)
-              ">
+              "
+            >
               Debe ingresar un correo
             </div>
           </div>
           <div class="formInput">
-            <input type="password" formControlName="password" class="form-control" placeholder="Contraseña" />
-            <div class="errorTag" *ngIf="
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Contraseña"
+            />
+            <div
+              class="errorTag"
+              *ngIf="
                 fLogin.password.errors?.required &&
                 (fLogin.password.touched || fLogin.password.dirty)
-              ">
+              "
+            >
               Debe ingresar su contraseña
             </div>
           </div>
           <div class="formInput formCheckbox">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-            <label for="nombre" class="col-form-label" style="color:#999999">Recordarme</label>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label for="nombre" class="col-form-label" style="color: #999999"
+              >Recordarme</label
+            >
           </div>
           <div class="formButton">
             <button type="button" (click)="login()">Inicia sesión</button>
@@ -46,17 +69,36 @@
         <br />
       </div>
       <div class="recoverBox">
-        <p class="mb-2" style="color:#6c6c6c">¿No recuerdas tus datos de acceso?</p>
-        <a routerLink="/recuperar" style="font-weight: 600;">Recuperar contraseña</a>
+        <p class="mb-2" style="color: #6c6c6c">
+          ¿No recuerdas tus datos de acceso?
+        </p>
+        <a routerLink="/recuperar" style="font-weight: 600"
+          >Recuperar contraseña</a
+        >
       </div>
     </div>
   </div>
 </div>
 
-<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
 
-<app-confirm title="Inicio de sesión exitoso" [msg]="inicioExitosoMessage" buttonMsg="Aceptar" *ngIf="isInicioExitoso"
-  (closeConfirm)="dashboard()"></app-confirm>
+<app-confirm
+  title="Inicio de sesión exitoso"
+  [msg]="inicioExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isInicioExitoso"
+  (closeConfirm)="dashboard()"
+  logo="./happyface.png"
+></app-confirm>
 
-<app-confirm title="Proceso de verificación exitoso" [msg]="verifyExitosoMessage" buttonMsg="Aceptar"
-  *ngIf="isVerifyExitosoMessage" (closeConfirm)="closeConfirmVerify()"></app-confirm>
+<app-confirm
+  title="Proceso de verificación exitoso"
+  [msg]="verifyExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isVerifyExitosoMessage"
+  (closeConfirm)="closeConfirmVerify()"
+></app-confirm>
