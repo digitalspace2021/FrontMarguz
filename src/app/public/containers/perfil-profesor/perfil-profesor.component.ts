@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { PublicService } from './../../services/public.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CalendarOptions } from '@fullcalendar/angular';
+import eslocale from '@fullcalendar/core/locales/es';
 
 @Component({
   selector: 'app-perfil-profesor',
@@ -13,6 +15,12 @@ export class PerfilProfesorComponent implements OnInit {
   public host = environment.media;
   profesor: any;
   id: number = 0;
+
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    locale: eslocale,
+    events: [{}],
+  };
 
   constructor(
     private publicsv: PublicService,
