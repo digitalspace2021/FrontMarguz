@@ -11,7 +11,6 @@ export const environment = {
   hostImg: 'http://marguzbackendvfinal.test/',
   // host: 'https://api.marguz.co/api/v1/',
   // host: 'https://api.marguz.co/api/v1/',
-
 };
 
 /*

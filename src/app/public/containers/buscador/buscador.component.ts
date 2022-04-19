@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./buscador.component.scss'],
 })
 export class BuscadorComponent implements OnInit {
-  public host = environment.hostImg;
+  public host = environment.media;
 
   profesoresList: any;
   idiomas!: any;
