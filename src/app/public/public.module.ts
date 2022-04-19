@@ -1,3 +1,4 @@
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,7 @@ import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-prof
 import { HeaderPublicComponent } from './components/header-public/header-public.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     PublicRoutingModule,
     NgxPaginationModule,
+    FullCalendarModule,
   ],
   exports: [HeaderPublicComponent],
 })

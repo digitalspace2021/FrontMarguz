@@ -1,5 +1,9 @@
 
-        .colorContainer {
+       :host::ng-deep.fc .fc-toolbar-title{
+        font-size: 1.2em;
+       }
+
+       .colorContainer {
             background-color: #ecf3f3;
         }
 
