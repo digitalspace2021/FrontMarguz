@@ -65,8 +65,8 @@ export class DetalleDePagoComponent implements OnInit {
   getTeacherPayment(){
     this._detallePago.getTeacherPayment(this.user.id)
     .subscribe( (res:any) => {
-      this.type = this.data.method;
       this.data = res.result;
+      this.type = this.data.method;
       this.form.get('payu')?.patchValue({
         method: 'payu',
         user_name: this.data.user_name,
@@ -110,6 +110,6 @@ export class DetalleDePagoComponent implements OnInit {
     ?
     this._detallePago.update(data, this.user.id).subscribe(res => this.getTeacherPayment())
     :
-    this._detallePago.save(data, this.user.id).subscribe(res => this.getTeacherPayment())
+    this._detallePago.save(data).subscribe(res => this.getTeacherPayment())
   }
 }

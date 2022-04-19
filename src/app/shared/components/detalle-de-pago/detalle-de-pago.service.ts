@@ -27,8 +27,8 @@ export class DetalleDePagoService {
     return this.http.get(`${this.route.host}payment/show/${id}`);
   }
 
-  save(data:any, id:number){
-    return this.http.post(`${this.route.host}payment/${id}`, data, {
+  save(data:any){
+    return this.http.post(`${this.route.host}payment`, data, {
       headers: this.headers,
     });
   }
