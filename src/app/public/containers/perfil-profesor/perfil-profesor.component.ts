@@ -5,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
 import eslocale from '@fullcalendar/core/locales/es';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-perfil-profesor',
@@ -13,14 +16,10 @@ import eslocale from '@fullcalendar/core/locales/es';
 })
 export class PerfilProfesorComponent implements OnInit {
   public host = environment.media;
-  profesor: any;
+  profesor!: any;
   id: number = 0;
 
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    locale: eslocale,
-    events: [{}],
-  };
+  calendarOptions!: CalendarOptions;
 
   constructor(
     private publicsv: PublicService,
@@ -33,12 +32,17 @@ export class PerfilProfesorComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  getProfesor() {
     if (this.id) {
       this.publicsv.getUsuarioTeacher(this.id).subscribe((data: any) => {
         try {
           this.profesor = data.result;
-          console.log(this.profesor);
+          this.calendarOptions = {
+            plugins: [timeGridPlugin],
+            initialView: 'timeGridWeek',
+            locale: eslocale,
+            events: this.profesor.acount.schedules_available,
+          };
         } catch (error) {
           console.log(error);
         }
@@ -46,5 +50,9 @@ export class PerfilProfesorComponent implements OnInit {
     } else {
       this.router.navigate(['']);
     }
+  }
+
+  ngOnInit(): void {
+    this.getProfesor();
   }
 }
