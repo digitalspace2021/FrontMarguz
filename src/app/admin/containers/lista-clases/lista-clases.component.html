@@ -2,22 +2,17 @@
 <div class="row mt-4 mb-3">
   <div class="col-md-6">
     <h1 style="color: #e31b36">
-      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px"
-        >Clases</sup
-      >
+      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px">Clases</sup>
     </h1>
   </div>
   <div class="col-md-6" style="text-align: right !important">
-    <button class="btn btn-light" style="margin-right: 15px" (click)="alerta()">
-      <fa-icon
-        style="font-size: 14px; color: rgb(30, 30, 27)"
-        [icon]="car"
-      ></fa-icon>
+    <button class="btn btn-light" style="margin-right: 15px" (click)="createClass()">
+      <fa-icon style="font-size: 14px; color: rgb(30, 30, 27)" [icon]="car"></fa-icon>
     </button>
-    <button class="btn btn-light" style="margin-right: 15px">
+    <button class="btn btn-light" style="margin-right: 15px" (click)="editClass()">
       <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
     </button>
-    <button class="btn btn-danger">
+    <button class="btn btn-danger" (click)="deleteClass()">
       <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
     </button>
   </div>
@@ -27,9 +22,7 @@
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table
-              class="table table-sm table-hover table-stripped text-center"
-            >
+            <table class="table table-sm table-hover table-stripped text-center">
               <thead>
                 <tr>
                   <th></th>
@@ -41,48 +34,43 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let clase of clases">
-                  <td><input type="checkbox" /></td>
-                  <td>
-                    <a href="javascript:;">{{ clase.profesor }}</a>
-                  </td>
-                  <td>{{ clase.hora }}</td>
-                  <td>{{ clase.fecha }}</td>
-                  <td>
-                    <div class="dropdown">
-                      <button
-                        class="btn dropdown-toggle"
-                        type="button"
-                        id="dropdownMenu2"
-                        [ngStyle]="{
+                <ng-container *ngFor="let clase of clases">
+                  <tr *ngFor="let lesson of clase.lesson_schedules">
+                    <td><input type="checkbox" [value]="clase.id" (click)="addClass($event)" /></td>
+                    <td>
+                      <a href="javascript:;">{{ clase?.teacher?.name }} {{clase?.teacher?.lastname}} </a>
+                    </td>
+                    <td>{{ lesson.start_hour }} - {{ lesson.end_hour }} </td>
+                    <td>{{ clase.dateStart }}</td>
+                    <td>
+                      <!-- <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" [ngStyle]="{
                           color: clase.estado == 'Realizada' ? 'green' : 'red'
-                        }"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        {{ clase.estado }}
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li>
-                          <button class="dropdown-item" type="button">
-                            Realizada
-                          </button>
-                        </li>
-                        <li>
-                          <button class="dropdown-item" type="button">
-                            Postpuesta
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                  <td>{{ clase.cantidad }}</td>
-                </tr>
+                        }" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ clase.estado }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li>
+                            <button class="dropdown-item" type="button">
+                              Realizada
+                            </button>
+                          </li>
+                          <li>
+                            <button class="dropdown-item" type="button">
+                              Postpuesta
+                            </button>
+                          </li>
+                        </ul>
+                      </div> -->
+                    </td>
+                    <td>{{ clase.totalLesson }}</td>
+                  </tr>
+                </ng-container>
               </tbody>
             </table>
           </div>
           <!-- Pagination -->
-          <nav aria-label="Page navigation example">
+          <!-- <nav aria-label="Page navigation example">
             <ul class="pagination pagination-sm justify-content-center">
               <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1">Anterior</a>
@@ -96,7 +84,7 @@
                 <a class="page-link" href="#">Siguiente</a>
               </li>
             </ul>
-          </nav>
+          </nav> -->
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import localeEs from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeEs, 'es-CO');
 @NgModule({
@@ -33,7 +34,8 @@ registerLocaleData(localeEs, 'es-CO');
     FontAwesomeModule,
     FormsModule,
     AppRoutingModule,
-    AngularFileUploaderModule, //BrowserAnimationsModule
+    AngularFileUploaderModule,
+    NgbModule, //BrowserAnimationsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-CO' },
