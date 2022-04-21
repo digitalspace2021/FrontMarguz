@@ -1,3 +1,4 @@
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -40,6 +41,7 @@ import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-
     ReactiveFormsModule,
     PublicRoutingModule,
     NgxPaginationModule,
+    FullCalendarModule,
   ],
   providers: [PublicService],
   exports: [HeaderPublicComponent, SearchComponent],
