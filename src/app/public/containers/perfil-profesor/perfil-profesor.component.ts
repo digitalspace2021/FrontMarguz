@@ -6,8 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CalendarOptions } from '@fullcalendar/angular';
 import eslocale from '@fullcalendar/core/locales/es';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-perfil-profesor',
@@ -18,7 +16,7 @@ export class PerfilProfesorComponent implements OnInit {
   public host = environment.media;
   profesor!: any;
   id: number = 0;
-
+  auth: boolean = false;
   calendarOptions!: CalendarOptions;
 
   constructor(
@@ -54,5 +52,9 @@ export class PerfilProfesorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfesor();
+    let user = localStorage.getItem('user') || undefined;
+    if (user) {
+      this.auth = true;
+    }
   }
 }

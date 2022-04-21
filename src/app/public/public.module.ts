@@ -1,3 +1,4 @@
+import { ProfesoresModule } from './../profesores/profesores.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     PublicRoutingModule,
     NgxPaginationModule,
     FullCalendarModule,
+    ProfesoresModule,
   ],
   exports: [HeaderPublicComponent],
 })
