@@ -45,12 +45,10 @@ import { LoaderComponent } from '../shared/components/loader/loader.component';
     AuthRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     FormsModule,
     FontAwesomeModule,
     AngularFileUploaderModule,
     MatCheckboxModule,
-    SharedModule
   ],
   exports: [FormRegistroComponent],
 })

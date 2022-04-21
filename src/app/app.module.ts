@@ -24,6 +24,7 @@ import { registerLocaleData } from '@angular/common';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeEs, 'es-CO');
 
@@ -45,6 +46,7 @@ FullCalendarModule.registerPlugins([
     AppRoutingModule,
     AngularFileUploaderModule, //BrowserAnimationsModule
     FullCalendarModule,
+    NgbModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-CO' },

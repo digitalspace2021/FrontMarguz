@@ -90,7 +90,7 @@ export class ListaUsuariosComponent implements OnInit {
 
 
   eliminar() {
-    this.usuarioSv.deleteUsuario(this.tempList[0]).subscribe((resp: any) => {
+    this.usuarioSv.deleteUsuario(this.tempList).subscribe((resp: any) => {
       this.openConfirm(
         'Eliminando usuario',
         'Operación Exitosa'
@@ -165,6 +165,7 @@ export class ListaUsuariosComponent implements OnInit {
   changeTab(tipo: string = 'Student') {
     this.tipoUsuario = tipo;
     this.listUsuario();
+    this.tempList = []
     /* this.usuarios = this.usuariosSearch.filter(
       (u) => parseInt(u.tipo_usuario) == tipo
     );*/

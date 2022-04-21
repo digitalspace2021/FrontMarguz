@@ -99,7 +99,7 @@
                 <td><a (click)="showInteretAndLanguages(user)"
                     style="cursor: pointer; text-decoration: underline;">Idiomas</a></td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.status? 'Activo':'Inactivo' }}</td>
+                <td>{{ (user.status == 1) ? 'Activo':'Inactivo' }}</td>
                 <!-- <td>
                   <button
                   class="btn btn-light"

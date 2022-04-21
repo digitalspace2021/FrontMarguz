@@ -1,0 +1,13 @@
+<input type="text" class="form-control" [class.is-invalid]="searchFailed" (selectItem)="selectedItem($event)"
+    [(ngModel)]="model" [ngbTypeahead]="search" placeholder="" name="search" ngDefaultControl
+    [resultTemplate]="formatter" [inputFormatter]="InputSearch" />
+<small *ngIf="searching" class="form-text text-muted">Buscando...</small>
+<div class="invalid-feedback" *ngIf="searchFailed">
+    No se ha podido encontrar.
+</div>
+
+<ng-template #formatter let-r="result" let-t="term">
+    <span class="f-9">
+        <strong>{{ r.name }} {{ r.lastname }}</strong>
+    </span>
+</ng-template>

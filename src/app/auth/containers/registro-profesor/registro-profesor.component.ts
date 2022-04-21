@@ -75,18 +75,20 @@ export class RegistroProfesorComponent implements OnInit {
         registroForm.get('docuCedula')?.value
       );
       formData.append('pdf_documentation', registroForm.get('hojaVida')?.value);
+
       arrayHorario.forEach((elements: any, index: any) => {
+
         formData.append(
           'schedules_available[' + index + '][day]',
-          elements.dia
+          elements.day
         );
         formData.append(
           'schedules_available[' + index + '][start]',
-          elements.inicio
+          elements.start
         );
         formData.append(
           'schedules_available[' + index + '][end]',
-          elements.cierre
+          elements.end
         );
       });
 

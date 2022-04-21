@@ -1,7 +1,7 @@
 import { SharedModule } from '../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -20,6 +20,9 @@ import { ComponentModule } from '../components/component.module';
 import { AuthModule } from 'src/app/auth/auth.module';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ListAdminComponent } from './list-admin/list-admin.component';
+import { PublicModule } from 'src/app/public/public.module';
+import { RegisterComponent } from './class/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,16 +37,19 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     EditarHorarioComponent,
     CalendarioComponent,
     PerfilComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
-    SharedModule,
     ComponentModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    AuthModule,   
-    NgxPaginationModule
+    AuthModule,
+    NgxPaginationModule,
+    SharedModule,
+    PublicModule,
+    FormsModule
   ],
   exports: [
     ListAdminComponent,
@@ -57,4 +63,4 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
     EditarHorarioComponent,
   ],
 })
-export class ContainerModule {}
+export class ContainerModule { }
