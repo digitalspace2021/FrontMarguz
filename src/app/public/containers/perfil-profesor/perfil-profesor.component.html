@@ -103,11 +103,27 @@
           <span style="float: right" id="costo"
             >USD ${{ profesor.acount.price ? profesor.acount.price : 0 }}</span
           >
-          <button type="button" class="w-100 btn btn-primary mt-4">
+          <button
+            type="button"
+            class="w-100 btn btn-primary mt-4"
+            data-bs-toggle="modal"
+            data-bs-target="#openModal"
+            [disabled]="!auth"
+          >
             Contratar
           </button>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div
+  class="modal fade"
+  id="openModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <app-editar-pago [priceHour]="profesor.acount.price"></app-editar-pago>
 </div>

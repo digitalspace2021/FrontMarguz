@@ -48,6 +48,7 @@ import { UtilsModule } from '../shared/utils/utils.module';
     ProfesoresRoutingModule,
     ReactiveFormsModule,
     HttpClientModule
-  ]
+  ],
+  exports: [EditarPagoComponent]
 })
 export class ProfesoresModule { }

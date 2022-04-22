@@ -1,3 +1,4 @@
+import { ProfesoresModule } from './../profesores/profesores.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
@@ -42,6 +43,7 @@ import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-
     PublicRoutingModule,
     NgxPaginationModule,
     FullCalendarModule,
+    ProfesoresModule,
   ],
   providers: [PublicService],
   exports: [HeaderPublicComponent, SearchComponent],
