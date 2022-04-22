@@ -76,8 +76,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "marguzFront:build:production",
-              "proxyConfig": "proxy.conf.json"
+              "browserTarget": "marguzFront:build:production"
             },
             "development": {
               "browserTarget": "marguzFront:build:development"
