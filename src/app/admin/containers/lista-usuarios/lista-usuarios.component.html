@@ -20,17 +20,22 @@
     >
       <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
     </button> -->
-    <button class="btn btn-light" style="margin-right: 15px" (click)="openRegistro('create')">
+    <button class="btn btn-light" (click)="deshabilitar()">
+      <fa-icon style="font-size: 14px; color: green" [icon]="userIcon"></fa-icon>
+    </button>
+
+    <button class="btn btn-light" style="margin-right: 15px" (click)="openRegistro()">
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
     </button>
 
-    <button class="btn btn-light" style="margin-right: 15px" (click)="openRegistro('edit')">
-      <fa-icon style="font-size: 14px; color: rgb(0, 89, 255)" [icon]="edit"></fa-icon>
+    <button class="btn btn-light" style="margin-right: 15px" (click)="openEdit()">
+      <fa-icon style="font-size: 14px; color: red" [icon]="edit"></fa-icon>
     </button>
 
-    <button class="btn btn-danger" (click)="deshabilitar()">
-      <fa-icon style="font-size: 14px; color: white" [icon]="userIcon"></fa-icon>
+    <button class="btn btn-danger" style="margin-right: 15px" (click)="eliminar()">
+      <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
     </button>
+
   </div>
 </div>
 <!-- Table -->
@@ -91,7 +96,8 @@
                 <td>{{ user.country }}</td>
                 <td>{{ user.state }}</td>
                 <td>{{ user.city }}</td>
-                <td><a href="javascrip:;">Idiomas</a></td>
+                <td><a (click)="showInteretAndLanguages(user)"
+                    style="cursor: pointer; text-decoration: underline;">Idiomas</a></td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.status? 'Activo':'Inactivo' }}</td>
                 <!-- <td>
@@ -133,5 +139,10 @@
 
 <app-confirm title="Registro exitoso" [msg]="registroExitosoMessage" buttonMsg="Aceptar" *ngIf="isRegistroExitoso"
   (closeConfirm)="closeConfirmRegistro()"></app-confirm>
+
 <app-confirm [title]="titleConfirm" [msg]="confirmMessage" buttonMsg="Aceptar" *ngIf="isConfirm"
   (closeConfirm)="closeConfirm()"></app-confirm>
+
+<app-confirm [title]="titleConfirm" [msg]="interestAndLanguages" buttonMsg="Aceptar"
+  *ngIf="showInteretAndLanguagesBrand" (closeConfirm)="showInteretAndLanguagesBrand = false">
+</app-confirm>

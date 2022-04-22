@@ -1,4 +1,4 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +19,9 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderProfesorComponent } from './components/header-profesor/header-profesor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { SafePipe } from '../shared/utils/satanizer-pipe';
+import { MediaPipe } from '../shared/utils/media-pipe';
+import { UtilsModule } from '../shared/utils/utils.module';
 
 
 @NgModule({
@@ -31,15 +34,17 @@ import { HttpClientModule } from '@angular/common/http';
     EditarPagoComponent,
     CalendarioComponent,
     PerfilComponent,
-      HorarioComponent,
-    HeaderProfesorComponent
+    HorarioComponent,
+    HeaderProfesorComponent,
   ],
   imports: [
+    UtilsModule,
     MatNativeDateModule,
     MatDatepickerModule,
     CommonModule,
     SharedModule,
     FontAwesomeModule,
+    FormsModule,
     ProfesoresRoutingModule,
     ReactiveFormsModule,
     HttpClientModule

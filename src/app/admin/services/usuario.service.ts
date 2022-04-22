@@ -12,6 +12,9 @@ const env = environment.host;
 export class UsuarioService {
   address2 = env + 'auth/user';
   address = env + 'users';
+
+  endpointUpdateTeacher = env + 'admin/profile/user/';
+
   url: string = 'https://marguz.co/marguzapi/public/users';
   user = localStorage.getItem('user') || undefined;
   headers!: HttpHeaders;
@@ -32,7 +35,14 @@ export class UsuarioService {
     });
   }
 
-  getUsuario() {
+  getUsuario(params = null) {
+
+    if (params) {
+      return this.http.get<IUsuario>(this.endpointUpdateTeacher + params, {
+        headers: this.headers,
+      });
+    }
+
     return this.http.get<IUsuario>(this.address2, {
       headers: this.headers,
     });
@@ -85,7 +95,7 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: any) {
-    return this.http.delete(`${this.address}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.address}/delete/${id}`, { headers: this.headers });
   }
   habilitar(data: any) {
     return this.http.post(`${this.address}/multiple/status/`, { users: data });

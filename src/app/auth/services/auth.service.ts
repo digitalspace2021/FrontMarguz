@@ -29,20 +29,57 @@ export class AuthService {
 
   resetPassword(email: string) {
     let endPoint = env + 'password/reset-request';
+    return this.http.post<any>(endPoint, { email: email })
+
+    // return new Promise((resolve, reject) => {
+    //   this.http.post<any>(endPoint, { email: email }).subscribe(
+    //     (data: any) => {
+    //       resolve(data);
+    //     },
+    //     (error: any) => {
+    //       reject(error.error.errors);
+    //     }
+    //   );
+    // });
+  }
+
+  registrarTeacher(formData: FormData) {
+    let endPoint = this.address + 'register/teacher';
     return new Promise((resolve, reject) => {
-      this.http.post<any>(endPoint, { email: email }).subscribe(
+      this.http.post<any>(endPoint, formData).subscribe(
         (data: any) => {
           resolve(data);
         },
         (error: any) => {
-          reject(new Error(error.message));
+          reject(error.error.errors);
+          // reject(new Error(error.message));
         }
       );
     });
   }
 
-  registrarTeacher(formData: FormData) {
-    let endPoint = this.address + 'register/teacher';
+  // {{url_server}}/api/v1/admin/profile/teacher/3
+
+  updateTeacher(formData: FormData, id: number) {
+    let endPoint = env + 'admin/profile/teacher/' + id;
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(endPoint, formData).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => {
+          reject(error.error.errors);
+          // reject(new Error(error.message));
+        }
+      );
+    });
+  }
+
+  updateStudent(formData: FormData, id: number) {
+
+    let endPoint = env + 'admin/profile/student/' + id;
+    if (!id) endPoint = env + 'admin/profile/student';
+
     return new Promise((resolve, reject) => {
       this.http.post<any>(endPoint, formData).subscribe(
         (data: any) => {
@@ -72,7 +109,7 @@ export class AuthService {
   }
 
   registrarAdmin(formData: FormData) {
-    let endPoint = this.address + 'register/administrator';
+    let endPoint = env + 'users/admin';
     return new Promise((resolve, reject) => {
       this.http.post<any>(endPoint, formData).subscribe(
         (data: any) => {
@@ -204,7 +241,7 @@ export class AuthService {
         );
     });
   }
-  async getStates(country: string) {
+  async getStates(country: number) {
     let headers = new HttpHeaders();
     // let token = await this.getCountriesToken();
     // headers = headers.append('Accept', 'application/json');
@@ -227,7 +264,7 @@ export class AuthService {
         );
     });
   }
-  async getCities(state: string) {
+  async getCities(state: number) {
     let headers = new HttpHeaders();
     let token = await this.getCountriesToken();
     // headers = headers.append('Accept', 'application/json');

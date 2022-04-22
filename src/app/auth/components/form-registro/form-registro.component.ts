@@ -87,7 +87,15 @@ export class FormRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.horarios = this.data ? this.data.acount?.schedules_available : [];
+    this.horarios = this.data.count?.schedules_available
+    ?
+    this.data.acount?.schedules_available
+    :
+    [{
+        day: 'Lunes',
+        start: '8:00am',
+        end: '2:00pm'
+    }];
 
     this.registroForm = new FormGroup(
 
@@ -288,30 +296,21 @@ export class FormRegistroComponent implements OnInit {
   }
 
   submit() {
-    // try {
-    console.log('submit');
-    if (!this.validate()) {
-      throw new Error(
-        'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
-      );
+    try {
+      if (!this.validate()) {
+        throw new Error(
+          'Hay errores en su formulario. Por favor revíselo e intente de nuevo'
+        );
+      }
+      let value = {
+        form: this.registroForm,
+        horarios: this.horarios,
+        idiomas: this.idiomas,
+      };
+      this.registrar.emit(value);
+    } catch (e: any) {
+      this.openError(e.message);
     }
-
-    console.log('submit');
-
-    let value = {
-      form: this.registroForm,
-      horarios: this.horarios,
-      idiomas: this.idiomas,
-    };
-
-    console.log(value);
-
-    this.registrar.emit(value);
-
-    // } catch (e: any) {
-    //   console.log('submit');
-    //   this.openError(e.message);
-    // }
   }
 
   openHorario() {

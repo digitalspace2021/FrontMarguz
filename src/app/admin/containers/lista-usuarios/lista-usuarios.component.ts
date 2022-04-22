@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faMinusCircle,
   faPlusCircle,
@@ -28,6 +29,7 @@ export class ListaUsuariosComponent implements OnInit {
   trash = faTrashAlt;
 
   tempList: Array<any> = [];
+  interestAndLanguages = '';
 
   tipoUsuario: string = 'Student';
   titleModal: string = ''
@@ -38,6 +40,7 @@ export class ListaUsuariosComponent implements OnInit {
   title: string = '';
   tipo: string = '0';
   action: boolean = false;
+  showInteretAndLanguagesBrand: boolean = false;
 
   page?: number;
   typeModal: string = 'create';
@@ -45,6 +48,7 @@ export class ListaUsuariosComponent implements OnInit {
   constructor(
     private usuarioSv: UsuarioService,
     private authService: AuthService,
+    private router: Router,
     private userService: UserService
   ) { }
 
@@ -82,9 +86,21 @@ export class ListaUsuariosComponent implements OnInit {
       this.tempList = []
     });
   }
+
+
+
   eliminar() {
-    this.openConfirm('Eliminar usuario', 'Usuario eliminado exitosamente');
+    this.usuarioSv.deleteUsuario(this.tempList[0]).subscribe((resp: any) => {
+      this.openConfirm(
+        'Eliminando usuario',
+        'Operación Exitosa'
+      );
+      this.listUsuario();
+      this.tempList = []
+    });
   }
+
+
   editar() { }
   isConfirm: boolean = false;
   confirmMessage: string = '';
@@ -185,7 +201,9 @@ export class ListaUsuariosComponent implements OnInit {
       formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
 
       if (this.tipoUsuario == 'Teacher' || this.tipoUsuario == 'Student') {
-        formData.append('languajes', value.idiomas);
+        value.idiomas.forEach((elements: any, index: any) => {
+          formData.append('languajes[' + index + ']', elements.id);
+        });
       }
 
       if (this.tipoUsuario == 'Teacher') {
@@ -197,7 +215,7 @@ export class ListaUsuariosComponent implements OnInit {
           'pdf_documentation',
           registroForm.get('hojaVida')?.value
         );
-        formData.append('schedules_available', value.horarios);
+        formData.append('schedules_available', JSON.stringify(value.horarios));
       }
 
       if (this.tipoUsuario == 'Student') {
@@ -251,41 +269,66 @@ export class ListaUsuariosComponent implements OnInit {
   }
   isError: boolean = false;
 
-  openRegistro(type: string): any {
+
+  openEdit(): any {
+
+    let usersTypes: any = {
+      'Teacher': 'profesores/perfil',
+      'Student': 'estudiantes/perfil',
+      'Admin': 'profesores/perfil'
+    }
+
+    console.log([
+      usersTypes,
+      this.tipoUsuario,
+      usersTypes[this.tipoUsuario]
+    ]);
 
     if (this.tempList.length > 1) this.openError('solo puede seleccionar un usuario para esta accion')
-    if (type === 'create') {
-      this.titleModal = 'Registrar usuario'
-      this.typeModal = type
-      this.isRegistro = true;
-    }
+    this.tipoUsuario
+    this.router.navigate([usersTypes[this.tipoUsuario]], { queryParams: { id: this.tempList[0] }, queryParamsHandling: 'merge' });
+  }
 
-    if (type === 'edit') {
-      if (this.tempList.length <= 0) return false
-      this.titleModal = 'Actualizar usuario'
-      this.userService
-        .getDataForUdate(this.tempList[0])
-        .then((resp: any) => {
-          this.data = resp.result
-          this.typeModal = type
-          this.isRegistro = true;
-        })
-        .catch((e) => this.openError(e.message));
+  openRegistro(): any {
 
-    }
+    this.titleModal = 'Registrar usuario'
+    this.typeModal = 'create'
+    this.isRegistro = true;
+
+    // if (type === 'edit') {
+    //   if (this.tempList.length <= 0) return false
+    //   this.titleModal = 'Actualizar usuario'
+    //   this.userService
+    //     .getDataForUdate(this.tempList[0])
+    //     .then((resp: any) => {
+    //       this.data = resp.result
+    //       this.typeModal = type
+    //       this.isRegistro = true;
+    //     })
+    //     .catch((e) => this.openError(e.message));
+    // }
 
   }
 
   closeRegistro() {
     this.isRegistro = false;
   }
+
   isRegistro: boolean = false;
   errorMessage: string = '';
-
 
   openError(message: string) {
     this.isError = true;
     this.errorMessage = message;
+  }
+
+  showInteretAndLanguages(user: any) {
+
+    this.interestAndLanguages = ''
+    if (this.tipoUsuario == 'Admin') return
+    if (this.tipoUsuario == 'Teacher') user.languages.map((el: any) => this.interestAndLanguages += el.name + "\n" + "\r ")
+    if (this.tipoUsuario == 'Student') user.interest.map((el: any) => this.interestAndLanguages += el.name + "\n" + "\r ")
+    this.showInteretAndLanguagesBrand = true;
   }
 
   closeError() {

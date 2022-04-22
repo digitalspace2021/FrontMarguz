@@ -21,6 +21,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import localeEs from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
+
 registerLocaleData(localeEs, 'es-CO');
 @NgModule({
   declarations: [AppComponent],

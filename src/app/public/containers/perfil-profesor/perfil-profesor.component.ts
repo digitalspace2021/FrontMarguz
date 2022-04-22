@@ -1,6 +1,8 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
+import { PublicService } from './../../services/public.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PublicService } from '../../services/public.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-profesor',
@@ -8,33 +10,33 @@ import { PublicService } from '../../services/public.service';
   styleUrls: ['./perfil-profesor.component.scss'],
 })
 export class PerfilProfesorComponent implements OnInit {
+  public host = environment.hostImg;
   profesor: any;
   id: number = 0;
-  constructor(private publicService: PublicService, 
+
+  constructor(
+    private publicsv: PublicService,
     private actRoute: ActivatedRoute,
-    ) {
-      this.actRoute.params.subscribe((params) => {
-        this.id = params["id"];
-      });
-  
-    }
+    private router: Router,
+    public sanitizer: DomSanitizer
+  ) {
+    this.actRoute.params.subscribe((params) => {
+      this.id = params['id'];
+    });
+  }
 
   ngOnInit(): void {
-    /*this.publicService.getProfesor(this.id).subscribe((data: any) => {
-      try {
-        this.profesor = data;
-      } catch (error) {}
-    }); */
-    this.profesor = {
-      id: 2,
-      nombre: 'Alejandra Gonzalez',
-      slogan: '¡Atrevete a aprender inglés!',
-      pais: 'Colombia',
-      valor: 50000,
-      idiomas: ['Español', 'Inglés'],
-      habla: ['Español nativo', 'Inglés fluido'],
-      descripcion:
-        ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore culpa maxime voluptatibus, dignissimos inventore doloremque numquam impedit in iusto nulla ',
-    };
+    if (this.id) {
+      this.publicsv.getUsuarioTeacher(this.id).subscribe((data: any) => {
+        try {
+          this.profesor = data.result;
+          console.log(this.profesor);
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    } else {
+      this.router.navigate(['']);
+    }
   }
 }

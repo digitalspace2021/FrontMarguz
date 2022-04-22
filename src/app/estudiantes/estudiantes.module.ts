@@ -14,6 +14,7 @@ import { HeaderEstudianteComponent } from './components/header-estudiante/header
 import { BuscadorComponent } from './containers/buscador/buscador.component';
 import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UtilsModule } from '../shared/utils/utils.module';
 
 
 @NgModule({
@@ -31,8 +32,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatDatepickerModule,
     SharedModule,
     FontAwesomeModule,
-    EstudiantesRoutingModule, 
-    ReactiveFormsModule
+    EstudiantesRoutingModule,
+    ReactiveFormsModule,
+    UtilsModule
   ]
 })
 export class EstudiantesModule { }
