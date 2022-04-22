@@ -202,7 +202,9 @@ export class ListaUsuariosComponent implements OnInit {
       formData.append('photo_acount', registroForm.get('fotoPerfil')?.value);
 
       if (this.tipoUsuario == 'Teacher' || this.tipoUsuario == 'Student') {
-        formData.append('languajes', value.idiomas);
+        value.idiomas.forEach((elements: any, index: any) => {
+          formData.append('languajes[' + index + ']', elements.id);
+        });
       }
 
       if (this.tipoUsuario == 'Teacher') {
@@ -214,7 +216,7 @@ export class ListaUsuariosComponent implements OnInit {
           'pdf_documentation',
           registroForm.get('hojaVida')?.value
         );
-        formData.append('schedules_available', value.horarios);
+        formData.append('schedules_available', JSON.stringify(value.horarios));
       }
 
       if (this.tipoUsuario == 'Student') {

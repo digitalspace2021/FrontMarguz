@@ -378,7 +378,11 @@
   </form>
 </div>
 
-<app-detalle-de-pago (closePago)="closePago($event)" *ngIf="isPago"></app-detalle-de-pago>
+<app-detalle-de-pago
+  (closePago)="closePago($event)"
+  [user]="user"
+  *ngIf="isPago"
+></app-detalle-de-pago>
 
 <div class="modal fade" id="openModalClase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

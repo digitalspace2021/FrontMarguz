@@ -189,12 +189,12 @@
         {{ item.name }}
       </p>
     </div>
-    <div class="addIdioma">
+    <div class="addIdioma" *ngIf="tipoUsuario != 'Admin'">
       <fa-icon [icon]="icon" (click)="isIdiomas = true"></fa-icon>
     </div>
   </div>
   <div class="formButton">
-    <button type="button" [disabled]="checkIsFormValid()" (click)="submit()">Registrarme</button>
+    <button type="button" [disabled]="tipoUsuario != 'Admin' ? checkIsFormValid() : ''" (click)="submit()">Registrarme</button>
   </div>
 </form>
 

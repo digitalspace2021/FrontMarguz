@@ -13,7 +13,7 @@ export class ErrorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.msg = this.msg.replace(/^\:/, "");
+    this.msg = this.msg?.replace(/^\:/, "");
   }
 
   close() {
