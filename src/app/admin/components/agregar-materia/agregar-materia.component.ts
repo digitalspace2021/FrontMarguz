@@ -17,7 +17,7 @@ export class AgregarMateriaComponent implements OnInit {
 
   materiaInput: string = '';
   val: boolean = false;
-  registroExitosoMessage: string = 'Ha registrado correctamente al usuario.';
+  registroExitosoMessage: string = 'Ha registrado correctamente la materia.';
   isRegistroExitoso: boolean = false;
 
   constructor(
