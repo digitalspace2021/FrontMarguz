@@ -125,5 +125,9 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <app-editar-pago [priceHour]="profesor.acount.price"></app-editar-pago>
+  <app-editar-pago
+    [priceHour]="profesor.acount.price"
+    [name]="profesor.name"
+    [phone]="profesor.acount.cellphone"
+  ></app-editar-pago>
 </div>

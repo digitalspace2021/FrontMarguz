@@ -18,6 +18,8 @@ export class EditarPagoComponent implements OnInit {
   accountId!: number;
   keyPayu = 'B1562m9l83uepyKjqo6ShePSeR';
   @Input() priceHour!: number;
+  @Input() phone!: number;
+  @Input() name!: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -102,6 +104,11 @@ export class EditarPagoComponent implements OnInit {
       amount: this.totalPrice,
       currency: this.form.get('currency')!.value,
       buyerEmail: this.form.get('emailPayu')!.value,
+      tax: 0,
+      taxReturnBase: 0,
+      test: 0,
+      telephone: this.phone,
+      buyerFullName: this.name,
     };
     console.log(data);
     this.profesoresSv.paymentPayu(data).subscribe((resp) => {
