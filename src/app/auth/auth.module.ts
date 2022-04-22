@@ -47,7 +47,6 @@ import { MensajeriaModule } from '../admin/components/mensajeria/mensajeria.modu
     AuthRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     FormsModule,
     FontAwesomeModule,
     AngularFileUploaderModule,

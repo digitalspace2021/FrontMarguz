@@ -90,12 +90,12 @@ export class LoginComponent implements OnInit {
           this.openConfirm();
         })
         .catch((e) => {
-          this.openError(
-            'correo o contraseña no validas o correo no verificado'
-          );
+          let message = 'Error no identificado por favor intente nuevamente o comuniquese con soporte';
+          if (e?.message.includes(401)) message = 'correo no verificado'
+          if (e?.message.includes(422)) message = 'correo o contraseña no validas'
+          this.openError(message);
           this.loginForm.get('email')?.setValue('');
           this.loginForm.get('password')?.setValue('');
-          console.log(e.message);
         });
     } else {
       this.openError('email o contraseña no validos');

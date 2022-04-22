@@ -7,10 +7,14 @@ export const environment = {
 
   // host: 'https://api.marguz.co/api/v1/',
   host: 'http://127.0.0.1:8000/api/v1/',
+ // host: 'http://marguzbackendvfinal.test/api/v1/',
   media: 'http://marguzbackendvfinal.test/',
   hostImg: 'http://marguzbackendvfinal.test/',
-  // host: 'https://api.marguz.co/api/v1/',
-  // host: 'https://api.marguz.co/api/v1/',
+
+  // host: 'http://marguzbackendvfinal.test/api/v1/',
+  // media: 'http://marguzbackendvfinal.test/',
+  // hostImg: 'http://marguzbackendvfinal.test/'
+
 };
 
 /*
