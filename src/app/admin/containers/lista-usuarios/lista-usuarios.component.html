@@ -164,11 +164,7 @@
                   >
                 </td>
                 <td>{{ user.email }}</td>
-<<<<<<< HEAD
-                <td>{{ user.status ? "Activo" : "Inactivo" }}</td>
-=======
-                <td>{{ (user.status == 1) ? 'Activo':'Inactivo' }}</td>
->>>>>>> 2dbe32a5ac57405213f64a12547a584c42128135
+                <td>{{ user.status == 1 ? "Activo" : "Inactivo" }}</td>
                 <!-- <td>
                   <button
                   class="btn btn-light"
