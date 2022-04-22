@@ -1,0 +1,16 @@
+
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="caja">
+        <div class="carita carita_almacenar" *ngIf="tipoMensaje==1"></div> <!--imagen para almacenamiento-->
+        <div class="carita carita_bloquear" *ngIf="tipoMensaje==2"></div><!--imagen para bloqueo-->
+        <div class="carita carita_eliminar" *ngIf="tipoMensaje==3"></div><!--imagen para eliminar-->
+        <div class="carita carita_verificar" *ngIf="tipoMensaje==4"></div><!--imagen para verificar-->
+        <p>{{ mensaje }}</p>
+        <button class="boton" data-bs-dismiss="modal"
+        aria-label="Close">
+            Aceptar 
+        </button>
+    </div>
+</div>
+</div>

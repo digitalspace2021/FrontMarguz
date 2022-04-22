@@ -14,7 +14,10 @@ import { PoliticasPagoProfesorComponent } from './containers/politicas-pago-prof
 import { HeaderPublicComponent } from './components/header-public/header-public.component';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PublicService } from './services/public.service';
+import { SearchComponent } from './components/search/search.component';
+import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,17 +28,24 @@ import { FormsModule } from '@angular/forms';
     PoliticasEstudianteComponent,
     PoliticasPagoProfesorComponent,
     HeaderPublicComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule,
+    NgbTypeaheadModule,
+    NgbPaginationModule,
+    NgbDropdownModule,
+    FormsModule,
+    ReactiveFormsModule,
     PublicRoutingModule,
     NgxPaginationModule,
     FullCalendarModule,
     ProfesoresModule,
   ],
-  exports: [HeaderPublicComponent],
+  providers: [PublicService],
+  exports: [HeaderPublicComponent, SearchComponent],
 })
-export class PublicModule {}
+export class PublicModule { }

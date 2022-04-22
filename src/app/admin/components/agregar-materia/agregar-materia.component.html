@@ -20,3 +20,12 @@
     </div>
   </div>
 </div>
+
+<app-confirm
+  title="Registro exitoso"
+  [msg]="registroExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="closeConfirmRegistro()"
+  logo="./happyface.png"
+></app-confirm>

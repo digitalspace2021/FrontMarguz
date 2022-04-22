@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { EditarClaseComponent } from './editar-clase/editar-clase.component';
 import { RegistroModalComponent } from './registro-modal/registro-modal.component';
 import { AuthModule } from 'src/app/auth/auth.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import { AuthModule } from 'src/app/auth/auth.module';
     GuardadoComponent,
     HeaderAdminComponent,
     EditarClaseComponent,
-    RegistroModalComponent,
+    RegistroModalComponent
   ],
-  imports: [CommonModule, FontAwesomeModule, FormsModule, AuthModule],
+  imports: [CommonModule, FontAwesomeModule, FormsModule, AuthModule,SharedModule],
   exports: [
     EditarMateriaComponent,
     AgregarMateriaComponent,

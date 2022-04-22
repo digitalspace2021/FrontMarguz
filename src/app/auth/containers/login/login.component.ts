@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ILogin } from '../../interfaces/auth.interface';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-login',
@@ -39,13 +40,36 @@ export class LoginComponent implements OnInit {
   }
 
   async dashboard() {
+    let jsonUser;
+    let firstTime;
+    let currentTime = moment().format("YYYY-MM-DD HH:mm");
+    let user = localStorage.getItem('user') || undefined;
+    
+    if (user) { jsonUser = JSON.parse(user);
+      firstTime = jsonUser.user.first_log_at;
+    }
+   console.log(firstTime,currentTime);
     let tipoUsuario = this.authService.getTipoUsuario();
+    debugger;
     if (tipoUsuario == 'Admin') {
-      this.router.navigate(['admin/admin-usuario']);
+
+        this.router.navigate(['admin/admin-usuario']);
+
     } else if (tipoUsuario == 'Teacher') {
-      this.router.navigate(['profesores']);
+      if(firstTime == currentTime){
+        this.router.navigate(["/profesores/perfil?id=" +jsonUser.id]);
+      }
+      else{
+        this.router.navigate(['profesores']);
+      }
     } else {
-      this.router.navigate(['estudiantes']);
+      if(firstTime == currentTime){
+        this.router.navigate(["/estudiantes/perfil?id=" +jsonUser.id]);
+      }
+      else{
+        this.router.navigate(['estudiantes']);
+      }
+     
     }
   }
   /**
@@ -66,12 +90,12 @@ export class LoginComponent implements OnInit {
           this.openConfirm();
         })
         .catch((e) => {
-          this.openError(
-            'correo o contraseña no validas o correo no verificado'
-          );
+          let message = 'Error no identificado por favor intente nuevamente o comuniquese con soporte';
+          if (e?.message.includes(401)) message = 'correo no verificado'
+          if (e?.message.includes(422)) message = 'correo o contraseña no validas'
+          this.openError(message);
           this.loginForm.get('email')?.setValue('');
           this.loginForm.get('password')?.setValue('');
-          console.log(e.message);
         });
     } else {
       this.openError('email o contraseña no validos');

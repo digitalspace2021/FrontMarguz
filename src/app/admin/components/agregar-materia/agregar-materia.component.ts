@@ -2,7 +2,6 @@ import { ListaMateriasComponent } from '../../containers/lista-materias/lista-ma
 import { Component, Input, OnInit } from '@angular/core';
 import { Materia } from '../../class/Materia';
 import { MateriaService } from '../../services/materia.service';
-import Swal from 'sweetalert2';
 import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
@@ -18,11 +17,21 @@ export class AgregarMateriaComponent implements OnInit {
 
   materiaInput: string = '';
   val: boolean = false;
+  registroExitosoMessage: string = 'Ha registrado correctamente la materia.';
+  isRegistroExitoso: boolean = false;
 
   constructor(
     private materiaSv: MateriaService,
     private materiaL: ListaMateriasComponent
   ) {}
+
+  openConfirmRegistro() {
+     this.isRegistroExitoso = true;
+  }
+
+  closeConfirmRegistro() {
+    this.isRegistroExitoso = false;
+  }
 
   ngOnInit(): void {}
 
@@ -43,10 +52,12 @@ export class AgregarMateriaComponent implements OnInit {
         materia.name = this.materiaInput;
         this.materiaSv.createInteresOrLenguages(materia).subscribe((resp) => {
           if (resp) {
-            Swal.fire('Registro exitoso...', 'Guardado', 'success').then(() => {
-              this.materiaL.listMateria();
-              this.ModalClose?.nativeElement.click();
-            });
+              this.openConfirmRegistro()
+              setTimeout(() => {
+                this.closeConfirmRegistro()
+                this.materiaL.listMateria();
+                this.ModalClose?.nativeElement.click(); 
+              }, 1000)
           }
         });
       } else {
@@ -54,12 +65,12 @@ export class AgregarMateriaComponent implements OnInit {
         materia.name = this.materiaInput;
         this.materiaSv.updateInteresOrLenguages(materia).subscribe((resp) => {
           if (resp) {
-            Swal.fire('Registro exitoso...', 'Actualizado', 'success').then(
-              () => {
+             this.openConfirmRegistro()
+              setTimeout(() => {
+                this.closeConfirmRegistro()
                 this.materiaL.listMateria();
-                this.ModalClose?.nativeElement.click();
-              }
-            );
+                this.ModalClose?.nativeElement.click(); 
+              }, 1000)
           }
         });
       }

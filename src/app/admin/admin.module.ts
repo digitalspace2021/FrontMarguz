@@ -19,6 +19,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { ContainerModule } from './containers/container.module';
 import { ComponentModule } from './components/component.module';
+import { PublicModule } from '../public/public.module';
 @NgModule({
   declarations: [AdminComponent],
   imports: [
@@ -27,7 +28,7 @@ import { ComponentModule } from './components/component.module';
     ContainerModule,
     ComponentModule,
     FontAwesomeModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class AdminModule {

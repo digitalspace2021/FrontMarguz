@@ -1,0 +1,72 @@
+.contenedor{
+    position: relative;
+    height: 390px;
+    width: 959px;
+}
+
+.caja{
+    position: absolute;
+    width: 852px;
+    height: 320px;
+    left: calc(50% - 852px/2 - 1.5px);
+    top: calc(50% - -206px/2);
+    background-color: #ffffff;
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 15);
+    border-radius: 10px;
+}
+
+.carita{
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    left: calc(50% - 77px/2 - 1px);
+    top: calc(50% - 77px/2 - 48.5px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.carita_almacenar{
+    background-image: url("../../../../assets/iconos/happyface.png");
+}
+
+.carita_bloquear{
+    background-image: url("../../../../assets/iconos/bloqueado.png");
+}
+
+.carita_eliminar{
+    background-image: url("../../../../assets/iconos/eliminado.png");
+}
+
+.carita_verificar{
+    background-image: url("../../../../assets/iconos/verificado.png");
+}
+
+p{
+    position: absolute;
+width: 282px;
+height: 19px;
+left: calc(50% - 282px/2 - 1.5px);
+top: calc(50% - 19px/2 + 19.5px);
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+text-align: center;
+color: #5D495E;
+}
+
+.boton{
+position: absolute;
+width: 195px;
+height: 33px;
+left: calc(50% - 195px/2 - 1px);
+top: calc(50% - 33px/2 + 71.5px);
+
+background: #27AE60;
+box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.25);
+border-radius: 10px;
+}
+
