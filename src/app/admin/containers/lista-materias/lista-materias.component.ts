@@ -30,10 +30,23 @@ export class ListaMateriasComponent implements OnInit {
   materiaItem: Materia = new Materia();
   title?: string;
   action: boolean = false;
+  titleConfirm: string = '';
+  confirmMessage: string = '';
+  isConfirm: boolean = false;
 
   page?: number;
 
   constructor(private materiaSv: MateriaService) {}
+
+  openConfirm(title: string, message: string) {
+    this.titleConfirm = title;
+    this.confirmMessage = message;
+    this.isConfirm = true;
+  }
+
+  closeConfirm() {
+    this.isConfirm = false;
+  }
 
   ngOnInit(): void {
     this.listMateria();
@@ -58,11 +71,8 @@ export class ListaMateriasComponent implements OnInit {
   deleteMateria(id: number) {
     if (this.materiaItem) {
       this.materiaSv.deleteInteresOrLenguages(id).subscribe(() => {
-        Swal.fire('Registro eliminado con exito', 'Eliminar', 'success').then(
-          () => {
+            this.openConfirm('Eliminar Materia', 'Materia Eliminada exitosamente');
             this.listMateria();
-          }
-        );
       });
     }
   }
