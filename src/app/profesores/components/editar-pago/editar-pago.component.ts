@@ -46,7 +46,8 @@ export class EditarPagoComponent implements OnInit {
       hourPayu: [0, Validators.min(1)],
       emailPayu: [!this.jsonUser ? '' : this.jsonUser.user.email],
       emailPaypal: [''],
-      currency: ['USD', Validators.required],
+      currency: ['', Validators.required],
+      description: [''],
     });
   }
 
@@ -109,12 +110,21 @@ export class EditarPagoComponent implements OnInit {
       test: 0,
       telephone: this.phone,
       buyerFullName: this.name,
+      description: this.form.get('description')!.value,
     };
-    console.log(data);
     this.profesoresSv.paymentPayu(data).subscribe((resp) => {
       console.log(resp);
     });
   }
 
-  paymentPaypal() {}
+  paymentPaypal() {
+    let data = {
+      price: 20000,
+      currency: this.form.get('currency')!.value,
+      description: this.form.get('description')!.value,
+    };
+    this.profesoresSv.paymentPaypal(data).subscribe((resp) => {
+      console.log(resp);
+    });
+  }
 }
