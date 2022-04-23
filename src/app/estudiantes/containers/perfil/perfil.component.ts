@@ -32,6 +32,7 @@ export class PerfilComponent implements OnInit {
   states: any;
   cities: any;
   materias: any;
+  first_log_at! : boolean;
 
   img: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
   //iconos
@@ -79,7 +80,7 @@ export class PerfilComponent implements OnInit {
   }
 
   loadData(data: any) {
-
+    this.first_log_at = data.result.acount.first_log_at;
     this.formPerfil.get('identification')?.setValue(data.result.acount.identification);
     this.formPerfil.get('lastname')?.setValue(data.result.lastname);
     this.formPerfil.get('name')?.setValue(data.result.name);

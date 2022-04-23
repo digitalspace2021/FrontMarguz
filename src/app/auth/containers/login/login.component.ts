@@ -41,30 +41,28 @@ export class LoginComponent implements OnInit {
 
   async dashboard() {
     let jsonUser;
+    let path;
     let firstTime;
-    let currentTime = moment().format("YYYY-MM-DD HH:mm");
     let user = localStorage.getItem('user') || undefined;
     
     if (user) { jsonUser = JSON.parse(user);
       firstTime = jsonUser.user.first_log_at;
     }
-   console.log(firstTime,currentTime);
+   console.log(firstTime);
     let tipoUsuario = this.authService.getTipoUsuario();
     debugger;
     if (tipoUsuario == 'Admin') {
-
         this.router.navigate(['admin/admin-usuario']);
-
     } else if (tipoUsuario == 'Teacher') {
-      if(firstTime == currentTime){
-        this.router.navigate(["/profesores/perfil?id=" +jsonUser.id]);
+      if(!firstTime){
+        this.router.navigate(['profesores/perfil', {id: jsonUser.user.id}]);
       }
       else{
         this.router.navigate(['profesores']);
       }
     } else {
-      if(firstTime == currentTime){
-        this.router.navigate(["/estudiantes/perfil?id=" +jsonUser.id]);
+      if(!firstTime){
+        this.router.navigate(['estudiantes/perfil',{id: jsonUser.user.id}]);
       }
       else{
         this.router.navigate(['estudiantes']);
