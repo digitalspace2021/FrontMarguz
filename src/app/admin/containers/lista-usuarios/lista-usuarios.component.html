@@ -243,3 +243,12 @@
   (closeConfirm)="showInteretAndLanguagesBrand = false"
 >
 </app-confirm>
+
+<app-confirm
+  title="Usuario Habilitado"
+  msg="Usuario Habilitado con Exito"
+  buttonMsg="Aceptar"
+  *ngIf="isConfirmHabilitar"
+  (closeConfirm)="closeConfirmHabilitar()"
+  logo="./happyface.png"
+></app-confirm>
