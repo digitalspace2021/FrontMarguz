@@ -2,12 +2,19 @@
 <div class="row mt-4 mb-3">
   <div class="col-md-6">
     <h1 style="color: #e31b36">
-      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px">Materias</sup>
+      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px"
+        >Materias</sup
+      >
     </h1>
   </div>
   <div class="col-md-6" style="text-align: right !important">
-    <button class="btn btn-light" style="margin-right: 15px" data-bs-toggle="modal" data-bs-target="#openModal"
-      (click)="mostrarModal('Añadir Materia')">
+    <button
+      class="btn btn-light"
+      style="margin-right: 15px"
+      data-bs-toggle="modal"
+      data-bs-target="#openModal"
+      (click)="mostrarModal('Añadir Materia')"
+    >
       <fa-icon style="font-size: 14px; color: red" [icon]="add"></fa-icon>
     </button>
   </div>
@@ -27,10 +34,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="
+              <tr
+                *ngFor="
                   let mat of materias
                     | paginate: { itemsPerPage: 10, currentPage: page }
-                ">
+                "
+              >
                 <td>
                   <label [for]="mat.id">{{ mat.name }}</label>
                 </td>
@@ -39,20 +48,38 @@
                   <label *ngIf="mat.status != 1" style="color: red">Inactivo</label>
                 </td> -->
                 <td>
-                  <button class="btn btn-light btn-sm" style="margin-right: 15px"
-                    (click)="mostrarModal('Editar Materia', true, mat)">
-                    <fa-icon style="font-size: 14px; color: red" [icon]="edit" data-bs-toggle="modal"
-                      data-bs-target="#openModal"></fa-icon>
+                  <button
+                    class="btn btn-light btn-sm"
+                    style="margin-right: 15px"
+                    (click)="mostrarModal('Editar Materia', true, mat)"
+                  >
+                    <fa-icon
+                      style="font-size: 14px; color: red"
+                      [icon]="edit"
+                      data-bs-toggle="modal"
+                      data-bs-target="#openModal"
+                    ></fa-icon>
                   </button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteMateria(mat.id)">
-                    <fa-icon style="font-size: 14px; color: white" [icon]="trash"></fa-icon>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteMateria(mat.id)"
+                  >
+                    <fa-icon
+                      style="font-size: 14px; color: white"
+                      [icon]="trash"
+                    ></fa-icon>
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <pagination-controls class="paginado" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Proximo">
+        <pagination-controls
+          class="paginado"
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Proximo"
+        >
         </pagination-controls>
       </div>
     </div>
@@ -79,9 +106,19 @@
   buttonMsg="Aceptar"
   *ngIf="isConfirm"
   (closeConfirm)="closeConfirm()"
-  logo="./eliminado.png"
+  logo="/eliminado.png"
 ></app-confirm>
 
-<div class="modal fade" id="openModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <app-agregar-materia [title]="title" [materia]="materiaItem" [action]="action"></app-agregar-materia>
+<div
+  class="modal fade"
+  id="openModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <app-agregar-materia
+    [title]="title"
+    [materia]="materiaItem"
+    [action]="action"
+  ></app-agregar-materia>
 </div>
