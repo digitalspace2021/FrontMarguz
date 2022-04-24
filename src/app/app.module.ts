@@ -25,6 +25,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 registerLocaleData(localeEs, 'es-CO');
 
@@ -47,6 +48,7 @@ FullCalendarModule.registerPlugins([
     AngularFileUploaderModule, //BrowserAnimationsModule
     FullCalendarModule,
     NgbModule,
+    NgxPayPalModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-CO' },

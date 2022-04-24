@@ -19,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderProfesorComponent } from './components/header-profesor/header-profesor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UtilsModule } from '../shared/utils/utils.module';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 @NgModule({
   declarations: [
     ProfesoresComponent,
@@ -43,6 +43,7 @@ import { UtilsModule } from '../shared/utils/utils.module';
     FormsModule,
     ProfesoresRoutingModule,
     ReactiveFormsModule,
+    NgxPayPalModule,
   ],
   exports: [EditarPagoComponent],
 })
