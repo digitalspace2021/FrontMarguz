@@ -22,7 +22,7 @@ export class EditarPagoComponent implements OnInit {
   accountId!: number;
   keyPayu = 'B1562m9l83uepyKjqo6ShePSeR';
   quality!: string;
-  currency: string = 'EUR';
+  currency!: string;
   public payPalConfig?: IPayPalConfig;
 
   @Input() priceHour!: number;
@@ -126,20 +126,7 @@ export class EditarPagoComponent implements OnInit {
     });
   }
 
-  paymentPaypal() {
-    let data = {
-      price: 20000,
-      currency: this.form.get('currency')!.value,
-      description: this.form.get('description')!.value,
-    };
-    this.profesoresSv.paymentPaypal(data).subscribe((resp) => {
-      console.log(resp);
-    });
-  }
-
   private initConfig(): void {
-    console.log(this.getAmount());
-
     this.payPalConfig = {
       currency: this.currency,
       clientId: env.clientId,
@@ -182,13 +169,15 @@ export class EditarPagoComponent implements OnInit {
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
-        //this.resetStatus();
       },
     };
   }
 
   getAmount() {
+    this.currency = this.form.get('currency')!.value;
     this.quality = this.form.get('hourPayu')!.value;
+    let priceUnit = this.form.get('pricePayu')!.value;
+
     return {
       amount: {
         currency_code: this.currency,
@@ -206,7 +195,7 @@ export class EditarPagoComponent implements OnInit {
           quantity: this.quality,
           unit_amount: {
             currency_code: this.currency,
-            value: this.totalPrice.toString(),
+            value: priceUnit.toString(),
           },
         },
       ],
