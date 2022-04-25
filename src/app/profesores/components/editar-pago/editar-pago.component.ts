@@ -189,8 +189,6 @@ export class EditarPagoComponent implements OnInit {
 
   getAmount() {
     this.quality = this.form.get('hourPayu')!.value;
-
-    console.log();
     return {
       amount: {
         currency_code: this.currency,
