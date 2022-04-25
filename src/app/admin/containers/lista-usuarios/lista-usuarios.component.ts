@@ -42,6 +42,7 @@ export class ListaUsuariosComponent implements OnInit {
   action: boolean = false;
   showInteretAndLanguagesBrand: boolean = false;
   isConfirmHabilitar: boolean = false;
+  isConfirmInhabilitar: boolean = false;
 
   page?: number;
   typeModal: string = 'create';
@@ -82,7 +83,7 @@ export class ListaUsuariosComponent implements OnInit {
       //this.openConfirm('Cambio de estados', 'Operación Exitosa');
       this.listUsuario();
       this.tempList = [];
-      this.isConfirmHabilitar = true;
+      this.isConfirmInhabilitar = true;
     });
   }
 
@@ -110,6 +111,10 @@ export class ListaUsuariosComponent implements OnInit {
 
   closeConfirmHabilitar() {
     this.isConfirmHabilitar = false;
+  }
+
+  closeConfirmInhabilitar() {
+    this.isConfirmInhabilitar = false;
   }
 
   listUsuario() {
