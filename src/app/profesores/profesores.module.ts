@@ -18,12 +18,8 @@ import { HorarioComponent } from './containers/horario/horario.component';
 import { SharedModule } from '../shared/shared.module';
 import { HeaderProfesorComponent } from './components/header-profesor/header-profesor.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
-import { SafePipe } from '../shared/utils/satanizer-pipe';
-import { MediaPipe } from '../shared/utils/media-pipe';
 import { UtilsModule } from '../shared/utils/utils.module';
-
-
+import { NgxPayPalModule } from 'ngx-paypal';
 @NgModule({
   declarations: [
     ProfesoresComponent,
@@ -47,7 +43,8 @@ import { UtilsModule } from '../shared/utils/utils.module';
     FormsModule,
     ProfesoresRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ]
+    NgxPayPalModule,
+  ],
+  exports: [EditarPagoComponent],
 })
-export class ProfesoresModule { }
+export class ProfesoresModule {}

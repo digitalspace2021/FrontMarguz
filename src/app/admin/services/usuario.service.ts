@@ -36,7 +36,6 @@ export class UsuarioService {
   }
 
   getUsuario(params = null) {
-
     if (params) {
       return this.http.get<IUsuario>(this.endpointUpdateTeacher + params, {
         headers: this.headers,
@@ -95,9 +94,10 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: any) {
-    return this.http.delete(`${this.address}/delete/${id}`, { headers: this.headers });
+    return this.http.post(`${this.address}/multiple/delete`, { users: id });
   }
+
   habilitar(data: any) {
-    return this.http.post(`${this.address}/multiple/status/`, { users: data });
+    return this.http.post(`${this.address}/multiple/status`, { users: data });
   }
 }

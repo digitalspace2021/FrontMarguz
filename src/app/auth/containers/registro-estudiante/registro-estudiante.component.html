@@ -17,24 +17,39 @@
         </div>
       </div>
       <div class="formBox">
-        <app-form-registro tipoUsuario="Student" (registrar)="registrar($event)"></app-form-registro>
+        <app-form-registro
+          tipoUsuario="Student"
+          (registrar)="registrar($event)"
+        ></app-form-registro>
         <br />
       </div>
       <div class="recoverBox">
         <p>
           Al dar click en continuar o registrarme, acepta los
           <br />
-          <a routerLink="/public/politicas/estudiante">Terminos y Condiciones de servicio y la politica de privacidad de
-            marguz</a>
+          <a routerLink="/public/politicas/estudiante"
+            >Terminos y Condiciones de servicio y la politica de privacidad de
+            marguz</a
+          >
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
 
-<app-confirm title="Registro exitoso" [msg]="registroExitosoMessage" buttonMsg="Aceptar" *ngIf="isRegistroExitoso"
-  (closeConfirm)="login()"></app-confirm>
+<app-confirm
+  title="Registro exitoso"
+  [msg]="registroExitosoMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="login()"
+  logo="assets/iconos/happyface.png"
+></app-confirm>
 
 <app-loader *ngIf="load"></app-loader>

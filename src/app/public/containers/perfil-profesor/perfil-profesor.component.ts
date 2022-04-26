@@ -3,6 +3,9 @@ import { environment } from 'src/environments/environment';
 import { PublicService } from './../../services/public.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CalendarOptions } from '@fullcalendar/angular';
+import eslocale from '@fullcalendar/core/locales/es';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
 @Component({
   selector: 'app-perfil-profesor',
@@ -10,9 +13,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./perfil-profesor.component.scss'],
 })
 export class PerfilProfesorComponent implements OnInit {
-  public host = environment.hostImg;
-  profesor: any;
+  public host = environment.media;
+  profesor!: any;
   id: number = 0;
+  auth: boolean = false;
+  calendarOptions!: CalendarOptions;
 
   constructor(
     private publicsv: PublicService,
@@ -25,18 +30,38 @@ export class PerfilProfesorComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  getProfesor() {
     if (this.id) {
       this.publicsv.getUsuarioTeacher(this.id).subscribe((data: any) => {
         try {
           this.profesor = data.result;
-          console.log(this.profesor);
+          this.calendarOptions = {
+            plugins: [timeGridPlugin],
+            initialView: 'timeGridWeek',
+            locale: eslocale,
+            events: [
+              {
+                start: '10:00', // hora final
+                end: '17:00', // hora inicial
+                backgroundColor: '#FFFFFF',
+              },
+            ],
+          };
+          console.log(data);
         } catch (error) {
           console.log(error);
         }
       });
     } else {
       this.router.navigate(['']);
+    }
+  }
+
+  ngOnInit(): void {
+    this.getProfesor();
+    let user = localStorage.getItem('user') || undefined;
+    if (user) {
+      this.auth = true;
     }
   }
 }

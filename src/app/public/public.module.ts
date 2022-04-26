@@ -1,3 +1,5 @@
+import { ProfesoresModule } from './../profesores/profesores.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +15,9 @@ import { HeaderPublicComponent } from './components/header-public/header-public.
 import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PublicService } from './services/public.service';
+import { SearchComponent } from './components/search/search.component';
+import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,15 +28,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PoliticasEstudianteComponent,
     PoliticasPagoProfesorComponent,
     HeaderPublicComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule,
+    NgbTypeaheadModule,
+    NgbPaginationModule,
+    NgbDropdownModule,
+    FormsModule,
+    ReactiveFormsModule,
     PublicRoutingModule,
     NgxPaginationModule,
+    FullCalendarModule,
+    ProfesoresModule,
   ],
-  exports: [HeaderPublicComponent],
+  providers: [PublicService],
+  exports: [HeaderPublicComponent, SearchComponent],
 })
-export class PublicModule {}
+export class PublicModule { }

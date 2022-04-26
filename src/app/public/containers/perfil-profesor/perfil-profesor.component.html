@@ -3,15 +3,35 @@
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
         <div class="img-header mt-5">
-          <iframe
-            class="mg-fluid mt-4"
-            style="width: 710px; height: 200px"
-            src=" https://www.youtube.com/embed/idn6ssYRS0I"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <ng-template
+            [ngIf]="profesor.acount.url_youtube"
+            [ngIfElse]="elseBlockVideo"
+          >
+            <iframe
+              class="mg-fluid mt-4"
+              style="width: 610px; height: 300px"
+              [src]="
+                sanitizer.bypassSecurityTrustResourceUrl(
+                  profesor.acount.url_youtube
+                )
+              "
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </ng-template>
+          <ng-template #elseBlockVideo>
+            <iframe
+              class="mg-fluid mt-4"
+              style="width: 610px; height: 300px"
+              src="https://www.youtube.com/embed/RjGvw0aftCE"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </ng-template>
         </div>
         <div class="row">
           <div class="col-sm-12 col-md-3 col-xl-2 col-lg-2 w wx">
@@ -75,7 +95,7 @@
         <div class="caja-blanca mt-5">
           <p class="horary">Horarios disponibles</p>
           <div class="table mt-2">
-            <input type="datetime-local" class="form-control" />
+            <full-calendar [options]="calendarOptions"></full-calendar>
           </div>
         </div>
         <div class="caja-blanca p-4 mt-5">
@@ -83,11 +103,31 @@
           <span style="float: right" id="costo"
             >USD ${{ profesor.acount.price ? profesor.acount.price : 0 }}</span
           >
-          <button type="button" class="w-100 btn btn-primary mt-4">
+          <button
+            type="button"
+            class="w-100 btn btn-primary mt-4"
+            data-bs-toggle="modal"
+            data-bs-target="#openModal"
+            [disabled]="!auth"
+          >
             Contratar
           </button>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div
+  class="modal fade"
+  id="openModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <app-editar-pago
+    [priceHour]="profesor.acount.price"
+    [name]="profesor.name"
+    [phone]="profesor.acount.cellphone"
+  ></app-editar-pago>
 </div>

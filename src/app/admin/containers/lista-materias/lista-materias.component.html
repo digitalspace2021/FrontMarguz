@@ -29,7 +29,7 @@
             <thead>
               <tr>
                 <th width="500"></th>
-                <th width="100"></th>
+                <!-- <th width="100"></th> -->
                 <th width="100"></th>
               </tr>
             </thead>
@@ -43,14 +43,10 @@
                 <td>
                   <label [for]="mat.id">{{ mat.name }}</label>
                 </td>
-                <td>
-                  <label *ngIf="mat.status == 1" style="color: green"
-                    >Activo</label
-                  >
-                  <label *ngIf="mat.status != 1" style="color: red"
-                    >Inactivo</label
-                  >
-                </td>
+                <!-- <td>
+                  <label *ngIf="mat.status == 1" style="color: green">Activo</label>
+                  <label *ngIf="mat.status != 1" style="color: red">Inactivo</label>
+                </td> -->
                 <td>
                   <button
                     class="btn btn-light btn-sm"
@@ -83,11 +79,35 @@
           (pageChange)="page = $event"
           previousLabel="Anterior"
           nextLabel="Proximo"
-        ></pagination-controls>
+        >
+        </pagination-controls>
       </div>
     </div>
   </div>
 </div>
+
+<div
+  class="modal fade"
+  id="openModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <app-agregar-materia
+    [title]="title"
+    [materia]="materiaItem"
+    [action]="action"
+  ></app-agregar-materia>
+</div>
+
+<app-confirm
+  [title]="titleConfirm"
+  [msg]="confirmMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isConfirm"
+  (closeConfirm)="closeConfirm()"
+  logo="assets/iconos/eliminado.png"
+></app-confirm>
 
 <div
   class="modal fade"

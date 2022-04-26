@@ -4,10 +4,14 @@
   <div class="closeButton">
     <button class="closeB" (click)="close()">X</button>
   </div>
-  <p class="confirmHeader">{{title}}</p>
-  <p class="confirmContent">{{msg}}</p>
-  <button type="button" class="formButton" (click)="close()">
-    <p>{{buttonMsg}}</p>
-  </button>
 
+  <img [src]="logo" class="img-logo" />
+
+  <p class="confirmHeader">{{ title }}</p>
+
+  <p class="confirmContent">{{ msg }}</p>
+
+  <button type="button" class="formButton" (click)="close()">
+    <p>{{ buttonMsg }}</p>
+  </button>
 </div>
