@@ -14,15 +14,16 @@
       (click)="habilitar()"
     >
       <fa-icon style="font-size: 14px; color: green" [icon]="userIcon"></fa-icon>
-    </button>
+    </button>-->
     <button
       class="btn btn-light"
       (click)="deshabilitar()"
       style="margin-right: 15px"
     >
       <fa-icon style="font-size: 14px" [icon]="minus"></fa-icon>
-    </button> -->
-    <button class="btn btn-light" (click)="deshabilitar()">
+    </button>
+
+    <button class="btn btn-light" (click)="habilitar()">
       <fa-icon
         style="font-size: 14px; color: green"
         [icon]="userIcon"
@@ -251,4 +252,13 @@
   *ngIf="isConfirmHabilitar"
   (closeConfirm)="closeConfirmHabilitar()"
   logo="assets/iconos/happyface.png"
+></app-confirm>
+
+<app-confirm
+  title="Usuario Inhabilitado"
+  msg="Usuario Inhabilitado con Exito"
+  buttonMsg="Aceptar"
+  *ngIf="isConfirmInhabilitar"
+  (closeConfirm)="closeConfirmInhabilitar()"
+  logo="assets/iconos/bloqueado.png"
 ></app-confirm>
