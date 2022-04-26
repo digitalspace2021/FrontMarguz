@@ -5,7 +5,7 @@
     <button class="closeB" (click)="close()">X</button>
   </div>
 
-  <img [src]="logo" class="img-logo" />
+  <img [hidden]="!logo" [src]="logo" class="img-logo" />
 
   <p class="confirmHeader">{{ title }}</p>
 
