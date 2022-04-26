@@ -402,6 +402,7 @@
 
 <app-detalle-de-pago
   (closePago)="closePago($event)"
+  [user]="user"
   *ngIf="isPago"
 ></app-detalle-de-pago>
 
@@ -525,3 +526,4 @@
   (closeError)="closeError()"
   *ngIf="isError"
 ></app-error>
+

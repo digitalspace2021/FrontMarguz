@@ -59,13 +59,7 @@ export class FormRegistroComponent implements OnInit {
   states: any;
   cities: any;
 
-  horarios = [
-    {
-      day: 'Lunes',
-      start: '8:00am',
-      end: '2:00pm',
-    },
-  ];
+  horarios:any[] = [];
 
   idiomas: Array<any> = [];
   IdiomasAsing: any;
@@ -98,6 +92,16 @@ export class FormRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.horarios = this.data.count?.schedules_available
+    ?
+    this.data.acount?.schedules_available
+    :
+    [{
+        day: 'Lunes',
+        start: '8:00am',
+        end: '2:00pm'
+    }];
+
     this.registroForm = new FormGroup(
 
       {

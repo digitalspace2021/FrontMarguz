@@ -11,7 +11,6 @@ export const environment = {
   // host: 'http://marguzbackendvfinal.test/api/v1/',
   media: 'http://127.0.0.1:8000',
   hostImg: 'http://127.0.0.1:8000',
-
   // host: 'http://marguzbackendvfinal.test/api/v1/',
   // media: 'http://marguzbackendvfinal.test/',
   // hostImg: 'http://marguzbackendvfinal.test/'
