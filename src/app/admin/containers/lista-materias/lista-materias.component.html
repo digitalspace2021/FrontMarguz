@@ -59,6 +59,29 @@
   </div>
 </div>
 
+<div
+  class="modal fade"
+  id="openModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <app-agregar-materia
+    [title]="title"
+    [materia]="materiaItem"
+    [action]="action"
+  ></app-agregar-materia>
+</div>
+
+<app-confirm
+  [title]="titleConfirm"
+  [msg]="confirmMessage"
+  buttonMsg="Aceptar"
+  *ngIf="isConfirm"
+  (closeConfirm)="closeConfirm()"
+  logo="./eliminado.png"
+></app-confirm>
+
 <div class="modal fade" id="openModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <app-agregar-materia [title]="title" [materia]="materiaItem" [action]="action"></app-agregar-materia>
 </div>

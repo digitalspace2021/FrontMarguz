@@ -378,11 +378,7 @@
   </form>
 </div>
 
-<app-detalle-de-pago
-  (closePago)="closePago($event)"
-  [user]="user"
-  *ngIf="isPago"
-></app-detalle-de-pago>
+<app-detalle-de-pago (closePago)="closePago($event)" *ngIf="isPago"></app-detalle-de-pago>
 
 <div class="modal fade" id="openModalClase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -432,24 +428,25 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="modalLinkUrl" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Label"> Link de Youtube </h5>
+        <h5 class="modal-title" id="Label">Link de Youtube</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" [(ngModel)]="link">
+        <input type="text" class="form-control" [(ngModel)]="link" />
       </div>
     </div>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+      Close
+    </button>
   </div>
 </div>
 
-
-<app-confirm title="Actualización exitosa" [msg]="msg" buttonMsg="Aceptar" *ngIf="show" (closeConfirm)="show=false">
+<app-confirm title="Actualización exitosa" [msg]="msg" buttonMsg="Aceptar" *ngIf="show" (closeConfirm)="show = false"
+  logo="./happyface.png">
 </app-confirm>
 
 <app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>

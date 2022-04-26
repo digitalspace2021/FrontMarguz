@@ -37,6 +37,8 @@ export class RegistroProfesorComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
+  load = false
+
   ngOnInit() {
   }
 
@@ -47,8 +49,8 @@ export class RegistroProfesorComponent implements OnInit {
 
   registrar(value: any) {
     try {
+      this.load = true;
       let registroForm = value.form;
-
       let arrayIdioma = value.idiomas;
       let arrayHorario = value.horarios;
 
@@ -101,12 +103,19 @@ export class RegistroProfesorComponent implements OnInit {
         .then((resp: any) => {
           if (resp.code == 201) {
             this.openConfirm();
+            value.modal.nativeElement.click
           } else {
             this.openError(resp.message);
           }
+          this.load = false;
         })
-        .catch((e) => this.openError(getErrors(e)));
+        .catch((e) =>{
+          this.load = false;
+          this.openError(getErrors(e))
+        });
+          
     } catch (e: any) {
+      this.load = false;
       this.openError(e.message);
     }
   }

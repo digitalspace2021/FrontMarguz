@@ -77,8 +77,7 @@
       ">
       Por favor ingrese su correo
     </div>
-    <div class="errorTag" *ngIf="
-      fRegistro.email.errors?.email">
+    <div class="errorTag" *ngIf="fRegistro.email.errors?.email">
       Por favor ingrese un correo válido
     </div>
   </div>
@@ -87,8 +86,9 @@
     <label class="col-form-label">Contraseña</label>
     <input type="password" formControlName="contrasena" class="form-control" minlength="8" />
     <div class="tagLine">
-      La contraseña debe tener una longitud mínima de 8 carácteres, al menos una minúscula, una mayúscula, un número y
-      un carácter especial de los siguientes: @ $ ! % * # ? &
+      La contraseña debe tener una longitud mínima de 8 carácteres, al menos una
+      minúscula, una mayúscula, un número y un carácter especial de los
+      siguientes: @ $ ! % * # ? &, Ejemplo: <strong><u>Prueba12*</u></strong>
     </div>
     <div class="errorTag" *ngIf="
         fRegistro.contrasena.errors?.required &&
@@ -96,16 +96,12 @@
       ">
       Por favor ingrese una contraseña
     </div>
-    <div class="errorTag" *ngIf="
-        checkLength()
-      ">
+    <div class="errorTag" *ngIf="checkLength()">
       La contraseña debe tener un mínimo de 8 carácteres
     </div>
-    <div class="errorTag" *ngIf="
-        fRegistro.contrasena.errors?.pattern
-      ">
-      La contraseña debe tener al menos una minúscula, una mayúscula, un número y un carácter especial de los
-      siguientes: @ $ ! % * # ? &
+    <div class="errorTag" *ngIf="fRegistro.contrasena.errors?.pattern">
+      La contraseña debe tener al menos una minúscula, una mayúscula, un número
+      y un carácter especial de los siguientes: @ $ ! % * # ? &
     </div>
   </div>
 
@@ -125,7 +121,6 @@
       Las contraseñas no coinciden
     </div>
   </div>
-
 
   <div class="fileBoxes">
     <div *ngIf="isProfesor" class="fileInput">
@@ -194,7 +189,10 @@
     </div>
   </div>
   <div class="formButton">
-    <button type="button" [disabled]="tipoUsuario != 'Admin' ? checkIsFormValid() : ''" (click)="submit()">Registrarme</button>
+    <button type="button" [disabled]="checkIsFormValid()" (click)="submit()">
+      Registrarme
+    </button>
+    <button type="button" data-bs-toggle="modal" hidden #mostrarModal data-bs-target="#openModal"></button>
   </div>
 </form>
 
@@ -204,3 +202,7 @@
 
 <app-idiomas-modal [idiomas]="idiomas" *ngIf="isIdiomas" [isProfesor]="tipoUsuario == 'Teacher'"
   (closeIdiomas)="closeIdiomas($event)"></app-idiomas-modal>
+
+<div class="modal fade" id="openModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-mensajeria [tipoMensaje]="mensajeGuardado" [mensaje]="msgGuardado"></app-mensajeria>
+</div>
