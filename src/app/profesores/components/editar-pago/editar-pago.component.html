@@ -1,6 +1,13 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <form [formGroup]="form">
+    <form
+      [formGroup]="form"
+      ngNoForm
+      target="payment_popup"
+      action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/"
+      onsubmit="window.open('about:blank','payment_popup','width=900,height=500')"
+      method="post"
+    >
       <div class="modal-header text-center">
         <h5 class="modal-title">Forma de pago</h5>
         <button
@@ -103,7 +110,9 @@
       </div>
       <div class="modal-footer">
         <div class="col-12" [hidden]="!form.valid">
-          <button class="btn-payu" (click)="paymentPayu()">Payu</button>
+          <button type="submit" class="btn-payu" (click)="paymentPayu()">
+            Payu
+          </button>
           <ngx-paypal [config]="payPalConfig"></ngx-paypal>
         </div>
       </div>

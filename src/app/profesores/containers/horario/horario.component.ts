@@ -9,23 +9,29 @@ import { UsuarioService } from '../../../admin/services/usuario.service';
 })
 export class HorarioComponent implements OnInit {
   horarios: any;
-  id:number = 0;
-  constructor( private _schedule: HorarioService, private _user: UsuarioService ) {}
+  id: number = 0;
+  constructor(
+    private _schedule: HorarioService,
+    private _user: UsuarioService
+  ) {}
 
   ngOnInit(): void {
     this.getSchedule();
   }
 
-  getSchedule(){
-    this._user.getUsuario()
-    .subscribe( (res:any) => {
+  getSchedule() {
+    this._user.getUsuario().subscribe((res: any) => {
       this.id = res.id;
-      this.horarios = res.acount.schedules_available;
-    })
+      console.log(res);
+      this.horarios = !res.acount ? [1] : res.acount.schedules_available;
+    });
   }
 
   guardarHorario(horarios: any) {
     this.horarios = horarios;
-    this._schedule.saveScheduleNews({schedules_available:horarios}, this.id).subscribe(res => this.getSchedule());
+    console.log(this.id);
+    this._schedule
+      .saveScheduleNews({ schedules_available: horarios }, this.id)
+      .subscribe((res) => this.getSchedule());
   }
 }

@@ -30,24 +30,26 @@ export class PerfilProfesorComponent implements OnInit {
     });
   }
 
+  getscheduled() {
+    if (this.id) {
+      this.publicsv.getScheduledPublic(this.id).subscribe((data: any) => {
+        let schedules = data.result;
+
+        this.calendarOptions = {
+          plugins: [timeGridPlugin],
+          initialView: 'timeGridWeek',
+          locale: eslocale,
+          businessHours: [schedules],
+        };
+      });
+    }
+  }
+
   getProfesor() {
     if (this.id) {
       this.publicsv.getUsuarioTeacher(this.id).subscribe((data: any) => {
         try {
           this.profesor = data.result;
-          this.calendarOptions = {
-            plugins: [timeGridPlugin],
-            initialView: 'timeGridWeek',
-            locale: eslocale,
-            events: [
-              {
-                start: '10:00', // hora final
-                end: '17:00', // hora inicial
-                backgroundColor: '#FFFFFF',
-              },
-            ],
-          };
-          console.log(data);
         } catch (error) {
           console.log(error);
         }
@@ -58,10 +60,39 @@ export class PerfilProfesorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getscheduled();
     this.getProfesor();
     let user = localStorage.getItem('user') || undefined;
     if (user) {
       this.auth = true;
     }
+  }
+
+  getConvertDayToNumber(day: string): number {
+    let value = 0;
+    switch (day) {
+      case 'Lunes':
+        value = 1;
+        break;
+      case 'Martes':
+        value = 2;
+        break;
+      case 'Miercoles':
+        value = 3;
+        break;
+      case 'Jueves':
+        value = 4;
+        break;
+      case 'Viernes':
+        value = 5;
+        break;
+      case 'Sabado':
+        value = 6;
+        break;
+      case 'Domingo':
+        value = 7;
+        break;
+    }
+    return value;
   }
 }

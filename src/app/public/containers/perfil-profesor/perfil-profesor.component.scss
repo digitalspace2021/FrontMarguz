@@ -2,6 +2,16 @@
         font-size: 0.7em;
        }
 
+       :host::ng-deep.fc-body
+        {
+        background-color: #da4311
+        }
+
+        :host::ng-deep.fc-nonbusiness
+        {
+        opacity:1;
+        }
+
        .colorContainer {
             background-color: #ecf3f3;
         }

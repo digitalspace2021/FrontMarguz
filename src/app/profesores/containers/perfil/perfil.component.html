@@ -521,9 +521,17 @@
 >
 </app-confirm>
 
+<app-confirm
+  title="Actualizar perfil"
+  msg="¡Por favor! Actualice su perfil"
+  buttonMsg="Aceptar"
+  *ngIf="perfilUpdate"
+  (closeConfirm)="perfilUpdate = false"
+>
+</app-confirm>
+
 <app-error
   [msg]="errorMessage"
   (closeError)="closeError()"
   *ngIf="isError"
 ></app-error>
-
