@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
           }))
 
       ),
-      tap(() => this.searching = false),
+      tap(() => this.searching = false)
     )
 
   InputSearch = (x: { name: string, lastname: string }) => {

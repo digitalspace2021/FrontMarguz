@@ -36,8 +36,6 @@ import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-
     FormsModule,
     HttpClientModule,
     NgbTypeaheadModule,
-    NgbPaginationModule,
-    NgbDropdownModule,
     FormsModule,
     ReactiveFormsModule,
     PublicRoutingModule,
