@@ -29,9 +29,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private service: PublicService) { }
 
-  ngOnInit(): void {
-    console.log(this.model);
-  }
+  ngOnInit(): void { }
 
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(

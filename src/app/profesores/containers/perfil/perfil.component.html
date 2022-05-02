@@ -402,7 +402,6 @@
 
 <app-detalle-de-pago
   (closePago)="closePago($event)"
-  [user]="user"
   *ngIf="isPago"
 ></app-detalle-de-pago>
 
@@ -517,7 +516,7 @@
   buttonMsg="Aceptar"
   *ngIf="show"
   (closeConfirm)="show = false"
-  logo="assets/iconos/happyface.png"
+  logo="./happyface.png"
 >
 </app-confirm>
 
@@ -530,6 +529,11 @@
 >
 </app-confirm>
 
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
 <app-error
   [msg]="errorMessage"
   (closeError)="closeError()"
