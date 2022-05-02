@@ -34,7 +34,7 @@ export class DetalleDePagoService {
   }
 
   update( data:any, id:number ){
-    return this.http.put(`${this.route.host}payment/${id}`, data, {
+    return this.http.post(`${this.route.host}payment/${id}`, data, {
       headers: this.headers,
     });
   }

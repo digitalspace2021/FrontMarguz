@@ -37,43 +37,44 @@
                   <label class="form-label">Nombre</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="user_name" equired />
+                  <input type="text" class="form-control" formControlName="user_name_payu" required />
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
                   <label class="form-label">Cedula/ID</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="identification" required />
+                  <input type="number" class="form-control" formControlName="identification_payu" required />
                 </div>
-                <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+                <!-- <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
                   <label class="form-label">Merch ID</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
                   <input type="text" class="form-control" formControlName="merch_id" required />
-                </div>
+                </div> -->
                 <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
                   <label class="form-label">Correo electrónico</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="email" required />
+                  <input type="email" class="form-control" formControlName="email_payu" required />
+                  <span *ngIf="form.get('payu')?.get('email_payu')?.invalid && form.get('payu')?.get('email_payu')?.dirty" class="text-danger">Email invalido</span>
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
                   <label class="form-label">Banco</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="bank" required />
+                  <input type="text" class="form-control" formControlName="bank_payu" required />
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
                   <label class="form-label">Tipo de cuenta</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="account_type" required />
+                  <input type="text" class="form-control" formControlName="account_type_payu" required />
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
                   <label class="form-label">Numero de cuenta</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="number_account" required />
+                  <input type="number" class="form-control" formControlName="number_account_payu" required />
                 </div>
               </div>
             </div>
@@ -106,7 +107,8 @@
                   <label class="form-label">Correo electrónico</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="email" class="form-control" formControlName="email" equired />
+                  <input type="email" class="form-control" formControlName="email_paypal" required />
+                  <span *ngIf="form.get('paypal')?.get('email_paypal')?.invalid && form.get('paypal')?.get('email_paypal')?.dirty" class="text-danger">Email invalido</span>
                 </div>
               </div>
             </div>
@@ -139,7 +141,7 @@
                   <label class="form-label">Titular de la cuenta </label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="email" class="form-control" formControlName="account_holder" required />
+                  <input type="text" class="form-control" formControlName="user_name_bank" required />
                 </div>
               </div>
               <div class="row">
@@ -147,7 +149,7 @@
                   <label class="form-label"> Tipo de cuenta</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="account_type" required />
+                  <input type="text" class="form-control" formControlName="account_type_bank" required />
                 </div>
               </div>
               <div class="row">
@@ -163,7 +165,7 @@
                   <label class="form-label">Número de cuenta</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="number_account" equired />
+                  <input type="number" class="form-control" formControlName="number_account_bank" equired />
                 </div>
               </div>
               <div class="row">
@@ -171,7 +173,7 @@
                   <label class="form-label">Descripción breve</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="description" required />
+                  <input type="text" class="form-control" formControlName="description_bank" required />
                 </div>
               </div>
               <div class="row">
@@ -179,7 +181,8 @@
                   <label class="form-label">Correo electrónico</label>
                 </div>
                 <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-                  <input type="text" class="form-control" formControlName="email" required />
+                  <input type="email" class="form-control" formControlName="email_bank" required />
+                  <span *ngIf="form.get('bank')?.get('email_bank')?.invalid && form.get('bank')?.get('email_bank')?.dirty" class="text-danger">Email invalido</span>
                 </div>
               </div>
             </div>

@@ -57,6 +57,7 @@ export class PerfilComponent implements OnInit {
 
   dataUsuario?: any;
   role: string = '';
+  urlId?:any;
 
   constructor(
     private authService: AuthService,
@@ -67,6 +68,7 @@ export class PerfilComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.urlId = new URL(location.href).searchParams.get('id');
     this.dataUsuario = localStorage.getItem('user');
     this.dataUsuario = JSON.parse(this.dataUsuario);
     this.role = this.dataUsuario?.user?.role;
