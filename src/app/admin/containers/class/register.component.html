@@ -129,6 +129,7 @@
 
 
 <app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
+
 <app-confirm (closeConfirm)="isRegistroExitoso = false" [title]="titleConfirm" [msg]="registroExitosoMessage"
   buttonMsg="Aceptar" *ngIf="isRegistroExitoso">
 </app-confirm>

@@ -10,15 +10,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SharedRoutingModule } from './shared-routing.module';
-import { PublicModule } from '../public/public.module';
 import { HorarioComponent } from './components/horario/horario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IdiomasComponent } from './components/idiomas/idiomas.component';
 import { DetalleDePagoComponent } from './components/detalle-de-pago/detalle-de-pago.component';
 import { DetalleDeClaseComponent } from './components/detalle-de-clase/detalle-de-clase.component';
 import { CronogramaComponent } from './components/cronograma/cronograma.component';
-import { EditarClaseComponent } from './components/editar-clase/editar-clase.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
@@ -41,7 +38,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ReactiveFormsModule,
     FormsModule,
     MatCheckboxModule,
-    //SharedRoutingModule
   ],
   providers: [
     DatePipe
@@ -60,4 +56,4 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CronogramaComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
