@@ -38,7 +38,7 @@
           </div>
           <!--hora a contratar editable-->
           <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Horas a contratar</label>
+            <label class="form-label">Semanas Contratadas</label>
           </div>
           <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
             <input
@@ -80,6 +80,18 @@
               formControlName="emailPayu"
             />
           </div>
+          <!--descripcion no editable-->
+          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+            <label class="form-label">Descripción</label>
+          </div>
+          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
+            <textarea
+              class="form-control"
+              rows="3"
+              formControlName="description"
+              resize="none"
+            ></textarea>
+          </div>
           <!--total price a contratar editable-->
           <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
             <label class="form-label">Valor Total:</label>
@@ -89,21 +101,11 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer text-center">
-        <button
-          class="btn btn-primary btn-sm"
-          [disabled]="!form.valid"
-          (click)="paymentPaypal()"
-        >
-          <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon> paypal
-        </button>
-        <button
-          class="btn btn-success btn-sm"
-          [disabled]="!form.valid"
-          (click)="paymentPayu()"
-        >
-          <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon> Payu
-        </button>
+      <div class="modal-footer">
+        <div class="col-12" [hidden]="!form.valid">
+          <button class="btn-payu" (click)="paymentPayu()">Payu</button>
+          <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
       </div>
     </form>
   </div>

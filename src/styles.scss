@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use "~@angular/material" as mat;
+@use "~@angular/material"as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -19,15 +19,11 @@ $marguzFront-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$marguzFront-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $marguzFront-primary,
+$marguzFront-theme: mat.define-light-theme((color: (primary: $marguzFront-primary,
       accent: $marguzFront-accent,
       warn: $marguzFront-warn,
     ),
-  )
-);
+  ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -38,6 +34,7 @@ $marguzFront-theme: mat.define-light-theme(
 html {
   font-size: 14px;
 }
+
 .afu-attach-pin {
   border: 2px dashed #2f80ed !important;
   border-radius: 10px !important;
@@ -72,15 +69,18 @@ body {
 .containerBox {
   margin-bottom: 100px !important;
   overflow-y: hidden;
+
   .contentBox {
     margin: 18px 0;
   }
 }
+
 .moduleBox {
   display: flex;
   flex-direction: column;
   position: relative;
   overflow-y: hidden;
+
   //min-height: 100vh;
   .footer {
     position: relative;
@@ -89,6 +89,7 @@ body {
     height: 60px;
   }
 }
+
 .errorTag {
   font-size: 0.8em;
   color: red;
@@ -106,11 +107,12 @@ body {
   bottom: 0;
   padding: 10px;
 }
+
 .fab {
   color: red;
   font-size: 18px;
   margin-left: 10px;
- 
+
 }
 
 .paginado {
@@ -119,14 +121,6 @@ body {
   justify-content: center;
 }
 
-.ocultarModal{
+.ocultarModal {
   display: none;
 }
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';

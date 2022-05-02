@@ -21,8 +21,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { SafePipe } from '../shared/utils/satanizer-pipe';
 import { MediaPipe } from '../shared/utils/media-pipe';
-import { UtilsModule } from '../shared/utils/utils.module';
 
+import { UtilsModule } from '../shared/utils/utils.module';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -47,8 +48,8 @@ import { UtilsModule } from '../shared/utils/utils.module';
     FormsModule,
     ProfesoresRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    NgxPayPalModule,
   ],
-  exports: [EditarPagoComponent]
+  exports: [EditarPagoComponent],
 })
 export class ProfesoresModule { }

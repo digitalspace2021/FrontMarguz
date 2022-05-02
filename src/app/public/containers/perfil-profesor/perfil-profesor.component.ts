@@ -39,8 +39,15 @@ export class PerfilProfesorComponent implements OnInit {
             plugins: [timeGridPlugin],
             initialView: 'timeGridWeek',
             locale: eslocale,
-            events: this.profesor.acount.schedules_available,
+            events: [
+              {
+                start: '10:00', // hora final
+                end: '17:00', // hora inicial
+                backgroundColor: '#FFFFFF',
+              },
+            ],
           };
+          console.log(data);
         } catch (error) {
           console.log(error);
         }

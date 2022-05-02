@@ -9,7 +9,7 @@
           >
             <iframe
               class="mg-fluid mt-4"
-              style="width: 710px; height: 300px"
+              style="width: 610px; height: 300px"
               [src]="
                 sanitizer.bypassSecurityTrustResourceUrl(
                   profesor.acount.url_youtube
@@ -24,7 +24,7 @@
           <ng-template #elseBlockVideo>
             <iframe
               class="mg-fluid mt-4"
-              style="width: 710px; height: 300px"
+              style="width: 610px; height: 300px"
               src="https://www.youtube.com/embed/RjGvw0aftCE"
               title="YouTube video player"
               frameborder="0"
@@ -125,5 +125,9 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <app-editar-pago [priceHour]="profesor.acount.price"></app-editar-pago>
+  <app-editar-pago
+    [priceHour]="profesor.acount.price"
+    [name]="profesor.name"
+    [phone]="profesor.acount.cellphone"
+  ></app-editar-pago>
 </div>

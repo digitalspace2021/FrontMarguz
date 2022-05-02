@@ -32,7 +32,7 @@ export class ListaUsuariosComponent implements OnInit {
   interestAndLanguages = '';
 
   tipoUsuario: string = 'Student';
-  titleModal: string = ''
+  titleModal: string = '';
   usuarios: any[] = [];
   usuariosSearch: any[] = [];
   data: any[] = [];
@@ -41,6 +41,8 @@ export class ListaUsuariosComponent implements OnInit {
   tipo: string = '0';
   action: boolean = false;
   showInteretAndLanguagesBrand: boolean = false;
+  isConfirmHabilitar: boolean = false;
+  isConfirmInhabilitar: boolean = false;
 
   page?: number;
   typeModal: string = 'create';
@@ -50,58 +52,50 @@ export class ListaUsuariosComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.listUsuario();
   }
 
   setUser(event: any) {
-
     let id: string = event.target.value;
     let tempList: Array<any> = [];
 
-    if (event.target.checked) this.tempList.push(id)
+    if (event.target.checked) this.tempList.push(id);
     if (!event.target.checked) {
-      tempList = this.tempList.filter(data => data != id)
-      this.tempList = tempList
+      tempList = this.tempList.filter((data) => data != id);
+      this.tempList = tempList;
     }
   }
 
   habilitar() {
     this.usuarioSv.habilitar(this.tempList).subscribe((resp: any) => {
-      this.openConfirm('Habilitar usuario', 'Usuario habilitado exitosamente');
+      //this.openConfirm('Habilitar usuario', 'Usuario habilitado exitosamente');
       this.listUsuario();
-      this.tempList = []
+      this.tempList = [];
+      this.isConfirmHabilitar = true;
     });
   }
 
   deshabilitar() {
     this.usuarioSv.habilitar(this.tempList).subscribe((resp: any) => {
-      this.openConfirm(
-        'Cambio de estados',
-        'Operación Exitosa'
-      );
+      //this.openConfirm('Cambio de estados', 'Operación Exitosa');
       this.listUsuario();
-      this.tempList = []
+      this.tempList = [];
+      this.isConfirmInhabilitar = true;
     });
   }
-
-
 
   eliminar() {
     this.usuarioSv.deleteUsuario(this.tempList).subscribe((resp: any) => {
-      this.openConfirm(
-        'Eliminando usuario',
-        'Operación Exitosa'
-      );
+      this.openConfirm('Eliminando usuario', 'Operación Exitosa');
       this.listUsuario();
-      this.tempList = []
+      this.tempList = [];
     });
   }
 
-
-  editar() { }
+  editar() {}
   isConfirm: boolean = false;
   confirmMessage: string = '';
   titleConfirm: string = '';
@@ -115,6 +109,13 @@ export class ListaUsuariosComponent implements OnInit {
     this.isConfirm = false;
   }
 
+  closeConfirmHabilitar() {
+    this.isConfirmHabilitar = false;
+  }
+
+  closeConfirmInhabilitar() {
+    this.isConfirmInhabilitar = false;
+  }
 
   listUsuario() {
     this.usuarios = [];
@@ -165,7 +166,7 @@ export class ListaUsuariosComponent implements OnInit {
   changeTab(tipo: string = 'Student') {
     this.tipoUsuario = tipo;
     this.listUsuario();
-    this.tempList = []
+    this.tempList = [];
     /* this.usuarios = this.usuariosSearch.filter(
       (u) => parseInt(u.tipo_usuario) == tipo
     );*/
@@ -175,7 +176,6 @@ export class ListaUsuariosComponent implements OnInit {
     this.title = title;
     this.action = action; // si su valor esta en false es un nuevo registro de lo contrario un update
   }
-
 
   async registrar(value: any) {
     try {
@@ -270,30 +270,27 @@ export class ListaUsuariosComponent implements OnInit {
   }
   isError: boolean = false;
 
-
   openEdit(): any {
-
     let usersTypes: any = {
-      'Teacher': 'profesores/perfil',
-      'Student': 'estudiantes/perfil',
-      'Admin': 'profesores/perfil'
-    }
+      Teacher: 'profesores/perfil',
+      Student: 'estudiantes/perfil',
+      Admin: 'profesores/perfil',
+    };
 
-    console.log([
-      usersTypes,
-      this.tipoUsuario,
-      usersTypes[this.tipoUsuario]
-    ]);
+    console.log([usersTypes, this.tipoUsuario, usersTypes[this.tipoUsuario]]);
 
-    if (this.tempList.length > 1) this.openError('solo puede seleccionar un usuario para esta accion')
-    this.tipoUsuario
-    this.router.navigate([usersTypes[this.tipoUsuario]], { queryParams: { id: this.tempList[0] }, queryParamsHandling: 'merge' });
+    if (this.tempList.length > 1)
+      this.openError('solo puede seleccionar un usuario para esta accion');
+    this.tipoUsuario;
+    this.router.navigate([usersTypes[this.tipoUsuario]], {
+      queryParams: { id: this.tempList[0] },
+      queryParamsHandling: 'merge',
+    });
   }
 
   openRegistro(): any {
-
-    this.titleModal = 'Registrar usuario'
-    this.typeModal = 'create'
+    this.titleModal = 'Registrar usuario';
+    this.typeModal = 'create';
     this.isRegistro = true;
 
     // if (type === 'edit') {
@@ -308,7 +305,6 @@ export class ListaUsuariosComponent implements OnInit {
     //     })
     //     .catch((e) => this.openError(e.message));
     // }
-
   }
 
   closeRegistro() {
@@ -324,11 +320,16 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   showInteretAndLanguages(user: any) {
-
-    this.interestAndLanguages = ''
-    if (this.tipoUsuario == 'Admin') return
-    if (this.tipoUsuario == 'Teacher') user.languages.map((el: any) => this.interestAndLanguages += el.name + "\n" + "\r ")
-    if (this.tipoUsuario == 'Student') user.interest.map((el: any) => this.interestAndLanguages += el.name + "\n" + "\r ")
+    this.interestAndLanguages = '';
+    if (this.tipoUsuario == 'Admin') return;
+    if (this.tipoUsuario == 'Teacher')
+      user.languages.map(
+        (el: any) => (this.interestAndLanguages += el.name + '\n' + '\r ')
+      );
+    if (this.tipoUsuario == 'Student')
+      user.interest.map(
+        (el: any) => (this.interestAndLanguages += el.name + '\n' + '\r ')
+      );
     this.showInteretAndLanguagesBrand = true;
   }
 

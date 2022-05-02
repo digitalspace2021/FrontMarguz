@@ -18,7 +18,6 @@ import {
 import { ActivatedRoute, Params } from '@angular/router';
 import { getErrors } from 'src/app/shared/utils/get-errors';
 
-
 export interface IIntereses {
   id: number;
   name: string;
@@ -38,7 +37,8 @@ export class PerfilComponent implements OnInit {
   intereses: IIntereses[] = [];
   isError: boolean = false;
   errorMessage: string = '';
-  link: string = ''
+  link: string = '';
+  first_log_at!: boolean;
 
   img: string = 'https://i.blogs.es/447a66/joeyl_02/1366_2000.jpg';
 
@@ -51,12 +51,12 @@ export class PerfilComponent implements OnInit {
   formPerfil!: FormGroup;
   detallesDePago: any;
   user:any;
-  myParams: any = null
-  msg: string = ''
-  show: boolean = false
-  dataUsuario?: any;
-  role: string = ''
+  myParams: any = null;
+  msg: string = '';
+  show: boolean = false;
 
+  dataUsuario?: any;
+  role: string = '';
 
   constructor(
     private authService: AuthService,
@@ -64,13 +64,12 @@ export class PerfilComponent implements OnInit {
     private usuarioSv: UsuarioService,
     private materiaSv: MateriaService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
-    this.dataUsuario = localStorage.getItem("user");
-    this.dataUsuario = JSON.parse(this.dataUsuario)
-    this.role = this.dataUsuario?.user?.role
+    this.dataUsuario = localStorage.getItem('user');
+    this.dataUsuario = JSON.parse(this.dataUsuario);
+    this.role = this.dataUsuario?.user?.role;
 
     this.builder();
     this.getUser();
@@ -78,14 +77,14 @@ export class PerfilComponent implements OnInit {
   }
 
   AddIntereses(value: any) {
-    if (!this.intereses.find((el: any) => el.id === value.id)) this.intereses.push(value);
+    if (!this.intereses.find((el: any) => el.id === value.id))
+      this.intereses.push(value);
     // const index = this.materias.indexOf(value);
     // this.materias.splice(index, 1);
-
   }
 
   SubstrabIntereses(value: any) {
-    this.intereses = this.intereses.filter((el: any) => el.id !== value.id)
+    this.intereses = this.intereses.filter((el: any) => el.id !== value.id);
   }
 
   // AddIntereses(value: any) {
@@ -95,12 +94,10 @@ export class PerfilComponent implements OnInit {
   // }
 
   getUser() {
-
-    this.route.queryParamMap
-      .subscribe((params) => {
-        let obj: any = { ...params.keys, ...params }
-        this.myParams = obj.params.id
-      });
+    this.route.queryParamMap.subscribe((params) => {
+      let obj: any = { ...params.keys, ...params };
+      this.myParams = obj.params.id;
+    });
 
     this.usuarioSv
       .getUsuario(this.myParams)
@@ -111,17 +108,20 @@ export class PerfilComponent implements OnInit {
   }
 
   loadData(data: any) {
-    this.formPerfil.get('identification')?.setValue(data.result.identification);
+    this.first_log_at = data.result.acount.first_log_at;
+    this.formPerfil .get('identification')?.setValue(data.result.acount.identification);
     this.formPerfil.get('lastname')?.setValue(data.result.lastname);
     this.formPerfil.get('name')?.setValue(data.result.name);
     this.formPerfil.get('cellphone')?.setValue(data.result.acount.cellphone);
-    this.formPerfil.get('title_professional')?.setValue(data.result.acount.title_professional);
+    this.formPerfil .get('title_professional')?.setValue(data.result.acount.title_professional);
     this.formPerfil.get('email')?.setValue(data.result.email);
     this.formPerfil.get('country')?.setValue(data.result.acount.country);
     this.formPerfil.get('state')?.setValue(data.result.acount.state);
     this.formPerfil.get('city')?.setValue(data.result.acount.city);
     this.formPerfil.get('time_zone')?.setValue(data.result.acount.time_zone);
-    this.formPerfil.get('description')?.setValue(data.result.acount.description);
+    this.formPerfil
+      .get('description')
+      ?.setValue(data.result.acount.description);
     this.formPerfil.get('price')?.setValue(data.result.acount.price);
     this.img = data.result.acount.url_photo_perfil;
     this.link = data.result.acount.url_youtube;
@@ -129,7 +129,7 @@ export class PerfilComponent implements OnInit {
 
     data?.result?.acount?.languajes?.forEach((element: any) => {
       this.intereses.push(element);
-    })
+    });
   }
 
   builder() {
@@ -152,9 +152,11 @@ export class PerfilComponent implements OnInit {
   }
 
   listMateria() {
-    this.materiaSv
-      .listInteresOrLenguages()
-      .subscribe((resp) => { this.materias = resp.result.map((el: any) => { return { 'id': el.id, 'name': el.name } }) })
+    this.materiaSv.listInteresOrLenguages().subscribe((resp) => {
+      this.materias = resp.result.map((el: any) => {
+        return { id: el.id, name: el.name };
+      });
+    });
   }
 
   changerCountrys() {
@@ -195,7 +197,6 @@ export class PerfilComponent implements OnInit {
       };
       reader.readAsDataURL(imagen.files[0]);
       this.formPerfil.get('photo_acount')?.setValue(imagen.files[0]);
-
     }
   }
 
@@ -215,7 +216,6 @@ export class PerfilComponent implements OnInit {
 
   update() {
     try {
-
       let formData = new FormData();
 
       for (const [key, value] of Object.entries(this.formPerfil.value)) {
@@ -234,7 +234,8 @@ export class PerfilComponent implements OnInit {
         .updateTeacher(formData, this.myParams)
         .then((resp: any) => {
           if (resp.code == 202) {
-            this.msg = 'Actualización correcta'
+            this.first_log_at = resp.result.first_log_at;
+            this.msg = 'Actualización correcta';
             this.show = true;
           } else {
             this.openError(resp.message);
@@ -255,5 +256,4 @@ export class PerfilComponent implements OnInit {
     this.isError = false;
     this.errorMessage = '';
   }
-
 }

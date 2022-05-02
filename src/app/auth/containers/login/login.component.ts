@@ -27,49 +27,45 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
   isVerifyExitosoMessage: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService, private activedRoute: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private activedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.activedRoute.queryParams
-      .subscribe(params => {
-        if (params.verify) {
-          this.openConfirmVerify();
-        }
+    this.activedRoute.queryParams.subscribe((params) => {
+      if (params.verify) {
+        this.openConfirmVerify();
       }
-      );
+    });
   }
 
   async dashboard() {
     let jsonUser;
+    let path;
     let firstTime;
-    let currentTime = moment().format("YYYY-MM-DD HH:mm");
     let user = localStorage.getItem('user') || undefined;
-    
-    if (user) { jsonUser = JSON.parse(user);
+
+    if (user) {
+      jsonUser = JSON.parse(user);
       firstTime = jsonUser.user.first_log_at;
     }
-   console.log(firstTime,currentTime);
     let tipoUsuario = this.authService.getTipoUsuario();
-    debugger;
     if (tipoUsuario == 'Admin') {
-
-        this.router.navigate(['admin/admin-usuario']);
-
+      this.router.navigate(['admin/admin-usuario']);
     } else if (tipoUsuario == 'Teacher') {
-      if(firstTime == currentTime){
-        this.router.navigate(["/profesores/perfil?id=" +jsonUser.id]);
-      }
-      else{
+      if (!firstTime) {
+        this.router.navigate(['profesores/perfil', { id: jsonUser.user.id }]);
+      } else {
         this.router.navigate(['profesores']);
       }
     } else {
-      if(firstTime == currentTime){
-        this.router.navigate(["/estudiantes/perfil?id=" +jsonUser.id]);
-      }
-      else{
+      if (!firstTime) {
+        this.router.navigate(['estudiantes/perfil', { id: jsonUser.user.id }]);
+      } else {
         this.router.navigate(['estudiantes']);
       }
-     
     }
   }
   /**
@@ -90,9 +86,11 @@ export class LoginComponent implements OnInit {
           this.openConfirm();
         })
         .catch((e) => {
-          let message = 'Error no identificado por favor intente nuevamente o comuniquese con soporte';
-          if (e?.message.includes(401)) message = 'correo no verificado'
-          if (e?.message.includes(422)) message = 'correo o contraseña no validas'
+          let message =
+            'Error no identificado por favor intente nuevamente o comuniquese con soporte';
+          if (e?.message.includes(401)) message = 'correo no verificado';
+          if (e?.message.includes(422))
+            message = 'correo o contraseña no validas';
           this.openError(message);
           this.loginForm.get('email')?.setValue('');
           this.loginForm.get('password')?.setValue('');

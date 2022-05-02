@@ -1,88 +1,17 @@
-<!-- <div class="row">
-  <div class="col-12 mt-4">
+<div class="row">
+  <div class="col-8 mt-4">
     <h1 class="d-inline-block edit_perfil">
       Editar Perfil
       <span id="span_edit_perfil" class="text-mute">Profesor</span>
     </h1>
   </div>
-</div>
-<div class="card card-body mb-5">
-  <form [formGroup]="formPerfil" novalidate>
-    <div class="row mt-2">
-      <div class="col-4">
-        <div class="container-img animate__animated animate__bounce">
-          <img
-            [src]="img"
-            class="rounded img"
-            alt="Cinque Terre"
-            style="border-radius: 10px"
-          />
-          <div class="adjunt-cam">
-            <fa-icon
-              style="font-size: 14px; color: red"
-              [icon]="cam"
-              (click)="openFileSystem()"
-            ></fa-icon>
-          </div>
-          <input
-            type="file"
-            style="display: none"
-            (change)="addImagen()"
-            #selectFile
-          />
-        </div>
-        <div class="container-btn">
-          <div class="iframe-edit animate__animated animate__bounce">
-            <iframe
-              src="https://www.youtube.com/embed/Frw3Hg4lAKk"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              width="100%"
-            ></iframe>
-            <div class="circle-iframe">
-              <i class="fas fa-link" style="font-size: 14px; color: red"></i>
-            </div>
-          </div>
-          <div class="buttom-cont">
-            <a
-              class="btn btn-primary group-inputs text-center mb-2"
-              href="profesores/horario"
-            >
-              <i class="fas fa-calendar-alt" style="float: left"></i
-              ><span>Editar Horarios</span>
-            </a>
-            <button
-              class="btn btn-primary group-inputs text-center mb-2"
-              (click)="openPago()"
-            >
-              <i class="fas fa-credit-card-blank" style="float: left"></i
-              ><span>Editar información de Pagos</span>
-            </button>
-            <button
-              class="btn btn-primary group-inputs text-center"
-              data-bs-toggle="modal"
-              data-bs-target="#openModalClase"
-            >
-              <i class="fas fa-comment-edit" style="float: left"></i
-              ><span>Editar Clase</span>
-            </button>
-          </div>
-
-        </div>
-      </div>
+  <div class="col-4 mt-5" [hidden]="first_log_at">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Por favor actualice su perfil.</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </form>
-</div>
- -->
-
-<div class="row">
-  <div class="col-12 mt-4">
-    <h1 class="d-inline-block edit_perfil">
-      Editar Perfil
-      <span id="span_edit_perfil" class="text-mute">Profesor</span>
-    </h1>
   </div>
 </div>
 

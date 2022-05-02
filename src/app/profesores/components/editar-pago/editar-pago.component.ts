@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { faMoneyCheck } from '@fortawesome/free-solid-svg-icons';
 import { Md5 } from 'ts-md5/dist/md5';
+import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
+import { environment } from 'src/environments/environment';
+
+const env = environment;
 
 @Component({
   selector: 'app-editar-pago',
@@ -17,7 +21,13 @@ export class EditarPagoComponent implements OnInit {
   totalPrice: number = 0;
   accountId!: number;
   keyPayu = 'B1562m9l83uepyKjqo6ShePSeR';
+  quality!: string;
+  currency!: string;
+  public payPalConfig?: IPayPalConfig;
+
   @Input() priceHour!: number;
+  @Input() phone!: number;
+  @Input() name!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +40,7 @@ export class EditarPagoComponent implements OnInit {
       this.jsonUser = JSON.parse(user);
     }
     this.buildForm();
+    this.initConfig();
   }
 
   buildForm() {
@@ -44,7 +55,8 @@ export class EditarPagoComponent implements OnInit {
       hourPayu: [0, Validators.min(1)],
       emailPayu: [!this.jsonUser ? '' : this.jsonUser.user.email],
       emailPaypal: [''],
-      currency: ['USD', Validators.required],
+      currency: ['', Validators.required],
+      description: [''],
     });
   }
 
@@ -102,12 +114,91 @@ export class EditarPagoComponent implements OnInit {
       amount: this.totalPrice,
       currency: this.form.get('currency')!.value,
       buyerEmail: this.form.get('emailPayu')!.value,
+      tax: 0,
+      taxReturnBase: 0,
+      test: 0,
+      telephone: this.phone,
+      buyerFullName: this.name,
+      description: this.form.get('description')!.value,
     };
-    console.log(data);
     this.profesoresSv.paymentPayu(data).subscribe((resp) => {
       console.log(resp);
     });
   }
 
-  paymentPaypal() {}
+  private initConfig(): void {
+    this.payPalConfig = {
+      currency: this.currency,
+      clientId: env.clientId,
+      createOrderOnClient: (data) =>
+        <ICreateOrderRequest>{
+          intent: 'CAPTURE',
+          purchase_units: [this.getAmount()],
+        },
+      advanced: {
+        commit: 'true',
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical',
+      },
+      onApprove: (data, actions) => {
+        console.log(
+          'onApprove - transaction was approved, but not authorized',
+          data,
+          actions
+        );
+        /* actions.order.get().then(details => {
+                console.log('onApprove - you can get full order details inside onApprove: ', details);
+            });*/
+      },
+      onClientAuthorization: (data) => {
+        console.log(
+          'onClientAuthorization - you should probably inform your server about completed transaction at this point',
+          data
+        );
+        // this.showSuccess = true;
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+        // this.showCancel = true;
+      },
+      onError: (err) => {
+        console.log('OnError', err);
+        //  this.showError = true;
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      },
+    };
+  }
+
+  getAmount() {
+    this.currency = this.form.get('currency')!.value;
+    this.quality = this.form.get('hourPayu')!.value;
+    let priceUnit = this.form.get('pricePayu')!.value;
+
+    return {
+      amount: {
+        currency_code: this.currency,
+        value: this.totalPrice.toString(),
+        breakdown: {
+          item_total: {
+            currency_code: this.currency,
+            value: this.totalPrice.toString(),
+          },
+        },
+      },
+      items: [
+        {
+          name: 'Clases Contratadas',
+          quantity: this.quality,
+          unit_amount: {
+            currency_code: this.currency,
+            value: priceUnit.toString(),
+          },
+        },
+      ],
+    };
+  }
 }
