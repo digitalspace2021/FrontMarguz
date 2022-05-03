@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DetalleDePagoService } from './detalle-de-pago.service';
 import { UsuarioService } from '../../../admin/services/usuario.service';
@@ -7,6 +7,7 @@ import {
   faMinusCircle,
   faSave,
 } from '@fortawesome/free-solid-svg-icons';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-de-pago',
@@ -27,7 +28,14 @@ export class DetalleDePagoComponent implements OnInit {
   urlId:any;
   dataUsuario:any;
   role:any;
-  constructor( private fb: FormBuilder, private _detallePago: DetalleDePagoService, private _user: UsuarioService ) {}
+  @ViewChild('ModalClose') ModalClose?: ElementRef;
+  isRegistroExitoso: boolean = false;
+  constructor(
+              private fb: FormBuilder,
+              private _detallePago: DetalleDePagoService,
+              private _user: UsuarioService,
+              private location: Location
+             ) {}
 
   ngOnInit(): void {
     this.urlId = new URL(location.href).searchParams.get('id');
@@ -118,6 +126,15 @@ export class DetalleDePagoComponent implements OnInit {
     }, 500);
   }
 
+  openConfirmRegistro() {
+    this.isRegistroExitoso = true;
+ }
+  closeConfirmRegistro() {
+    this.isRegistroExitoso = false;
+    this.closePago.emit(this.detallesDePago);
+
+  }
+
   getPaymentMethod(method:string){
     this.method = method;
   }
@@ -131,6 +148,9 @@ export class DetalleDePagoComponent implements OnInit {
     } else {
       data = this.form.value.bank;
     }
-    this._detallePago.update(data, (this.role == 'Admin' ? this.urlId : this.id)).subscribe(res => this.getTeacherPayment())
+    this._detallePago.update(data, (this.role == 'Admin' ? this.urlId : this.id)).subscribe(res => {
+      this.getTeacherPayment();
+      this.isRegistroExitoso = true;
+    })
   }
 }

@@ -189,7 +189,7 @@
           </div>
         </div>
       </div>
-      <button class="btn saveButton" (click)="close(); save()">
+      <button class="btn saveButton" (click)="save()">
         <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
 
         <!--           <svg
@@ -210,3 +210,11 @@
     </div>
   </div>
 </form>
+<app-confirm
+  title="Registro exitoso"
+  msg="Se ha editado el metodo de pago con éxito"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="closeConfirmRegistro()"
+  logo="assets/iconos/happyface.png"
+></app-confirm>

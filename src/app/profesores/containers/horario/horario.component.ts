@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HorarioService } from './horario.service';
 import { UsuarioService } from '../../../admin/services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-horario-contenedor',
@@ -14,7 +15,14 @@ export class HorarioComponent implements OnInit {
   urlId:any;
   role:string = '';
   dataUsuario:any;
-  constructor( private _schedule: HorarioService, private _user: UsuarioService) {}
+  @ViewChild('ModalClose') ModalClose?: ElementRef;
+  isRegistroExitoso: boolean = false;
+  constructor(
+              private _schedule: HorarioService,
+              private _user: UsuarioService,
+              private route: Router,
+              private location: Location
+            ) {}
 
   ngOnInit(): void {
     this.urlId = new URL(location.href).searchParams.get('id');
@@ -23,6 +31,14 @@ export class HorarioComponent implements OnInit {
     this.role = this.dataUsuario?.user?.role;
     this.getSchedule();
   }
+
+  openConfirmRegistro() {
+    this.isRegistroExitoso = true;
+ }
+ closeConfirmRegistro() {
+  this.isRegistroExitoso = false;
+  this.location.back()
+}
 
   getSchedule(){
     if (this.role == 'Admin') {
@@ -42,6 +58,9 @@ export class HorarioComponent implements OnInit {
 
   guardarHorario(horarios: any) {
     this.horarios = horarios;
-    this._schedule.saveScheduleNews({schedules_available:horarios}, (this.role == 'Admin' ? this.urlId : this.id)).subscribe(res => this.getSchedule());
+    this._schedule.saveScheduleNews({schedules_available:horarios}, (this.role == 'Admin' ? this.urlId : this.id)).subscribe(res => {
+      this.isRegistroExitoso = true;
+      this.getSchedule();
+    });
   }
 }
