@@ -4,10 +4,12 @@
   <div class="closeButton">
     <button class="closeB" (click)="close()">X</button>
   </div>
-  <p class="errorHeader">{{title}}</p>
-  <p class="errorContent" style="white-space: pre-wrap">{{msg}}</p>
+  <div class="content-img">
+    <img class="img-error" src="/assets/iconos/Cancel.png" alt="Error" />
+  </div>
+  <p class="errorHeader">{{ title }}</p>
+  <p class="errorContent" style="white-space: pre-wrap">{{ msg }}</p>
   <button type="button" class="formButton" (click)="close()">
     <p>CERRAR</p>
   </button>
-
 </div>
