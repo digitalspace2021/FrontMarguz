@@ -65,6 +65,15 @@
           </div>
           <div class="buttom-cont">
             <a
+              *ngIf="role == 'Admin'"
+              class="btn btn-primary group-inputs text-center mb-2"
+              [href]="'profesores/horario?id=' + urlId"
+            >
+              <i class="fas fa-calendar-alt" style="float: left"></i
+              ><span>Editar Horarios</span>
+            </a>
+            <a
+              *ngIf="role != 'Admin'"
               class="btn btn-primary group-inputs text-center mb-2"
               href="profesores/horario"
             >

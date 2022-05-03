@@ -17,3 +17,11 @@
     </div>
   </div>
 </div>
+<app-confirm
+  title="Registro exitoso"
+  msg="Se ha registrado el horario con éxito"
+  buttonMsg="Aceptar"
+  *ngIf="isRegistroExitoso"
+  (closeConfirm)="closeConfirmRegistro()"
+  logo="assets/iconos/happyface.png"
+></app-confirm>

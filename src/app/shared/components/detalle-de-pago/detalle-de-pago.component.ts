@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DetalleDePagoService } from './detalle-de-pago.service';
+import { UsuarioService } from '../../../admin/services/usuario.service';
 import {
   faPlusCircle,
   faMinusCircle,
   faSave,
 } from '@fortawesome/free-solid-svg-icons';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-de-pago',
@@ -22,12 +24,41 @@ export class DetalleDePagoComponent implements OnInit {
   method:string = 'payu';
   type:string = '';
   data:any;
-  constructor( private fb: FormBuilder, private _detallePago: DetalleDePagoService ) {}
+  id:any;
+  urlId:any;
+  dataUsuario:any;
+  role:any;
+  @ViewChild('ModalClose') ModalClose?: ElementRef;
+  isRegistroExitoso: boolean = false;
+  constructor(
+              private fb: FormBuilder,
+              private _detallePago: DetalleDePagoService,
+              private _user: UsuarioService,
+              private location: Location
+             ) {}
 
   ngOnInit(): void {
+    this.urlId = new URL(location.href).searchParams.get('id');
+    this.dataUsuario = localStorage.getItem('user');
+    this.dataUsuario = JSON.parse(this.dataUsuario);
+    this.role = this.dataUsuario?.user?.role;
+    this.getUser();
     this.createForm();
     this.getTeacherPayment();
-    console.log(this.data);
+  }
+
+  getUser(){
+    if (this.role == 'Admin') {
+      this._user.getUsuario(this.urlId)
+      .subscribe( (res:any) => {
+        this.id = res.result.id;
+      })
+    } else {
+      this._user.getUsuario()
+      .subscribe( (res:any) => {
+        this.id = res.result.id;
+      })
+    }
   }
 
   close() {
@@ -38,59 +69,70 @@ export class DetalleDePagoComponent implements OnInit {
     this.form = this.fb.group({
       payu: this.fb.group({
         method: ['payu'],
-        user_name: [''],
-        identification: [''],
-        merch_id: [''],
-        email: [''],
-        bank: [''],
-        account_type: [''],
-        number_account: ['']
+        user_name_payu: [''],
+        identification_payu: [''],
+        //merch_id: [''],
+        email_payu: ['', Validators.email],
+        bank_payu: [''],
+        account_type_payu: [''],
+        number_account_payu: ['']
       }),
       paypal: this.fb.group({
         method: ['paypal'],
-        email: ['']
+        email_paypal: ['', Validators.email]
       }),
       bank: this.fb.group({
         method: ['bank'],
-        account_holder: [''],
-        account_type: [''],
+        user_name_bank: [''],
+        account_type_bank: [''],
         bank: [''],
-        number_account: [''],
-        description: [''],
-        email: ['']
+        number_account_bank: [''],
+        description_bank: [''],
+        email_bank: ['', Validators.email]
       })
     })
   }
 
   getTeacherPayment(){
-    this._detallePago.getTeacherPayment(this.user.id)
-    .subscribe( (res:any) => {
-      this.data = res.result;
-      this.type = this.data.method;
-      this.form.get('payu')?.patchValue({
-        method: 'payu',
-        user_name: this.data.user_name,
-        identification: this.data.identification,
-        merch_id: this.data.merch_id,
-        email: this.data.email,
-        bank: this.data.bank,
-        account_type: this.data.account_type,
-        number_account: this.data.number_account
+    setTimeout(() => {
+      this._detallePago.getTeacherPayment((this.role == 'Admin' ? this.urlId : this.id))
+      .subscribe( (res:any) => {
+        this.data = res.result;
+        this.type = this.data.method;
+        this.form.get('payu')?.patchValue({
+          method: 'payu',
+          user_name_payu: this.data.user_name_payu,
+          identification_payu: this.data.identification_payu,
+          merch_id: this.data.merch_id,
+          email_payu: this.data.email_payu,
+          bank_payu: this.data.bank_payu,
+          account_type_payu: this.data.account_type_payu,
+          number_account_payu: this.data.number_account_payu
+        })
+        this.form.get('paypal')?.patchValue({
+          method: 'paypal',
+          email_paypal: this.data.email_paypal
+        })
+        this.form.get('bank')?.patchValue({
+          method: 'bank',
+          user_name_bank: this.data.user_name_bank,
+          account_type_bank: this.data.account_type_bank,
+          bank: this.data.bank,
+          number_account_bank: this.data.number_account_bank,
+          description_bank: this.data.description_bank,
+          email_bank: this.data.email_bank
+        })
       })
-      this.form.get('paypal')?.patchValue({
-        method: 'paypal',
-        email: this.data.email
-      })
-      this.form.get('bank')?.patchValue({
-        method: 'bank',
-        account_holder: this.data.account_holder,
-        account_type: this.data.account_type,
-        bank: this.data.bank,
-        number_account: this.data.number_account,
-        description: this.data.description,
-        email: this.data.email
-      })
-    })
+    }, 500);
+  }
+
+  openConfirmRegistro() {
+    this.isRegistroExitoso = true;
+ }
+  closeConfirmRegistro() {
+    this.isRegistroExitoso = false;
+    this.closePago.emit(this.detallesDePago);
+
   }
 
   getPaymentMethod(method:string){
@@ -106,10 +148,9 @@ export class DetalleDePagoComponent implements OnInit {
     } else {
       data = this.form.value.bank;
     }
-    this.data
-    ?
-    this._detallePago.update(data, this.user.id).subscribe(res => this.getTeacherPayment())
-    :
-    this._detallePago.save(data).subscribe(res => this.getTeacherPayment())
+    this._detallePago.update(data, (this.role == 'Admin' ? this.urlId : this.id)).subscribe(res => {
+      this.getTeacherPayment();
+      this.isRegistroExitoso = true;
+    })
   }
 }

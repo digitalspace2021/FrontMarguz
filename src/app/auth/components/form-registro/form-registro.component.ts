@@ -36,7 +36,7 @@ export class FormRegistroComponent implements OnInit {
   @ViewChild("mostrarModal") mostrarModal! : ElementRef<HTMLInputElement>;
 
   public mensajeGuardado = listaTipoMensaje.almacenado;
-  
+
   public msgGuardado = listaMensaje.almacenado;
 
 
@@ -164,7 +164,7 @@ export class FormRegistroComponent implements OnInit {
         this.filename[2] == '';
     }
 
-    return !formValid || !idiomasLength || files;
+    return !formValid || (this.isAdmin ? null : !idiomasLength) || files;
   }
 
   handleFile(event: any, index: number) {
