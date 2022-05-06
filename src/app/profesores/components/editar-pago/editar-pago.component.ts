@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ProfesoresService } from '../../services/profesores.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -109,8 +108,8 @@ export class EditarPagoComponent implements OnInit {
       tax: 0,
       taxReturnBase: 0,
       description: this.form.get('description')!.value,
-      responseUrl: '',
-      confirmationUrl: '',
+      responseUrl: environment.host + 'public',
+      confirmationUrl: environment.host,
     };
 
     this.profesoresSv.paymentPayu(data).subscribe((resp: any) => {
