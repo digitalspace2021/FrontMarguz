@@ -5,12 +5,9 @@
       <span id="span_edit_perfil" class="text-mute">Profesor</span>
     </h1>
   </div>
-  <div class="col-4 mt-5" [hidden]="first_log_at">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Por favor actualice su perfil.</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="col-4 mt-5" *ngIf="!first_log_at">
+    <div class="alert alert-danger" role="alert">
+      ¡ Favor actualizar el perfil !
     </div>
   </div>
 </div>
@@ -20,34 +17,75 @@
     <div class="row mt-2">
       <div class="col-4">
         <div class="container-img animate__animated animate__bounce">
-          <img [src]="img | media" class="rounded img" alt="Cinque Terre" style="border-radius: 10px" />
+          <img
+            [src]="img | media"
+            class="rounded img"
+            alt="Cinque Terre"
+            style="border-radius: 10px"
+          />
           <div class="adjunt-cam">
-            <fa-icon style="font-size: 14px; color: red" [icon]="cam" (click)="openFileSystem()"></fa-icon>
+            <fa-icon
+              style="font-size: 14px; color: red"
+              [icon]="cam"
+              (click)="openFileSystem()"
+            ></fa-icon>
           </div>
-          <input type="file" style="display: none" (change)="addImagen()" #selectFile />
+          <input
+            type="file"
+            style="display: none"
+            (change)="addImagen()"
+            #selectFile
+          />
         </div>
         <div class="container-btn">
           <div class="iframe-edit animate__animated animate__bounce">
-            <iframe [src]="link | safe" title="YouTube video player" frameborder="0"
+            <iframe
+              [src]="link | safe"
+              title="YouTube video player"
+              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen width="100%"></iframe>
-            <div class="circle-iframe" data-bs-toggle="modal" data-bs-target="#modalLinkUrl">
+              allowfullscreen
+              width="100%"
+            ></iframe>
+            <div
+              class="circle-iframe"
+              data-bs-toggle="modal"
+              data-bs-target="#modalLinkUrl"
+            >
               <i class="fas fa-link" style="font-size: 14px; color: red"></i>
             </div>
           </div>
           <div class="buttom-cont">
-            <a *ngIf="role == 'Admin'" class="btn btn-primary group-inputs text-center mb-2" [href]="'profesores/horario?id='+urlId">
-              <i class="fas fa-calendar-alt" style="float: left"></i><span>Editar Horarios</span>
+            <a
+              *ngIf="role == 'Admin'"
+              class="btn btn-primary group-inputs text-center mb-2"
+              [href]="'profesores/horario?id=' + urlId"
+            >
+              <i class="fas fa-calendar-alt" style="float: left"></i
+              ><span>Editar Horarios</span>
             </a>
-            <a *ngIf="role != 'Admin'" class="btn btn-primary group-inputs text-center mb-2" href="profesores/horario">
-              <i class="fas fa-calendar-alt" style="float: left"></i><span>Editar Horarios</span>
+            <a
+              *ngIf="role != 'Admin'"
+              class="btn btn-primary group-inputs text-center mb-2"
+              href="profesores/horario"
+            >
+              <i class="fas fa-calendar-alt" style="float: left"></i
+              ><span>Editar Horarios</span>
             </a>
-            <button class="btn btn-primary group-inputs text-center mb-2" (click)="openPago()">
-              <i class="fas fa-credit-card-blank" style="float: left"></i><span>Editar información de Pagos</span>
+            <button
+              class="btn btn-primary group-inputs text-center mb-2"
+              (click)="openPago()"
+            >
+              <i class="fas fa-credit-card-blank" style="float: left"></i
+              ><span>Editar información de Pagos</span>
             </button>
-            <button class="btn btn-primary group-inputs text-center" data-bs-toggle="modal"
-              data-bs-target="#openModalClase">
-              <i class="fas fa-comment-edit" style="float: left"></i><span>Editar Clase</span>
+            <button
+              class="btn btn-primary group-inputs text-center"
+              data-bs-toggle="modal"
+              data-bs-target="#openModalClase"
+            >
+              <i class="fas fa-comment-edit" style="float: left"></i
+              ><span>Editar Clase</span>
             </button>
           </div>
         </div>
@@ -56,11 +94,20 @@
         <div class="row">
           <div class="form-group col-6">
             <label class="label-ajust">Identificación</label>
-            <input type="text" formControlName="identification" readonly class="form-control" />
+            <input
+              type="text"
+              formControlName="identification"
+              readonly
+              class="form-control"
+            />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Apellido</label>
-            <input type="text" formControlName="lastname" class="form-control" />
+            <input
+              type="text"
+              formControlName="lastname"
+              class="form-control"
+            />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Nombre</label>
@@ -68,11 +115,19 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Telefono</label>
-            <input type="text" formControlName="cellphone" class="form-control" />
+            <input
+              type="text"
+              formControlName="cellphone"
+              class="form-control"
+            />
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Pais</label>
-            <select class="form-control" formControlName="country" (change)="changeStates()">
+            <select
+              class="form-control"
+              formControlName="country"
+              (change)="changeStates()"
+            >
               <option value="0" selected>Seleccionar Pais</option>
               <option [value]="item.id" *ngFor="let item of countries">
                 {{ item.name }}
@@ -81,7 +136,11 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Estado</label>
-            <select class="form-control" formControlName="state" (change)="changeCities()">
+            <select
+              class="form-control"
+              formControlName="state"
+              (change)="changeCities()"
+            >
               <option value="0" selected>Seleccionar estado</option>
               <option [value]="item.id" *ngFor="let item of states">
                 {{ item.name }}
@@ -113,7 +172,10 @@
               <option value="Mountain Time (US &amp; Canada)">
                 (GMT-07:00) Mountain Time (US &amp; Canada)
               </option>
-              <option value="Central Time (US &amp; Canada)" selected="selected">
+              <option
+                value="Central Time (US &amp; Canada)"
+                selected="selected"
+              >
                 (GMT-06:00) Central Time (US &amp; Canada)
               </option>
               <option value="Eastern Time (US &amp; Canada)">
@@ -272,20 +334,41 @@
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Descripción</label>
-            <textarea class="form-control" formControlName="description" cols="30" rows="3"></textarea>
+            <textarea
+              class="form-control"
+              formControlName="description"
+              cols="30"
+              rows="3"
+            ></textarea>
           </div>
           <div class="form-group col-6">
             <label class="label-ajust">Titulo Profesional</label>
-            <textarea class="form-control" formControlName="title_professional" cols="30" rows="3"></textarea>
+            <textarea
+              class="form-control"
+              formControlName="title_professional"
+              cols="30"
+              rows="3"
+            ></textarea>
           </div>
           <div class="form-group col-10 mt-3">
             <label class="label-ajust">Intereses</label><br />
             <div class="row">
               <div class="col-3" *ngFor="let item of intereses">
                 <div class="form-check">
-                  <input class="form-check-input" checked disabled style="color: red; opacity: 100%; margin-right: 3px"
-                    type="checkbox" [value]="item.id" [id]="item.name" />
-                  <label class="form-check-label" style="font-size: 12px" [for]="item.name">
+                  <input
+                    class="form-check-input"
+                    checked
+                    disabled
+                    style="color: red; opacity: 100%; margin-right: 3px"
+                    type="checkbox"
+                    [value]="item.id"
+                    [id]="item.name"
+                  />
+                  <label
+                    class="form-check-label"
+                    style="font-size: 12px"
+                    [for]="item.name"
+                  >
                     {{ item.name }}
                   </label>
                 </div>
@@ -293,8 +376,16 @@
             </div>
           </div>
           <div class="col-2 mt-4" *ngIf="role == 'Admin'">
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalIntereses">
-              <fa-icon style="font-size: 24px; color: red" [icon]="add"></fa-icon>
+            <button
+              type="button"
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#modalIntereses"
+            >
+              <fa-icon
+                style="font-size: 24px; color: red"
+                [icon]="add"
+              ></fa-icon>
             </button>
           </div>
           <div class="form-group col-12 mt-2 d-flex justify-content-between">
@@ -310,14 +401,29 @@
   </form>
 </div>
 
-<app-detalle-de-pago (closePago)="closePago($event)" *ngIf="isPago"></app-detalle-de-pago>
+<app-detalle-de-pago
+  (closePago)="closePago($event)"
+  *ngIf="isPago"
+></app-detalle-de-pago>
 
-<div class="modal fade" id="openModalClase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="openModalClase"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title">Editar Clase</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #ModalClose></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          #ModalClose
+        ></button>
       </div>
       <div class="modal-body"></div>
     </div>
@@ -326,12 +432,23 @@
 
 <!-- MODAL IDIOMAS -->
 
-<div class="modal fade" id="modalIntereses" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+<div
+  class="modal fade"
+  id="modalIntereses"
+  tabindex="-1"
+  aria-labelledby="Label"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Label"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <table class="table table-sm table-strike">
@@ -346,10 +463,16 @@
               </td>
               <td>
                 <button class="btn btn-sm" (click)="AddIntereses(item)">
-                  <fa-icon style="font-size: 24px; color: green" [icon]="add"></fa-icon>
+                  <fa-icon
+                    style="font-size: 24px; color: green"
+                    [icon]="add"
+                  ></fa-icon>
                 </button>
                 <button class="btn btn-sm" (click)="SubstrabIntereses(item)">
-                  <fa-icon style="font-size: 24px; color: red" [icon]="minus"></fa-icon>
+                  <fa-icon
+                    style="font-size: 24px; color: red"
+                    [icon]="minus"
+                  ></fa-icon>
                 </button>
               </td>
             </tr>
@@ -360,12 +483,23 @@
   </div>
 </div>
 
-<div class="modal fade" id="modalLinkUrl" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+<div
+  class="modal fade"
+  id="modalLinkUrl"
+  tabindex="-1"
+  aria-labelledby="Label"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="Label">Link de Youtube</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <input type="text" class="form-control" [(ngModel)]="link" />
@@ -377,8 +511,32 @@
   </div>
 </div>
 
-<app-confirm title="Actualización exitosa" [msg]="msg" buttonMsg="Aceptar" *ngIf="show" (closeConfirm)="show = false"
-  logo="./happyface.png">
+<app-confirm
+  title="Actualización exitosa"
+  [msg]="msg"
+  buttonMsg="Aceptar"
+  *ngIf="show"
+  (closeConfirm)="show = false"
+  logo="./happyface.png"
+>
 </app-confirm>
 
-<app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
+<app-confirm
+  title="Actualizar perfil"
+  msg="¡Por favor! Actualice su perfil"
+  buttonMsg="Aceptar"
+  *ngIf="perfilUpdate"
+  (closeConfirm)="perfilUpdate = false"
+>
+</app-confirm>
+
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>
+<app-error
+  [msg]="errorMessage"
+  (closeError)="closeError()"
+  *ngIf="isError"
+></app-error>

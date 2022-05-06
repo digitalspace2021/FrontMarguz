@@ -47,6 +47,7 @@ export class PerfilComponent implements OnInit {
 
   msg: string = '';
   show: boolean = false;
+  perfilUpdate: boolean = false;
 
   isError: boolean = false;
   errorMessage: string = '';
@@ -78,6 +79,9 @@ export class PerfilComponent implements OnInit {
 
   loadData(data: any) {
     this.first_log_at = data.result.acount.first_log_at;
+    if (!this.first_log_at) {
+      this.perfilUpdate = true;
+    }
     this.formPerfil
       .get('identification')
       ?.setValue(data.result.acount.identification);

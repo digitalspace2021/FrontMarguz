@@ -17,17 +17,9 @@
       >
     </h1>
   </div>
-  <div class="col-4 mt-5" [hidden]="first_log_at">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Por favor actualice su perfil.</strong>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
+  <div class="col-4 mt-5" *ngIf="!first_log_at">
+    <div class="alert alert-danger" role="alert">
+      ¡ Favor actualizar el perfil !
     </div>
   </div>
 </div>
@@ -423,6 +415,15 @@
   *ngIf="show"
   (closeConfirm)="show = false"
   logo="assets/iconos/happyface.png"
+>
+</app-confirm>
+
+<app-confirm
+  title="Actualizar perfil"
+  msg="¡Por favor! Actualice su perfil"
+  buttonMsg="Aceptar"
+  *ngIf="perfilUpdate"
+  (closeConfirm)="perfilUpdate = false"
 >
 </app-confirm>
 
