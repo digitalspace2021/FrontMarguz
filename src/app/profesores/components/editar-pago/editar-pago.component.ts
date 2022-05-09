@@ -98,7 +98,7 @@ export class EditarPagoComponent implements OnInit {
 
   paymentPayu() {
     let referenceCode =
-      'Margus-teacher-hour-' + this.form.get('hourPayu')!.value;
+      'Margus-' + this.form.get('hourPayu')!.value + '-' + Math.random();
 
     let data = {
       referenceCode: referenceCode,
