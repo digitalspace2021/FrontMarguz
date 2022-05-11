@@ -2,12 +2,8 @@
   <div *ngFor="let horario of horarios; let i = index" class="horarioRow">
     <div class="horarioInput">
       <label class="horarioLabel" for="day">Dia</label>
-      <select
-        class="form-selects"
-        [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="horario.day"
-        aria-label="Default select example"
-      >
+      <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.day"
+        aria-label="Default select example">
         <option selected></option>
         <option value="Lunes">Lunes</option>
         <option value="Martes">Martes</option>
@@ -20,86 +16,23 @@
     </div>
     <div class="horarioInput">
       <label class="horarioLabel" for="start">Hora</label>
-      <select
-        class="form-selects"
-        [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="horario.start"
-        aria-label="Default select example"
-      >
+      <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.start"
+        aria-label="Default select example">
         <option selected></option>
-        <option value="1:00am">1:00 A.M.</option>
-        <option value="2:00am">2:00 A.M.</option>
-        <option value="3:00am">3:00 A.M.</option>
-        <option value="4:00am">4:00 A.M.</option>
-        <option value="5:00am">5:00 A.M.</option>
-        <option value="6:00am">6:00 A.M.</option>
-        <option value="7:00am">7:00 A.M.</option>
-        <option value="8:00am">8:00 A.M.</option>
-        <option value="9:00am">9:00 A.M.</option>
-        <option value="10:00am">10:00 A.M.</option>
-        <option value="11:00am">11:00 A.M.</option>
-        <option value="12:00m">12:00 M.</option>
-        <option value="1:00pm">1:00 P.M.</option>
-        <option value="2:00pm">2:00 P.M.</option>
-        <option value="3:00pm">3:00 P.M.</option>
-        <option value="4:00pm">4:00 P.M.</option>
-        <option value="5:00pm">5:00 P.M.</option>
-        <option value="6:00pm">6:00 P.M.</option>
-        <option value="7:00pm">7:00 P.M.</option>
-        <option value="8:00pm">8:00 P.M.</option>
-        <option value="9:00pm">9:00 P.M.</option>
-        <option value="10:00pm">10:00 P.M.</option>
-        <option value="11:00pm">11:00 P.M.</option>
-        <option value="0:00am">0:00 A.M.</option>
+        <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
       </select>
     </div>
     <div class="horarioInput">
       <label class="horarioLabel">-</label>
-      <select
-        class="form-selects"
-        [ngModelOptions]="{ standalone: true }"
-        [(ngModel)]="horario.end"
-        aria-label="Default select example"
-      >
+      <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.end"
+        aria-label="Default select example">
         <option selected></option>
-        <option value="1:00am">1:00 A.M.</option>
-        <option value="2:00am">2:00 A.M.</option>
-        <option value="3:00am">3:00 A.M.</option>
-        <option value="4:00am">4:00 A.M.</option>
-        <option value="5:00am">5:00 A.M.</option>
-        <option value="6:00am">6:00 A.M.</option>
-        <option value="7:00am">7:00 A.M.</option>
-        <option value="8:00am">8:00 A.M.</option>
-        <option value="9:00am">9:00 A.M.</option>
-        <option value="10:00am">10:00 A.M.</option>
-        <option value="11:00am">11:00 A.M.</option>
-        <option value="12:00m">12:00 M.</option>
-        <option value="1:00pm">1:00 P.M.</option>
-        <option value="2:00pm">2:00 P.M.</option>
-        <option value="3:00pm">3:00 P.M.</option>
-        <option value="4:00pm">4:00 P.M.</option>
-        <option value="5:00pm">5:00 P.M.</option>
-        <option value="6:00pm">6:00 P.M.</option>
-        <option value="7:00pm">7:00 P.M.</option>
-        <option value="8:00pm">8:00 P.M.</option>
-        <option value="9:00pm">9:00 P.M.</option>
-        <option value="10:00pm">10:00 P.M.</option>
-        <option value="11:00pm">11:00 P.M.</option>
-        <option value="0:00am">0:00 A.M.</option>
+        <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
       </select>
     </div>
     <div class="horarioAction">
-      <fa-icon
-        class="plusIcon"
-        (click)="addHorario()"
-        [icon]="plusIcon"
-      ></fa-icon>
-      <fa-icon
-        class="minusIcon"
-        (click)="eliminarHorario($event, i)"
-        [icon]="minusIcon"
-        *ngIf="i >= 1"
-      ></fa-icon>
+      <fa-icon class="plusIcon" (click)="addHorario()" [icon]="plusIcon"></fa-icon>
+      <fa-icon class="minusIcon" (click)="eliminarHorario($event, i)" [icon]="minusIcon" *ngIf="i >= 1"></fa-icon>
     </div>
   </div>
   <div class="horarioButton">

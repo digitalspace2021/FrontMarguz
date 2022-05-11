@@ -15,11 +15,33 @@
     <tr>
       <th scope="col" class="ajust scoppes"></th>
       <th scope="col" class="ajust" *ngFor="let day of range">
-     <span class="rangeDays">{{day | date: "EE dd"}}</span> <span class="date"></span>
+        <span class="rangeDays">{{day | date: "EE dd"}}</span> <span class="date"></span>
       </th>
     </tr>
   </thead>
   <tbody>
+
+    <tr scope="col" class="ajust"
+      *ngFor="let hour of ['8:00','9:00', '10:00','11:00','12:00','13:00','14:00','15:00','16:00' ]">
+      <th class="scoppes" scope="row"> {{hour}} </th>
+      <td class="dashed dashed-no-bordered" *ngFor="let day of range">
+        <ng-container *ngFor="let lesson of horarios">
+          <ng-container *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.start_hour)">
+            <span class="text text-center">
+              {{lesson.start_hour + '-' + lesson.end_hour}}</span>
+            <span style="float: right" *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.start_hour)">
+              <i class="fas fa-check-circle icon-marcadoAzul"></i>
+            </span>
+            <span class="text text-center" style=" text-transform: capitalize;"
+              *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.start_hour)">
+              <small style="cursor: pointer;" (click)="showModal()">Detalle</small>
+            </span>
+          </ng-container>
+        </ng-container>
+      </td>
+    </tr>
+
+    <!-- 
     <tr>
       <th class="scoppes" scope="row"></th>
       <td class="dashed"></td>
@@ -84,13 +106,8 @@
       <th class="scoppes" scope="row"></th>
       <td class="dashed"></td>
       <td class="dashed"></td>
-      <td
-        class="dashed marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span class="date_span">10:00 - 11:00</span
-        ><span class="name_span">Juliana</span>
+      <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span class="date_span">10:00 - 11:00</span><span class="name_span">Juliana</span>
       </td>
       <td class="dashed"></td>
       <td class="dashed"></td>
@@ -101,14 +118,8 @@
       <th class="scoppes" scope="row">12:00</th>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
-      <td
-        class="td-scoppes marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span style="float: right"
-          ><i class="fas fa-check-circle icon-marcado"></i
-        ></span>
+      <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span style="float: right"><i class="fas fa-check-circle icon-marcado"></i></span>
       </td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
@@ -120,13 +131,8 @@
       <td class="dashed"></td>
       <td class="dashed"></td>
       <td class="dashed"></td>
-      <td
-        class="dashed marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span class="date_span">10:00 - 11:00</span
-        ><span class="name_span">Juliana</span>
+      <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span class="date_span">10:00 - 11:00</span><span class="name_span">Juliana</span>
       </td>
       <td class="dashed"></td>
       <td class="dashed"></td>
@@ -137,14 +143,8 @@
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
-      <td
-        class="td-scoppes marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span style="float: right"
-          ><i class="fas fa-check-circle icon-marcado"></i
-        ></span>
+      <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span style="float: right"><i class="fas fa-check-circle icon-marcado"></i></span>
       </td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
@@ -153,23 +153,13 @@
     <tr>
       <th class="scoppes" scope="row"></th>
       <td class="dashed"></td>
-      <td
-        class="dashed marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span class="date_span">10:00 - 11:00</span
-        ><span class="name_span">Juliana</span>
+      <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span class="date_span">10:00 - 11:00</span><span class="name_span">Juliana</span>
       </td>
       <td class="dashed"></td>
       <td class="dashed"></td>
-      <td
-        class="dashed marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span class="date_span">10:00 - 11:00</span
-        ><span class="name_span">Juliana</span>
+      <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span class="date_span">10:00 - 11:00</span><span class="name_span">Juliana</span>
       </td>
       <td class="dashed"></td>
       <td class="dashed"></td>
@@ -177,76 +167,42 @@
     <tr>
       <th class="scoppes" scope="row">14:00</th>
       <td class="td-scoppes"></td>
-      <td
-        class="td-scoppes marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span style="float: right"
-          ><i class="fas fa-check-circle icon-marcado"></i
-        ></span>
+      <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span style="float: right"><i class="fas fa-check-circle icon-marcado"></i></span>
       </td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
-      <td
-        class="td-scoppes marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span style="float: right"
-          ><i class="fas fa-check-circle icon-marcado"></i
-        ></span>
+      <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span style="float: right"><i class="fas fa-check-circle icon-marcado"></i></span>
       </td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
     </tr>
     <tr>
       <th class="scoppes" scope="row"></th>
-      <td
-        class="dashed marcadoAzul dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span class="date_span">10:00 - 11:00</span
-        ><span class="name_span">Juliana</span>
+      <td class="dashed marcadoAzul dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span class="date_span">10:00 - 11:00</span><span class="name_span">Juliana</span>
       </td>
       <td class="dashed"></td>
       <td class="dashed"></td>
       <td class="dashed"></td>
       <td class="dashed"></td>
-      <td
-        class="dashed marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span class="date_span">10:00 - 11:00</span
-        ><span class="name_span">Juliana</span>
+      <td class="dashed marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span class="date_span">10:00 - 11:00</span><span class="name_span">Juliana</span>
       </td>
       <td class="dashed"></td>
     </tr>
     <tr>
       <th class="scoppes" scope="row">15:00</th>
-      <td
-        class="td-scoppes marcadoAzul dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span style="float: right"
-          ><i class="fas fa-check-circle icon-marcadoAzul"></i
-        ></span>
+      <td class="td-scoppes marcadoAzul dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span style="float: right"><i class="fas fa-check-circle icon-marcadoAzul"></i></span>
       </td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
-      <td
-        class="td-scoppes marcado dashed-no-bordered"
-        data-bs-toggle="modal"
-        data-bs-target="#modalDetallesAdmin"
-      >
-        <span style="float: right"
-          ><i class="fas fa-check-circle icon-marcado"></i
-        ></span>
+      <td class="td-scoppes marcado dashed-no-bordered" data-bs-toggle="modal" data-bs-target="#modalDetallesAdmin">
+        <span style="float: right"><i class="fas fa-check-circle icon-marcado"></i></span>
       </td>
       <td class="td-scoppes"></td>
     </tr>
@@ -269,6 +225,42 @@
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
       <td class="td-scoppes"></td>
-    </tr>
+    </tr> -->
   </tbody>
+
 </table>
+
+
+<app-modal-basic>
+
+  <div class="app-modal-body">
+    <h3 class="text-center title">Detalles de la clase</h3>
+    <p class="subtitle">Inglés nivel corporativo</p>
+    <br />
+    <div class="detalles-clase">
+      <p class="text-boldes">Alumno: <span>Stan Marsh</span></p>
+      <p class="text-boldes">Hora: <span>9:00 P.M.</span></p>
+      <p class="text-boldes">Fecha: <span>13 de Junio, 2021</span></p>
+      <p class="text-boldes">Descripción:</p>
+      <p class="text-boldes">
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Inventore odit modi itaque laborum iusto nulla. Maiores
+          repudiandae molestias ad consequatur recusandae incidunt, eius,
+          amet architecto eligendi excepturi impedit eos! Saepe?</span>
+      </p>
+      <p class="text-boldes">
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Inventore odit modi itaque laborum iusto nulla. Maiores
+          repudiandae molestias ad consequatur recusandae incidunt, eius,
+          amet architecto eligendi excepturi impedit eos! Saepe?</span>
+      </p>
+    </div>
+  </div>
+
+  <div class=" app-modal-footer ">
+
+    <button class="btn btn-xs btn-danger" (click)="closedModal()">Cerrar</button>
+
+  </div>
+
+</app-modal-basic>

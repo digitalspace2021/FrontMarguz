@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faCalendar, faMinusCircle, faPaperclip, faPlusCircle, faSave, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { PublicService } from 'src/app/public/services/public.service';
 import { getErrors } from 'src/app/shared/utils/get-errors';
+import { global } from 'src/environments/global';
 
 @Component({
     selector: 'app-editar-clase',
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit {
     student: any;
     teacher: any;
     id: any = null;
+    public hours = global.hours
 
 
     constructor(private service: PublicService, private route: ActivatedRoute) { }
@@ -48,10 +50,13 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
 
         this.route.queryParamMap
+
             .subscribe((params) => {
                 let obj: any = { ...params.keys, ...params }
                 this.myParams = obj.params.id
-            });
+            },
+                err => console.log(err)
+            );
 
         if (this.myParams != 0 && this.myParams != undefined) this.searchLesson()
     }
@@ -133,7 +138,7 @@ export class RegisterComponent implements OnInit {
             .searchLesson(this.myParams)
             .then((resp: any) => {
 
-                let data = resp.result[0]
+                let data = resp.result
                 this.horarios = data.lesson_schedules
                 this.price = data.amount
                 this.total = data.amount
@@ -146,7 +151,8 @@ export class RegisterComponent implements OnInit {
                 this.id = data.id
 
             })
-            .catch((e) => this.openError(getErrors(e)));
+            .catch((e) => console.log(e));
+        // .catch((e) => this.openError(getErrors(e)));
     }
 
 

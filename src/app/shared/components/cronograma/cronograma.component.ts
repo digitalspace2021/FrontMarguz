@@ -1,9 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input, OnInit, TemplateRef, ViewChild
+} from '@angular/core';
 import { DatePipe, formatNumber } from '@angular/common';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { PublicService } from 'src/app/public/services/public.service';
+import { ModalBasicComponent } from '../modal-basic/modal-basic.component';
 
 @Component({
   selector: 'app-cronograma',
@@ -17,11 +22,104 @@ export class CronogramaComponent implements OnInit {
   range: any;
   backRow = faChevronLeft;
   nextRow = faChevronRight;
-  constructor(private datePipe: DatePipe) {}
+  horarios: any;
+
+  @ViewChild(ModalBasicComponent) modal!: ModalBasicComponent
+
+
+  constructor(private datePipe: DatePipe, private service: PublicService) { }
 
   ngOnInit(): void {
     this.setDates(new Date());
+    this.searchLesson()
   }
+
+  searchLesson() {
+
+    this.horarios = [{
+      "id": 40,
+      "day": "nunes",
+      "start_hour": "8:00",
+      "end_hour": "14:00pm",
+      "lesson_id": 4,
+      "created_at": "2022-04-22T00:46:40.000000Z",
+      "updated_at": "2022-04-22T00:46:40.000000Z"
+    },
+    {
+      "id": 41,
+      "day": "martes",
+      "start_hour": "8:00",
+      "end_hour": "14:00pm",
+      "lesson_id": 4,
+      "created_at": "2022-04-22T00:46:40.000000Z",
+      "updated_at": "2022-04-22T00:46:40.000000Z"
+    },
+    {
+      "id": 42,
+      "day": "miércoles",
+      "start_hour": "12:00",
+      "end_hour": "14:00pm",
+      "lesson_id": 4,
+      "created_at": "2022-04-22T00:46:40.000000Z",
+      "updated_at": "2022-04-22T00:46:40.000000Z"
+    },
+    {
+      "id": 43,
+      "day": "jueves",
+      "start_hour": "8:00",
+      "end_hour": "14:00pm",
+      "lesson_id": 4,
+      "created_at": "2022-04-22T00:46:40.000000Z",
+      "updated_at": "2022-04-22T00:46:40.000000Z"
+    },
+    {
+      "id": 44,
+      "day": "viernes",
+      "start_hour": "8:00",
+      "end_hour": "11:00pm",
+      "lesson_id": 4,
+      "created_at": "2022-04-22T00:46:40.000000Z",
+      "updated_at": "2022-04-22T00:46:40.000000Z"
+    }]
+
+    // this.service
+    //   .searchLesson(4)
+    //   .then((resp: any) => {
+
+    //     let data = resp.result
+    //     this.horarios = data.lesson_schedules
+    //     console.log(this.horarios)
+
+    // this.price = data.amount
+    // this.total = data.amount
+    // this.count = 1
+    // this.idStudent = data.student_id
+    // this.idTeacher = data.teacher_id
+    // this.student = data.student
+    // this.teacher = data.teacher
+    // this.description = data.description
+    // this.id = data.id
+
+    // })
+    // .catch((e) => console.log(e));
+    // .catch((e) => this.openError(getErrors(e)));
+  }
+
+  showModal() {
+    this.service
+      .searchLesson(4)
+      .then((resp: any) => {
+        console.log(resp);
+        this.modal.show()
+
+      })
+      .catch((e) => console.log(e));
+  }
+
+  closedModal() {
+    this.modal.hide()
+  }
+
   setDates(date: Date) {
     this.inicioRange = new Date(date);
     this.finRange = new Date(this.inicioRange);

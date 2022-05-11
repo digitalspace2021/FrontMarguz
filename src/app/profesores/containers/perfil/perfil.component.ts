@@ -50,14 +50,14 @@ export class PerfilComponent implements OnInit {
   //-----------------
   formPerfil!: FormGroup;
   detallesDePago: any;
-  user:any;
+  user: any;
   myParams: any = null;
   msg: string = '';
   show: boolean = false;
 
   dataUsuario?: any;
   role: string = '';
-  urlId?:any;
+  urlId?: any;
 
   constructor(
     private authService: AuthService,
@@ -65,7 +65,7 @@ export class PerfilComponent implements OnInit {
     private usuarioSv: UsuarioService,
     private materiaSv: MateriaService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.urlId = new URL(location.href).searchParams.get('id');
@@ -111,11 +111,11 @@ export class PerfilComponent implements OnInit {
 
   loadData(data: any) {
     this.first_log_at = data.result.acount.first_log_at;
-    this.formPerfil .get('identification')?.setValue(data.result.acount.identification);
+    this.formPerfil.get('identification')?.setValue(data.result.acount.identification);
     this.formPerfil.get('lastname')?.setValue(data.result.lastname);
     this.formPerfil.get('name')?.setValue(data.result.name);
     this.formPerfil.get('cellphone')?.setValue(data.result.acount.cellphone);
-    this.formPerfil .get('title_professional')?.setValue(data.result.acount.title_professional);
+    this.formPerfil.get('title_professional')?.setValue(data.result.acount.title_professional);
     this.formPerfil.get('email')?.setValue(data.result.email);
     this.formPerfil.get('country')?.setValue(data.result.acount.country);
     this.formPerfil.get('state')?.setValue(data.result.acount.state);
