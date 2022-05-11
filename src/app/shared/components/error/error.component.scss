@@ -13,7 +13,21 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  .content-img{
+    width: 100%;
+    height: 31px;
+    position: absolute;
+    top: 62px;
+    display: flex;
+    justify-content: center;
+  }
   
+  .img-error{
+    width: 30px;
+    height: 32px;
+  }
+
   .blackBox {
     position: fixed;
     z-index: 8000;

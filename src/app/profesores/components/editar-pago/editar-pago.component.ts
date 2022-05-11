@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProfesoresService } from '../../services/profesores.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
@@ -23,6 +24,8 @@ export class EditarPagoComponent implements OnInit {
   keyPayu = 'B1562m9l83uepyKjqo6ShePSeR';
   quality!: string;
   currency!: string;
+  arrayUrl!: any;
+
   public payPalConfig?: IPayPalConfig;
 
   @Input() priceHour!: number;
@@ -31,7 +34,8 @@ export class EditarPagoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private profesoresSv: ProfesoresService
+    private profesoresSv: ProfesoresService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -96,33 +100,21 @@ export class EditarPagoComponent implements OnInit {
     let referenceCode =
       'Margus-teacher-hour-' + this.form.get('hourPayu')!.value;
 
-    let signature = this.md5
-      .appendStr(
-        this.keyPayu +
-          '508029' +
-          referenceCode +
-          this.totalPrice +
-          this.form.get('currency')!.value
-      )
-      .end();
-
     let data = {
-      merchantId: 508029,
-      accountId: this.accountId,
-      signature: signature,
       referenceCode: referenceCode,
       amount: this.totalPrice,
       currency: this.form.get('currency')!.value,
       buyerEmail: this.form.get('emailPayu')!.value,
       tax: 0,
       taxReturnBase: 0,
-      test: 0,
-      telephone: this.phone,
-      buyerFullName: this.name,
       description: this.form.get('description')!.value,
+      responseUrl: environment.host + 'public',
+      confirmationUrl: environment.host,
     };
-    this.profesoresSv.paymentPayu(data).subscribe((resp) => {
-      console.log(resp);
+
+    this.profesoresSv.paymentPayu(data).subscribe((resp: any) => {
+      this.arrayUrl = resp.result;
+      window.location.href = this.arrayUrl.url;
     });
   }
 

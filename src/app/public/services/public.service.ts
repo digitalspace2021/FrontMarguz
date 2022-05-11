@@ -1,5 +1,10 @@
 import { environment } from './../../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams, HttpParamsOptions } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpParamsOptions,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,23 +16,22 @@ const env = environment.host;
 })
 export class PublicService {
   address = env + 'admin/profile';
+  addressSche = env + 'user/schedulesavailable/';
+
   user = localStorage.getItem('user') || undefined;
   headers!: HttpHeaders;
 
-  token = localStorage.getItem('user') || '';;
+  token = localStorage.getItem('user') || '';
   httpOptions = {};
 
-
-
-
   constructor(private http: HttpClient) {
-
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + JSON.parse(this.token)?.access_token
-      })
-    };
-
+    if (this.token) {
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + JSON.parse(this.token)?.access_token,
+        }),
+      };
+    }
   }
 
   generarToken() {
@@ -45,50 +49,58 @@ export class PublicService {
 
   searchTearcher(data: any) {
     let url = `${env}users/search/teachers`;
-    return this.http.post(url, data, { headers: this.headers });
+    return this.http.post(url, data);
+  }
+
+  getScheduledPublic(id: number) {
+    let url = `${this.addressSche}${id}`;
+    return this.http.get(url);
   }
 
   searchStudentPost(term: any) {
-
-    this.generarToken()
-    const httpParams: HttpParamsOptions = { fromObject: { 'search': term } } as HttpParamsOptions;
-    const options = { params: new HttpParams(httpParams), headers: this.headers };
+    this.generarToken();
+    const httpParams: HttpParamsOptions = {
+      fromObject: { search: term },
+    } as HttpParamsOptions;
+    const options = {
+      params: new HttpParams(httpParams),
+      headers: this.headers,
+    };
 
     if (term === '') {
       return of([]);
     }
-    return this.http
-      .get<[any, string[]]>(env + "users/students", options).pipe(
-        map((response: any) => {
-          return response.result
-        })
-      );
+    return this.http.get<[any, string[]]>(env + 'users/students', options).pipe(
+      map((response: any) => {
+        return response.result;
+      })
+    );
   }
 
   searchTearcherPost(term: any) {
-    this.generarToken()
-    const options = { params: { 'search': term }, headers: this.headers };
+    this.generarToken();
+    const options = { params: { search: term }, headers: this.headers };
     if (term === '') {
       return of([]);
     }
-    return this.http
-      .get<[any, string[]]>(env + "users/teachers", options).pipe(
-        map((response: any) => {
-          return response.result
-        })
-      );
+    return this.http.get<[any, string[]]>(env + 'users/teachers', options).pipe(
+      map((response: any) => {
+        return response.result;
+      })
+    );
   }
 
   getSchedule(term: any) {
-    this.generarToken()
+    this.generarToken();
     if (term === '') {
       return of([]);
     }
 
     return this.http
-      .get<[any, string[]]>(env + `user/schedulesavailable/${term}`).pipe(
+      .get<[any, string[]]>(env + `user/schedulesavailable/${term}`)
+      .pipe(
         map((response: any) => {
-          return response.result
+          return response.result;
         })
       );
   }
@@ -98,10 +110,9 @@ export class PublicService {
     return this.http.get(url, { headers: this.headers });
   }
 
-
   saveClass(form: FormData, id = null) {
-
-    let endPoint = (id != null) ? env + 'admin/lesson/update/' + id : env + 'admin/lesson';
+    let endPoint =
+      id != null ? env + 'admin/lesson/update/' + id : env + 'admin/lesson';
 
     return new Promise((resolve, reject) => {
       this.http.post<any>(endPoint, form, this.httpOptions).subscribe(
@@ -116,19 +127,19 @@ export class PublicService {
   }
 
   searchLesson(id: number) {
-
     let endPoint = env + 'admin/lesson/' + id;
-    this.generarToken()
+    this.generarToken();
     return new Promise((resolve, reject) => {
-      this.http.get<any>(endPoint, { params: {}, headers: this.headers }).subscribe(
-        (data: any) => {
-          resolve(data);
-        },
-        (error: any) => {
-          reject(error.error.errors);
-        }
-      );
+      this.http
+        .get<any>(endPoint, { params: {}, headers: this.headers })
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(error.error.errors);
+          }
+        );
     });
   }
-
 }

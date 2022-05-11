@@ -59,7 +59,7 @@
                 class="fas fa-globe-americas"
                 style="color: #2f80ed; margin-left: 5px"
                 ><b style="margin-left: 5px" class="country">{{
-                  profesor.acount.country
+                  profesor.acount.country.name
                 }}</b></i
               >
               <br />
@@ -94,6 +94,12 @@
         <br />
         <div class="caja-blanca mt-5">
           <p class="horary">Horarios disponibles</p>
+          <p style="margin-top: -20px; margin-left: 9px">
+            <small class="text-danger">
+              las horas marcadas en <strong>blanco</strong> estan
+              asgnados</small
+            >
+          </p>
           <div class="table mt-2">
             <full-calendar [options]="calendarOptions"></full-calendar>
           </div>

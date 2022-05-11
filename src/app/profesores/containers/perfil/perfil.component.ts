@@ -54,6 +54,7 @@ export class PerfilComponent implements OnInit {
   myParams: any = null;
   msg: string = '';
   show: boolean = false;
+  perfilUpdate: boolean = false;
 
   dataUsuario?: any;
   role: string = '';
@@ -101,21 +102,34 @@ export class PerfilComponent implements OnInit {
       this.myParams = obj.params.id;
     });
 
-    this.usuarioSv
-      .getUsuario(this.myParams)
-      .subscribe((resp) => {
-        this.user = resp;
-        this.loadData(resp)
-      });
+    this.usuarioSv.getUsuario(this.myParams).subscribe((resp) => {
+      this.user = resp;
+      this.loadData(resp);
+    });
   }
 
   loadData(data: any) {
     this.first_log_at = data.result.acount.first_log_at;
+<<<<<<< HEAD
     this.formPerfil.get('identification')?.setValue(data.result.acount.identification);
     this.formPerfil.get('lastname')?.setValue(data.result.lastname);
     this.formPerfil.get('name')?.setValue(data.result.name);
     this.formPerfil.get('cellphone')?.setValue(data.result.acount.cellphone);
     this.formPerfil.get('title_professional')?.setValue(data.result.acount.title_professional);
+=======
+    if (!this.first_log_at) {
+      this.perfilUpdate = true;
+    }
+    this.formPerfil
+      .get('identification')
+      ?.setValue(data.result.acount.identification);
+    this.formPerfil.get('lastname')?.setValue(data.result.lastname);
+    this.formPerfil.get('name')?.setValue(data.result.name);
+    this.formPerfil.get('cellphone')?.setValue(data.result.acount.cellphone);
+    this.formPerfil
+      .get('title_professional')
+      ?.setValue(data.result.acount.title_professional);
+>>>>>>> 621eb4aa2f6231f889a60e4e594ab57a3cc8eb65
     this.formPerfil.get('email')?.setValue(data.result.email);
     this.formPerfil.get('country')?.setValue(data.result.acount.country);
     this.formPerfil.get('state')?.setValue(data.result.acount.state);
