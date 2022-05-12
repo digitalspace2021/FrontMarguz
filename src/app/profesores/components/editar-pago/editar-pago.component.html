@@ -103,7 +103,12 @@
       </div>
       <div class="modal-footer">
         <div class="col-12" [hidden]="!form.valid">
-          <button type="button" class="btn-payu" (click)="paymentPayu()">
+          <button
+            type="button"
+            [hidden]="form.get('description')!.value == ''"
+            class="btn-payu"
+            (click)="paymentPayu()"
+          >
             Payu
           </button>
           <ngx-paypal [config]="payPalConfig"></ngx-paypal>
