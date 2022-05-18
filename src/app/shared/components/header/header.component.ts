@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
@@ -52,14 +53,18 @@ export class HeaderComponent implements OnInit {
   setState() {
     this.initState();
     let isAuthenticated = this.authService.isAuthenticated();
+
     if (isAuthenticated) {
       this.dataUsuario = localStorage.getItem('user');
       this.dataUsuario = JSON.parse(this.dataUsuario);
       this.usuario =
         this.dataUsuario.user.name + ' ' + this.dataUsuario.user.lastname;
-      this.fotoLink = this.dataUsuario.user.fotoLink_perfil
-        ? this.dataUsuario.user.fotoLink_perfil
+
+      this.fotoLink = this.dataUsuario.user.acount.url_photo_perfil
+        ? environment.media + this.dataUsuario.user.acount.url_photo_perfil
         : 'assets/avatar-icon.jpg';
+
+      console.log(this.fotoLink, 'xxxxxxxxxxxxx');
 
       let tipoUsuario = this.authService.getTipoUsuario();
 
@@ -85,6 +90,7 @@ export class HeaderComponent implements OnInit {
   menuActive(mnu: number) {
     this.mnuActive = mnu;
   }
+
   async logout() {
     await this.authService.logout();
     this.router.navigate(['/']);

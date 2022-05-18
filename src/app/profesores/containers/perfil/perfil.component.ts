@@ -104,6 +104,7 @@ export class PerfilComponent implements OnInit {
 
     this.usuarioSv.getUsuario(this.myParams).subscribe((resp) => {
       this.user = resp;
+      console.log(this.myParams, 'desde perfil', resp);
       this.loadData(resp);
     });
   }

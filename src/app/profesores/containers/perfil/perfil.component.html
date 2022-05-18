@@ -375,8 +375,11 @@
   </div>
 </div>
 
+<!-- <app-confirm title="Actualización exitosa" [msg]="msg" buttonMsg="Aceptar" *ngIf="show" (closeConfirm)="show = false"
+  logo="./happyface.png"> -->
+
 <app-confirm title="Actualización exitosa" [msg]="msg" buttonMsg="Aceptar" *ngIf="show" (closeConfirm)="show = false"
-  logo="./happyface.png">
+  logo="assets/iconos/happyface.png">
 </app-confirm>
 
 <app-confirm title="Actualizar perfil" msg="¡Por favor! Actualice su perfil" buttonMsg="Aceptar" *ngIf="perfilUpdate"
