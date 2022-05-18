@@ -11,6 +11,7 @@ import { EditarHorarioComponent } from './containers/editar-horario/editar-horar
 import { EditarClaseComponent } from './containers/editar-clase/editar-clase.component';
 import { CalendarioComponent } from './containers/calendario/calendario.component';
 import { RegisterComponent } from './containers/class/register.component';
+import { ListaPagosComponent } from './containers/lista-pagos/lista-pagos.component';
 
 const routes: Routes = [
   {
@@ -19,45 +20,48 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: CalendarioComponent
+        component: CalendarioComponent,
       },
       {
         path: 'admin-usuario',
-        component: ListaUsuariosComponent
+        component: ListaUsuariosComponent,
       },
       {
         path: 'admin-materia',
-        component: ListaMateriasComponent
+        component: ListaMateriasComponent,
       },
       {
         path: 'admin-clase',
-        component: ListaClasesComponent
+        component: ListaClasesComponent,
       },
       {
         path: 'editar-estudiante',
-        component: EditarEstudianteComponent
+        component: EditarEstudianteComponent,
       },
       {
         path: 'editar-profesor',
-        component: EditarProfesorComponent
+        component: EditarProfesorComponent,
       },
       {
         path: 'editar-horario',
-        component: EditarHorarioComponent
+        component: EditarHorarioComponent,
       },
       {
         path: 'editar-clase',
-        component: EditarClaseComponent
+        component: EditarClaseComponent,
       },
       {
         path: 'class-create',
-        component: RegisterComponent
+        component: RegisterComponent,
+      },
+      {
+        path: 'admin-pago',
+        component: ListaPagosComponent,
       },
       {
         path: '**',
-        redirectTo: ""
-
-      }
+        redirectTo: '',
+      },
     ],
   },
 ];
@@ -66,4 +70,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

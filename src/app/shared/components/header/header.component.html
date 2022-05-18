@@ -28,6 +28,14 @@
       >
         <a class="nav-link" href="admin/admin-clase">Clases</a>
       </li>
+      <li
+        class="nav-item"
+        [ngClass]="{ active: mnuActive == 4 }"
+        (click)="menuActive(4)"
+        style="margin-right: 10px"
+      >
+        <a class="nav-link" href="admin/admin-pago">Pagos</a>
+      </li>
     </ul>
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item item">

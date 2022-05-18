@@ -1,0 +1,96 @@
+<!-- Header -->
+<div class="row mt-4 mb-3">
+  <div class="col-md-6">
+    <h1 style="color: #e31b36">
+      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px"
+        >Pagos</sup
+      >
+    </h1>
+  </div>
+</div>
+
+<!-- Table -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-2 col-lg-2">
+            <label class="form-label">Idioma</label>
+            <select class="form-control"></select>
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-6 col-lg-6">
+            <label class="form-label">Busqueda: </label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-3 col-xl-3 col-lg-3">
+            <label class="form-label">Fecha: </label>
+            <input type="date" class="form-control" />
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-2 col-xl-1 col-lg-1 pt-4">
+            <button class="btn btn-primary" style="margin-top: 6px">
+              <fa-icon
+                style="font-size: 14px; color: white"
+                [icon]="search"
+              ></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-sm table-hover table-stripped text-left">
+            <thead>
+              <tr>
+                <th width="50">Id</th>
+                <th width="100">Fecha</th>
+                <th width="200">Estudiante</th>
+                <th width="200">Profesor</th>
+                <th width="200">Idiomas Contratado</th>
+                <th width="100">Valor</th>
+                <th width="100">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let pago of pagos
+                    | paginate: { itemsPerPage: 10, currentPage: page }
+                "
+              >
+                <td>1</td>
+                <td>16-05-2022</td>
+                <td>xxxxxxxxxx</td>
+                <td>xxxxxxxxxx</td>
+                <td>
+                  <button class="btn btn-primary">
+                    <fa-icon
+                      style="font-size: 14px; color: white"
+                      [icon]="eye"
+                    ></fa-icon>
+                  </button>
+                </td>
+                <td>20</td>
+                <td>
+                  <button class="btn btn-primary">
+                    <fa-icon
+                      style="font-size: 14px; color: white"
+                      [icon]="edit"
+                    ></fa-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pagination-controls
+          class="paginado"
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Proximo"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

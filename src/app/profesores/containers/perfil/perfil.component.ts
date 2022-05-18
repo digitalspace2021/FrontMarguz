@@ -58,7 +58,7 @@ export class PerfilComponent implements OnInit {
 
   dataUsuario?: any;
   role: string = '';
-  urlId?:any;
+  urlId?: any;
 
   constructor(
     private authService: AuthService,
@@ -104,6 +104,7 @@ export class PerfilComponent implements OnInit {
 
     this.usuarioSv.getUsuario(this.myParams).subscribe((resp) => {
       this.user = resp;
+      console.log(this.myParams, 'desde perfil', resp);
       this.loadData(resp);
     });
   }
