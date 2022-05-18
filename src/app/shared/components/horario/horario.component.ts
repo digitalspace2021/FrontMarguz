@@ -14,7 +14,7 @@ export class HorarioComponent implements OnInit {
   saveIcon = faSave;
   @Input() horarios: any = [
     {
-      day: 'Lunes',
+      day: 'lunes',
       start: '8:00',
       end: '14:00',
     },
@@ -27,7 +27,7 @@ export class HorarioComponent implements OnInit {
 
   addHorario() {
     this.horarios.push({
-      day: 'Lunes',
+      day: 'lunes',
       start: '8:00',
       end: '12:00',
     });

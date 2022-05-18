@@ -9,7 +9,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 export class CalendarioComponent implements OnInit {
   flechaIzquierda = faChevronLeft;
   flechaDerecha = faChevronRight;
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     /* 
@@ -47,20 +47,20 @@ export class CalendarioComponent implements OnInit {
         'Dic',
       ],
       dayNames: [
-        'Domingo',
-        'Lunes',
-        'Martes',
+        'domingo',
+        'lunes',
+        'martes',
         'Miércoles',
-        'Jueves',
-        'Viernes',
+        'jueves',
+        'viernes',
         'Sábado',
       ],
       dayNamesShort: ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB'],
       dayNamesMin: ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB'],
     });
   */
-  
-  
+
+
 
   }
 }

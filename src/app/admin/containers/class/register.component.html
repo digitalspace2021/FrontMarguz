@@ -1,93 +1,101 @@
 <div class="row">
   <div class="col-12 mt-3">
     <img src="assets/Logo/Vector.svg" class="img-fluid" style="position: relative; bottom: 13px; margin-right: 10px" />
-    <h1 class="d-inline-block edit_perfil mb-4">
-      Nueva Clase
+    <h1 class="d-inline-block edit_perfil mb-4 text-danger">
+      {{(myParams != 0) ? 'Actualización de Clases' : ' Nueva Clase'}}
     </h1>
   </div>
 </div>
 <div class="container card">
   <div class="row p-3 text-center">
 
-    <div class="col-md-6">
-      <label for="" class="col-form-label">Estudiante</label>
-      <app-search [method]="1" [model]="student" (prop)="getStudenId($event)"></app-search>
-    </div>
-
-    <div class="col-md-6">
-      <label for="" class="col-form-label">Docente</label>
-      <app-search [method]="0" [model]="teacher" (prop)="getSchedule($event)" (price)="getPrice($event)"></app-search>
-    </div>
-
-    <div class="col-md-6">
-      <label for="" class="col-form-label"># De Semanas</label>
-      <input type="text" class="form-control" [(ngModel)]="count" (ngModelChange)="getTotal()">
-    </div>
-
-    <div class="col-md-6">
-      <label for="" class="col-form-label">Total</label>
-      <input class="form-control" [(ngModel)]="total" readonly>
-    </div>
-
-    <div class="col-md-6">
-      <label for="" class="col-form-label">Descripción</label>
-      <textarea class="form-control" [(ngModel)]="description"></textarea>
-    </div>
-
-    <form>
-      <div *ngFor="let horario of horarios; let i = index" class="horarioRow pt-5">
-        <div class="horarioInput">
-          <label class="horarioLabel" for="day">Dia</label>
-          <select class="form-selects" disabled="true" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.day"
-            aria-label="Default select example">
-            <option selected></option>
-            <option value="Lunes">Lunes</option>
-            <option value="Martes">Martes</option>
-            <option value="Miercoles">Miércoles</option>
-            <option value="Jueves">Jueves</option>
-            <option value="Viernes">Viernes</option>
-            <option value="Sabado">Sábado</option>
-            <option value="Domingo">Domingo</option>
-          </select>
-        </div>
-        <div class="horarioInput">
-          <label class="horarioLabel" for="start">Hora</label>
-          <select class="form-selects" disabled="true" [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="horario.startTime" aria-label="Default select example">
-            <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
-
-          </select>
-        </div>
-        <div class="horarioInput">
-          <label class="horarioLabel">-</label>
-          <select class="form-selects" disabled="true" [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="horario.endTime" aria-label="Default select example">
-            <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
-          </select>
-        </div>
-
-        <!-- Rounded switch -->
-        <div class="text-center">
-          Estado
-          <label class="switch mx-3">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </div>
-
-        <div class="horarioAction">
-          <fa-icon class="minusIcon" (click)="eliminarHorario($event, i)" [icon]="minusIcon"></fa-icon>
-        </div>
-
+    <ng-container *ngIf="currentUSer != 'Teacher'">
+      <div class="col-md-6">
+        <label for="" class="col-form-label">Estudiante</label>
+        <app-search [method]="1" [model]="student" (prop)="getStudenId($event)"></app-search>
       </div>
-      <div class="horarioButton">
-        <button class="btn" (click)="save()">
-          <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
-          <p>Guardar</p>
-        </button>
-      </div>
-    </form>
 
+      <div class="col-md-6">
+        <label for="" class="col-form-label">Docente</label>
+        <app-search [method]="0" [model]="teacher" (prop)="getSchedule($event)" (price)="getPrice($event)"></app-search>
+      </div>
+
+      <div class="col-md-6">
+        <label for="" class="col-form-label"># De Semanas</label>
+        <input type="text" class="form-control" [(ngModel)]="count" (ngModelChange)="getTotal()">
+      </div>
+
+      <div class="col-md-6">
+        <label for="" class="col-form-label">Total</label>
+        <input class="form-control" [(ngModel)]="total" readonly>
+      </div>
+
+      <div class="col-md-6">
+        <label for="" class="col-form-label">Descripción</label>
+        <textarea class="form-control" [(ngModel)]="description"></textarea>
+      </div>
+
+    </ng-container>
+
+    <div class="col-12">
+      <form class="form row">
+
+        <div *ngFor="let horario of horarios; let i = index" class="horarioRow pt-5">
+          <div class="horarioInput">
+            <label class="horarioLabel" for="day">Dia</label>
+            <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.day"
+              aria-label="Default select example">
+              <option selected></option>
+              <option value="lunes">lunes</option>
+              <option value="martes">martes</option>
+              <option value="miércoles">Miércoles</option>
+              <option value="jueves">jueves</option>
+              <option value="viernes">viernes</option>
+              <option value="sábado">Sábado</option>
+              <option value="domingo">domingo</option>
+            </select>
+          </div>
+          <div class="horarioInput">
+            <label class="horarioLabel" for="start">Hora</label>
+            <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.startTime"
+              aria-label="Default select example">
+              <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+            </select>
+          </div>
+          <div class="horarioInput">
+            <label class="horarioLabel">-</label>
+            <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.endTime"
+              aria-label="Default select example">
+              <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+            </select>
+          </div>
+
+          <div class="m-3">
+            <input type="checkbox" class="toggle" id="toggle" value="true" [(ngModel)]="horario.status"
+              [ngModelOptions]="{ standalone: true }" />
+            <label for="toggle">
+              <span class="on">Aprobado</span>
+              <span class="off">Pospuesto</span>
+            </label>
+          </div>
+
+          <div class="horarioInput mx-2">
+            <textarea class="form-control" [(ngModel)]="horario.teacherDescription"
+              [ngModelOptions]=" { standalone: true }" placeholder="descripción"></textarea>
+          </div>
+          <div class="horarioAction" *ngIf="currentUSer != 'Teacher'">
+            <fa-icon class="minusIcon" (click)="eliminarHorario($event, i)" [icon]="minusIcon"></fa-icon>
+          </div>
+
+        </div>
+        <div class="horarioButton">
+          <button class="btn" (click)="save()">
+            <fa-icon class="saveIcon" [icon]="saveIcon"></fa-icon>
+            <p>Guardar</p>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 
 </div>
@@ -99,3 +107,5 @@
 <app-confirm (closeConfirm)="isRegistroExitoso = false" [title]="titleConfirm" [msg]="registroExitosoMessage"
   buttonMsg="Aceptar" *ngIf="isRegistroExitoso">
 </app-confirm>
+
+<app-loader *ngIf="load"></app-loader>

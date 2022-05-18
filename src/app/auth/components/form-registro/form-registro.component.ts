@@ -33,7 +33,7 @@ import { listaMensaje, listaTipoMensaje } from 'src/app/shared/enum/listaMensaje
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
-  @ViewChild("mostrarModal") mostrarModal! : ElementRef<HTMLInputElement>;
+  @ViewChild("mostrarModal") mostrarModal!: ElementRef<HTMLInputElement>;
 
   public mensajeGuardado = listaTipoMensaje.almacenado;
 
@@ -59,7 +59,7 @@ export class FormRegistroComponent implements OnInit {
   states: any;
   cities: any;
 
-  horarios:any[] = [];
+  horarios: any[] = [];
 
   idiomas: Array<any> = [];
   IdiomasAsing: any;
@@ -93,14 +93,14 @@ export class FormRegistroComponent implements OnInit {
 
   ngOnInit() {
     this.horarios = this.data.count?.schedules_available
-    ?
-    this.data.acount?.schedules_available
-    :
-    [{
-        day: 'Lunes',
+      ?
+      this.data.acount?.schedules_available
+      :
+      [{
+        day: 'lunes',
         start: '8:00am',
         end: '2:00pm'
-    }];
+      }];
 
     this.registroForm = new FormGroup(
 
@@ -311,7 +311,7 @@ export class FormRegistroComponent implements OnInit {
         form: this.registroForm,
         horarios: this.horarios,
         idiomas: this.idiomas,
-        modal : this.mostrarModal
+        modal: this.mostrarModal
       };
       this.registrar.emit(value);
     } catch (e: any) {
@@ -319,13 +319,13 @@ export class FormRegistroComponent implements OnInit {
     }
   }
 
-  load(visible: boolean=true) {
+  load(visible: boolean = true) {
     let elemento = document.querySelector(".containerload");
     if (elemento != null) {
-      if(visible){
-      elemento.classList.add("loadvisible");
+      if (visible) {
+        elemento.classList.add("loadvisible");
       }
-      else{
+      else {
         elemento.classList.remove("loadvisible");
       }
     }

@@ -26,26 +26,34 @@
               <thead>
                 <tr>
                   <th></th>
+                  <th>ID</th>
                   <th>Profesor</th>
-                  <!-- <th>Hora</th> -->
                   <th>Fecha</th>
+                  <th>Dias</th>
                   <th>Estado</th>
+                  <th>Completadas</th>
                   <th>Cantidad</th>
                 </tr>
               </thead>
               <tbody>
-                <ng-container *ngFor="let clase of clases">
-                  <tr *ngFor="let lesson of clase">
-                    <td><input type="checkbox" [value]="clase.id" (click)="addClass($event)" /></td>
-                    <td>
-                      <a href="javascript:;">{{ clase?.lesson_schedules?.teacher?.name }} {{clase?.teacher?.lastname}}
-                      </a>
-                    </td>
-                    <td>{{ lesson.start_hour }} - {{ lesson.end_hour }} </td>
-                    <td>{{ clase.dateStart }}</td>
-                    <td>{{ clase.complete }}</td>
-                    <td>
-                      <!-- <div class="dropdown">
+                <!-- <ng-container *ngFor="let clase of clases"> -->
+                <tr *ngFor="let lesson of clases">
+                  <td><input type="checkbox" [value]="lesson.id" (click)="addClass($event)" /></td>
+                  <td>{{ lesson.id }}</td>
+                  <td>
+                    <a href="javascript:;">{{ lesson?.teacher?.name }} {{lesson?.teacher?.lastname}}
+                    </a>
+                  </td>
+                  <!-- <td>{{ lesson.start_hour }} - {{ lesson.end_hour }} </td> -->
+                  <td>{{ lesson.dateStart }}</td>
+                  <td><span *ngFor="let days of lesson.lesson_schedules">
+                      {{days.day}}
+                    </span></td>
+                  <td>{{ lesson.complete ? 'completado' : 'No completado' }}</td>
+                  <td>{{ lesson.lessonComplete }}</td>
+                  <td>{{ lesson.quantity }}</td>
+                  <td>
+                    <!-- <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" [ngStyle]="{
                           color: clase.estado == 'Realizada' ? 'green' : 'red'
                         }" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,11 +72,11 @@
                           </li>
                         </ul>
                       </div> -->
-                    </td>
+                  </td>
 
-                    <td>{{ clase.totalLesson }}</td>
-                  </tr>
-                </ng-container>
+                  <!-- <td>{{ clase.totalLesson }}</td> -->
+                </tr>
+                <!-- </ng-container> -->
               </tbody>
             </table>
           </div>
