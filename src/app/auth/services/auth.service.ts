@@ -11,7 +11,7 @@ const env = environment.host;
 export class AuthService {
   address = env + 'auth/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   restaurePassword(data: any) {
     let endPoint = env + 'password/reset';
@@ -29,7 +29,7 @@ export class AuthService {
 
   resetPassword(email: string) {
     let endPoint = env + 'password/reset-request';
-    return this.http.post<any>(endPoint, { email: email })
+    return this.http.post<any>(endPoint, { email: email });
 
     // return new Promise((resolve, reject) => {
     //   this.http.post<any>(endPoint, { email: email }).subscribe(
@@ -59,7 +59,6 @@ export class AuthService {
   }
 
   updateTeacher(formData: FormData, id: number) {
-
     let endPoint = env + 'admin/profile/teacher/' + id;
     if (!id) endPoint = env + 'teacher/profile/teacher';
 
@@ -77,7 +76,6 @@ export class AuthService {
   }
 
   updateStudent(formData: FormData, id: number) {
-
     let endPoint = env + 'admin/profile/student/' + id;
     if (!id) endPoint = env + 'student/profile/student';
 

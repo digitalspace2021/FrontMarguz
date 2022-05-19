@@ -1,6 +1,6 @@
 import { environment } from './../../../../environments/environment';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -18,17 +18,11 @@ export class HeaderComponent implements OnInit {
   isAuth: boolean = false;
   isAdmin: boolean = false;
   isEstudiante: boolean = false;
-
   dataUsuario?: any;
-
   usuario?: string;
   fotoLink?: string;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private activeRoute: ActivatedRoute
-  ) {
+  constructor(private authService: AuthService, private router: Router) {
     router.events.subscribe((val) => {
       // see also
       if (val instanceof NavigationEnd) {
@@ -63,8 +57,6 @@ export class HeaderComponent implements OnInit {
       this.fotoLink = this.dataUsuario.user.acount.url_photo_perfil
         ? environment.media + this.dataUsuario.user.acount.url_photo_perfil
         : 'assets/avatar-icon.jpg';
-
-      console.log(this.fotoLink, 'xxxxxxxxxxxxx');
 
       let tipoUsuario = this.authService.getTipoUsuario();
 
