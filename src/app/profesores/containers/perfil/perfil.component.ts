@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
     private usuarioSv: UsuarioService,
     private materiaSv: MateriaService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.urlId = new URL(location.href).searchParams.get('id');
@@ -111,6 +111,14 @@ export class PerfilComponent implements OnInit {
 
   loadData(data: any) {
     this.first_log_at = data.result.acount.first_log_at;
+
+
+    // this.formPerfil.get('identification')?.setValue(data.result.acount.identification);
+    // this.formPerfil.get('lastname')?.setValue(data.result.lastname);
+    // this.formPerfil.get('name')?.setValue(data.result.name);
+    // this.formPerfil.get('cellphone')?.setValue(data.result.acount.cellphone);
+    // this.formPerfil.get('title_professional')?.setValue(data.result.acount.title_professional);
+
     if (!this.first_log_at) {
       this.perfilUpdate = true;
     }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faCalendar, faMinusCircle, faPaperclip, faPlusCircle, faSave, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { PublicService } from 'src/app/public/services/public.service';
 import { getErrors } from 'src/app/shared/utils/get-errors';
+import { global } from 'src/environments/global';
 
 @Component({
     selector: 'app-editar-clase',
@@ -41,6 +42,9 @@ export class RegisterComponent implements OnInit {
     student: any;
     teacher: any;
     id: any = null;
+    public hours = global.hours
+    public load: boolean = false;
+    public currentUSer: any = JSON.parse(localStorage.getItem('user') as any).user.role;
 
 
     constructor(private service: PublicService, private route: ActivatedRoute) { }
@@ -50,8 +54,10 @@ export class RegisterComponent implements OnInit {
         this.route.queryParamMap
             .subscribe((params) => {
                 let obj: any = { ...params.keys, ...params }
-                this.myParams = obj.params.id
-            });
+                if (obj.params.id) this.myParams = obj.params.id
+            },
+                err => console.log(err)
+            );
 
         if (this.myParams != 0 && this.myParams != undefined) this.searchLesson()
     }
@@ -95,22 +101,32 @@ export class RegisterComponent implements OnInit {
 
     save() {
 
+        this.load = true;
+
         let formData = new FormData
 
         formData.append('teacher_id', String(this.idTeacher));
         formData.append('student_id', String(this.idStudent));
         formData.append('amount', String(this.total));
-        formData.append('description', this.description);
+        formData.append('description', String(this.description));
         formData.append('quantity', String(this.count));
         formData.append('email', 'emailfalse@gmail.com');
 
         this.horarios.forEach((elements: any, index: any) => {
+
+            console.log(elements);
+
             formData.append('schedules_available[' + index + '][day]', elements.day
             );
-            formData.append('schedules_available[' + index + '][start]', elements.start_hour
+            formData.append('schedules_available[' + index + '][start]', elements.startTime
             );
-            formData.append('schedules_available[' + index + '][end]', elements.end_hour
+            formData.append('schedules_available[' + index + '][end]', elements.endTime
             );
+
+            formData.append('schedules_available[' + index + '][teacherDescription]', elements.teacherDescription);
+            formData.append('schedules_available[' + index + '][status]', elements.status);
+
+
         });
 
 
@@ -119,8 +135,12 @@ export class RegisterComponent implements OnInit {
             .then((resp: any) => {
                 if (resp.code == 201) {
                     this.openConfirm();
+                    this.load = false;
+
                 } else {
                     this.openError(resp.message);
+                    this.load = false;
+
                 }
             })
             .catch((e) => this.openError(getErrors(e)));
@@ -130,10 +150,10 @@ export class RegisterComponent implements OnInit {
 
     searchLesson() {
         this.service
-            .searchLesson(this.myParams)
+            .searchLesson2(this.myParams)
             .then((resp: any) => {
 
-                let data = resp.result[0]
+                let data = resp.result
                 this.horarios = data.lesson_schedules
                 this.price = data.amount
                 this.total = data.amount
@@ -146,7 +166,8 @@ export class RegisterComponent implements OnInit {
                 this.id = data.id
 
             })
-            .catch((e) => this.openError(getErrors(e)));
+            .catch((e) => console.log(e));
+        // .catch((e) => this.openError(getErrors(e)));
     }
 
 

@@ -71,7 +71,7 @@
         </p>
       </div>
     </div>
-    <div class="text-center mb-3" *ngIf="TypeUser == 'Teacher'">
+    <div class="text-center mb-3" *ngIf="TypeUser == 'Teacher' || TypeUser == 'Admin'">
       <button type="button" class="btn btn-success bs" (click)="approve()">Aprobar</button>
       <button type="button" class="btn btn-primary bs" (click)="goEdit()">Modificar</button>
     </div>
@@ -108,3 +108,5 @@
   </div>
 
 </app-modal-basic>
+
+<app-loader *ngIf="load"></app-loader>

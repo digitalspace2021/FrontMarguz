@@ -1,191 +1,198 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <style>
-            label{
-                display: inline-block;
-                width: 80px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">MARGUZ</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item active" style="margin-right: 10px;">
-                      <a class="btn btn-danger" href="#">Se un profesor</a>
-                    </li>
-                    <li class="nav-item" style="margin-right: 10px;">
-                        <a class="btn btn-danger" href="#">Encuentra un profesor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-danger" href="#">Admin</a>
-                      </li>
-                  </ul>
-                </div>
-              </nav>
-              <br><br><br><br>
-              <div class="row">
-                <div class="col-md-8 offset-2">
-                    <div class="card flex-md-row mb-4 shadow-sm h-md-250" style="background-color: #E31B36;color: white;">
-                      <div class="card-body d-flex flex-column align-items-start">
-                        <div class="row">
-                          <div class="col-6">
-                            <h5>Registrar como Profesor</h5>
-                          </div>
-                          <div class="col-6">
-                            <h5>Ya tienes cuenta? Inicia Sesion</h5>
-                          </div>
-                        </div>
-                      </div>
-                   </div>
-                  </div>
-                  <div class="col-md-8 offset-2">
-                    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                        <div class="card-body d-flex flex-column align-items-center">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button class="btn btn-info" style="background-color:  #3b5998;color: white;height: 70px;">Registrar con facebook</button>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn btn-info" style="background-color:  #4285F4;color: white;height: 70px;">Registrar con google</button>
-                                </div>
-                              </div>  
 
-                          <hr style="width: auto;">
-                            <form>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="id" class="col-form-label">ID</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="nombre" class="col-form-label">Nombre</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="apellido" class="col-form-label">Apellido</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="telefono" class="col-form-label">Telefono</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="pais" class="col-form-label">Pais</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="estado" class="col-form-label">Estado</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="ciudad" class="col-form-label">Ciudad</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-auto">
-                                      <label for="email" class="col-form-label">Email</label>
-                                    </div>
-                                    <div class="col-auto">
-                                      <input type="text"  class="form-control">
-                                    </div>
-                                </div>    
-                              <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                  <label for="documentacion" class="col-form-label">Documentacion</label>
-                                </div>
-                                <div class="col-auto">
-                                  <input type="file" style="width: 208px;" class="form-control">
-                                </div>
-                            </div>    
-                            <div class="row g-3 align-items-center">
-                              <div class="col-auto">
-                                <label for="adjuntarcedula" class="col-form-label">Adjuntar cedula</label>
-                              </div>
-                              <div class="col-auto">
-                                <input type="file" style="width: 208px;" class="form-control">
-                              </div>
-                            </div>    
-                            <div class="row g-3 align-items-center">
-                              <div class="col-auto">
-                                <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
-                              </div>
-                              <div class="col-auto">
-                                <input type="file" style="width: 208px;" class="form-control">
-                              </div>
-                            </div>
-                            <div class="row g-3 align-items-center">
-                              <div class="col-auto">
-                                <label for="fotodeperfil" class="col-form-label">Horarios</label>
-                              </div>
-                              <div class="col-auto">
-                                <p>Lunes <strong>8:00A.M - 9:00A.M</strong></p>
-                                <p>Martes <strong>10:00A.M - 11:00A.M</strong></p>
-                                <button class="btn btn-info" style="background-color: rgb(9, 116, 193);color: white;">Agregar Horarios</button>
-                              </div>
-                            </div>
-                              <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                  <label for="fotodeperfil" class="col-form-label">Idiomas(Max 3)</label>
-                                </div>
-                                <div class="col-auto">
-                                  <button class="btn btn-info" style="background-color: #E31B36">+</button>
-                                </div>
-                              </div>     
-                              <div class="row g-3 align-items-center">
-                                  <button class="btn btn-success col-md-8">Registrarme</button>
-                              </div>    
-                            </form>
-                            <p>Al dar click en continuar o registrarme, <br>acepta los Terminos y Condiciones de servicio <br>y la politica de privacidad de marguz</p>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <style>
+    label {
+      display: inline-block;
+      width: 80px;
+    }
+  </style>
+</head>
 
-                        </div>
-                     </div>
-                  </div>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">MARGUZ</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item active" style="margin-right: 10px;">
+            <a class="btn btn-danger" href="#">Se un profesor</a>
+          </li>
+          <li class="nav-item" style="margin-right: 10px;">
+            <a class="btn btn-danger" href="#">Encuentra un profesor</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-danger" href="#">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br><br><br><br>
+    <div class="row">
+      <div class="col-md-8 offset-2">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250" style="background-color: #E31B36;color: white;">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="row">
+              <div class="col-6">
+                <h5>Registrar como Profesor</h5>
               </div>
+              <div class="col-6">
+                <h5>Ya tienes cuenta? Inicia Sesion</h5>
+              </div>
+            </div>
+          </div>
         </div>
-        
-    </body>
+      </div>
+      <div class="col-md-8 offset-2">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+          <div class="card-body d-flex flex-column align-items-center">
+            <div class="row">
+              <div class="col-6">
+                <button class="btn btn-info" style="background-color:  #3b5998;color: white;height: 70px;">Registrar con
+                  facebook</button>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-info" style="background-color:  #4285F4;color: white;height: 70px;">Registrar con
+                  google</button>
+              </div>
+            </div>
+
+            <hr style="width: auto;">
+            <form>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="id" class="col-form-label">ID</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="nombre" class="col-form-label">Nombre</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="apellido" class="col-form-label">Apellido</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="telefono" class="col-form-label">Telefono</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="pais" class="col-form-label">Pais</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="estado" class="col-form-label">Estado</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="ciudad" class="col-form-label">Ciudad</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <br>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="email" class="col-form-label">Email</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="documentacion" class="col-form-label">Documentacion</label>
+                </div>
+                <div class="col-auto">
+                  <input type="file" style="width: 208px;" class="form-control">
+                </div>
+              </div>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="adjuntarcedula" class="col-form-label">Adjuntar cedula</label>
+                </div>
+                <div class="col-auto">
+                  <input type="file" style="width: 208px;" class="form-control">
+                </div>
+              </div>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="fotodeperfil" class="col-form-label">Foto de perfil</label>
+                </div>
+                <div class="col-auto">
+                  <input type="file" style="width: 208px;" class="form-control">
+                </div>
+              </div>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="fotodeperfil" class="col-form-label">Horarios</label>
+                </div>
+                <div class="col-auto">
+                  <p>lunes <strong>8:00A.M - 9:00A.M</strong></p>
+                  <p>martes <strong>10:00A.M - 11:00A.M</strong></p>
+                  <button class="btn btn-info" style="background-color: rgb(9, 116, 193);color: white;">Agregar
+                    Horarios</button>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                  <label for="fotodeperfil" class="col-form-label">Idiomas(Max 3)</label>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-info" style="background-color: #E31B36">+</button>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center">
+                <button class="btn btn-success col-md-8">Registrarme</button>
+              </div>
+            </form>
+            <p>Al dar click en continuar o registrarme, <br>acepta los Terminos y Condiciones de servicio <br>y la
+              politica de privacidad de marguz</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
 </html>
-
-

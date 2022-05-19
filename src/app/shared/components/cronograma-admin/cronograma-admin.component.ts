@@ -12,12 +12,12 @@ import { ModalBasicComponent } from '../modal-basic/modal-basic.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-cronograma',
-  templateUrl: './cronograma.component.html',
-  styleUrls: ['./cronograma.component.scss'],
+  selector: 'app-cronograma-admin',
+  templateUrl: './cronograma-admin.component.html',
+  styleUrls: ['./cronograma-admin.component.scss'],
 })
-export class CronogramaComponent implements OnInit {
-  @Input() tipoUsuario: string = "0";
+
+export class CronogramaAdminComponent implements OnInit {
   inicioRange?: Date;
   finRange?: Date;
   range: any;
@@ -34,27 +34,31 @@ export class CronogramaComponent implements OnInit {
 
   @ViewChild(ModalBasicComponent) modal!: ModalBasicComponent
   TypeUser: any;
+  data: any;
+  load: boolean = false;
 
 
   constructor(
     private datePipe: DatePipe,
     private service: PublicService,
-    private router: Router) { }
+    private router: Router) {
+  }
 
   ngOnInit(): void {
     this.TypeUser = JSON.parse(localStorage.getItem('user') as any).user.role;
     this.setDates(new Date());
-    this.searchLesson()
   }
 
-  searchLesson() {
+  searchschedules(id: any) {
+    this.load = true
     this.service
-      .getLessons()
+      .searchschedules(id)
       .then((resp: any) => {
-        let data = resp.result
-        this.horarios = data
-        console.log(this.horarios)
+        this.horarios = resp.result
+        this.load = false
       })
+      .catch((e) => console.log(e));
+
   }
 
   showModal(lesson: any) {
@@ -94,26 +98,6 @@ export class CronogramaComponent implements OnInit {
       date.setDate(date.getDate() + 1);
       this.setDates(date);
     }
-    /*     let rangeDays: any = document.getElementsByClassName('rangeDays');
-    let fiz: any = this.inicioRange;
-    let fde: any = this.finRange;
-
-    let fizParse: any = parseInt(fiz.textContent);
-    fizParse = fizParse + 1;
-    fizParse = fizParse.toString();
-    fiz.innerHTML = fizParse;
-
-    let fdeParse: any = parseInt(fde.textContent);
-    fdeParse = fdeParse + 1;
-    fdeParse = fdeParse.toString();
-    fde.innerHTML = fdeParse;
-
-    for (let i = 0; i < rangeDays.length; i++) {
-      let valore = rangeDays[i].textContent;
-      let valoresParse = parseInt(valore);
-      valoresParse = valoresParse + 1;
-      rangeDays[i].innerHTML = valoresParse;
-    } */
   }
 
   backRange() {
@@ -122,27 +106,6 @@ export class CronogramaComponent implements OnInit {
       date.setDate(date.getDate() - 1);
       this.setDates(date);
     }
-    /*     let rangeDays: any = document.getElementsByClassName('rangeDays');
-
-    let fiz: any = this.inicioRange;
-    let fde: any = this.finRange;
-
-    let fizParse: any = parseInt(fiz.textContent);
-    fizParse = fizParse - 1;
-    fizParse = fizParse.toString();
-    fiz.innerHTML = fizParse;
-
-    let fdeParse: any = parseInt(fde.textContent);
-    fdeParse = fdeParse - 1;
-    fdeParse = fdeParse.toString();
-    fde.innerHTML = fdeParse;
-
-    for (let i = 0; i < rangeDays.length; i++) {
-      let valore = rangeDays[i].textContent;
-      let valoresParse = parseInt(valore);
-      valoresParse = valoresParse - 1;
-      rangeDays[i].innerHTML = valoresParse;
-    } */
   }
   approve() {
     this.service
@@ -156,11 +119,5 @@ export class CronogramaComponent implements OnInit {
 
   goEdit() {
     this.router.navigate(['admin/class-create'], { queryParams: { id: this.selectedLessonId }, queryParamsHandling: 'merge' });
-    // this.service
-    //   .searchLesson()
-    //   .then((resp: any) => {
-    console.log(this.selectedId);
-    // })
-    // .catch((e) => console.log(e));
   }
 }
