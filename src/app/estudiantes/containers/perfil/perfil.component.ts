@@ -27,7 +27,6 @@ export interface IIntereses {
 export class PerfilComponent implements OnInit {
   @ViewChild('selectFile') selectFile!: ElementRef<HTMLInputElement>;
   intereses: IIntereses[] = [];
-
   countries: any;
   states: any;
   cities: any;
@@ -208,7 +207,6 @@ export class PerfilComponent implements OnInit {
         this.img = e.target.result;
       };
       reader.readAsDataURL(imagen.files[0]);
-
       this.formPerfil.get('photo_acount')?.setValue(imagen.files[0]);
     }
   }
