@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {  } from '@fortawesome/free-solid-svg-icons';
+import { } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle, faMinusCircle, faSave } from '@fortawesome/free-solid-svg-icons';
+import { global } from 'src/environments/global';
+
 @Component({
   selector: 'app-horario',
   templateUrl: './horario.component.html',
@@ -10,29 +12,32 @@ export class HorarioComponent implements OnInit {
   plusIcon = faPlusCircle;
   minusIcon = faMinusCircle;
   saveIcon = faSave;
-    @Input() horarios: any = [
+  @Input() horarios: any = [
     {
-      day: 'Lunes',
-      start: '8:00am',
-      end: '2:00pm',
+      day: 'lunes',
+      start: '8:00',
+      end: '14:00',
     },
   ];
   @Output() closeHorario = new EventEmitter<string>();
-  constructor() {}
+
+  public hours = global.hours
+
+  constructor() { }
 
   addHorario() {
     this.horarios.push({
-      day: 'Lunes',
-      start: '8:00am',
-      end: '2:00pm',
+      day: 'lunes',
+      start: '8:00',
+      end: '12:00',
     });
   }
 
-  eliminarHorario(e: Event, index: number){
+  eliminarHorario(e: Event, index: number) {
     this.horarios.splice(index, 1)
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   close() {
     this.closeHorario.emit(this.horarios);
   }

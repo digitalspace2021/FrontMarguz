@@ -8,6 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 const env = environment.host;
 
@@ -20,11 +21,13 @@ export class PublicService {
 
   user = localStorage.getItem('user') || undefined;
   headers!: HttpHeaders;
+  TypeUser = null;
 
   token = localStorage.getItem('user') || '';
   httpOptions = {};
 
   constructor(private http: HttpClient) {
+    this.TypeUser = JSON.parse(localStorage.getItem('user') as any).user.role;
     if (this.token) {
       this.httpOptions = {
         headers: new HttpHeaders({
@@ -126,8 +129,114 @@ export class PublicService {
     });
   }
 
-  searchLesson(id: number) {
+  getLessons() {
+
+    let endPoint = '';
+    if (this.TypeUser == 'Student') endPoint = env + 'student/lessons/schedules'
+    if (this.TypeUser == 'Teacher') endPoint = env + 'teacher/lessons/schedules'
+
+    this.generarToken();
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<any>(endPoint, { params: {}, headers: this.headers })
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(error.error.errors);
+          }
+        );
+    });
+  }
+
+  // getLessons() {
+  //   let endPoint = env + 'teacher/schedules';
+  //   this.generarToken();
+  //   return new Promise((resolve, reject) => {
+  //     this.http
+  //       .get<any>(endPoint, { params: {}, headers: this.headers })
+  //       .subscribe(
+  //         (data: any) => {
+  //           resolve(data);
+  //         },
+  //         (error: any) => {
+  //           reject(error.error.errors);
+  //         }
+  //       );
+  //   });
+  // }
+
+  getLessons2() {
+    let endPoint = env + 'auth/user';
+    this.generarToken();
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<any>(endPoint, { params: {}, headers: this.headers })
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(error.error.errors);
+          }
+        );
+    });
+  }
+
+  searchLesson2(id: number) {
     let endPoint = env + 'admin/lesson/' + id;
+    this.generarToken();
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<any>(endPoint, { params: {}, headers: this.headers })
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(error.error.errors);
+          }
+        );
+    });
+  }
+
+  approveLesson(id: number) {
+    let endPoint = env + 'teacher/lesson/' + id;
+    this.generarToken();
+    return new Promise((resolve, reject) => {
+      this.http
+        .put<any>(endPoint, { params: {}, headers: this.headers })
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(error.error.errors);
+          }
+        );
+    });
+  }
+
+  searchLesson(id: number) {
+    let endPoint = env + 'class/' + id;
+    this.generarToken();
+    return new Promise((resolve, reject) => {
+      this.http
+        .get<any>(endPoint, { params: {}, headers: this.headers })
+        .subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (error: any) => {
+            reject(error.error.errors);
+          }
+        );
+    });
+  }
+
+  searchschedules(id: number) {
+    let endPoint = env + 'lessons/schedules/' + id;
     this.generarToken();
     return new Promise((resolve, reject) => {
       this.http

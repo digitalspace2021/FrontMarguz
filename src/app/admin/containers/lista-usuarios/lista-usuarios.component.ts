@@ -277,15 +277,18 @@ export class ListaUsuariosComponent implements OnInit {
       Admin: 'profesores/perfil',
     };
 
-    console.log([usersTypes, this.tipoUsuario, usersTypes[this.tipoUsuario]]);
+    if (this.tempList.length <= 0) {
+      this.openError('Debe seleccionar un usuario para esta accion');
+    } else {
+      if (this.tempList.length > 1)
+        this.openError('solo puede seleccionar un usuario para esta accion');
 
-    if (this.tempList.length > 1)
-      this.openError('solo puede seleccionar un usuario para esta accion');
-    this.tipoUsuario;
-    this.router.navigate([usersTypes[this.tipoUsuario]], {
-      queryParams: { id: this.tempList[0] },
-      queryParamsHandling: 'merge',
-    });
+      this.tipoUsuario;
+      this.router.navigate([usersTypes[this.tipoUsuario]], {
+        queryParams: { id: this.tempList[0] },
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 
   openRegistro(): any {

@@ -17,6 +17,8 @@ import { DetalleDePagoComponent } from './components/detalle-de-pago/detalle-de-
 import { DetalleDeClaseComponent } from './components/detalle-de-clase/detalle-de-clase.component';
 import { CronogramaComponent } from './components/cronograma/cronograma.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ModalBasicComponent } from './components/modal-basic/modal-basic.component';
+import { CronogramaAdminComponent } from './components/cronograma-admin/cronograma-admin.component';
 @NgModule({
   declarations: [
     SharedComponent,
@@ -31,6 +33,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DetalleDePagoComponent,
     DetalleDeClaseComponent,
     CronogramaComponent,
+    CronogramaAdminComponent,
+    ModalBasicComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +58,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DetalleDePagoComponent,
     DetalleDeClaseComponent,
     CronogramaComponent,
+    CronogramaAdminComponent,
+    CronogramaAdminComponent,
+
   ],
 })
 export class SharedModule { }

@@ -25,17 +25,15 @@ export class EditarPagoComponent implements OnInit {
   quality!: string;
   currency!: string;
   arrayUrl!: any;
+  arrayIntere!: any;
 
   public payPalConfig?: IPayPalConfig;
 
-  @Input() priceHour!: number;
-  @Input() phone!: number;
-  @Input() name!: string;
+  @Input() data!: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private profesoresSv: ProfesoresService,
-    private router: Router
+    private profesoresSv: ProfesoresService
   ) {}
 
   ngOnInit(): void {
@@ -53,9 +51,10 @@ export class EditarPagoComponent implements OnInit {
       nameComplete =
         this.jsonUser.user.name + ' ' + this.jsonUser.user.lastname;
     }
+    this.arrayIntere = this.data.acount.languajes;
     this.form = this.formBuilder.group({
       namePayu: [!nameComplete ? '' : nameComplete],
-      pricePayu: [!this.priceHour ? 0 : this.priceHour],
+      pricePayu: [!this.data.acount.price ? 0 : this.data.acount.price],
       hourPayu: [0, Validators.min(1)],
       emailPayu: [!this.jsonUser ? '' : this.jsonUser.user.email],
       emailPaypal: [''],
@@ -93,7 +92,7 @@ export class EditarPagoComponent implements OnInit {
 
   calcPrice() {
     this.totalPrice =
-      parseInt(this.form.get('hourPayu')!.value) * this.priceHour;
+      parseInt(this.form.get('hourPayu')!.value) * this.data.acount.price;
   }
 
   paymentPayu() {

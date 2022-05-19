@@ -23,6 +23,9 @@ import { ListAdminComponent } from './list-admin/list-admin.component';
 import { PublicModule } from 'src/app/public/public.module';
 import { RegisterComponent } from './class/register.component';
 import { FormsModule } from '@angular/forms';
+import { ListaPagosComponent } from './lista-pagos/lista-pagos.component';
+import { PublicService } from 'src/app/public/services/public.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { FormsModule } from '@angular/forms';
     EditarHorarioComponent,
     CalendarioComponent,
     PerfilComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListaPagosComponent
   ],
   imports: [
     CommonModule,
@@ -62,5 +66,6 @@ import { FormsModule } from '@angular/forms';
     EditarClaseComponent,
     EditarHorarioComponent,
   ],
+  providers: [PublicService],
 })
 export class ContainerModule { }

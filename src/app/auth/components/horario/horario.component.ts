@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {  } from '@fortawesome/free-solid-svg-icons';
+import { } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle, faMinusCircle, faSave } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-horario-modal',
@@ -10,29 +10,29 @@ export class HorarioModalComponent implements OnInit {
   plusIcon = faPlusCircle;
   minusIcon = faMinusCircle;
   saveIcon = faSave;
-    @Input() horarios: any = [
+  @Input() horarios: any = [
     {
-      day: 'Lunes',
+      day: 'lunes',
       start: '8:00am',
       end: '2:00pm',
     },
   ];
   @Output() closeHorario = new EventEmitter<string>();
-  constructor() {}
+  constructor() { }
 
   addHorario() {
     this.horarios.push({
-      day: 'Lunes',
+      day: 'lunes',
       start: '8:00am',
       end: '2:00pm',
     });
   }
 
-  eliminarHorario(e: Event, index: number){
+  eliminarHorario(e: Event, index: number) {
     this.horarios.splice(index, 1)
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   close() {
     this.closeHorario.emit(this.horarios);
   }

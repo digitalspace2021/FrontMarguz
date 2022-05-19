@@ -102,4 +102,9 @@ export class ListaClasesComponent implements OnInit {
     }
 
   }
+
+  onlyUnique(value: any, index: any, self: any) {
+    return self.indexOf(value) === index;
+  }
+
 }

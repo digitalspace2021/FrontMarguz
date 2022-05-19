@@ -71,25 +71,25 @@ export class PerfilProfesorComponent implements OnInit {
   getConvertDayToNumber(day: string): number {
     let value = 0;
     switch (day) {
-      case 'Lunes':
+      case 'lunes':
         value = 1;
         break;
-      case 'Martes':
+      case 'martes':
         value = 2;
         break;
-      case 'Miercoles':
+      case 'miércoles':
         value = 3;
         break;
-      case 'Jueves':
+      case 'jueves':
         value = 4;
         break;
-      case 'Viernes':
+      case 'viernes':
         value = 5;
         break;
-      case 'Sabado':
+      case 'sábado':
         value = 6;
         break;
-      case 'Domingo':
+      case 'domingo':
         value = 7;
         break;
     }

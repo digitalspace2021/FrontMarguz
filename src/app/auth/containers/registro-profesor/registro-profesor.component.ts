@@ -19,7 +19,7 @@ export class RegistroProfesorComponent implements OnInit {
   icon = faPlusCircle;
   horarios = [
     {
-      dia: 'Lunes',
+      dia: 'lunes',
       inicio: '8:00am',
       cierre: '2:00pm',
     },
@@ -109,11 +109,11 @@ export class RegistroProfesorComponent implements OnInit {
           }
           this.load = false;
         })
-        .catch((e) =>{
+        .catch((e) => {
           this.load = false;
           this.openError(getErrors(e))
         });
-          
+
     } catch (e: any) {
       this.load = false;
       this.openError(e.message);
