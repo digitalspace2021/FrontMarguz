@@ -23,21 +23,29 @@
   <tbody>
 
     <tr scope="col" class="ajust"
-      *ngFor="let hour of ['8:00','9:00', '10:00','11:00','12:00','13:00','14:00','15:00','16:00' ]">
+      *ngFor="let hour of ['5:00', '6:00', '7:00', '8:00','9:00', '10:00','11:00','12:00','13:00','14:00','15:00','16:00' ,'17:00','18:00','19:00','20:00','21:00','22:00']">
       <th class="scoppes" scope="row"> {{hour}} </th>
       <td class="dashed dashed-no-bordered" *ngFor="let day of range">
         <ng-container *ngFor="let schedule of horarios">
-          <ng-container *ngFor="let lesson of schedule.lesson_schedules">
+          <ng-container *ngFor="let lesson of schedule.lesson_schedules;">
+
+
             <ng-container *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.startTime)">
+
               <span class="text mt-2">
                 {{lesson.startTime + '-' + lesson.endTime}}</span>
               <span (click)="showModal(lesson)">
                 <i style="float: right" class="fas fa-eye icon-marcadoAzul mt-1">
+
                 </i>
               </span>
               <hr>
+
             </ng-container>
+
+
           </ng-container>
+
         </ng-container>
       </td>
     </tr>

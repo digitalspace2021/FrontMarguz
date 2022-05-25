@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   faMinusCircle,
@@ -11,6 +11,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from 'src/app/auth/services/user.service';
+import { RegistroModalComponent } from '../../components/registro-modal/registro-modal.component';
 import { IDataUsuario } from '../../interfaces/IUsuario';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -47,12 +48,14 @@ export class ListaUsuariosComponent implements OnInit {
   page?: number;
   typeModal: string = 'create';
 
+  @ViewChild(RegistroModalComponent) modal!: RegistroModalComponent
+
   constructor(
     private usuarioSv: UsuarioService,
     private authService: AuthService,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.listUsuario();
@@ -95,7 +98,7 @@ export class ListaUsuariosComponent implements OnInit {
     });
   }
 
-  editar() {}
+  editar() { }
   isConfirm: boolean = false;
   confirmMessage: string = '';
   titleConfirm: string = '';
@@ -228,6 +231,8 @@ export class ListaUsuariosComponent implements OnInit {
             } else {
               this.openError(resp.message);
             }
+            this.modal.close()
+            this.listUsuario();
           })
           .catch((e) => this.openError(e.message));
       }
@@ -240,6 +245,8 @@ export class ListaUsuariosComponent implements OnInit {
             } else {
               this.openError(resp.message);
             }
+            this.modal.close()
+            this.listUsuario();
           })
           .catch((e) => this.openError(e.message));
       }
@@ -252,6 +259,8 @@ export class ListaUsuariosComponent implements OnInit {
             } else {
               this.openError(resp.message);
             }
+            this.modal.close()
+            this.listUsuario();
           })
           .catch((e: any) => this.openError(e.message));
       }

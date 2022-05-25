@@ -204,8 +204,13 @@ export class PublicService {
   }
 
   approveLesson(id: number) {
-    let endPoint = env + 'teacher/lesson/' + id;
+
     this.generarToken();
+    let endPoint = env + 'teacher/lesson/' + id;
+    this.TypeUser = JSON.parse(localStorage.getItem('user') as any).user.role;
+    if (this.TypeUser == 'Admin') endPoint = env + 'admin/lesson/' + id;
+
+
     return new Promise((resolve, reject) => {
       this.http
         .put<any>(endPoint, { params: {}, headers: this.headers })

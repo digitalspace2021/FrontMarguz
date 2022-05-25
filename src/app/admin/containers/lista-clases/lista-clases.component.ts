@@ -65,6 +65,9 @@ export class ListaClasesComponent implements OnInit {
   car = faVrCardboard;
 
   tempList: Array<any> = [];
+  isConfirm: boolean = false;
+
+
   constructor(private router: Router, private service: ClassService) { }
 
   ngOnInit(): void {
@@ -86,8 +89,14 @@ export class ListaClasesComponent implements OnInit {
   }
 
   deleteClass() {
-    console.log(this.tempList[0]);
-    this.service.deleteClass(this.tempList[0]).subscribe((resp: any) => console.log(resp));
+
+    this.service.deleteClass(this.tempList[0]).subscribe((resp: any) => {
+      this.isConfirm = true;
+      this.getClassList()
+    }
+
+
+    );
   }
 
   addClass(event: any) {
@@ -101,6 +110,10 @@ export class ListaClasesComponent implements OnInit {
       this.tempList = tempList
     }
 
+  }
+
+  closeConfirm() {
+    this.isConfirm = false;
   }
 
   onlyUnique(value: any, index: any, self: any) {

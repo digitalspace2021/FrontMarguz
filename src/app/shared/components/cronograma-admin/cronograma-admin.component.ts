@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 })
 
 export class CronogramaAdminComponent implements OnInit {
+  // @Input() inicioRange? : Date;
   inicioRange?: Date;
   finRange?: Date;
   range: any;
@@ -36,6 +37,7 @@ export class CronogramaAdminComponent implements OnInit {
   TypeUser: any;
   data: any;
   load: boolean = false;
+  quantity!: number;
 
 
   constructor(
@@ -49,12 +51,27 @@ export class CronogramaAdminComponent implements OnInit {
     this.setDates(new Date());
   }
 
+  verify(lesson: any, quantity: any) {
+
+    let brand = 0;
+    this.horarios.forEach((schedule: any) => {
+      schedule.lesson_schedules.forEach((el: any) => {
+        // console.log(this.quantity);
+        // if (!this.quantity) brand = false;
+        // if (el.id == lesson.id) this.quantity - 1
+      });
+    });
+
+    return brand;
+  }
+
   searchschedules(id: any) {
     this.load = true
     this.service
       .searchschedules(id)
       .then((resp: any) => {
         this.horarios = resp.result
+        console.log(this.horarios);
         this.load = false
       })
       .catch((e) => console.log(e));
@@ -84,6 +101,9 @@ export class CronogramaAdminComponent implements OnInit {
   }
 
   setDates(date: Date) {
+
+    console.log(date);
+
     this.inicioRange = new Date(date);
     this.finRange = new Date(this.inicioRange);
     this.finRange.setDate(this.finRange.getDate() + 6);
@@ -112,6 +132,7 @@ export class CronogramaAdminComponent implements OnInit {
       .approveLesson(this.selectedId)
       .then((resp: any) => {
         console.log(resp);
+        this.closedModal()
       })
       .catch((e) => console.log(e));
   }
