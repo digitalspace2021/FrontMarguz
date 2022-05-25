@@ -98,7 +98,7 @@
             <small class="text-danger">
               Aquí encuentra las horas disponibles que tiene el docente, para
               ello los campos en <strong>blanco</strong> son los que el profesor
-              tiene disponible y los campos en <strong>amarillo</strong>es por
+              tiene disponible y los campos en <strong>amarillo</strong> es por
               que no está disponible y no va realizar clases, solo tendra
               espacio en los campos en blanco</small
             >
@@ -115,8 +115,7 @@
           <button
             type="button"
             class="w-100 btn btn-primary mt-4"
-            data-bs-toggle="modal"
-            data-bs-target="#openModal"
+            (click)="contratar()"
             [disabled]="!auth"
           >
             Contratar
@@ -125,14 +124,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div
-  class="modal fade"
-  id="openModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <app-editar-pago [data]="profesor"></app-editar-pago>
 </div>

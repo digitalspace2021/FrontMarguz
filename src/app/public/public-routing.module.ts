@@ -1,3 +1,4 @@
+import { EditarPagoComponent } from './../profesores/components/editar-pago/editar-pago.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuscadorComponent } from './containers/buscador/buscador.component';
@@ -10,15 +11,17 @@ import { PublicComponent } from './public.component';
 
 const routes: Routes = [
   {
-    path: '', component: PublicComponent,
+    path: '',
+    component: PublicComponent,
     children: [
       { path: '', component: BuscadorComponent },
       { path: 'perfil/:id', component: PerfilProfesorComponent },
+      { path: 'payment/:id', component: EditarPagoComponent },
       { path: 'politicas/estudiante', component: PoliticasEstudianteComponent },
       { path: 'politicas/profesor', component: PoliticasProfesorComponent },
       { path: 'politicas/pago', component: PoliticasPagoProfesorComponent },
       { path: '**', component: NotFoundComponent },
-    ]
+    ],
   },
 ];
 
@@ -26,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PublicRoutingModule { }
+export class PublicRoutingModule {}

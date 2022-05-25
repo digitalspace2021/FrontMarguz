@@ -123,11 +123,15 @@ body {
 }
 
 .caja-blanca {
+  min-width: 1000px;
+  width: 100%;
+  min-height: 396px;
+  height: 90%;
   margin-right: auto;
   margin-left: auto;
   padding: 15px;
   background: #ffffff;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
   border-radius: 10px;
 }
 

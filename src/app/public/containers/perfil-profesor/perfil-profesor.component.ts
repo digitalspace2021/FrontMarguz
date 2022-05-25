@@ -95,4 +95,8 @@ export class PerfilProfesorComponent implements OnInit {
     }
     return value;
   }
+
+  contratar() {
+    this.router.navigate([`public/payment/${this.id}`]);
+  }
 }
