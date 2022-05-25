@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PublicService } from './services/public.service';
 import { SearchComponent } from './components/search/search.component';
 import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { UtilsModule } from '../shared/utils/utils.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-
     CommonModule,
     SharedModule,
     FormsModule,
+    UtilsModule,
     HttpClientModule,
     NgbTypeaheadModule,
     FormsModule,

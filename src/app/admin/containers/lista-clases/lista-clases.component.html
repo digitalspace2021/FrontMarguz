@@ -101,3 +101,7 @@
     </div>
   </div>
 </div>
+
+
+<app-confirm [title]="'Eliminado'" [msg]="'Operación exitosa'" buttonMsg="Aceptar" *ngIf="isConfirm"
+  (closeConfirm)="closeConfirm()" logo="assets/iconos/eliminado.png"></app-confirm>
