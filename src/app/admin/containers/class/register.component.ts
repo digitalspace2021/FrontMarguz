@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faCalendar, faMinusCircle, faPaperclip, faPlusCircle, faSave, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { Observable, of, OperatorFunction, Subscription } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, tap, switchMap } from 'rxjs/operators';
+
 import { PublicService } from 'src/app/public/services/public.service';
 import { getErrors } from 'src/app/shared/utils/get-errors';
 import { global } from 'src/environments/global';
@@ -47,6 +51,23 @@ export class RegisterComponent implements OnInit {
     public load: boolean = false;
     public currentUSer: any = JSON.parse(localStorage.getItem('user') as any).user.role;
     interestOrLanguages: any = [];
+
+
+    searchingEst = false;
+    searchFailedEst = false;
+    searchingProcedureEst = false;
+    searchFailedProcedureEst: boolean = false;
+    serviceSelectedEst: any;
+    methodSelectedEst: any;
+
+    searchingTea = false;
+    searchFailedTea = false;
+    searchingProcedureTea = false;
+    searchFailedProcedureTea: boolean = false;
+    serviceSelectedTea: any;
+    methodSelectedTea: any;
+    model: any;
+    model2: any;
 
 
     constructor(private service: PublicService, private route: ActivatedRoute) { }
@@ -164,6 +185,8 @@ export class RegisterComponent implements OnInit {
                 this.idTeacher = data.teacher_id
                 this.student = data.student
                 this.teacher = data.teacher
+                this.model = data.student
+                this.model2 = data.teacher
                 this.interestOrLanguages = data.teacher.interest_or_languages
                 this.description = data.description
                 this.language = data.language
@@ -173,6 +196,83 @@ export class RegisterComponent implements OnInit {
             .catch((e) => console.log(e));
         // .catch((e) => this.openError(getErrors(e)));
     }
+
+
+    searchEst: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+        text$.pipe(
+            debounceTime(300),
+            distinctUntilChanged(),
+            tap(() => this.searchingEst = true),
+            switchMap((term: any) =>
+                this.functionEst(term).pipe(
+                    tap(() => this.searchFailedEst = false),
+                    catchError(() => {
+                        this.searchFailedEst = true;
+                        return of([]);
+                    }))
+
+            ),
+            tap(() => this.searchingEst = false)
+        )
+
+    InputSearchEst = (x: { name: string, lastname: string }) => {
+        return x.name + ' ' + x.lastname
+    };
+
+    functionEst(term: string) {
+        let methods = [
+            this.service.searchTearcherPost(term),
+            this.service.searchStudentPost(term),
+        ]
+
+        return methods[1]
+    }
+
+    selectedItemEst($e: any) {
+        console.log($e);
+        this.getStudenId($e?.item?.id)
+        // this.prop.emit($e?.item?.id)
+        // this.price.emit($e?.item)
+    }
+
+
+    searchTea: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+        text$.pipe(
+            debounceTime(300),
+            distinctUntilChanged(),
+            tap(() => this.searchingTea = true),
+            switchMap((term: any) =>
+                this.functionTea(term).pipe(
+                    tap(() => this.searchFailedTea = false),
+                    catchError(() => {
+                        this.searchFailedTea = true;
+                        return of([]);
+                    }))
+
+            ),
+            tap(() => this.searchingTea = false)
+        )
+
+    InputSearchTea = (x: { name: string, lastname: string }) => {
+        return x.name + ' ' + x.lastname
+    };
+
+    functionTea(term: string) {
+        let methods = [
+            this.service.searchTearcherPost(term),
+            this.service.searchStudentPost(term),
+        ]
+
+        return methods[0]
+    }
+
+    selectedItemTea($e: any) {
+        this.getSchedule($e?.item?.id);
+        this.getPrice($e?.item)
+        // this.prop.emit($e?.item?.id)
+        // this.price.emit($e?.item)
+    }
+
 
 
     openConfirm() {

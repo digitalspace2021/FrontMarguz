@@ -25,6 +25,7 @@ import { RegisterComponent } from './class/register.component';
 import { FormsModule } from '@angular/forms';
 import { ListaPagosComponent } from './lista-pagos/lista-pagos.component';
 import { PublicService } from 'src/app/public/services/public.service';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { PublicService } from 'src/app/public/services/public.service';
     MatDatepickerModule,
     AuthModule,
     NgxPaginationModule,
+    NgbTypeaheadModule,
     SharedModule,
     PublicModule,
     FormsModule

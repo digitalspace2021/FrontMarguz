@@ -12,12 +12,39 @@
     <ng-container *ngIf="currentUSer != 'Teacher'">
       <div class="col-md-6">
         <label for="" class="col-form-label">Estudiante</label>
-        <app-search [method]="1" [model]="student" (prop)="getStudenId($event)"></app-search>
+        <input type="text" class="form-control" [class.is-invalid]="searchFailedEst"
+          (selectItem)="selectedItemEst($event)" [(ngModel)]="model" [ngbTypeahead]="searchEst" placeholder=""
+          name="search" ngDefaultControl [resultTemplate]="formatterEst" [inputFormatter]="InputSearchEst" />
+        <small *ngIf="searchingEst" class="form-text text-muted">Buscando...</small>
+        <div class="invalid-feedback" *ngIf="searchFailedEst">
+          No se ha podido encontrar.
+        </div>
+
+        <ng-template #formatterEst let-r="result" let-t="term">
+          <span class="f-9">
+            <strong>{{ r.name }} {{ r.lastname }}</strong>
+          </span>
+        </ng-template>
+
+        <!-- <app-search [method]="1" [model]="student" (prop)="getStudenId($event)"></app-search> -->
       </div>
 
       <div class="col-md-6">
         <label for="" class="col-form-label">Docente</label>
-        <app-search [method]="0" [model]="teacher" (prop)="getSchedule($event)" (price)="getPrice($event)"></app-search>
+        <input type="text" class="form-control" [class.is-invalid]="searchFailedTea"
+          (selectItem)="selectedItemTea($event)" [(ngModel)]="model2" [ngbTypeahead]="searchTea" placeholder=""
+          name="search" ngDefaultControl [resultTemplate]="formatter" [inputFormatter]="InputSearchTea" />
+        <small *ngIf="searchingTea" class="form-text text-muted">Buscando...</small>
+        <div class="invalid-feedback" *ngIf="searchFailedTea">
+          No se ha podido encontrar.
+        </div>
+
+        <ng-template #formatter let-r="result" let-t="term">
+          <span class="f-9">
+            <strong>{{ r.name }} {{ r.lastname }}</strong>
+          </span>
+        </ng-template>
+        <!-- <app-search [method]="0" [model]="teacher" (prop)="getSchedule($event)" (price)="getPrice($event)"></app-search> -->
       </div>
 
       <div class="col-md-6">
