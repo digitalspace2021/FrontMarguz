@@ -31,6 +31,13 @@
       </div>
 
       <div class="col-md-6">
+        <label class="col-form-label">Idioma</label>
+        <select class="form-control" [(ngModel)]="language">
+          <option *ngFor="let idiom of interestOrLanguages">{{idiom.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
         <label for="" class="col-form-label">Descripción</label>
         <textarea class="form-control" [(ngModel)]="description"></textarea>
       </div>
@@ -71,9 +78,9 @@
           </div>
 
           <div class="m-3">
-            <input type="checkbox" class="toggle" id="toggle" value="true" [(ngModel)]="horario.status"
+            <input type="checkbox" class="toggle" id="{{i}}" value="true" [(ngModel)]="horario.status"
               [ngModelOptions]="{ standalone: true }" />
-            <label for="toggle">
+            <label for="{{i}}">
               <span class="on">Aprobado</span>
               <span class="off">Pospuesto</span>
             </label>

@@ -41,10 +41,12 @@ export class RegisterComponent implements OnInit {
     myParams: number = 0;
     student: any;
     teacher: any;
+    language: any;
     id: any = null;
     public hours = global.hours
     public load: boolean = false;
     public currentUSer: any = JSON.parse(localStorage.getItem('user') as any).user.role;
+    interestOrLanguages: any = [];
 
 
     constructor(private service: PublicService, private route: ActivatedRoute) { }
@@ -65,7 +67,8 @@ export class RegisterComponent implements OnInit {
     getSchedule(id: any) {
         this.idTeacher = id
         this.service.getSchedule(this.idTeacher).subscribe((data: any) => {
-            this.horarios = data
+            this.horarios = data[0].teacherSchedulesAvailable
+            this.interestOrLanguages = data[0].interestOrLanguages
             this.getTotal()
         })
     }
@@ -110,11 +113,10 @@ export class RegisterComponent implements OnInit {
         formData.append('amount', String(this.total));
         formData.append('description', String(this.description));
         formData.append('quantity', String(this.count));
+        formData.append('language', String(this.language));
         formData.append('email', 'emailfalse@gmail.com');
 
         this.horarios.forEach((elements: any, index: any) => {
-
-            console.log(elements);
 
             formData.append('schedules_available[' + index + '][day]', elements.day
             );
@@ -143,7 +145,7 @@ export class RegisterComponent implements OnInit {
 
                 }
             })
-            .catch((e) => this.openError(getErrors(e)));
+            .catch((e) => { this.openError(getErrors(e)); this.load = false; });
 
     }
 
@@ -157,12 +159,14 @@ export class RegisterComponent implements OnInit {
                 this.horarios = data.lesson_schedules
                 this.price = data.amount
                 this.total = data.amount
-                this.count = 1
+                this.count = data.quantity
                 this.idStudent = data.student_id
                 this.idTeacher = data.teacher_id
                 this.student = data.student
                 this.teacher = data.teacher
+                this.interestOrLanguages = data.teacher.interest_or_languages
                 this.description = data.description
+                this.language = data.language
                 this.id = data.id
 
             })

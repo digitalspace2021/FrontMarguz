@@ -2,9 +2,7 @@
 <div class="row mt-4 mb-3">
   <div class="col-md-6">
     <h1 style="color: #e31b36">
-      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px"
-        >Pagos</sup
-      >
+      Administrador<sup style="color: rgb(179, 174, 174); margin-left: 10px">Pagos</sup>
     </h1>
   </div>
 </div>
@@ -29,10 +27,7 @@
           </div>
           <div class="col-sm-12 col-xs-12 col-md-2 col-xl-1 col-lg-1 pt-4">
             <button class="btn btn-primary" style="margin-top: 6px">
-              <fa-icon
-                style="font-size: 14px; color: white"
-                [icon]="search"
-              ></fa-icon>
+              <fa-icon style="font-size: 14px; color: white" [icon]="search"></fa-icon>
             </button>
           </div>
         </div>
@@ -48,47 +43,34 @@
                 <th width="200">Profesor</th>
                 <th width="200">Idiomas Contratado</th>
                 <th width="100">Valor</th>
-                <th width="100">Opciones</th>
+                <th width="100">Estado</th>
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="
+              <tr *ngFor="
                   let pago of pagos
                     | paginate: { itemsPerPage: 10, currentPage: page }
-                "
-              >
+                ">
                 <td>1</td>
                 <td>16-05-2022</td>
                 <td>xxxxxxxxxx</td>
                 <td>xxxxxxxxxx</td>
                 <td>
                   <button class="btn btn-primary">
-                    <fa-icon
-                      style="font-size: 14px; color: white"
-                      [icon]="eye"
-                    ></fa-icon>
+                    <fa-icon style="font-size: 14px; color: white" [icon]="eye"></fa-icon>
                   </button>
                 </td>
                 <td>20</td>
                 <td>
                   <button class="btn btn-primary">
-                    <fa-icon
-                      style="font-size: 14px; color: white"
-                      [icon]="edit"
-                    ></fa-icon>
+                    <fa-icon style="font-size: 14px; color: white" [icon]="edit"></fa-icon>
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <pagination-controls
-          class="paginado"
-          (pageChange)="page = $event"
-          previousLabel="Anterior"
-          nextLabel="Proximo"
-        >
+        <pagination-controls class="paginado" (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Proximo">
         </pagination-controls>
       </div>
     </div>

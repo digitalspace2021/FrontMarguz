@@ -53,11 +53,11 @@
               </table>
             </div>
             <div class="datepicker mt-2">
-              <mat-calendar [(selected)]="fecha"></mat-calendar>
+              <mat-calendar [(selected)]="fecha" (selectedChange)="onSelect($event)"></mat-calendar>
             </div>
           </div>
         </div>
-        <div class="col-sm-12 col-xs-12 col-md-6 col-xl-8 col-lg-8 colPaddings2">
+        <div class=" col-sm-12 col-xs-12 col-md-6 col-xl-8 col-lg-8 colPaddings2">
           <div class="segundaCol mt-4">
             <app-cronograma-admin></app-cronograma-admin>
           </div>

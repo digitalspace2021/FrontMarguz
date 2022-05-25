@@ -23,8 +23,13 @@ export class CalendarioComponent implements OnInit {
   constructor(private service: PublicService, private router: Router) { }
 
   ngOnInit(): void {
+    this.fecha = new Date();
+    this.modal?.setDates(this.fecha)
   }
 
+  onSelect($e: any) {
+    this.modal.setDates($e)
+  }
 
   goToProfile(user: any) {
 
