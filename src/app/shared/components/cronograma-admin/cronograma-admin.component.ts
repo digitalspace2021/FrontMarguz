@@ -38,6 +38,9 @@ export class CronogramaAdminComponent implements OnInit {
   data: any;
   load: boolean = false;
   quantity!: number;
+  isConfirm: boolean = false;
+  btnName: string = 'Aprobar';
+  disabled: boolean = false;
 
 
   constructor(
@@ -128,13 +131,21 @@ export class CronogramaAdminComponent implements OnInit {
     }
   }
   approve() {
+    this.disabled = true
+    this.btnName = 'Enviando...'
     this.service
       .approveLesson(this.selectedId)
       .then((resp: any) => {
-        console.log(resp);
+        this.isConfirm = true;
+        this.btnName = 'Aprobar'
+        this.disabled = false
         this.closedModal()
       })
       .catch((e) => console.log(e));
+  }
+
+  closeConfirm() {
+    this.isConfirm = false;
   }
 
 

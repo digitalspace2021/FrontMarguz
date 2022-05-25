@@ -161,6 +161,7 @@ export class RegisterComponent implements OnInit {
                     this.load = false;
 
                 } else {
+
                     this.openError(resp.message);
                     this.load = false;
 
