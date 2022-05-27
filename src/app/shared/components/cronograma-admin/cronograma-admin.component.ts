@@ -11,6 +11,13 @@ import { PublicService } from 'src/app/public/services/public.service';
 import { ModalBasicComponent } from '../modal-basic/modal-basic.component';
 import { Router } from '@angular/router';
 
+import listPlugin from '@fullcalendar/list';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
+import { EventInput } from '@fullcalendar/core';
+
 @Component({
   selector: 'app-cronograma-admin',
   templateUrl: './cronograma-admin.component.html',
@@ -41,6 +48,41 @@ export class CronogramaAdminComponent implements OnInit {
   isConfirm: boolean = false;
   btnName: string = 'Aprobar';
   disabled: boolean = false;
+  calendarEvents: any;
+
+
+  calendarWeekends: any;
+
+
+  Id_Dependencia = 1;
+
+  Departamentos: any = [];
+  Municipios: any = [];
+  Actividades: Array<any> = [];
+
+
+  Ver: boolean = false;
+  ver: number = 0;
+  FuncionariosSele: any[] = [];
+
+
+  cliente_seleccionado: any = '';
+  funcionario_seleccionado: any = '';
+  Funcionarios: any[] = [];
+
+  alertOption: any = {};
+  private eventoActividad: any;
+  eventsModel: any;
+
+
+  // calendar plugin
+  calendarPlugins = [
+    dayGridPlugin,
+    bootstrapPlugin,
+    timeGrigPlugin,
+    interactionPlugin,
+    listPlugin,
+  ];
 
 
   constructor(
@@ -54,18 +96,17 @@ export class CronogramaAdminComponent implements OnInit {
     this.setDates(new Date());
   }
 
-  verify(lesson: any, quantity: any) {
+  // verify(dates: any, day: any) {
 
-    let brand = 0;
-    this.horarios.forEach((schedule: any) => {
-      schedule.lesson_schedules.forEach((el: any) => {
-        // console.log(this.quantity);
-        // if (!this.quantity) brand = false;
-        // if (el.id == lesson.id) this.quantity - 1
-      });
-    });
+  //   let datestring = new Date(day).toISOString().slice(0, 10)
+  //   return dates.includes(datestring);
+  //   ((day | date: 'EEEE') == lesson.day) && (hour == lesson.startTime) && lesson.dates.includes((day | date: 'YYYY-MM-dd'))
+  // }
 
-    return brand;
+  verify() {
+
+    return true;
+
   }
 
   searchschedules(id: any) {
@@ -74,7 +115,6 @@ export class CronogramaAdminComponent implements OnInit {
       .searchschedules(id)
       .then((resp: any) => {
         this.horarios = resp.result
-        console.log(this.horarios);
         this.load = false
       })
       .catch((e) => console.log(e));
@@ -105,25 +145,28 @@ export class CronogramaAdminComponent implements OnInit {
 
   setDates(date: Date) {
 
-    console.log(date);
-
     this.inicioRange = new Date(date);
     this.finRange = new Date(this.inicioRange);
-    this.finRange.setDate(this.finRange.getDate() + 6);
+    this.finRange.setDate(this.finRange.getDate() + 5);
     this.range = [];
     for (let d = new Date(this.inicioRange); d <= this.finRange; d.setDate(d.getDate() + 1)) {
       this.range.push(new Date(d));
     }
   }
+
   nextRange() {
+    console.log('click');
+    // this.load = true
     if (this.inicioRange) {
       let date = new Date(this.inicioRange);
       date.setDate(date.getDate() + 1);
       this.setDates(date);
+      console.log('click');
     }
   }
 
   backRange() {
+    // this.load = true
     if (this.inicioRange) {
       let date = new Date(this.inicioRange);
       date.setDate(date.getDate() - 1);

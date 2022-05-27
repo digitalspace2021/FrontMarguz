@@ -1,11 +1,13 @@
-import { Router } from '@angular/router';
+import { PublicService } from 'src/app/public/services/public.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProfesoresService } from '../../services/profesores.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
-import { faMoneyCheck } from '@fortawesome/free-solid-svg-icons';
+import { faMoneyCheck, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Md5 } from 'ts-md5/dist/md5';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { environment } from 'src/environments/environment';
+import { global } from 'src/environments/global';
 
 const env = environment;
 
@@ -17,50 +19,72 @@ const env = environment;
 export class EditarPagoComponent implements OnInit {
   md5 = new Md5();
   saveIcon = faMoneyCheck;
+  minusIcon = faMinusCircle;
+
   form!: FormGroup;
   jsonUser: any;
   totalPrice: number = 0;
   accountId!: number;
-  keyPayu = 'B1562m9l83uepyKjqo6ShePSeR';
   quality!: string;
   currency!: string;
   arrayUrl!: any;
   arrayIntere!: any;
+  id: number = 0;
+  horarios: Array<any> = [];
+  data: any;
 
+  public currentUSer: any = JSON.parse(localStorage.getItem('user') as any).user
+    .role;
+  public hours = global.hours;
   public payPalConfig?: IPayPalConfig;
-
-  @Input() data!: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private profesoresSv: ProfesoresService
-  ) {}
+    private profesoresSv: ProfesoresService,
+    private actRoute: ActivatedRoute,
+    private publicsv: PublicService,
+    private router: Router
+  ) {
+    this.actRoute.params.subscribe((params) => {
+      this.id = params['id'];
+    });
+  }
 
-  ngOnInit(): void {
-    let user = localStorage.getItem('user') || undefined;
-    if (user) {
-      this.jsonUser = JSON.parse(user);
-    }
+  ngOnInit() {
     this.buildForm();
     this.initConfig();
   }
 
-  buildForm() {
-    let nameComplete;
-    if (this.jsonUser) {
-      nameComplete =
-        this.jsonUser.user.name + ' ' + this.jsonUser.user.lastname;
+  async buildForm() {
+    if (this.id) {
+      this.publicsv.getUsuarioTeacher(this.id).subscribe((data: any) => {
+        try {
+          let nameComplete;
+          let user = localStorage.getItem('user') || undefined;
+          if (user) {
+            this.jsonUser = JSON.parse(user);
+            nameComplete =
+              this.jsonUser.user.name + ' ' + this.jsonUser.user.lastname;
+          }
+          this.data = data.result;
+          this.arrayIntere = this.data.acount.languajes;
+
+          this.form = this.formBuilder.group({
+            namePayu: [!nameComplete ? '' : nameComplete],
+            pricePayu: [!this.data.acount.price ? 0 : this.data.acount.price],
+            hourPayu: [0, Validators.min(1)],
+            emailPayu: [!this.jsonUser ? '' : this.jsonUser.user.email],
+            emailPaypal: [''],
+            currency: ['', Validators.required],
+            description: [''],
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    } else {
+      this.router.navigate(['']);
     }
-    this.arrayIntere = this.data.acount.languajes;
-    this.form = this.formBuilder.group({
-      namePayu: [!nameComplete ? '' : nameComplete],
-      pricePayu: [!this.data.acount.price ? 0 : this.data.acount.price],
-      hourPayu: [0, Validators.min(1)],
-      emailPayu: [!this.jsonUser ? '' : this.jsonUser.user.email],
-      emailPaypal: [''],
-      currency: ['', Validators.required],
-      description: [''],
-    });
   }
 
   selectCurrent(): void {
@@ -191,5 +215,10 @@ export class EditarPagoComponent implements OnInit {
         },
       ],
     };
+  }
+
+  eliminarHorario(e: Event, index: number) {
+    this.horarios.splice(index, 1);
+    this.calcPrice();
   }
 }

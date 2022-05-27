@@ -1,129 +1,14 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-    <form [formGroup]="form" method="post">
-      <div
-        class="modal-header text-center"
-        style="background-color: red; color: white"
-      >
-        <h5 class="modal-title">Forma de pago</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <!--Nombre no editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Nombre</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <input
-              type="text"
-              class="form-control"
-              readonly
-              formControlName="namePayu"
-            />
-          </div>
-          <!--valor de la hora no editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Precio de la hora</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <input
-              type="number"
-              class="form-control text-center"
-              readonly
-              formControlName="pricePayu"
-            />
-          </div>
-          <!--hora a contratar editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Semanas Contratadas</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <input
-              type="number"
-              class="form-control text-center"
-              required
-              formControlName="hourPayu"
-              (change)="calcPrice()"
-            />
-          </div>
-          <!--moneda electronico no editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Moneda</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <select
-              class="form-control"
-              formControlName="currency"
-              (change)="selectCurrent()"
-            >
-              <option value="COP">COP</option>
-              <option value="USD">USD</option>
-              <option value="MXN">MXN</option>
-              <option value="ARS">ARS</option>
-              <option value="PEN">PEN</option>
-              <option value="BRL">BRL</option>
-              <option value="CLP">CLP</option>
-            </select>
-          </div>
-          <!--correo electronico no editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Correo electrónico</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <input
-              type="email"
-              class="form-control"
-              readonly
-              formControlName="emailPayu"
-            />
-          </div>
-          <!--list check de intereses-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Interes a contratar</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <div class="form-check" *ngFor="let item of arrayIntere">
-              <input
-                class="form-check-input"
-                style="background-color: red !important"
-                type="radio"
-                name="check"
-                [id]="item.id"
-              />
-              <label class="form-check-label" [for]="item.id">
-                {{ item.name }}
-              </label>
-            </div>
-          </div>
-          <!--descripcion no editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Descripción</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <textarea
-              class="form-control"
-              rows="3"
-              formControlName="description"
-              resize="none"
-            ></textarea>
-          </div>
-          <!--total price a contratar editable-->
-          <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
-            <label class="form-label">Valor Total:</label>
-          </div>
-          <div class="mb-3 col-sm-12 col-xs-12 col-md-4 col-xl-8 col-lg-8">
-            <label class="form-label">$ {{ totalPrice }}</label>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="col-12" [hidden]="!form.valid">
+<div class="row">
+  <div class="col-8 mt-4">
+    <h1 class="d-inline-block edit_perfil">Medio de pago</h1>
+  </div>
+</div>
+
+<div class="card card-body mb-5">
+  <form [formGroup]="form" method="post">
+    <div class="card-body">
+      <div class="row mt-2">
+        <div class="col-4" [hidden]="!form.valid">
           <button
             type="button"
             [hidden]="form.get('description')!.value == ''"
@@ -132,9 +17,165 @@
           >
             Payu
           </button>
+
           <ngx-paypal [config]="payPalConfig"></ngx-paypal>
         </div>
+        <div class="col-8">
+          <div class="row">
+            <!--Nombre no editable-->
+            <div class="mb-3 col-4">
+              <label class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                readonly
+                formControlName="namePayu"
+              />
+            </div>
+            <!--valor de la hora no editable-->
+            <div class="mb-3 col-4">
+              <label class="form-label">Precio de la hora</label>
+              <input
+                type="number"
+                class="form-control text-center"
+                readonly
+                formControlName="pricePayu"
+              />
+            </div>
+            <!--hora a contratar editable-->
+            <div class="mb-3 col-4">
+              <label class="form-label">Semanas Contratadas</label>
+              <input
+                type="number"
+                class="form-control text-center"
+                required
+                formControlName="hourPayu"
+                (change)="calcPrice()"
+              />
+            </div>
+            <!--moneda electronico no editable-->
+            <div class="mb-3 col-4">
+              <label class="form-label">Moneda</label>
+              <select
+                class="form-control"
+                formControlName="currency"
+                (change)="selectCurrent()"
+              >
+                <option value="COP">COP</option>
+                <option value="USD">USD</option>
+                <option value="MXN">MXN</option>
+                <option value="ARS">ARS</option>
+                <option value="PEN">PEN</option>
+                <option value="BRL">BRL</option>
+                <option value="CLP">CLP</option>
+              </select>
+            </div>
+            <!--correo electronico no editable-->
+            <div class="mb-3 col-4">
+              <label class="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                class="form-control"
+                readonly
+                formControlName="emailPayu"
+              />
+            </div>
+            <!--descripcion no editable-->
+            <div class="mb-3 col-4">
+              <label class="form-label">Descripción</label>
+              <textarea
+                class="form-control"
+                rows="1"
+                formControlName="description"
+                resize="none"
+              ></textarea>
+            </div>
+            <!--list check de intereses-->
+            <div class="mb-3 col-12">
+              <label class="form-label">Interes a contratar</label>
+              <div class="form-check" *ngFor="let item of arrayIntere">
+                <input
+                  class="form-check-input"
+                  style="background-color: red !important"
+                  type="radio"
+                  name="check"
+                  [id]="item.id"
+                />
+                <label class="form-check-label" [for]="item.id">
+                  {{ item.name }}
+                </label>
+              </div>
+            </div>
+            <!--calendario-->
+            <div class="mb-3 col-12">
+              <label class="form-label">Calendario</label>
+              <div
+                *ngFor="let horario of horarios; let i = index"
+                class="horarioRow pt-5"
+              >
+                <div class="horarioInput">
+                  <label class="horarioLabel" for="day">Dia</label>
+                  <select
+                    class="form-selects"
+                    [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="horario.day"
+                    aria-label="Default select example"
+                  >
+                    <option selected></option>
+                    <option value="lunes">lunes</option>
+                    <option value="martes">martes</option>
+                    <option value="miércoles">Miércoles</option>
+                    <option value="jueves">jueves</option>
+                    <option value="viernes">viernes</option>
+                    <option value="sábado">Sábado</option>
+                    <option value="domingo">domingo</option>
+                  </select>
+                </div>
+                <div class="horarioInput">
+                  <label class="horarioLabel" for="start">Hora</label>
+                  <select
+                    class="form-selects"
+                    [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="horario.startTime"
+                    aria-label="Default select example"
+                  >
+                    <option *ngFor="let hour of hours" [value]="hour">
+                      {{ hour }}
+                    </option>
+                  </select>
+                </div>
+                <div class="horarioInput">
+                  <label class="horarioLabel">-</label>
+                  <select
+                    class="form-selects"
+                    [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="horario.endTime"
+                    aria-label="Default select example"
+                  >
+                    <option *ngFor="let hour of hours" [value]="hour">
+                      {{ hour }}
+                    </option>
+                  </select>
+                </div>
+                <div class="horarioAction" *ngIf="currentUSer != 'Teacher'">
+                  <fa-icon
+                    class="minusIcon"
+                    (click)="eliminarHorario($event, i)"
+                    [icon]="minusIcon"
+                  ></fa-icon>
+                </div>
+              </div>
+            </div>
+            <!--total price a contratar editable-->
+            <div class="col-sm-12 col-xs-12 col-md-4 col-xl-4 col-lg-4">
+              <label class="form-label">Valor Total:</label>
+            </div>
+            <div class="mb-3 col-12">
+              <label class="form-label">$ {{ totalPrice }}</label>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>

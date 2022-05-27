@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { EstudianteGuard } from './auth/guards/estudiante.guard';
 import { ProfesorGuard } from './auth/guards/profesor.guard';
-import { NotFoundComponent } from './public/containers/not-found/not-found.component';
-import { SharedComponent } from './shared/shared.component';
 
 const routes: Routes = [
   {
@@ -31,7 +28,8 @@ const routes: Routes = [
   },
   {
     path: 'public',
-    loadChildren: () => import('./public/public.module').then((m) => m.PublicModule),
+    loadChildren: () =>
+      import('./public/public.module').then((m) => m.PublicModule),
   },
   {
     path: '',
@@ -48,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

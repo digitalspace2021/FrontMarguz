@@ -8,7 +8,6 @@ import {
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthService } from 'src/app/auth/services/auth.service';
 
 const env = environment.host;
 
@@ -20,15 +19,17 @@ export class PublicService {
   addressSche = env + 'user/schedulesavailable/';
 
   user = localStorage.getItem('user') || undefined;
+
   headers!: HttpHeaders;
   TypeUser = null;
 
   token = localStorage.getItem('user') || '';
+
   httpOptions = {};
 
   constructor(private http: HttpClient) {
-    this.TypeUser = JSON.parse(localStorage.getItem('user') as any).user.role;
     if (this.token) {
+      this.TypeUser = JSON.parse(localStorage.getItem('user') as any).user.role;
       this.httpOptions = {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + JSON.parse(this.token)?.access_token,
@@ -132,10 +133,11 @@ export class PublicService {
   }
 
   getLessons() {
-
     let endPoint = '';
-    if (this.TypeUser == 'Student') endPoint = env + 'student/lessons/schedules'
-    if (this.TypeUser == 'Teacher') endPoint = env + 'teacher/lessons/schedules'
+    if (this.TypeUser == 'Student')
+      endPoint = env + 'student/lessons/schedules';
+    if (this.TypeUser == 'Teacher')
+      endPoint = env + 'teacher/lessons/schedules';
 
     this.generarToken();
     return new Promise((resolve, reject) => {

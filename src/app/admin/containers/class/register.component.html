@@ -2,13 +2,12 @@
   <div class="col-12 mt-3">
     <img src="assets/Logo/Vector.svg" class="img-fluid" style="position: relative; bottom: 13px; margin-right: 10px" />
     <h1 class="d-inline-block edit_perfil mb-4 text-danger">
-      {{(myParams != 0) ? 'Actualización de Clases' : ' Nueva Clase'}}
+      {{ myParams != 0 ? "Actualización de Clases" : " Nueva Clase" }}
     </h1>
   </div>
 </div>
 <div class="container card">
   <div class="row p-3 text-center">
-
     <ng-container *ngIf="currentUSer != 'Teacher'">
       <div class="col-md-6">
         <label for="" class="col-form-label">Estudiante</label>
@@ -49,12 +48,12 @@
 
       <div class="col-md-6">
         <label for="" class="col-form-label"># De Semanas</label>
-        <input type="text" class="form-control" [(ngModel)]="count" (ngModelChange)="getTotal()">
+        <input type="text" class="form-control" [(ngModel)]="count" (ngModelChange)="getTotal()" />
       </div>
 
       <div class="col-md-6">
         <label for="" class="col-form-label">Total</label>
-        <input class="form-control" [(ngModel)]="total" readonly>
+        <input class="form-control" [(ngModel)]="total" readonly />
       </div>
 
       <div class="col-md-6">
@@ -68,12 +67,10 @@
         <label for="" class="col-form-label">Descripción</label>
         <textarea class="form-control" [(ngModel)]="description"></textarea>
       </div>
-
     </ng-container>
 
     <div class="col-12">
       <form class="form row">
-
         <div *ngFor="let horario of horarios; let i = index" class="horarioRow pt-5">
           <div class="horarioInput">
             <label class="horarioLabel" for="day">Dia</label>
@@ -93,14 +90,18 @@
             <label class="horarioLabel" for="start">Hora</label>
             <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.startTime"
               aria-label="Default select example">
-              <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+              <option *ngFor="let hour of hours" [value]="hour">
+                {{ hour }}
+              </option>
             </select>
           </div>
           <div class="horarioInput">
             <label class="horarioLabel">-</label>
             <select class="form-selects" [ngModelOptions]="{ standalone: true }" [(ngModel)]="horario.endTime"
               aria-label="Default select example">
-              <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+              <option *ngFor="let hour of hours" [value]="hour">
+                {{ hour }}
+              </option>
             </select>
           </div>
 
@@ -115,12 +116,11 @@
 
           <div class="horarioInput mx-2">
             <textarea class="form-control" [(ngModel)]="horario.teacherDescription"
-              [ngModelOptions]=" { standalone: true }" placeholder="descripción"></textarea>
+              [ngModelOptions]="{ standalone: true }" placeholder="descripción"></textarea>
           </div>
           <div class="horarioAction" *ngIf="currentUSer != 'Teacher'">
             <fa-icon class="minusIcon" (click)="eliminarHorario($event, i)" [icon]="minusIcon"></fa-icon>
           </div>
-
         </div>
         <div class="horarioButton">
           <button class="btn" (click)="save()">
@@ -131,10 +131,8 @@
       </form>
     </div>
   </div>
-
 </div>
 <br />
-
 
 <app-error [msg]="errorMessage" (closeError)="closeError()" *ngIf="isError"></app-error>
 

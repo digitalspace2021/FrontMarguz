@@ -28,7 +28,9 @@
       <td class="dashed dashed-no-bordered" *ngFor="let day of range">
         <ng-container *ngFor="let schedule of horarios">
           <ng-container *ngFor="let lesson of schedule.lesson_schedules">
-            <ng-container *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.startTime)">
+
+            <ng-container
+              *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.startTime) && verify(lesson.dates, day) ">
               <span class="text mt-2">
                 {{lesson.startTime + '-' + lesson.endTime}}</span>
               <span (click)="showModal(lesson)">
@@ -37,6 +39,7 @@
               </span>
               <hr>
             </ng-container>
+
           </ng-container>
         </ng-container>
       </td>

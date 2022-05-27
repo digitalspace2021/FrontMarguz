@@ -29,11 +29,11 @@ import { NgxPayPalModule } from 'ngx-paypal';
 
 registerLocaleData(localeEs, 'es-CO');
 
-FullCalendarModule.registerPlugins([
-  // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin,
-]);
+// FullCalendarModule.registerPlugins([
+//   // register FullCalendar plugins
+//   dayGridPlugin,
+//   interactionPlugin,
+// ]);
 
 @NgModule({
   declarations: [AppComponent],

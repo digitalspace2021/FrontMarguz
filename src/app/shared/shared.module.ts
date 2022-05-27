@@ -19,6 +19,9 @@ import { CronogramaComponent } from './components/cronograma/cronograma.componen
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ModalBasicComponent } from './components/modal-basic/modal-basic.component';
 import { CronogramaAdminComponent } from './components/cronograma-admin/cronograma-admin.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
+
 @NgModule({
   declarations: [
     SharedComponent,
@@ -42,6 +45,7 @@ import { CronogramaAdminComponent } from './components/cronograma-admin/cronogra
     ReactiveFormsModule,
     FormsModule,
     MatCheckboxModule,
+    FullCalendarModule,
   ],
   providers: [
     DatePipe
