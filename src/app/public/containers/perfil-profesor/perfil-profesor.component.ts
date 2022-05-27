@@ -3,8 +3,8 @@ import { environment } from 'src/environments/environment';
 import { PublicService } from './../../services/public.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { CalendarOptions } from '@fullcalendar/angular';
-// import eslocale from '@fullcalendar/core/locales/es';
+import { CalendarOptions } from '@fullcalendar/angular';
+import eslocale from '@fullcalendar/core/locales/es';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 @Component({
@@ -17,7 +17,7 @@ export class PerfilProfesorComponent implements OnInit {
   profesor!: any;
   id: number = 0;
   auth: boolean = false;
-  // calendarOptions!: CalendarOptions;
+  calendarOptions!: CalendarOptions;
 
   constructor(
     private publicsv: PublicService,
@@ -34,13 +34,12 @@ export class PerfilProfesorComponent implements OnInit {
     if (this.id) {
       this.publicsv.getScheduledPublic(this.id).subscribe((data: any) => {
         let schedules = data.result;
-
-        // this.calendarOptions = {
-        //   plugins: [timeGridPlugin],
-        //   initialView: 'timeGridWeek',
-        //   locale: eslocale,
-        //   businessHours: [schedules],
-        // };
+        this.calendarOptions = {
+          plugins: [timeGridPlugin],
+          initialView: 'timeGridWeek',
+          locale: eslocale,
+          businessHours: [schedules],
+        };
       });
     }
   }

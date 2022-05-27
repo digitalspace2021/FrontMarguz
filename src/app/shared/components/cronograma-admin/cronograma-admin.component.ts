@@ -11,13 +11,6 @@ import { PublicService } from 'src/app/public/services/public.service';
 import { ModalBasicComponent } from '../modal-basic/modal-basic.component';
 import { Router } from '@angular/router';
 
-import listPlugin from '@fullcalendar/list';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGrigPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import bootstrapPlugin from '@fullcalendar/bootstrap';
-import { EventInput } from '@fullcalendar/core';
-
 @Component({
   selector: 'app-cronograma-admin',
   templateUrl: './cronograma-admin.component.html',
@@ -74,17 +67,6 @@ export class CronogramaAdminComponent implements OnInit {
   private eventoActividad: any;
   eventsModel: any;
 
-
-  // calendar plugin
-  calendarPlugins = [
-    dayGridPlugin,
-    bootstrapPlugin,
-    timeGrigPlugin,
-    interactionPlugin,
-    listPlugin,
-  ];
-
-
   constructor(
     private datePipe: DatePipe,
     private service: PublicService,
@@ -96,18 +78,6 @@ export class CronogramaAdminComponent implements OnInit {
     this.setDates(new Date());
   }
 
-  // verify(dates: any, day: any) {
-
-  //   let datestring = new Date(day).toISOString().slice(0, 10)
-  //   return dates.includes(datestring);
-  //   ((day | date: 'EEEE') == lesson.day) && (hour == lesson.startTime) && lesson.dates.includes((day | date: 'YYYY-MM-dd'))
-  // }
-
-  verify() {
-
-    return true;
-
-  }
 
   searchschedules(id: any) {
     this.load = true
@@ -155,8 +125,6 @@ export class CronogramaAdminComponent implements OnInit {
   }
 
   nextRange() {
-    console.log('click');
-    // this.load = true
     if (this.inicioRange) {
       let date = new Date(this.inicioRange);
       date.setDate(date.getDate() + 1);
@@ -166,7 +134,6 @@ export class CronogramaAdminComponent implements OnInit {
   }
 
   backRange() {
-    // this.load = true
     if (this.inicioRange) {
       let date = new Date(this.inicioRange);
       date.setDate(date.getDate() - 1);

@@ -47,14 +47,6 @@ export class CronogramaComponent implements OnInit {
     this.searchLesson()
   }
 
-  verify(dates: any, day: any) {
-
-    console.log([dates, day]);
-
-    return false;
-
-  }
-
   searchLesson() {
     this.service
       .getLessons()
