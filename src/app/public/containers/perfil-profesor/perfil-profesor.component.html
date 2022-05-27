@@ -86,15 +86,9 @@
         </div>
         <div class="caja-blanca p-4 mt-5">
           <span style="float: left; font-weight: 600">Costo por hora:</span>
-          <span style="float: right" id="costo"
-            >USD ${{ profesor.acount.price ? profesor.acount.price : 0 }}</span
-          >
-          <button
-            type="button"
-            class="w-100 btn btn-primary mt-4"
-            (click)="contratar()"
-            [disabled]="!auth">
-     
+          <span style="float: right" id="costo">USD ${{ profesor.acount.price ? profesor.acount.price : 0 }}</span>
+          <button type="button" class="w-100 btn btn-primary mt-4" (click)="contratar()" [disabled]="!auth">
+
             Contratar
           </button>
         </div>

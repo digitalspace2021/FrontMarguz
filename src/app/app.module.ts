@@ -18,7 +18,6 @@ import {
   faTrashAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import localeEs from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -30,7 +29,6 @@ import { NgxPayPalModule } from 'ngx-paypal';
 registerLocaleData(localeEs, 'es-CO');
 
 FullCalendarModule.registerPlugins([
-  // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin,
 ]);

@@ -23,29 +23,22 @@
   <tbody>
 
     <tr scope="col" class="ajust"
-      *ngFor="let hour of ['5:00', '6:00', '7:00', '8:00','9:00', '10:00','11:00','12:00','13:00','14:00','15:00','16:00' ,'17:00','18:00','19:00','20:00','21:00','22:00']">
+      *ngFor="let hour of ['3:00','4:00','5:00', '6:00', '7:00', '8:00','9:00', '10:00','11:00','12:00','13:00','14:00','15:00','16:00' ,'17:00','18:00','19:00','20:00','21:00','22:00']">
       <th class="scoppes" scope="row"> {{hour}} </th>
       <td class="dashed dashed-no-bordered" *ngFor="let day of range">
         <ng-container *ngFor="let schedule of horarios">
-          <ng-container *ngFor="let lesson of schedule.lesson_schedules;">
+          <ng-container *ngFor="let lesson of schedule.lesson_schedules; let i = index ">
+            <ng-container *ngIf="lesson.dates.includes((day | date: 'YYYY-MM-dd')) && (hour == lesson.startTime)">
 
-
-            <ng-container *ngIf="((day | date: 'EEEE') == lesson.day) && (hour == lesson.startTime)">
-
-              <span class="text mt-2">
-                {{lesson.startTime + '-' + lesson.endTime}}</span>
+              <span class="text mt-2">{{lesson.startTime + '-' + lesson.endTime}}</span>
               <span (click)="showModal(lesson)">
-                <i style="float: right" class="fas fa-eye icon-marcadoAzul mt-1">
-
-                </i>
+                <i style="float: right" class="fas fa-eye icon-marcadoAzul mt-1"> </i>
               </span>
+
               <hr>
 
             </ng-container>
-
-
           </ng-container>
-
         </ng-container>
       </td>
     </tr>
@@ -80,34 +73,10 @@
       </div>
     </div>
     <div class="text-center mb-3" *ngIf="TypeUser == 'Teacher' || TypeUser == 'Admin'">
-      <button type="button" class="btn btn-success bs" (click)="approve()">Aprobar</button>
+      <button type="button" class="btn btn-success bs" [disabled]="disabled" (click)="approve()">{{btnName}}</button>
       <button type="button" class="btn btn-primary bs" (click)="goEdit()">Modificar</button>
     </div>
   </div>
-
-  <!-- <div class="app-modal-body">
-    <h3 class="text-center title">Detalles de la clase</h3>
-    <p class="subtitle">Inglés nivel corporativo</p>
-    <br />
-    <div class="detalles-clase">
-      <p class="text-boldes">Alumno: <span>Stan Marsh</span></p>
-      <p class="text-boldes">Hora: <span>9:00 P.M.</span></p>
-      <p class="text-boldes">Fecha: <span>13 de Junio, 2021</span></p>
-      <p class="text-boldes">Descripción:</p>
-      <p class="text-boldes">
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Inventore odit modi itaque laborum iusto nulla. Maiores
-          repudiandae molestias ad consequatur recusandae incidunt, eius,
-          amet architecto eligendi excepturi impedit eos! Saepe?</span>
-      </p>
-      <p class="text-boldes">
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Inventore odit modi itaque laborum iusto nulla. Maiores
-          repudiandae molestias ad consequatur recusandae incidunt, eius,
-          amet architecto eligendi excepturi impedit eos! Saepe?</span>
-      </p>
-    </div>
-  </div> -->
 
   <div class=" app-modal-footer ">
 
@@ -116,5 +85,9 @@
   </div>
 
 </app-modal-basic>
+
+
+<app-confirm [title]="'Aprobada'" [msg]="'Operación exitosa'" buttonMsg="Aceptar" *ngIf="isConfirm"
+  (closeConfirm)="closeConfirm()" logo="assets/iconos/happyface.png"></app-confirm>
 
 <app-loader *ngIf="load"></app-loader>

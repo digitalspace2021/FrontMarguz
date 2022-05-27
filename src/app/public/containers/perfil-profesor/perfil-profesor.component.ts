@@ -34,7 +34,6 @@ export class PerfilProfesorComponent implements OnInit {
     if (this.id) {
       this.publicsv.getScheduledPublic(this.id).subscribe((data: any) => {
         let schedules = data.result;
-
         this.calendarOptions = {
           plugins: [timeGridPlugin],
           initialView: 'timeGridWeek',

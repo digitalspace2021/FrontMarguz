@@ -38,7 +38,34 @@ export class CronogramaAdminComponent implements OnInit {
   data: any;
   load: boolean = false;
   quantity!: number;
+  isConfirm: boolean = false;
+  btnName: string = 'Aprobar';
+  disabled: boolean = false;
+  calendarEvents: any;
 
+
+  calendarWeekends: any;
+
+
+  Id_Dependencia = 1;
+
+  Departamentos: any = [];
+  Municipios: any = [];
+  Actividades: Array<any> = [];
+
+
+  Ver: boolean = false;
+  ver: number = 0;
+  FuncionariosSele: any[] = [];
+
+
+  cliente_seleccionado: any = '';
+  funcionario_seleccionado: any = '';
+  Funcionarios: any[] = [];
+
+  alertOption: any = {};
+  private eventoActividad: any;
+  eventsModel: any;
 
   constructor(
     private datePipe: DatePipe,
@@ -51,19 +78,6 @@ export class CronogramaAdminComponent implements OnInit {
     this.setDates(new Date());
   }
 
-  verify(lesson: any, quantity: any) {
-
-    let brand = 0;
-    this.horarios.forEach((schedule: any) => {
-      schedule.lesson_schedules.forEach((el: any) => {
-        // console.log(this.quantity);
-        // if (!this.quantity) brand = false;
-        // if (el.id == lesson.id) this.quantity - 1
-      });
-    });
-
-    return brand;
-  }
 
   searchschedules(id: any) {
     this.load = true
@@ -71,7 +85,6 @@ export class CronogramaAdminComponent implements OnInit {
       .searchschedules(id)
       .then((resp: any) => {
         this.horarios = resp.result
-        console.log(this.horarios);
         this.load = false
       })
       .catch((e) => console.log(e));
@@ -102,21 +115,21 @@ export class CronogramaAdminComponent implements OnInit {
 
   setDates(date: Date) {
 
-    console.log(date);
-
     this.inicioRange = new Date(date);
     this.finRange = new Date(this.inicioRange);
-    this.finRange.setDate(this.finRange.getDate() + 6);
+    this.finRange.setDate(this.finRange.getDate() + 5);
     this.range = [];
     for (let d = new Date(this.inicioRange); d <= this.finRange; d.setDate(d.getDate() + 1)) {
       this.range.push(new Date(d));
     }
   }
+
   nextRange() {
     if (this.inicioRange) {
       let date = new Date(this.inicioRange);
       date.setDate(date.getDate() + 1);
       this.setDates(date);
+      console.log('click');
     }
   }
 
@@ -128,13 +141,21 @@ export class CronogramaAdminComponent implements OnInit {
     }
   }
   approve() {
+    this.disabled = true
+    this.btnName = 'Enviando...'
     this.service
       .approveLesson(this.selectedId)
       .then((resp: any) => {
-        console.log(resp);
+        this.isConfirm = true;
+        this.btnName = 'Aprobar'
+        this.disabled = false
         this.closedModal()
       })
       .catch((e) => console.log(e));
+  }
+
+  closeConfirm() {
+    this.isConfirm = false;
   }
 
 
