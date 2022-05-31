@@ -49,7 +49,7 @@
                   <td><span *ngFor="let days of lesson.lesson_schedules">
                       {{days.day}}
                     </span></td>
-                  <td>{{ lesson.complete ? 'completado' : 'No completado' }}</td>
+                  <td>{{ lesson.complete == 1 ? 'completado' : 'No completado' }}</td>
                   <td>{{ lesson.lessonComplete }}</td>
                   <td>{{ lesson.quantity }}</td>
                   <td>

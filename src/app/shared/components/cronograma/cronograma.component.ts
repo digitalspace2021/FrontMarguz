@@ -148,6 +148,7 @@ export class CronogramaComponent implements OnInit {
     this.service
       .approveLesson(this.selectedId)
       .then((resp: any) => {
+        this.closedModal()
         console.log(resp);
       })
       .catch((e) => console.log(e));

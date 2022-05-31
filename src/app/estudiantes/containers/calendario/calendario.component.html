@@ -5,7 +5,9 @@
         <div class="col-sm-12 col-xs-12 col-md-6 col-xl-4 col-lg-4 colPaddings">
           <div class="primeraCol">
             <div class="datepicker mt-3">
-              <mat-calendar></mat-calendar>
+              Calendar
+              <mat-calendar [(selected)]="fecha" (selectedChange)="onSelect($event)"></mat-calendar>
+
             </div>
           </div>
         </div>
@@ -18,56 +20,6 @@
       </div>
     </div>
   </div>
-
-  <!-- MODALES  -->
-
-  <!-- <div class="modal fade" id="modalDetallesAdmin" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h3 class="text-center title">Detalles de la clase</h3>
-          <p class="subtitle">Inglés nivel corporativo</p>
-          <br />
-          <div class="detalles-clase">
-            <p class="text-boldes">Alumno: <span>Stan Marsh</span></p>
-            <p class="text-boldes">Hora: <span>9:00 P.M.</span></p>
-            <p class="text-boldes">Fecha: <span>13 de Junio, 2021</span></p>
-            <p class="text-boldes">Descripción:</p>
-            <p class="text-boldes">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore odit modi itaque laborum iusto nulla. Maiores
-                repudiandae molestias ad consequatur recusandae incidunt, eius,
-                amet architecto eligendi excepturi impedit eos! Saepe?</span>
-            </p>
-            <p class="text-boldes">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore odit modi itaque laborum iusto nulla. Maiores
-                repudiandae molestias ad consequatur recusandae incidunt, eius,
-                amet architecto eligendi excepturi impedit eos! Saepe?</span>
-            </p>
-            <p class="text-boldes">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore odit modi itaque laborum iusto nulla. Maiores
-                repudiandae molestias ad consequatur recusandae incidunt, eius,
-                amet architecto eligendi excepturi impedit eos! Saepe?</span>
-            </p>
-          </div>
-        </div>
-        <div class="text-center mb-3"></div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- MODALES  -->
-
-  <!-- <div class="button-add fixed-bottom">
-    <button class="bt">
-      <i class="fas fa-plus-circle"></i>
-    </button>
-  </div> -->
 
   <script>
     $(document).ready(function () {

@@ -124,6 +124,8 @@ export class PublicService {
           resolve(data);
         },
         (error: any) => {
+          if (error.status == 400)
+            reject(error.error.result);
           reject(error.error.errors);
         }
       );
