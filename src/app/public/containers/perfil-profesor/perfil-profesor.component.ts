@@ -33,15 +33,49 @@ export class PerfilProfesorComponent implements OnInit {
   getscheduled() {
     if (this.id) {
       this.publicsv.getScheduledPublic(this.id).subscribe((data: any) => {
-        let schedules = data.result;
-
+        let schedules = data.result[0]['teacherSchedulesAvailable'];
+        console.log(schedules);
         this.calendarOptions = {
           plugins: [timeGridPlugin],
           initialView: 'timeGridWeek',
           locale: eslocale,
-          businessHours: [schedules],
+          businessHours: this.convertTime(schedules),
         };
       });
+    }
+  }
+
+  convertTime(schedules: any): any {
+    let convertSchedules: any[] = [];
+    schedules.forEach((element: any) => {
+      convertSchedules.push({
+        daysOfWeek: [this.convertDayWeekNumber(element.day)],
+        startTime: element.startTime,
+        endTime: element.endTime,
+      });
+    });
+
+    return convertSchedules;
+  }
+
+  convertDayWeekNumber(day: string): number {
+    switch (day) {
+      case 'Lunes':
+        return 1;
+      case 'Martes':
+        return 2;
+      case 'Miercoles':
+        return 3;
+      case 'Jueves':
+        return 4;
+      case 'Viernes':
+        return 5;
+      case 'Sabado':
+        return 6;
+      case 'Domingo':
+        return 7;
+      default:
+        return 0;
     }
   }
 
