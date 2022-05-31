@@ -5,7 +5,7 @@
         <div class="col-sm-12 col-xs-12 col-md-6 col-xl-4 col-lg-4 colPaddings">
           <div class="primeraCol">
             <div class="datepicker mt-3">
-              <mat-calendar></mat-calendar>
+              <mat-calendar [(selected)]="fecha" (selectedChange)="onSelect($event)"></mat-calendar>
             </div>
           </div>
         </div>
