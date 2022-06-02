@@ -119,15 +119,16 @@ export class RegisterComponent implements OnInit {
     }
 
     getTotal() {
-        console.log('calculing');
         this.total = this.price * this.horarios.length * this.count
     }
 
-    save() {
+    save(): any {
 
         this.load = true;
 
         let formData = new FormData
+
+        if (String(this.language) == 'undefined') { this.openError('Es necesario seleccionar un Idioma'); this.load = false; return false; }
 
         formData.append('teacher_id', String(this.idTeacher));
         formData.append('student_id', String(this.idStudent));
@@ -190,7 +191,7 @@ export class RegisterComponent implements OnInit {
                 this.model2 = data.teacher
                 this.interestOrLanguages = data.teacher.interest_or_languages
                 this.description = data.description
-                this.language = data.language
+                this.language = data.language ?? 1
                 this.id = data.id
 
             })
