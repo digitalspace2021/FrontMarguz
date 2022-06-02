@@ -55,24 +55,26 @@ export class PerfilProfesorComponent implements OnInit {
       });
     });
 
+    console.log(convertSchedules);
+
     return convertSchedules;
   }
 
   convertDayWeekNumber(day: string): number {
     switch (day) {
-      case 'Lunes':
+      case 'lunes':
         return 1;
-      case 'Martes':
+      case 'martes':
         return 2;
-      case 'Miercoles':
+      case 'miercoles':
         return 3;
-      case 'Jueves':
+      case 'jueves':
         return 4;
-      case 'Viernes':
+      case 'viernes':
         return 5;
-      case 'Sabado':
+      case 'sabado':
         return 6;
-      case 'Domingo':
+      case 'domingo':
         return 7;
       default:
         return 0;
