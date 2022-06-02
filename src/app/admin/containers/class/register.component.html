@@ -58,7 +58,8 @@
 
       <div class="col-md-6">
         <label class="col-form-label">Idioma</label>
-        <select class="form-control" [(ngModel)]="language">
+        <select class="form-control" [(ngModel)]="language" required="true">
+          <option>Seleccione</option>
           <option *ngFor="let idiom of interestOrLanguages">{{idiom.name}}</option>
         </select>
       </div>

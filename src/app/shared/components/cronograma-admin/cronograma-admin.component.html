@@ -30,7 +30,9 @@
           <ng-container *ngFor="let lesson of schedule.lesson_schedules; let i = index ">
             <ng-container *ngIf="lesson.dates.includes((day | date: 'YYYY-MM-dd')) && (hour == lesson.startTime)">
 
-              <span class="text mt-2">{{lesson.startTime + '-' + lesson.endTime}}</span>
+              <span style="display:block ;font-size: 0.8em; float: left" class="text mt-1">{{lesson.language}}</span>
+              <small style="color:red ; font-size: 0.8em" class="text text-center">{{lesson.startTime + '-' +
+                lesson.endTime}}</small>
               <span (click)="showModal(lesson)">
                 <i style="float: right" class="fas fa-eye icon-marcadoAzul mt-1"> </i>
               </span>
