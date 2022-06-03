@@ -25,7 +25,10 @@ import {
 import { MateriaService } from 'src/app/admin/services/materia.service';
 import { AuthService } from '../../services/auth.service';
 import { userModel } from './user.model';
-import { listaMensaje, listaTipoMensaje } from 'src/app/shared/enum/listaMensajeria';
+import {
+  listaMensaje,
+  listaTipoMensaje,
+} from 'src/app/shared/enum/listaMensajeria';
 
 @Component({
   selector: 'app-form-registro',
@@ -33,23 +36,24 @@ import { listaMensaje, listaTipoMensaje } from 'src/app/shared/enum/listaMensaje
   styleUrls: ['./form-registro.component.scss'],
 })
 export class FormRegistroComponent implements OnInit {
-  @ViewChild("mostrarModal") mostrarModal!: ElementRef<HTMLInputElement>;
+  @ViewChild('mostrarModal') mostrarModal!: ElementRef<HTMLInputElement>;
 
   public mensajeGuardado = listaTipoMensaje.almacenado;
 
   public msgGuardado = listaMensaje.almacenado;
 
-
   checkPasswords: ValidatorFn = (
     group: AbstractControl
   ): ValidationErrors | null => {
     let pass = group.get('contrasena') ? group.get('contrasena')!.value : null;
-    let confirmPass = group.get('contrasenaConfim') ? group.get('contrasenaConfim')!.value : null;
+    let confirmPass = group.get('contrasenaConfim')
+      ? group.get('contrasenaConfim')!.value
+      : null;
     return pass === confirmPass ? null : { notSame: true };
   };
 
   @Input() tipoUsuario: string = 'Admin';
-  @Input() data: any = new userModel;
+  @Input() data: any = new userModel();
   isEstudiante: boolean = false;
   isAdmin: boolean = false;
   isProfesor: boolean = false;
@@ -89,29 +93,43 @@ export class FormRegistroComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private materiaSv: MateriaService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.horarios = this.data.count?.schedules_available
-      ?
-      this.data.acount?.schedules_available
-      :
-      [{
-        day: 'lunes',
-        start: '8:00am',
-        end: '2:00pm'
-      }];
+      ? this.data.acount?.schedules_available
+      : [
+          {
+            day: 'lunes',
+            start: '8:00am',
+            end: '2:00pm',
+          },
+        ];
 
     this.registroForm = new FormGroup(
-
       {
-        identificacion: new FormControl(this.data.acount?.identification, Validators.required),
+        identificacion: new FormControl(
+          this.data.acount?.identification,
+          Validators.required
+        ),
         nombre: new FormControl(this.data?.name, Validators.required),
         apellido: new FormControl(this.data?.lastname, Validators.required),
-        telefono: new FormControl(this.data.acount?.cellphone, Validators.required),
-        pais: new FormControl(this.data.acount?.country, Validators.required),
-        estado: new FormControl(this.data.acount?.state, Validators.required),
-        ciudad: new FormControl(this.data.acount?.city, Validators.required),
+        telefono: new FormControl(
+          this.data.acount?.cellphone,
+          Validators.required
+        ),
+        pais: new FormControl(
+          !this.data.acount?.country ? 0 : this.data.acount?.country,
+          Validators.required
+        ),
+        estado: new FormControl(
+          !this.data.acount?.state ? 0 : this.data.acount?.state,
+          Validators.required
+        ),
+        ciudad: new FormControl(
+          !this.data.acount?.city ? 0 : this.data.acount?.city,
+          Validators.required
+        ),
         email: new FormControl(this.data?.email, Validators.email),
         contrasena: new FormControl(
           '',
@@ -128,10 +146,7 @@ export class FormRegistroComponent implements OnInit {
         docuCedula: new FormControl(''),
       },
       { validators: this.checkPasswords }
-
-    )
-
-
+    );
 
     if (this.tipoUsuario == 'Teacher') {
       this.isProfesor = true;
@@ -142,7 +157,6 @@ export class FormRegistroComponent implements OnInit {
     }
     this.changerCountrys();
   }
-
 
   checkLength() {
     let value =
@@ -266,7 +280,7 @@ export class FormRegistroComponent implements OnInit {
       .catch((err) => console.error(err));
   }
 
-  async agregarIntereses() { }
+  async agregarIntereses() {}
 
   validate() {
     if (this.fRegistro.nombre.errors && this.fRegistro.nombre.errors.required)
@@ -311,7 +325,7 @@ export class FormRegistroComponent implements OnInit {
         form: this.registroForm,
         horarios: this.horarios,
         idiomas: this.idiomas,
-        modal: this.mostrarModal
+        modal: this.mostrarModal,
       };
       this.registrar.emit(value);
     } catch (e: any) {
@@ -320,13 +334,12 @@ export class FormRegistroComponent implements OnInit {
   }
 
   load(visible: boolean = true) {
-    let elemento = document.querySelector(".containerload");
+    let elemento = document.querySelector('.containerload');
     if (elemento != null) {
       if (visible) {
-        elemento.classList.add("loadvisible");
-      }
-      else {
-        elemento.classList.remove("loadvisible");
+        elemento.classList.add('loadvisible');
+      } else {
+        elemento.classList.remove('loadvisible');
       }
     }
   }
